@@ -1,0 +1,12 @@
+CREATE TYPE "SourceHealth" AS ENUM ('HEALTHY','DEGRADED','UNAVAILABLE','DISABLED');
+ALTER TABLE sources ADD COLUMN last_success_at TIMESTAMPTZ(3), ADD COLUMN last_failure_at TIMESTAMPTZ(3), ADD COLUMN last_status "SourceHealth" NOT NULL DEFAULT 'UNAVAILABLE';
+CREATE TABLE sync_jobs (id TEXT PRIMARY KEY, trigger TEXT NOT NULL, mode TEXT NOT NULL, status TEXT NOT NULL DEFAULT 'RUNNING', started_at TIMESTAMPTZ(3) NOT NULL DEFAULT CURRENT_TIMESTAMP, finished_at TIMESTAMPTZ(3), summary JSONB NOT NULL DEFAULT '{}');
+CREATE INDEX sync_jobs_started_at_idx ON sync_jobs(started_at DESC);
+ALTER TABLE sync_logs ADD COLUMN job_id TEXT REFERENCES sync_jobs(id) ON DELETE SET NULL, ADD COLUMN error_kind TEXT;
+CREATE INDEX sync_logs_job_id_idx ON sync_logs(job_id);
+UPDATE sources SET sync_frequency=12 WHERE code IN ('FDA','EMA','NMPA','CDE') AND sync_frequency=6;
+ALTER TABLE sources ALTER COLUMN sync_frequency SET DEFAULT 12;
+ALTER TABLE sources ADD CONSTRAINT sources_sync_frequency_positive CHECK (sync_frequency > 0);
+UPDATE sync_logs SET error_kind='RUNTIME_SOURCE_LIMITATION' WHERE NOT is_mock AND (error_message ~* 'HTTP (202|403|412|429)|verification|access denied|captcha' OR (source_id IN (SELECT id FROM sources WHERE code='EMA') AND error_message LIKE '%Expected official source HTML%'));
+UPDATE sources s SET last_sync_at=(SELECT max(started_at) FROM sync_logs l WHERE l.source_id=s.id AND NOT l.is_mock), last_success_at=(SELECT max(finished_at) FROM sync_logs l WHERE l.source_id=s.id AND NOT l.is_mock AND l.status='SUCCESS'), last_failure_at=(SELECT max(finished_at) FROM sync_logs l WHERE l.source_id=s.id AND NOT l.is_mock AND l.status<>'SUCCESS');
+UPDATE sources s SET last_status=CASE WHEN NOT s.enabled THEN 'DISABLED'::"SourceHealth" WHEN l.status='SUCCESS' THEN 'HEALTHY'::"SourceHealth" WHEN l.status='PARTIAL_SUCCESS' OR l.error_kind='RUNTIME_SOURCE_LIMITATION' THEN 'DEGRADED'::"SourceHealth" ELSE 'UNAVAILABLE'::"SourceHealth" END FROM (SELECT DISTINCT ON (source_id) source_id,status,error_kind FROM sync_logs WHERE NOT is_mock ORDER BY source_id,started_at DESC) l WHERE l.source_id=s.id;

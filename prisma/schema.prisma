@@ -1,0 +1,223 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+datasource db {
+  provider = "postgresql"
+}
+enum Agency {
+  FDA
+  EMA
+  NMPA
+  CDE
+  ICH
+  PMDA
+}
+enum DocumentType {
+  FINAL_GUIDANCE
+  DRAFT_GUIDANCE
+  GUIDELINE
+  REVISED_GUIDELINE
+  QA
+  REFLECTION_PAPER
+  CONCEPT_PAPER
+  POSITION_PAPER
+  RECOMMENDATION
+  TECHNICAL_GUIDELINE
+  NOTICE
+  ANNOUNCEMENT
+  REGULATION
+  REGULATION_AMENDMENT
+  CONSULTATION_DRAFT
+  OTHER
+}
+enum RegulationStatus {
+  DRAFT
+  FINAL
+  EFFECTIVE
+  REVISED
+  SUPERSEDED
+  WITHDRAWN
+  UNDER_CONSULTATION
+  ARCHIVED
+  UNKNOWN
+}
+enum Importance {
+  CRITICAL
+  HIGH
+  MEDIUM
+  LOW
+}
+enum SyncStatus {
+  SUCCESS
+  PARTIAL_SUCCESS
+  FAILED
+}
+enum SourceHealth {
+  HEALTHY
+  DEGRADED
+  UNAVAILABLE
+  DISABLED
+}
+model SyncJob {
+  id String @id @default(cuid())
+  trigger String
+  mode String
+  status String @default("RUNNING")
+  started_at DateTime @default(now()) @db.Timestamptz(3)
+  finished_at DateTime? @db.Timestamptz(3)
+  summary Json @default("{}")
+  logs SyncLog[]
+  @@index([started_at(sort: Desc)])
+  @@map("sync_jobs")
+}
+model Source {
+  id                String       @id @default(cuid())
+  code              Agency       @unique
+  name              String
+  country_or_region String
+  official_base_url String
+  enabled           Boolean      @default(true)
+  sync_frequency    Int          @default(12) // hours between attempts
+  last_sync_at      DateTime?     @db.Timestamptz(3)
+  last_success_at   DateTime? @db.Timestamptz(3)
+  last_failure_at   DateTime? @db.Timestamptz(3)
+  last_status       SourceHealth @default(UNAVAILABLE)
+  created_at        DateTime      @default(now()) @db.Timestamptz(3)
+  updated_at        DateTime      @updatedAt @db.Timestamptz(3)
+  regulations       Regulation[]
+  sync_logs         SyncLog[]
+  @@unique([id, code])
+  @@map("sources")
+}
+model Regulation {
+  id                   String           @id @default(cuid())
+  source_id            String
+  regulator            Agency
+  source               Source           @relation(fields: [source_id, regulator], references: [id, code], onDelete: Restrict)
+  country_or_region    String
+  title_original       String
+  title_zh             String           @default("")
+  document_number      String?
+  document_type        DocumentType
+  status               RegulationStatus @default(UNKNOWN)
+  publication_date     DateTime?         @db.Date
+  publication_date_raw String?
+  issuing_offices      String[]         @default([])
+  official_topics      String[]         @default([])
+  docket_number        String?
+  source_metadata      Json             @default("{}")
+  attachment_urls      String[]         @default([])
+  effective_date       DateTime?         @db.Date
+  updated_date         DateTime?         @db.Date // official update date, never a last-checked timestamp
+  official_url         String?
+  canonical_url        String?
+  pdf_url              String?
+  source_page_url      String?
+  official_summary     String?
+  summary_zh           String           @default("")
+  content_text         String           @default("")
+  categories           String[]         @default([])
+  subcategories        String[]         @default([])
+  keywords             String[]         @default([])
+  product_types        String[]         @default([])
+  development_stages   String[]         @default([])
+  affected_departments String[]         @default([])
+  importance_level     Importance       @default(MEDIUM)
+  version              String           @default("1.0")
+  previous_version_id  String?
+  previous_version     RegulationVersion? @relation("RegulationPrevious", fields:[previous_version_id],references:[id],onDelete:Restrict)
+  is_current_version   Boolean          @default(true)
+  is_new               Boolean          @default(true)
+  is_updated           Boolean          @default(false)
+  content_hash         String?
+  source_hash          String?
+  first_detected_at    DateTime         @default(now()) @db.Timestamptz(3)
+  last_checked_at      DateTime?        @db.Timestamptz(3)
+  created_at           DateTime         @default(now()) @db.Timestamptz(3)
+  updated_at           DateTime         @updatedAt @db.Timestamptz(3)
+  is_mock              Boolean          @default(false)
+  versions             RegulationVersion[] @relation("RegulationHistory")
+  @@index([regulator])
+  @@index([source_id, title_original, publication_date])
+  @@index([publication_date(sort: Desc)])
+  @@index([status])
+  @@index([document_type])
+  @@index([importance_level])
+  @@index([content_hash])
+  @@index([docket_number])
+  @@index([canonical_url])
+  @@index([first_detected_at])
+  @@index([last_checked_at])
+  @@index([categories], type: Gin)
+  @@index([subcategories], type: Gin)
+  @@index([keywords], type: Gin)
+  @@index([product_types], type: Gin)
+  @@index([development_stages], type: Gin)
+  @@index([affected_departments], type: Gin)
+  @@map("regulations")
+}
+model RegulationVersion {
+  id                  String           @id @default(cuid())
+  regulation_id       String
+  regulation          Regulation       @relation("RegulationHistory",fields:[regulation_id],references:[id],onDelete:Restrict)
+  version_name        String
+  document_url        String?
+  pdf_url             String?
+  publication_date    DateTime?         @db.Date
+  detected_at         DateTime          @default(now()) @db.Timestamptz(3)
+  status              RegulationStatus
+  content_hash        String?
+  source_hash         String?
+  content_snapshot    String
+  previous_version_id String?
+  previous_version    RegulationVersion? @relation("VersionChain",fields:[previous_version_id],references:[id],onDelete:Restrict)
+  next_versions       RegulationVersion[] @relation("VersionChain")
+  previous_for        Regulation[]       @relation("RegulationPrevious")
+  change_detected     String             @default("") // supplied by a future importer, no detection engine in Phase 2
+  created_at          DateTime           @default(now()) @db.Timestamptz(3)
+  @@unique([regulation_id,version_name])
+  @@index([detected_at])
+  @@index([content_hash])
+  @@map("regulation_versions")
+}
+model SyncLog {
+  id              String     @id @default(cuid())
+  job_id          String?
+  job             SyncJob? @relation(fields:[job_id],references:[id],onDelete:SetNull)
+  error_kind      String?
+  source_id       String
+  source          Source     @relation(fields:[source_id],references:[id],onDelete:Restrict)
+  started_at      DateTime   @db.Timestamptz(3)
+  finished_at     DateTime?  @db.Timestamptz(3)
+  status          SyncStatus
+  records_found   Int        @default(0)
+  records_new     Int        @default(0)
+  records_updated Int        @default(0)
+  records_failed  Int        @default(0)
+  error_message   String?
+  is_mock         Boolean    @default(false)
+  created_at      DateTime   @default(now()) @db.Timestamptz(3)
+  @@index([source_id, started_at(sort: Desc)])
+  @@index([job_id])
+  @@map("sync_logs")
+}
+model Watchlist {
+  id                 String       @id @default(cuid())
+  name               String
+  description        String       @default("")
+  regulators         Agency[]     @default([])
+  categories         String[]     @default([])
+  subcategories      String[]     @default([])
+  product_types      String[]     @default([])
+  development_stages String[]     @default([])
+  document_types     DocumentType[] @default([])
+  keywords           String[]     @default([])
+  importance_levels  Importance[] @default([])
+  enabled            Boolean      @default(true)
+  created_at         DateTime     @default(now()) @db.Timestamptz(3)
+  updated_at         DateTime     @updatedAt @db.Timestamptz(3)
+  @@index([enabled])
+  @@index([regulators], type: Gin)
+  @@map("watchlists")
+}

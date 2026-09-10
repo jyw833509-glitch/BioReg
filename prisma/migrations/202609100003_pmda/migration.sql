@@ -1,0 +1,1 @@
+ALTER TYPE "Agency" ADD VALUE 'PMDA';

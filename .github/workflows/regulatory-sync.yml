@@ -1,0 +1,73 @@
+name: Regulatory Sync
+on:
+  schedule:
+    - cron: '17 * * * *'
+  workflow_dispatch:
+    inputs:
+      source:
+        description: Source
+        type: choice
+        options: [all, fda, ema, nmpa, cde, ich, pmda]
+        default: all
+      mode:
+        description: Initial is manual only
+        type: choice
+        options: [incremental, initial]
+        default: incremental
+      dry_run:
+        description: Read and parse without database writes
+        type: boolean
+        default: false
+permissions:
+  contents: read
+concurrency:
+  group: regulatory-sync
+  cancel-in-progress: false
+jobs:
+  sync:
+    if: github.event_name == 'workflow_dispatch' || vars.REGULATORY_SYNC_ENABLED == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    env:
+      DATABASE_URL: ${{ secrets.DATABASE_URL }}
+      SYNC_SOURCE: ${{ inputs.source || 'all' }}
+      SYNC_MODE: ${{ inputs.mode || 'incremental' }}
+      SYNC_DRY_RUN: ${{ inputs.dry_run || 'false' }}
+      EVENT_NAME: ${{ github.event_name }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci
+      - name: Prepare database and source configurations
+        if: env.SYNC_DRY_RUN != 'true'
+        run: npm run sync:prepare
+      - name: Run sequential scheduler
+        shell: bash
+        run: |
+          args=("$SYNC_SOURCE" --mode "$SYNC_MODE" --limit 8)
+          if [ "$EVENT_NAME" = schedule ]; then
+            args+=(--due --trigger scheduled)
+          else
+            args+=(--trigger manual)
+          fi
+          if [ "$SYNC_DRY_RUN" = true ]; then args+=(--dry-run); fi
+          set +e
+          npm run sync -- "${args[@]}"
+          code=$?
+          set -e
+          if [ "$code" -eq 2 ]; then
+            echo '::warning::PARTIAL_SUCCESS: see source health summary; successful sources were committed.'
+            exit 0
+          fi
+          exit "$code"
+      - name: Save sanitized sync summary
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: regulatory-sync-summary-${{ github.run_id }}
+          path: .data/sync-summary.json
+          retention-days: 30
+          if-no-files-found: ignore
