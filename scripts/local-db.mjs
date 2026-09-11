@@ -134,14 +134,17 @@ async function main() {
     if (error.code === "ENOENT") return "";
     throw error;
   });
-  if (!/^DATABASE_URL\s*=\s*\S+/m.test(previous)) {
-    const clean = previous.replace(/^DATABASE_URL\s*=\s*$/gm, "");
-    await fs.writeFile(
-      envFile,
-      `${clean}\nDATABASE_URL=postgresql://${settings.user}:${settings.password}@127.0.0.1:${settings.port}/bioreg\n`,
-      { mode: 0o600 },
-    );
+  let updated = previous;
+  for (const key of ["DATABASE_URL", "DIRECT_URL"]) {
+    if (!new RegExp("^" + key + "\\s*=\\s*\\S+", "m").test(previous)) {
+      updated = updated.replace(new RegExp("^" + key + "\\s*=\\s*$", "gm"), "");
+      updated += `
+${key}=postgresql://${settings.user}:${settings.password}@127.0.0.1:${settings.port}/bioreg
+`;
+    }
   }
+  if (updated !== previous)
+    await fs.writeFile(envFile, updated, { mode: 0o600 });
   console.log(
     "Native PostgreSQL ready on 127.0.0.1:55432. Credentials are saved only in ignored local files. Existing DATABASE_URL values are preserved.",
   );

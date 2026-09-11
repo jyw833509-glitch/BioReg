@@ -54,3 +54,9 @@ DATABASE_URL：用户分别在 GitHub Secret 和 Netlify Environment Variables �
 ## Phase 6 Readiness
 
 当前先完成网页故障排查和修订部署验证，不进入 Phase 6。需要查看 Netlify 对应失败请求的函数日志；不要提供密码、连接字符串或 Token。
+
+## Connection exhaustion repair (pending production acceptance)
+
+Netlify Observability identified EMAXCONNSESSION: session pool capacity 15 was exhausted by serverless instances, each previously allowing 5 connections. Web pg pool now allows 1 connection per instance with idle release; global Prisma singleton is retained. CLI/migrations/scheduler use only DIRECT_URL (Direct or Session), preserving session advisory locks. Web uses only DATABASE_URL and must be switched in Netlify to the official Supabase Transaction Pooler URI. Prisma 7 adapter-pg uses unnamed queries without statementNameGenerator; no legacy pgbouncer=true engine flag is added.
+
+Local validation: lint, typecheck, 56 tests and production build passed. No production stress-test result is claimed yet. Netlify environment update, deployment and concurrent page verification remain required. Phase 5 remains PARTIAL.

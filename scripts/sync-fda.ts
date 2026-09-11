@@ -1,6 +1,6 @@
 import { loadEnvConfig } from "@next/env";
 import { parseArgs } from "node:util";
-import { db } from "../src/server/db";
+import { directDb } from "../src/server/direct-db";
 import { syncFda } from "../src/server/connectors/fda/sync";
 import { parseDate } from "../src/server/connectors/fda/normalizer";
 loadEnvConfig(process.cwd());
@@ -21,7 +21,7 @@ async function main() {
     : undefined;
   if (values["start-date"] && !startDate)
     throw new Error("start-date must contain a valid complete date");
-  const client = db();
+  const client = directDb();
   try {
     const result = await syncFda(client, {
       mode: values.mode,

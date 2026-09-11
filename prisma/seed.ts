@@ -1,9 +1,9 @@
 import { loadEnvConfig } from "@next/env";
-import { db } from "../src/server/db";
+import { directDb } from "../src/server/direct-db";
 import { seedDatabase } from "./seed-data";
 loadEnvConfig(process.cwd());
 async function main() {
-  const client = db();
+  const client = directDb();
   try {
     await seedDatabase(client);
     console.log(

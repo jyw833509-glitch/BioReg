@@ -29,7 +29,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 40
     env:
-      DATABASE_URL: ${{ secrets.DATABASE_URL }}
+      DIRECT_URL: ${{ secrets.DIRECT_URL }}
       SYNC_SOURCE: ${{ inputs.source || 'all' }}
       SYNC_MODE: ${{ inputs.mode || 'incremental' }}
       SYNC_DRY_RUN: ${{ inputs.dry_run || 'false' }}

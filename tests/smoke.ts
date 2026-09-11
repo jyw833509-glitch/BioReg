@@ -21,7 +21,7 @@ async function main() {
       process.execPath,
       ["node_modules/prisma/build/index.js", "migrate", "deploy"],
       {
-        env: { ...process.env, DATABASE_URL: url.toString() },
+        env: { ...process.env, DIRECT_URL: url.toString() },
         stdio: "pipe",
         windowsHide: true,
       },

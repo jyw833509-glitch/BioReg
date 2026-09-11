@@ -1,16 +1,16 @@
 import { loadEnvConfig } from "@next/env";
 import { spawnSync } from "node:child_process";
-import { db } from "../src/server/db";
+import { directDb, directConnection } from "../src/server/direct-db";
 import { sourceDefaults } from "../src/server/scheduler/config";
 loadEnvConfig(process.cwd());
 async function main() {
-  if (!process.env.DATABASE_URL) throw new Error("DATABASE_URL_MISSING");
+  if (!process.env.DIRECT_URL) throw new Error("DIRECT_URL_MISSING");
   let connection: URL;
   try {
-    connection = new URL(process.env.DATABASE_URL);
+    connection = new URL(directConnection());
     if (!/^postgres(?:ql)?:$/.test(connection.protocol)) throw new Error();
   } catch {
-    throw new Error("DATABASE_URL_INVALID");
+    throw new Error("DIRECT_URL_INVALID");
   }
   if (
     /YOUR[-_]PASSWORD|\[.*PASSWORD.*\]/i.test(
@@ -41,7 +41,7 @@ async function main() {
           : "MIGRATION_FAILED"),
     );
   }
-  const client = db();
+  const client = directDb();
   try {
     for (const source of sourceDefaults)
       await client.source.upsert({
@@ -59,7 +59,7 @@ async function main() {
 main().catch((error: unknown) => {
   const message = error instanceof Error ? error.message : "";
   const code =
-    /^(?:P\d{4}|DATABASE_URL_MISSING|DATABASE_URL_INVALID|DATABASE_PASSWORD_PLACEHOLDER|MIGRATION_TIMEOUT|MIGRATION_FAILED)$/.test(
+    /^(?:P\d{4}|DIRECT_URL_MISSING|DIRECT_URL_INVALID|DATABASE_PASSWORD_PLACEHOLDER|MIGRATION_TIMEOUT|MIGRATION_FAILED)$/.test(
       message,
     )
       ? message

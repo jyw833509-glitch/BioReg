@@ -16,9 +16,10 @@ export function createClient(url: string) {
     adapter: new PrismaPg(
       {
         connectionString: url,
-        max: 5,
+        max: 1,
+        idleTimeoutMillis: 10000,
         connectionTimeoutMillis: 10000,
-        options: `-c search_path=${schema}`,
+        ...(schema === "public" ? {} : { options: `-c search_path=${schema}` }),
       },
       { schema },
     ),

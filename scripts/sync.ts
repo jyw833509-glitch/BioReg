@@ -1,7 +1,7 @@
 import { parseArgs } from "node:util";
 import { loadEnvConfig } from "@next/env";
 import { appendFileSync, mkdirSync, writeFileSync } from "node:fs";
-import { db } from "../src/server/db";
+import { directDb } from "../src/server/direct-db";
 import { adapters } from "../src/server/connectors/registry";
 import { runScheduler } from "../src/server/scheduler/run";
 import { safeError } from "../src/server/scheduler/health";
@@ -41,7 +41,7 @@ async function main() {
   const startDate = values["start-date"]
     ? new Date(calendarDate.parse(values["start-date"]))
     : undefined;
-  const client = db();
+  const client = directDb();
   try {
     const report = await runScheduler(
       client,

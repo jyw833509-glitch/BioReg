@@ -20,6 +20,7 @@ jobs:
     env:
       # Disposable CI database; never a production endpoint or production secret.
       DATABASE_URL: postgresql://postgres@localhost:5432/bioreg_ci
+      DIRECT_URL: postgresql://postgres@localhost:5432/bioreg_ci
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4

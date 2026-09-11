@@ -32,9 +32,9 @@ GitHub schedule 只在默认分支运行，可能延迟；公开仓库长期无�
 
 目标仓库：https://github.com/jyw833509-glitch/BioReg 。配置文件 `.github/workflows/regulatory-sync.yml` 同时支持 schedule 和 workflow_dispatch，下拉选择 all 或单源、incremental/initial、dry-run。
 
-1. 创建长期运行的云端 PostgreSQL，使用 TLS。Scheduler 的 DATABASE_URL 必须为直连或 session pooling；不能使用 transaction pooling，因为重复任务保护需要固定 PostgreSQL 会话。
-2. 在仓库 Settings → Secrets and variables → Actions → Secrets 设置 **DATABASE_URL**。不要提交 .env.local，不要在聊天中粘贴凭据。
-3. 将 Next.js 网页部署到支持 Node.js 24 的托管环境（或容器），配置指向**同一个数据库**的 DATABASE_URL，设置 NODE_ENV=production。安装/构建使用 npm ci / npm run build，启动 npm start。
+1. 创建长期运行的云端 PostgreSQL，使用 TLS。Scheduler 的 DIRECT_URL 必须为直连或 session pooling；不能使用 transaction pooling，因为重复任务保护需要固定 PostgreSQL 会话。
+2. 在仓库 Settings → Secrets and variables → Actions → Secrets 设置 **DIRECT_URL**。不要提交 .env.local，不要在聊天中粘贴凭据。
+3. 将 Next.js 网页部署到支持 Node.js 24 的托管环境（或容器），配置指向**同一个数据库**的 DATABASE_URL（Netlify 使用 Supabase Transaction Pooler 6543），设置 NODE_ENV=production。安装/构建使用 npm ci / npm run build，启动 npm start。
 4. 先手动运行 Regulatory Sync，检查逐源摘要与数据库数据。只有代码验证工作流通过，不代表真实法规已在云端运行。
 5. 在仓库 Variables 设置 **REGULATORY_SYNC_ENABLED=true** 开启计划任务。未设置时计划任务跳过，手动执行仍可用。
 

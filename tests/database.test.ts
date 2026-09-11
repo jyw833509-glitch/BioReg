@@ -45,7 +45,7 @@ function migration() {
     ["node_modules/prisma/build/index.js", "migrate", "deploy"],
     {
       cwd: process.cwd(),
-      env: { ...process.env, DATABASE_URL: testUrl },
+      env: { ...process.env, DIRECT_URL: testUrl },
       encoding: "utf8",
       windowsHide: true,
     },

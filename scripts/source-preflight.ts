@@ -1,9 +1,9 @@
 import { loadEnvConfig } from "@next/env";
-import { db } from "../src/server/db";
+import { directDb } from "../src/server/direct-db";
 import { sourcePreflight } from "../src/server/connectors/preflight";
 loadEnvConfig(process.cwd());
 async function main() {
-  const client = db();
+  const client = directDb();
   try {
     const report = await sourcePreflight(client);
     console.log(JSON.stringify(report, null, 2));
