@@ -34,7 +34,9 @@ async function main() {
     )?.[0];
     throw new Error(
       code ||
-        (result.error?.code === "ETIMEDOUT"
+        (result.error &&
+        "code" in result.error &&
+        result.error.code === "ETIMEDOUT"
           ? "MIGRATION_TIMEOUT"
           : "MIGRATION_FAILED"),
     );
