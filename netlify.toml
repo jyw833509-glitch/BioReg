@@ -1,0 +1,13 @@
+# Netlify automatically installs its official OpenNext adapter for Next.js.
+# Do not add a static export or an SPA fallback redirect.
+[build]
+  command = "npm run build"
+  publish = ".next"
+
+[build.environment]
+  NODE_VERSION = "24"
+  NPM_VERSION = "11.19.0"
+  BIOREG_INCLUDE_MOCK_DATA = "false"
+
+# DATABASE_URL belongs only in Netlify's environment variable settings.
+# Database migrations and regulatory synchronization remain in GitHub Actions.
