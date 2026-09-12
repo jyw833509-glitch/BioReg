@@ -1,3 +1,4 @@
+import { sequential } from "./sequential";
 import { db } from "./db";
 import { regulationRepository } from "./repositories/regulation-repository";
 import { getDashboard } from "./repositories/dashboard-repository";
@@ -10,26 +11,29 @@ export async function getPageData(page: string, query: Query, id?: string) {
   const client = db();
   const repo = regulationRepository(client);
   const [dashboard, sources, logs, watchlists, record, result] =
-    await Promise.all([
-      getDashboard(client),
-      sourceRepository(client).list(),
-      ["settings", "agencies"].includes(page)
-        ? syncLogRepository(client).list()
-        : Promise.resolve([]),
-      page === "watchlist"
-        ? watchlistRepository(client).list()
-        : Promise.resolve([]),
-      id ? repo.getById(id) : Promise.resolve(null),
-      id
-        ? Promise.resolve({
-            data: [],
-            pagination: { page: 1, pageSize: 20, total: 0, totalPages: 1 },
-          })
-        : page === "today"
-          ? repo.getToday(query)
-          : page === "updates"
-            ? repo.getUpdated(query)
-            : repo.list(query),
+    await sequential([
+      () => getDashboard(client),
+      () => sourceRepository(client).list(),
+      () =>
+        ["settings", "agencies"].includes(page)
+          ? syncLogRepository(client).list()
+          : Promise.resolve([]),
+      () =>
+        page === "watchlist"
+          ? watchlistRepository(client).list()
+          : Promise.resolve([]),
+      () => (id ? repo.getById(id) : Promise.resolve(null)),
+      () =>
+        id
+          ? Promise.resolve({
+              data: [],
+              pagination: { page: 1, pageSize: 20, total: 0, totalPages: 1 },
+            })
+          : page === "today"
+            ? repo.getToday(query)
+            : page === "updates"
+              ? repo.getUpdated(query)
+              : repo.list(query),
     ]);
   return {
     dashboard,

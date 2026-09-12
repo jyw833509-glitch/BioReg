@@ -1,3 +1,4 @@
+import { sequential } from "../sequential";
 import type { Db } from "../db";
 import { dayRange, regulationRepository } from "./regulation-repository";
 import type { DashboardView } from "../../lib/view-types";
@@ -46,75 +47,84 @@ export async function getDashboard(client: Db): Promise<DashboardView> {
     recent,
     priority,
     changes,
-  ] = await Promise.all([
-    records.count(),
-    records.count({ where: { is_mock: true } }),
-    records.count({
-      where: { is_new: true, first_detected_at: day },
-    }),
-    records.count({ where: updatedToday }),
-    repo.count({ today: true }),
-    records.count({
-      where: {
-        importance_level: { in: ["CRITICAL", "HIGH"] },
-        OR: [{ is_new: true, first_detected_at: day }, updatedToday],
-      },
-    }),
-    records.count({
-      where: { importance_level: { in: ["CRITICAL", "HIGH"] } },
-    }),
-    records.count({
-      where: {
-        OR: [
-          { first_detected_at: { gte: monday, lt: day.lt } },
-          {
-            is_updated: true,
-            versions: {
-              some: {
-                previous_version_id: { not: null },
-                detected_at: { gte: monday, lt: day.lt },
+  ] = await sequential([
+    () => records.count(),
+    () => records.count({ where: { is_mock: true } }),
+    () =>
+      records.count({
+        where: { is_new: true, first_detected_at: day },
+      }),
+    () => records.count({ where: updatedToday }),
+    () => repo.count({ today: true }),
+    () =>
+      records.count({
+        where: {
+          importance_level: { in: ["CRITICAL", "HIGH"] },
+          OR: [{ is_new: true, first_detected_at: day }, updatedToday],
+        },
+      }),
+    () =>
+      records.count({
+        where: { importance_level: { in: ["CRITICAL", "HIGH"] } },
+      }),
+    () =>
+      records.count({
+        where: {
+          OR: [
+            { first_detected_at: { gte: monday, lt: day.lt } },
+            {
+              is_updated: true,
+              versions: {
+                some: {
+                  previous_version_id: { not: null },
+                  detected_at: { gte: monday, lt: day.lt },
+                },
               },
             },
-          },
+          ],
+        },
+      }),
+    () => client.source.count({ where: { enabled: true } }),
+    () => records.count({ where: { document_type: "DRAFT_GUIDANCE" } }),
+    () => records.count({ where: { document_type: "FINAL_GUIDANCE" } }),
+    () =>
+      client.source.findFirst({
+        where: { last_sync_at: { not: null } },
+        orderBy: { last_sync_at: "desc" },
+        select: { last_sync_at: true },
+      }),
+    () => records.groupBy({ by: ["regulator"], _count: true }),
+    () =>
+      client.$queryRaw<
+        { category: string; count: number }[]
+      >`SELECT category, count(*)::int AS count FROM regulations CROSS JOIN LATERAL unnest(categories) category WHERE (${!officialOnly()} OR is_mock=false) GROUP BY category`,
+    () => records.groupBy({ by: ["document_type"], _count: true }),
+    () => repo.getRecent(4),
+    () =>
+      records.findMany({
+        where: {
+          importance_level: { in: ["CRITICAL", "HIGH"] },
+          OR: [{ is_new: true, first_detected_at: day }, updatedToday],
+        },
+        take: 4,
+        orderBy: [
+          { importance_level: "asc" },
+          { publication_date: { sort: "desc", nulls: "last" } },
+          { id: "asc" },
         ],
-      },
-    }),
-    client.source.count({ where: { enabled: true } }),
-    records.count({ where: { document_type: "DRAFT_GUIDANCE" } }),
-    records.count({ where: { document_type: "FINAL_GUIDANCE" } }),
-    client.source.findFirst({
-      where: { last_sync_at: { not: null } },
-      orderBy: { last_sync_at: "desc" },
-      select: { last_sync_at: true },
-    }),
-    records.groupBy({ by: ["regulator"], _count: true }),
-    client.$queryRaw<
-      { category: string; count: number }[]
-    >`SELECT category, count(*)::int AS count FROM regulations CROSS JOIN LATERAL unnest(categories) category WHERE (${!officialOnly()} OR is_mock=false) GROUP BY category`,
-    records.groupBy({ by: ["document_type"], _count: true }),
-    repo.getRecent(4),
-    records.findMany({
-      where: {
-        importance_level: { in: ["CRITICAL", "HIGH"] },
-        OR: [{ is_new: true, first_detected_at: day }, updatedToday],
-      },
-      take: 4,
-      orderBy: [
-        { importance_level: "asc" },
-        { publication_date: { sort: "desc", nulls: "last" } },
-        { id: "asc" },
-      ],
-      include: { versions: { take: 2, orderBy: { detected_at: "desc" } } },
-    }),
-    repo.getUpdated({ pageSize: 3, sort: "Recently Updated" }),
+        include: { versions: { take: 2, orderBy: { detected_at: "desc" } } },
+      }),
+    () => repo.getUpdated({ pageSize: 3, sort: "Recently Updated" }),
   ]);
-  const [job, health] = await Promise.all([
-    client.syncJob.findFirst({
-      orderBy: [{ started_at: "desc" }, { id: "desc" }],
-    }),
-    client.source.findMany({
-      select: { code: true, enabled: true, last_status: true },
-    }),
+  const [job, health] = await sequential([
+    () =>
+      client.syncJob.findFirst({
+        orderBy: [{ started_at: "desc" }, { id: "desc" }],
+      }),
+    () =>
+      client.source.findMany({
+        select: { code: true, enabled: true, last_status: true },
+      }),
   ]);
   return {
     lastGlobalSync: job?.started_at.toISOString() || null,

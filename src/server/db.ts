@@ -23,6 +23,8 @@ export function createClient(url: string) {
       },
       { schema },
     ),
+    // Transaction acquisition includes pool wait; keep it aligned with pg.
+    transactionOptions: { maxWait: 10000, timeout: 10000 },
     log: [],
   });
   connections.set(client, url);

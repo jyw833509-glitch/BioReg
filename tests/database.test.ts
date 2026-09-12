@@ -887,3 +887,29 @@ test("Scheduled due/disabled sources make no requests; dry run makes no DB chang
     /incremental/,
   );
 });
+
+test("single-connection Dashboard and pagination survive queued transactions", async () => {
+  let acquired!: () => void;
+  const ready = new Promise<void>((resolve) => {
+    acquired = resolve;
+  });
+  const blocker = client.$transaction(async (tx) => {
+    acquired();
+    await tx.$executeRaw`SELECT pg_sleep(3)`;
+  });
+  await ready;
+  const reads = Promise.all([
+    regulationRepository(client).list({ pageSize: 2 }),
+    ...Array.from({ length: 6 }, () => getDashboard(client)),
+  ]);
+  const [, results] = await Promise.all([blocker, reads]);
+  assert.equal(results.length, 7);
+  const page = results[0] as Awaited<
+    ReturnType<ReturnType<typeof regulationRepository>["list"]>
+  >;
+  assert.ok(page.data.length <= 2);
+  const dashboards = results.slice(1) as Awaited<
+    ReturnType<typeof getDashboard>
+  >[];
+  assert.ok(dashboards.every((x) => x.total === dashboards[0].total));
+});
