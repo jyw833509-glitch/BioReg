@@ -89,6 +89,7 @@ export default async function Page({
       databaseKind="postgres"
       sources={data.sources}
       watchlists={data.watchlists}
+      changeEvents={data.changeEvents}
       dashboard={data.dashboard}
       pageInfo={data.pagination}
     />

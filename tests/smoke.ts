@@ -1,3 +1,5 @@
+import { writeRecord } from "../src/server/connectors/shared/writer";
+import { normalizeDocument } from "../src/server/connectors/shared/normalizer";
 import assert from "node:assert/strict";
 import { randomUUID } from "node:crypto";
 import { spawn, spawnSync } from "node:child_process";
@@ -129,6 +131,76 @@ async function main() {
     const detail = await fetch(origin + "/api/regulations/mock-1");
     assert.equal(detail.status, 200);
     assert.equal((await detail.json()).data.versions.length, 2);
+
+    // All fixtures remain confined to this disposable random schema.
+    const official = normalizeDocument(
+      {
+        title: "Biologics isolated smoke fixture",
+        url: "https://www.ema.europa.eu/isolated-smoke",
+        sourcePage: "https://www.ema.europa.eu/",
+        type: "Guideline",
+        status: "Draft",
+        content: "Scope\n\nInitial manufacturing paragraph.",
+        attachments: [],
+      },
+      "EMA",
+      () => "GUIDELINE",
+      () => "DRAFT",
+    ).data;
+    await writeRecord(client, "source-ema", official);
+    await writeRecord(client, "source-ema", {
+      ...official,
+      status: "FINAL",
+      content_text: "Scope\n\nRevised manufacturing paragraph.",
+    });
+    const changeResponse = await fetch(origin + "/api/changes");
+    assert.equal(changeResponse.status, 200);
+    const changes = (await changeResponse.json()).data;
+    assert.equal(changes.length, 2);
+    const event = changes.find(
+      (e: { previous_version_id: string | null }) => e.previous_version_id,
+    );
+    assert.ok(event.change_types.includes("DRAFT_TO_FINAL"));
+    const history = await (
+      await fetch(
+        origin + "/api/regulations/" + event.regulation_id + "/versions",
+      )
+    ).json();
+    assert.equal(history.data.length, 2);
+    assert.equal(
+      (
+        await fetch(
+          origin +
+            "/api/regulations/" +
+            event.regulation_id +
+            "/versions/" +
+            event.current_version_id,
+        )
+      ).status,
+      200,
+    );
+    const comparison = await (
+      await fetch(
+        origin +
+          "/api/regulations/" +
+          event.regulation_id +
+          "/compare?from=" +
+          event.previous_version_id +
+          "&to=" +
+          event.current_version_id,
+      )
+    ).json();
+    assert.ok(comparison.data.change_types.includes("CONTENT_CHANGED"));
+    assert.match(
+      await (await fetch(origin + "/updates")).text(),
+      /DRAFT_TO_FINAL/,
+    );
+    assert.match(
+      await (
+        await fetch(origin + "/regulations/" + event.regulation_id)
+      ).text(),
+      /BioReg Internal/,
+    );
     console.log(
       "Production HTTP smoke checks passed: four empty pages, 404/400/403, seeded pagination/search, detail history, and Watchlist persistence.",
     );
@@ -146,7 +218,11 @@ async function main() {
 }
 main().catch((error) => {
   console.error(
-    "HTTP_SMOKE_FAILED", error.code || error.name, String(error.message).replace(/postgres(?:ql)?:\/\/\S+/g,"[REDACTED]").slice(0,1000),
+    "HTTP_SMOKE_FAILED",
+    error.code || error.name,
+    String(error.message)
+      .replace(/postgres(?:ql)?:\/\/\S+/g, "[REDACTED]")
+      .slice(0, 1000),
   );
   process.exitCode = 1;
 });

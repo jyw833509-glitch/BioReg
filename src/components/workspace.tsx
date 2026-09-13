@@ -1,4 +1,5 @@
 "use client";
+import { ChangeEvents, type ChangeView } from "./change-events";
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -286,6 +287,7 @@ export function FilterBar({
   );
 }
 export function Workspace({
+  changeEvents = [],
   page,
   record,
   initialQuery,
@@ -299,6 +301,7 @@ export function Workspace({
   pageInfo,
   initialSort,
 }: {
+  changeEvents?: ChangeView[];
   page: string;
   record?: Regulation;
   initialQuery: string;
@@ -967,7 +970,7 @@ export function Workspace({
                       record.issuing_offices?.join("; ") || "未提供",
                     ],
                     ["Docket Number", record.docket_number || "未提供"],
-                    ["Current Version", record.version],
+                    ["BioReg Internal Version", `v${record.version}`],
                     ["Official URL", record.official_url || "未提供"],
                     ["PDF", record.pdf_url || "未提供"],
                     ["First Detected", record.first_detected_at],
@@ -1043,16 +1046,17 @@ export function Workspace({
                     : "尚未生成中文解读，本阶段不调用 AI API。"}
                 </p>
                 <p>{record.summary_zh}</p>
-                <h2>Version History</h2>
+                <ChangeEvents events={changeEvents} />
+                <h2>Version History · BioReg Internal Version</h2>
                 {record.versions.map((v) => (
                   <div className="version" key={v.id}>
                     <span className="version-dot" />
                     <div>
-                      <strong>Version {v.version_name}</strong>{" "}
+                      <strong>BioReg Internal v{v.version_name}</strong>{" "}
                       <StatusBadge status={v.status} />
                       <p>
                         {v.publication_date || "日期未完整提供"} ·{" "}
-                        {v.change_detected} ·{" "}
+                        {v.change_detected} · 检测时间 {v.detected_at} ·{" "}
                         {record.is_mock ? "Mock" : "Official"}
                       </p>
                       <details>
@@ -1069,9 +1073,10 @@ export function Workspace({
           )}
           {page === "updates" && (
             <>
+              <ChangeEvents events={changeEvents} />
               <div className="notice">
-                新增与更新记录 · 历史版本来自数据库。Phase 5
-                同步使用字段哈希识别变化，不进行段落差异分析。
+                Official Fact：法规原文及状态来自官网。BioReg Change
+                Detection：变化类型、差异及严重程度由系统规则生成。
               </div>
               <DatabaseList
                 key={JSON.stringify([

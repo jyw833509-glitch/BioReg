@@ -138,6 +138,7 @@ model Regulation {
   updated_at           DateTime         @updatedAt @db.Timestamptz(3)
   is_mock              Boolean          @default(false)
   versions             RegulationVersion[] @relation("RegulationHistory")
+  change_events        ChangeEvent[]
   @@index([regulator])
   @@index([source_id, title_original, publication_date])
   @@index([publication_date(sort: Desc)])
@@ -173,6 +174,8 @@ model RegulationVersion {
   previous_version_id String?
   previous_version    RegulationVersion? @relation("VersionChain",fields:[previous_version_id],references:[id],onDelete:Restrict)
   next_versions       RegulationVersion[] @relation("VersionChain")
+  previous_events     ChangeEvent[] @relation("EventPrevious")
+  current_event       ChangeEvent? @relation("EventCurrent")
   previous_for        Regulation[]       @relation("RegulationPrevious")
   change_detected     String             @default("") // supplied by a future importer, no detection engine in Phase 2
   created_at          DateTime           @default(now()) @db.Timestamptz(3)
@@ -220,4 +223,23 @@ model Watchlist {
   @@index([enabled])
   @@index([regulators], type: Gin)
   @@map("watchlists")
+}
+
+model ChangeEvent {
+  id String @id @default(cuid())
+  regulation_id String
+  regulation Regulation @relation(fields:[regulation_id], references:[id], onDelete:Restrict)
+  previous_version_id String?
+  previous_version RegulationVersion? @relation("EventPrevious",fields:[previous_version_id],references:[id],onDelete:Restrict)
+  current_version_id String @unique
+  current_version RegulationVersion @relation("EventCurrent",fields:[current_version_id],references:[id],onDelete:Restrict)
+  detected_at DateTime @default(now()) @db.Timestamptz(3)
+  change_types String[]
+  changed_fields Json
+  sections Json
+  change_summary String
+  severity Importance
+  @@index([regulation_id,detected_at(sort:Desc)])
+  @@index([detected_at(sort:Desc)])
+  @@map("change_events")
 }

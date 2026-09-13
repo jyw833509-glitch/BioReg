@@ -1,3 +1,4 @@
+import { changeRepository } from "./repositories/change-repository";
 import { sequential } from "./sequential";
 import { db } from "./db";
 import { regulationRepository } from "./repositories/regulation-repository";
@@ -37,6 +38,8 @@ export async function getPageData(page: string, query: Query, id?: string) {
     ]);
   return {
     dashboard,
+    changeEvents:
+      page === "updates" || id ? await changeRepository(client).list(id) : [],
     sources: sources.map((s) => ({
       ...s,
       last_sync_at: s.last_sync_at?.toISOString() || null,

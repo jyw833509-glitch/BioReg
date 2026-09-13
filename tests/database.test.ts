@@ -719,6 +719,7 @@ function scheduledAdapter(
   const url = new URL("/scheduler-test-guideline", base.pages[0]).toString();
   const document = {
     title: "Biological quality scheduler test",
+    content: "Official fixture describing biological quality requirements.",
     url,
     sourcePage: base.pages[0],
     type: "Guideline",
@@ -912,4 +913,111 @@ test("single-connection Dashboard and pagination survive queued transactions", a
     ReturnType<typeof getDashboard>
   >[];
   assert.ok(dashboards.every((x) => x.total === dashboards[0].total));
+});
+
+test("Phase 6 atomic events, normalization, immutable snapshots and rejected captures", async () => {
+  const { changeRepository } =
+    await import("../src/server/repositories/change-repository");
+  const record = normalizeDocument(
+    {
+      title: "Phase 6 biologics fixture",
+      url: "https://www.ema.europa.eu/phase6-fixture",
+      sourcePage: "https://www.ema.europa.eu/",
+      type: "Guideline",
+      status: "Draft",
+      date: "2026-08-01",
+      content:
+        "Scope\n\nManufacturing process must be validated.\n\nReferences",
+      attachments: ["https://www.ema.europa.eu/a.pdf"],
+    },
+    "EMA",
+    () => "GUIDELINE",
+    () => "DRAFT",
+  ).data;
+  assert.equal(await writeRecord(client, "source-ema", record), "new");
+  const row = await client.regulation.findFirstOrThrow({
+    where: { canonical_url: record.canonical_url },
+  });
+  const first = await client.regulationVersion.findFirstOrThrow({
+    where: { regulation_id: row.id },
+  });
+  assert.deepEqual(
+    (
+      await client.changeEvent.findFirstOrThrow({
+        where: { regulation_id: row.id },
+      })
+    ).change_types,
+    ["NEW_DOCUMENT"],
+  );
+  assert.equal(
+    await writeRecord(client, "source-ema", {
+      ...record,
+      content_text:
+        "Scope\n\nManufacturing  process must be\nvalidated.\n\nReferences",
+      pdf_url: record.pdf_url + "?utm_source=mail",
+      canonical_url: record.canonical_url + "?utm_campaign=test",
+      attachment_urls: [record.pdf_url + "?token=temporary"],
+    }),
+    "existing",
+  );
+  assert.equal(
+    await client.regulationVersion.count({ where: { regulation_id: row.id } }),
+    1,
+  );
+  const changed = {
+    ...record,
+    status: "FINAL" as const,
+    content_text:
+      "Scope\n\nManufacturing process must be validated twice.\n\nReferences",
+  };
+  assert.equal(await writeRecord(client, "source-ema", changed), "updated");
+  assert.equal(await writeRecord(client, "source-ema", changed), "existing");
+  const events = await changeRepository(client).list(row.id);
+  assert.equal(events.length, 2);
+  assert.ok(events[0].change_types.includes("DRAFT_TO_FINAL"));
+  assert.equal(events[0].severity, "HIGH");
+  assert.equal(
+    (
+      await client.regulationVersion.findUniqueOrThrow({
+        where: { id: first.id },
+      })
+    ).content_snapshot,
+    first.content_snapshot,
+  );
+  const comparison = await changeRepository(client).compare(
+    row.id,
+    first.id,
+    events[0].current_version_id,
+  );
+  assert.ok(comparison?.change_types.includes("CONTENT_CHANGED"));
+  await assert.rejects(
+    writeRecord(client, "source-ema", {
+      ...changed,
+      content_text: "Please verify you are human",
+    }),
+  );
+  await assert.rejects(
+    writeRecord(client, "source-ema", {
+      ...changed,
+      content_text: "",
+      official_summary: null,
+    }),
+  );
+  assert.equal(
+    await client.regulationVersion.count({ where: { regulation_id: row.id } }),
+    2,
+  );
+  await assert.rejects(
+    client.regulationVersion.delete({ where: { id: first.id } }),
+  );
+  await assert.rejects(
+    client.changeEvent.update({
+      where: { id: events[0].id },
+      data: { change_summary: "overwrite" },
+    }),
+  );
+  assert.equal(
+    await changeRepository(client).version("wrong-regulation", first.id),
+    null,
+  );
 });

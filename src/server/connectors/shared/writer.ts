@@ -1,3 +1,5 @@
+import { detectChange, fingerprints } from "../../changes/detect";
+import { assertOfficialContent, normalizedUrl } from "../../changes/normalize";
 import type { Prisma } from "../../../generated/prisma/client";
 import type { Db } from "../../db";
 import type { OfficialRecord } from "./types";
@@ -25,6 +27,18 @@ export async function writeRecord(
   data: OfficialRecord,
   dryRun = false,
 ) {
+  data = { ...data, canonical_url: normalizedUrl(data.canonical_url) };
+  assertOfficialContent(
+    data.title_original,
+    data.content_text ||
+      data.official_summary ||
+      (data.attachment_urls?.length &&
+      ((data.regulator === "CDE" &&
+        data.source_metadata?.professional_category) ||
+        (data.regulator === "PMDA" && data.source_metadata?.listing_text))
+        ? data.title_original
+        : ""),
+  );
   async function apply(tx: Prisma.TransactionClient) {
     const matches = await tx.regulation.findMany({
       where: identity(sourceId, data),
@@ -35,11 +49,12 @@ export async function writeRecord(
         "Conflicting source document identities; manual review required",
       );
     const existing = matches[0];
+    const change = detectChange(existing || null, data);
     const outcome = !existing
       ? "new"
-      : existing.content_hash === data.content_hash
-        ? "existing"
-        : "updated";
+      : change.change_types.length
+        ? "updated"
+        : "existing";
     if (dryRun) return outcome;
     const now = new Date();
     if (outcome === "existing") {
@@ -57,12 +72,30 @@ export async function writeRecord(
       });
       return outcome;
     }
-    const previous = existing
+    let previous = existing
       ? await tx.regulationVersion.findFirst({
           where: { regulation_id: existing.id },
           orderBy: [{ detected_at: "desc" }, { created_at: "desc" }],
         })
       : null;
+    // Legacy rows without a snapshot must be preserved before overwriting current fields.
+    if (existing && !previous) {
+      previous = await tx.regulationVersion.create({
+        data: {
+          regulation_id: existing.id,
+          version_name: "1",
+          document_url: existing.official_url,
+          pdf_url: existing.pdf_url,
+          publication_date: existing.publication_date,
+          status: existing.status,
+          content_hash: existing.content_hash,
+          source_hash: existing.source_hash,
+          content_snapshot: JSON.stringify(existing),
+          detected_at: existing.first_detected_at,
+          change_detected: "Baseline preserved before Phase 6 change detection",
+        },
+      });
+    }
     const version = existing
       ? String(
           (await tx.regulationVersion.count({
@@ -75,6 +108,7 @@ export async function writeRecord(
           where: { id: existing.id },
           data: {
             ...data,
+            ...fingerprints(data),
             is_new: false,
             is_updated: true,
             last_checked_at: now,
@@ -85,6 +119,7 @@ export async function writeRecord(
       : await tx.regulation.create({
           data: {
             ...data,
+            ...fingerprints(data),
             source_id: sourceId,
             is_new: true,
             is_updated: false,
@@ -93,7 +128,7 @@ export async function writeRecord(
             version,
           },
         });
-    await tx.regulationVersion.create({
+    const currentVersion = await tx.regulationVersion.create({
       data: {
         regulation_id: row.id,
         version_name: version,
@@ -101,14 +136,24 @@ export async function writeRecord(
         pdf_url: data.pdf_url,
         publication_date: data.publication_date,
         status: data.status,
-        content_hash: data.content_hash,
-        source_hash: data.source_hash,
+        ...fingerprints(data),
         content_snapshot: JSON.stringify(data),
         previous_version_id: previous?.id || null,
         detected_at: now,
-        change_detected: existing
-          ? "Official fields changed (hash comparison; no paragraph diff)"
-          : "Initial official capture",
+        change_detected: change.change_summary,
+      },
+    });
+    await tx.changeEvent.create({
+      data: {
+        regulation_id: row.id,
+        previous_version_id: previous?.id || null,
+        current_version_id: currentVersion.id,
+        detected_at: now,
+        change_types: change.change_types,
+        changed_fields: JSON.parse(JSON.stringify(change.changed_fields)),
+        sections: JSON.parse(JSON.stringify(change.sections)),
+        change_summary: change.change_summary,
+        severity: change.severity,
       },
     });
     return outcome;
