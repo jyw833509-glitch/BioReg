@@ -14,10 +14,10 @@ export function watchlistRepository(client: Db) {
     async create(data: WatchlistInput) {
       return client.watchlist.create({ data: watchlistSchema.parse(data) });
     },
-    async update(id: string, data: WatchlistInput) {
+    async update(id: string, data: Partial<WatchlistInput>) {
       return client.watchlist.update({
         where: { id },
-        data: watchlistSchema.parse(data),
+        data: watchlistSchema.partial().parse(data),
       });
     },
     async remove(id: string) {

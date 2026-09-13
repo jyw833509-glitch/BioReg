@@ -1,3 +1,4 @@
+import { CHANGE_TYPES } from "./changes/detect";
 import { z } from "zod";
 import {
   Agency,
@@ -85,6 +86,11 @@ export const watchlistSchema = z
     development_stages: stringList,
     document_types: z.array(z.enum(DocumentType)).max(16).default([]),
     keywords: stringList,
+    country_or_regions: stringList,
+    affected_departments: stringList,
+    statuses: z.array(z.enum(RegulationStatus)).default([]),
+    change_types: z.array(z.enum(CHANGE_TYPES)).default([]),
+    minimum_severity: z.enum(Importance).nullable().default(null),
     importance_levels: z.array(z.enum(Importance)).max(4).default([]),
     enabled: z.boolean().default(true),
   })

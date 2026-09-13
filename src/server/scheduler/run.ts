@@ -1,3 +1,4 @@
+import { engagementAfterSync } from "../engagement/service";
 import type { Db } from "../db";
 import type { Adapter } from "../connectors/shared/types";
 import { syncSource, type SyncOptions } from "../connectors/shared/sync";
@@ -51,6 +52,7 @@ export async function runScheduler(
     duration_ms: 0,
     status: "RUNNING",
     sources: rows,
+    engagement: {} as Record<string, string>,
   };
   let lock;
   try {
@@ -204,6 +206,13 @@ export async function runScheduler(
       }
     }
     report.status = globalStatus(rows as { status: string }[]);
+    if (!options.dryRun) {
+      try {
+        report.engagement = await engagementAfterSync(db);
+      } catch {
+        report.engagement = { pipeline: "FAILED" };
+      }
+    }
   } catch (error) {
     report.status = "FAILED";
     rows.push({

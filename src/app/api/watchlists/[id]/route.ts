@@ -18,7 +18,7 @@ export async function PATCH(
     return json({
       data: await watchlistRepository(db()).update(
         (await params).id,
-        watchlistSchema.parse(body),
+        watchlistSchema.partial().parse(body),
       ),
     });
   } catch (error) {

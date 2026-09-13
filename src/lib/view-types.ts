@@ -47,6 +47,11 @@ export interface WatchlistView {
   document_types: string[];
   keywords: string[];
   importance_levels: string[];
+  country_or_regions: string[];
+  affected_departments: string[];
+  statuses: string[];
+  change_types: string[];
+  minimum_severity: string | null;
   enabled: boolean;
 }
 export interface DashboardView {

@@ -53,6 +53,8 @@ import type {
 } from "@/lib/view-types";
 import { DatabaseList } from "./database-list";
 import { FavoriteRegulations } from "./favorite-regulations";
+import { NotificationBell } from "./notification-bell";
+import { EngagementPanel } from "./engagement-panel";
 import { WatchlistEditor } from "./watchlist-editor";
 
 import { usePreference } from "@/lib/preferences";
@@ -61,6 +63,8 @@ const nav = [
   ["today", "Today", "今日动态", CalendarDays],
   ["regulations", "Regulations", "法规数据库", BookOpen],
   ["updates", "Updates", "法规更新", Activity],
+  ["notifications", "Notifications", "站内通知", Bell],
+  ["digest", "Daily Digest", "每日摘要", CalendarDays],
   ["watchlist", "Watchlist", "我的关注", Bookmark],
   ["topics", "Topics", "主题分类", FlaskConical],
   ["agencies", "Agencies", "监管机构", Building2],
@@ -324,7 +328,6 @@ export function Workspace({
   const [ai, setAi] = useState<Regulation[] | null>(null);
   const [task, setTask] = useState("Explain Regulation");
   const [selected, setSelected] = useState<string[]>([]);
-  const [notifications, setNotifications] = useState(false);
 
   const [toast, setToast] = useState("");
   function save(id: string) {
@@ -483,25 +486,11 @@ export function Workspace({
             <kbd>↵</kbd>
           </form>
           <span className="top-divider" />
-          <button
-            className="icon-btn notification-button"
-            aria-label="查看通知"
-            onClick={() => setNotifications(!notifications)}
-          >
-            <Bell size={19} />
-            <i />
-          </button>
+          <NotificationBell />
           <Link className="icon-btn" href="/settings" aria-label="设置">
             <Settings size={19} />
           </Link>
           <span className="avatar small">BR</span>
-          {notifications && (
-            <div className="notification-pop">
-              <strong>通知中心</strong>
-              <p>暂无真实通知</p>
-              <small>当前为模拟预览。推送服务将在后续阶段接入。</small>
-            </div>
-          )}
         </header>
         <main>
           <div className="demo-banner">
@@ -510,7 +499,7 @@ export function Workspace({
               <span className="banner-separator">|</span> 数据库驱动 ·
               官方数据与 Mock 示例逐条标识 · 各源接入状态见监管机构页
             </span>
-            <span className="phase-label">PHASE 4 · OFFICIAL SOURCES</span>
+            <span className="phase-label">PHASE 7 · DAILY DIGEST</span>
           </div>
           <div className="page-heading">
             <div>
@@ -531,7 +520,7 @@ export function Workspace({
                 )}
                 {page === "dashboard" && (
                   <span className="live-label">
-                    <span className="dot" /> DEMO
+                    <span className="dot" /> LIVE
                   </span>
                 )}
               </h1>
@@ -874,6 +863,9 @@ export function Workspace({
               onSave={save}
               onExplain={(r) => setAi([r])}
             />
+          )}
+          {["today", "digest", "notifications", "settings"].includes(page) && (
+            <EngagementPanel page={page} />
           )}
           {page === "watchlist" && (
             <>
@@ -1327,7 +1319,7 @@ export function Workspace({
             <div className="settings-grid">
               <section className="panel">
                 <h2>工作区设置</h2>
-                <p>Phase 5 · 数据库与浏览器本地偏好</p>
+                <p>数据库与浏览器本地偏好</p>
                 <div className="setting-row">
                   <span>
                     数据模式<small>官方记录与开发示例逐条标识</small>
@@ -1355,7 +1347,7 @@ export function Workspace({
                 <h2>数据与通知连接</h2>
                 <p>
                   六个来源共用统一调度。云端运行记录请查看 GitHub
-                  Actions；通知服务尚未接入。
+                  Actions；站内通知已接入，其他渠道未启用。
                 </p>
                 {[
                   "Browser Notification",
@@ -1376,7 +1368,7 @@ export function Workspace({
             </span>
             <span>
               <ShieldCheck size={13} /> Official sources first <span>·</span>{" "}
-              Phase 5 / Scheduler & Source Health
+              Daily Digest / Watchlist / Notification
             </span>
           </footer>
         </main>

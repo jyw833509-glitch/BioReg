@@ -21,6 +21,8 @@ export default async function Page({
       "regulations",
       "updates",
       "watchlist",
+      "notifications",
+      "digest",
       "topics",
       "agencies",
       "reports",

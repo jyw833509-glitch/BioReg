@@ -20,7 +20,7 @@ export async function getPageData(page: string, query: Query, id?: string) {
           ? syncLogRepository(client).list()
           : Promise.resolve([]),
       () =>
-        page === "watchlist"
+        ["watchlist", "settings"].includes(page)
           ? watchlistRepository(client).list()
           : Promise.resolve([]),
       () => (id ? repo.getById(id) : Promise.resolve(null)),

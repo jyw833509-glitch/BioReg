@@ -5,6 +5,10 @@ import type { WatchlistView } from "@/lib/view-types";
 import { documentCode } from "@/lib/labels";
 const fields = [
   ["regulators", "监管机构（FDA, EMA 等）"],
+  ["country_or_regions", "国家 / 地区"],
+  ["affected_departments", "受影响部门"],
+  ["statuses", "法规状态（FINAL, DRAFT 等）"],
+  ["change_types", "变化类型（CONTENT_CHANGED 等）"],
   ["categories", "领域分类"],
   ["subcategories", "子分类"],
   ["product_types", "产品类型"],
@@ -25,6 +29,11 @@ const blank = {
   document_types: [],
   keywords: [],
   importance_levels: [],
+  country_or_regions: [],
+  affected_departments: [],
+  statuses: [],
+  change_types: [],
+  minimum_severity: null,
   enabled: true,
 } satisfies WatchlistView;
 export function WatchlistEditor({ items }: { items: WatchlistView[] }) {
@@ -39,6 +48,7 @@ export function WatchlistEditor({ items }: { items: WatchlistView[] }) {
     const body: Record<string, unknown> = {
       name: form.get("name"),
       description: form.get("description"),
+      minimum_severity: form.get("minimum_severity") || null,
       enabled: form.get("enabled") === "on",
     };
     for (const [key] of fields) {
@@ -47,7 +57,14 @@ export function WatchlistEditor({ items }: { items: WatchlistView[] }) {
         .map((v) => v.trim())
         .filter(Boolean);
       if (key === "document_types") values = values.map(documentCode);
-      if (key === "importance_levels" || key === "regulators")
+      if (
+        [
+          "importance_levels",
+          "regulators",
+          "statuses",
+          "change_types",
+        ].includes(key)
+      )
         values = values.map((v) => v.toUpperCase());
       body[key] = Array.from(new Set(values));
     }
@@ -101,7 +118,10 @@ export function WatchlistEditor({ items }: { items: WatchlistView[] }) {
           <h2>我的关注规则</h2>
           <span className="badge green">PostgreSQL · 单用户工作区</span>
         </div>
-        <p>关注条件持久保存到数据库。自动匹配与通知推送留待后续阶段。</p>
+        <p>
+          BioReg Watchlist Match：字段之间 AND，同一字段多个值
+          OR；空字段不限制。关键词匹配标题、摘要和已抓取正文。通知从关注创建后的新发现和变化开始。
+        </p>
         <form key={(editing.id || "new") + revision} onSubmit={save}>
           <div className="watch-fields">
             <label>
@@ -135,6 +155,18 @@ export function WatchlistEditor({ items }: { items: WatchlistView[] }) {
               </label>
             ))}
           </div>
+          <label>
+            最低严重度{" "}
+            <select
+              name="minimum_severity"
+              defaultValue={editing.minimum_severity || ""}
+            >
+              <option value="">不限制</option>
+              {["LOW", "MEDIUM", "HIGH", "CRITICAL"].map((v) => (
+                <option key={v}>{v}</option>
+              ))}
+            </select>
+          </label>
           <label className="watch-enabled">
             <input
               type="checkbox"
@@ -177,7 +209,30 @@ export function WatchlistEditor({ items }: { items: WatchlistView[] }) {
                 )),
               )}
             </div>
+            <WatchlistResults id={item.id} />
             <div className="heading-actions" style={{ marginTop: 15 }}>
+              <button
+                className="button"
+                disabled={busy}
+                onClick={async () => {
+                  setBusy(true);
+                  try {
+                    const r = await fetch(`/api/watchlists/${item.id}`, {
+                      method: "PATCH",
+                      headers: { "Content-Type": "application/json" },
+                      body: JSON.stringify({ enabled: !item.enabled }),
+                    });
+                    if (!r.ok) throw new Error();
+                    router.refresh();
+                  } catch {
+                    setMessage("启停失败，请重试");
+                  } finally {
+                    setBusy(false);
+                  }
+                }}
+              >
+                {item.enabled ? "禁用" : "启用"}
+              </button>
               <button
                 className="button"
                 onClick={() => {
@@ -204,5 +259,71 @@ export function WatchlistEditor({ items }: { items: WatchlistView[] }) {
         </section>
       )}
     </>
+  );
+}
+
+function WatchlistResults({ id }: { id: string }) {
+  const [result, setResult] = useState<{
+    matches: { id: string; title: string; reasons: string[] }[];
+    updated: {
+      id: string;
+      event_id: string;
+      title: string;
+      reasons: string[];
+    }[];
+    recent: {
+      id: string;
+      regulation_id: string;
+      match_type: string;
+      detected_at: string;
+    }[];
+  } | null>(null);
+  const [error, setError] = useState("");
+  return (
+    <div>
+      <button
+        className="button"
+        onClick={async () => {
+          try {
+            const r = await fetch("/api/watchlists/" + id + "/matches");
+            if (!r.ok) throw new Error();
+            setResult((await r.json()).data);
+            setError("");
+          } catch {
+            setError("匹配查询失败，请重试");
+          }
+        }}
+      >
+        查看匹配结果和最近命中
+      </button>
+      {error && <p role="alert">{error}</p>}
+      {result && (
+        <>
+          <p>
+            当前匹配 {result.matches.length} 条；最近命中 {result.recent.length}{" "}
+            条（最多展示 50 条）
+          </p>
+          {result.matches.map((r) => (
+            <p key={r.id}>
+              <a href={"/regulations/" + r.id}>{r.title}</a>
+              <small> · {r.reasons.join("; ")}</small>
+            </p>
+          ))}
+          <h4>最近更新匹配（最近 100 个变化中）</h4>
+          {result.updated.map((r) => (
+            <p key={r.event_id}>
+              <a href={"/regulations/" + r.id}>{r.title}</a> ·{" "}
+              {r.reasons.join("; ")}
+            </p>
+          ))}
+          {result.recent.map((r) => (
+            <p key={r.id}>
+              {r.match_type} · {r.detected_at} ·{" "}
+              <a href={"/regulations/" + r.regulation_id}>查看法规</a>
+            </p>
+          ))}
+        </>
+      )}
+    </div>
   );
 }

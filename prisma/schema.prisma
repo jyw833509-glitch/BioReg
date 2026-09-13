@@ -138,6 +138,8 @@ model Regulation {
   updated_at           DateTime         @updatedAt @db.Timestamptz(3)
   is_mock              Boolean          @default(false)
   versions             RegulationVersion[] @relation("RegulationHistory")
+  watchlist_matches WatchlistMatch[]
+  notifications NotificationEvent[]
   change_events        ChangeEvent[]
   @@index([regulator])
   @@index([source_id, title_original, publication_date])
@@ -217,6 +219,13 @@ model Watchlist {
   document_types     DocumentType[] @default([])
   keywords           String[]     @default([])
   importance_levels  Importance[] @default([])
+  country_or_regions String[] @default([])
+  affected_departments String[] @default([])
+  statuses RegulationStatus[] @default([])
+  change_types String[] @default([])
+  minimum_severity Importance?
+  matches WatchlistMatch[]
+  notifications NotificationEvent[]
   enabled            Boolean      @default(true)
   created_at         DateTime     @default(now()) @db.Timestamptz(3)
   updated_at         DateTime     @updatedAt @db.Timestamptz(3)
@@ -226,6 +235,8 @@ model Watchlist {
 }
 
 model ChangeEvent {
+  watchlist_matches WatchlistMatch[]
+  notifications NotificationEvent[]
   id String @id @default(cuid())
   regulation_id String
   regulation Regulation @relation(fields:[regulation_id], references:[id], onDelete:Restrict)
@@ -242,4 +253,69 @@ model ChangeEvent {
   @@index([regulation_id,detected_at(sort:Desc)])
   @@index([detected_at(sort:Desc)])
   @@map("change_events")
+}
+
+model WatchlistMatch {
+  id String @id @default(cuid())
+  watchlist_id String
+  watchlist Watchlist @relation(fields:[watchlist_id], references:[id], onDelete:Cascade)
+  regulation_id String
+  regulation Regulation @relation(fields:[regulation_id],references:[id],onDelete:Restrict)
+  change_event_id String?
+  change_event ChangeEvent? @relation(fields:[change_event_id],references:[id],onDelete:Restrict)
+  matched_at DateTime @default(now()) @db.Timestamptz(3)
+  detected_at DateTime @db.Timestamptz(3)
+  match_type String
+  reasons Json
+  dedupe_key String @unique
+  @@index([watchlist_id, detected_at])
+  @@map("watchlist_matches")
+}
+model NotificationEvent {
+  id String @id @default(cuid())
+  created_at DateTime @default(now()) @db.Timestamptz(3)
+  regulation_id String?
+  regulation Regulation? @relation(fields:[regulation_id],references:[id],onDelete:Restrict)
+  change_event_id String?
+  change_event ChangeEvent? @relation(fields:[change_event_id],references:[id],onDelete:Restrict)
+  watchlist_id String?
+  watchlist Watchlist? @relation(fields:[watchlist_id], references:[id], onDelete:SetNull)
+  notification_type String
+  title String
+  message String
+  regulator String?
+  change_types String[] @default([])
+  severity Importance
+  channel String @default("IN_APP")
+  delivery_status String @default("PENDING")
+  delivered_at DateTime? @db.Timestamptz(3)
+  failure_reason String?
+  dedupe_key String @unique
+  read_at DateTime? @db.Timestamptz(3)
+  @@index([read_at,created_at])
+  @@index([watchlist_id])
+  @@map("notification_events")
+}
+model DigestSettings {
+  id String @id @default("workspace")
+  digest_enabled Boolean @default(true)
+  digest_time String @default("08:00")
+  timezone String @default("Asia/Shanghai")
+  @@map("digest_settings")
+}
+model DailyDigest {
+  id String @id @default(cuid())
+  digest_date String @unique
+  timezone String
+  window_start DateTime @db.Timestamptz(3)
+  window_end DateTime @db.Timestamptz(3)
+  generated_at DateTime @default(now()) @db.Timestamptz(3)
+  summary Json
+  @@map("daily_digests")
+}
+model SourceHealthCheckpoint {
+  source_id String @id
+  status String
+  revision Int @default(0)
+  @@map("source_health_checkpoints")
 }

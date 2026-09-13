@@ -132,6 +132,11 @@ async function main() {
     assert.equal(detail.status, 200);
     assert.equal((await detail.json()).data.versions.length, 2);
 
+    await fetch(origin + "/api/watchlists/" + watch.data.id, {
+      method: "PATCH",
+      headers: { Origin: origin, "Content-Type": "application/json" },
+      body: JSON.stringify({ regulators: ["EMA"] }),
+    });
     // All fixtures remain confined to this disposable random schema.
     const official = normalizeDocument(
       {
@@ -201,6 +206,41 @@ async function main() {
       ).text(),
       /BioReg Internal/,
     );
+    const { engagementAfterSync } =
+      await import("../src/server/engagement/service");
+    await engagementAfterSync(client);
+    await engagementAfterSync(client);
+    const notices = await (
+      await fetch(origin + "/api/notifications?state=unread")
+    ).json();
+    assert.equal(notices.data.length, 2);
+    const read = await fetch(origin + "/api/notifications", {
+      method: "PATCH",
+      headers: { Origin: origin, "Content-Type": "application/json" },
+      body: JSON.stringify({ all: true }),
+    });
+    assert.equal(read.status, 200);
+    assert.equal(
+      (await (await fetch(origin + "/api/notifications/statistics")).json())
+        .data.unread,
+      0,
+    );
+    const digest = await fetch(origin + "/api/digests", {
+      method: "POST",
+      headers: { Origin: origin, "Content-Type": "application/json" },
+      body: JSON.stringify({ date: new Date().toISOString().slice(0, 10) }),
+    });
+    assert.equal(digest.status, 200);
+    for (const p of [
+      "/notifications",
+      "/digest",
+      "/today",
+      "/watchlist",
+      "/api/digest-settings",
+      "/api/digests",
+    ]) {
+      assert.equal((await fetch(origin + p)).status, 200, p);
+    }
     console.log(
       "Production HTTP smoke checks passed: four empty pages, 404/400/403, seeded pagination/search, detail history, and Watchlist persistence.",
     );

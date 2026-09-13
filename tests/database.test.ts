@@ -1057,3 +1057,199 @@ test("ICH official metadata-only concept papers remain valid captures", async ()
     1,
   );
 });
+
+test("Phase 7 workspace watchlist lifecycle, notifications, digest and isolation", async () => {
+  const {
+    matchSavedRecords,
+    sourceHealthNotifications,
+    engagementAfterSync,
+    watchlistMatches,
+  } = await import("../src/server/engagement/service");
+  const { notificationRepository, deliver } =
+    await import("../src/server/engagement/notifications");
+  const { generateDigest } = await import("../src/server/engagement/digest");
+  const repo = watchlistRepository(client);
+  const w = await repo.create(
+    watchlistSchema.parse({
+      name: "Phase7 isolated",
+      regulators: ["EMA"],
+      keywords: ["Phase7 fixture"],
+    }),
+  );
+  await repo.update(w.id, { enabled: false });
+  assert.equal((await repo.getById(w.id))?.enabled, false);
+  await repo.update(w.id, { enabled: true, description: "edited" });
+  assert.equal((await repo.getById(w.id))?.description, "edited");
+  const record = normalizeDocument(
+    {
+      title: "Phase7 fixture",
+      attachments: [],
+      url: "https://www.ema.europa.eu/phase7-fixture",
+      sourcePage: "https://www.ema.europa.eu/",
+      type: "Guideline",
+      status: "Draft",
+      content: "Manufacturing process validation.",
+    },
+    "EMA",
+    () => "GUIDELINE",
+    () => "DRAFT",
+  ).data;
+  await writeRecord(client, "source-ema", record);
+  const row = await client.regulation.findFirstOrThrow({
+    where: { canonical_url: record.canonical_url },
+  });
+  const first = await client.regulationVersion.findFirstOrThrow({
+    where: { regulation_id: row.id },
+  });
+  await matchSavedRecords(client, w.id);
+  assert.equal(
+    await client.notificationEvent.count({ where: { watchlist_id: w.id } }),
+    1,
+  );
+  await writeRecord(client, "source-ema", {
+    ...record,
+    status: "FINAL",
+    content_text: "Manufacturing process must be validated.",
+  });
+  await matchSavedRecords(client, w.id);
+  await matchSavedRecords(client, w.id);
+  assert.equal(
+    await client.notificationEvent.count({ where: { watchlist_id: w.id } }),
+    2,
+  );
+  assert.equal((await watchlistMatches(client, w.id)).recent.length, 2);
+  const pending = await client.notificationEvent.findMany({
+    where: { watchlist_id: w.id },
+  });
+  await deliver(client, pending[0], {
+    channel: "IN_APP",
+    async send() {
+      throw new Error("failure");
+    },
+  });
+  assert.equal(
+    (
+      await client.notificationEvent.findUniqueOrThrow({
+        where: { id: pending[0].id },
+      })
+    ).delivery_status,
+    "FAILED",
+  );
+  for (const n of pending) await deliver(client, n);
+  const notices = notificationRepository(client);
+  assert.equal(
+    (await notices.list({ watchlist_id: w.id, state: "unread" })).total,
+    2,
+  );
+  await notices.read(pending[0].id);
+  assert.equal(
+    (await notices.list({ watchlist_id: w.id, state: "read" })).total,
+    1,
+  );
+  await notices.read();
+  assert.equal((await notices.stats()).unread, 0);
+  assert.equal(
+    (await notices.list({ watchlist_id: w.id, severity: "LOW" })).total,
+    0,
+  );
+  await client.digestSettings.upsert({
+    where: { id: "workspace" },
+    create: { id: "workspace", timezone: "UTC" },
+    update: { timezone: "UTC" },
+  });
+  const today = new Date().toISOString().slice(0, 10);
+  const a = await generateDigest(client, today),
+    b = await generateDigest(client, today);
+  assert.equal(a.id, b.id);
+  const summary = b.summary as unknown as {
+    new_regulations: { id: string }[];
+    updated_regulations: { id: string }[];
+    watchlist_counts: Record<string, number>;
+  };
+  assert.ok(summary.new_regulations.some((r) => r.id === row.id));
+  assert.ok(summary.updated_regulations.some((r) => r.id === row.id));
+  assert.equal(summary.watchlist_counts[w.id], 2);
+  const mockIds = (
+    await client.regulation.findMany({
+      where: { is_mock: true },
+      select: { id: true },
+    })
+  ).map((r) => r.id);
+  assert.ok(summary.new_regulations.every((r) => !mockIds.includes(r.id)));
+  assert.equal(
+    (
+      await client.regulationVersion.findUniqueOrThrow({
+        where: { id: first.id },
+      })
+    ).content_snapshot,
+    first.content_snapshot,
+  );
+  await sourceHealthNotifications(client);
+  const n = await client.notificationEvent.count({
+    where: { notification_type: "SOURCE_HEALTH" },
+  });
+  await client.source.update({
+    where: { id: "source-ema" },
+    data: { last_status: "UNAVAILABLE" },
+  });
+  await sourceHealthNotifications(client);
+  await sourceHealthNotifications(client);
+  assert.equal(
+    await client.notificationEvent.count({
+      where: { notification_type: "SOURCE_HEALTH" },
+    }),
+    n + 1,
+  );
+  await client.source.update({
+    where: { id: "source-ema" },
+    data: { last_status: "HEALTHY" },
+  });
+  await sourceHealthNotifications(client);
+  assert.equal(
+    await client.notificationEvent.count({
+      where: { notification_type: "SOURCE_HEALTH" },
+    }),
+    n + 2,
+  );
+  const fault = new Proxy(client, {
+    get(target, key) {
+      if (key === "watchlist")
+        return {
+          findMany: async () => {
+            throw new Error("Injected matcher failure");
+          },
+        };
+      return Reflect.get(target, key);
+    },
+  });
+  const result = await engagementAfterSync(fault);
+  assert.equal(result.matches, "FAILED");
+  // Restore the mocked method on this instance before subsequent operations.
+  await repo.remove(w.id);
+  assert.equal(await repo.getById(w.id), null);
+  assert.equal(
+    await client.notificationEvent.count({
+      where: { id: { in: pending.map((n) => n.id) } },
+    }),
+    2,
+  );
+});
+
+test("Phase7 post-processing persistence failures do not fail regulatory scheduler", async () => {
+  const original = client.watchlist.findMany;
+  client.watchlist.findMany = () => {
+    throw new Error("Injected notification storage outage");
+  };
+  try {
+    const result = await runScheduler(
+      client,
+      [scheduledAdapter(adapters.FDA)],
+      { mode: "incremental", limit: 1 },
+    );
+    assert.equal(result.status, "SUCCESS");
+    assert.equal(result.engagement.matches, "FAILED");
+    assert.equal(result.sources[0].status, "SUCCESS");
+  } finally {
+    client.watchlist.findMany = original;
+  }
+});
