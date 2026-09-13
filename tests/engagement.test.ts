@@ -144,3 +144,58 @@ test("configured due time generates prior complete day", () => {
     }),
   );
 });
+
+test("Netlify deployed permalink uses trusted canonical site origin; rejects spoofed hosts", async () => {
+  const { sameOrigin } = await import("../src/server/http");
+  const old = process.env.BIOREG_SITE_ORIGIN,
+    override = process.env.APP_ORIGIN;
+  try {
+    delete process.env.APP_ORIGIN;
+    process.env.BIOREG_SITE_ORIGIN = "https://example.netlify.app";
+    const url =
+      "https://1234abcd12acde000111cdef--example.netlify.app/api/watchlists";
+    assert.equal(
+      sameOrigin(
+        new Request(url, {
+          headers: { Origin: "https://example.netlify.app" },
+        }),
+      ),
+      true,
+    );
+    assert.equal(
+      sameOrigin(
+        new Request(url, {
+          headers: {
+            Origin: "https://evil.netlify.app",
+            "X-Forwarded-Host": "example.netlify.app",
+          },
+        }),
+      ),
+      false,
+    );
+    assert.equal(
+      sameOrigin(
+        new Request(url, {
+          headers: {
+            Origin: "https://example.netlify.app",
+            "Sec-Fetch-Site": "cross-site",
+          },
+        }),
+      ),
+      false,
+    );
+    assert.equal(sameOrigin(new Request(url)), false);
+    process.env.APP_ORIGIN = "https://custom.example/";
+    assert.equal(
+      sameOrigin(
+        new Request(url, { headers: { Origin: "https://custom.example" } }),
+      ),
+      true,
+    );
+  } finally {
+    if (old === undefined) delete process.env.BIOREG_SITE_ORIGIN;
+    else process.env.BIOREG_SITE_ORIGIN = old;
+    if (override === undefined) delete process.env.APP_ORIGIN;
+    else process.env.APP_ORIGIN = override;
+  }
+});

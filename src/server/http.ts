@@ -36,8 +36,14 @@ export function sameOrigin(request: Request) {
   const origin = request.headers.get("origin");
   if (!origin || request.headers.get("sec-fetch-site") === "cross-site")
     return false;
-  const expected = process.env.APP_ORIGIN || new URL(request.url).origin;
-  return origin === expected;
+  try {
+    const expected = new URL(
+      process.env.APP_ORIGIN || process.env.BIOREG_SITE_ORIGIN || request.url,
+    ).origin;
+    return origin === expected;
+  } catch {
+    return false;
+  }
 }
 export async function readJson(request: Request) {
   const reader = request.body?.getReader();

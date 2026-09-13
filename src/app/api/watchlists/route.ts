@@ -11,24 +11,7 @@ export async function GET() {
   }
 }
 export async function POST(request: Request) {
-  if (!sameOrigin(request))
-    return json(
-      {
-        error: "ORIGIN_REJECTED",
-        origin_policy: {
-          configured: !!process.env.APP_ORIGIN,
-          request_origin: new URL(request.url).origin,
-          expected_origin: new URL(process.env.APP_ORIGIN || request.url)
-            .origin,
-          configured_has_path:
-            !!process.env.APP_ORIGIN &&
-            new URL(process.env.APP_ORIGIN).pathname !== "/",
-          configured_trailing_slash:
-            process.env.APP_ORIGIN?.endsWith("/") || false,
-        },
-      },
-      403,
-    );
+  if (!sameOrigin(request)) return json({ error: "ORIGIN_REJECTED" }, 403);
   let body: unknown;
   try {
     body = await readJson(request);
