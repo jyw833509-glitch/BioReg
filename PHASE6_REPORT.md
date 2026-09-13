@@ -20,7 +20,7 @@ Normalization: NFKC, whitespace/wrapping, HTML formatting, navigation/header/foo
 
 ## Capture safeguards
 
-Existing HTTP/parser validation remains in force for all six sources, including 202 verification and access denial. Writer adds empty-content and verification checks. Valid CDE tables and PMDA attachment listings may remain metadata-only when their known parser metadata and attachments are present; no body text is invented. Invalid input never reaches version/event creation. Withdrawn and superseded records are retained.
+Existing HTTP/parser validation remains in force for all six sources, including 202 verification and access denial. Writer adds empty-content and verification checks. Valid CDE tables, PMDA attachment listings and ICH structured file catalog entries may remain metadata-only when their known parser metadata and attachments are present; no body text is invented. Invalid input never reaches version/event creation. Withdrawn and superseded records are retained.
 
 ## APIs and UI
 
@@ -34,7 +34,7 @@ Existing HTTP/parser validation remains in force for all six sources, including 
 
 ## Tests
 
-84 automated tests cover metadata/status/content/attachments, added/removed/modified paragraphs, normalization and tracking noise, rejected captures, transactional event/version writes, immutable history, scoped comparison, and existing scheduler/isolation behavior. Production-mode smoke checks exercise the new APIs and event UI with fixtures in a disposable random schema only.
+85 automated tests cover metadata/status/content/attachments, added/removed/modified paragraphs, normalization and tracking noise, rejected captures, transactional event/version writes, immutable history, scoped comparison, and existing scheduler/isolation behavior. Production-mode smoke checks exercise the new APIs and event UI with fixtures in a disposable random schema only.
 
 ## Production acceptance
 

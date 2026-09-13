@@ -1021,3 +1021,39 @@ test("Phase 6 atomic events, normalization, immutable snapshots and rejected cap
     null,
   );
 });
+
+test("ICH official metadata-only concept papers remain valid captures", async () => {
+  const d = normalizeDocument(
+    {
+      title: "M1 Concept Paper isolated fixture",
+      url: "https://www.ich.org/page/multidisciplinary-guidelines",
+      canonicalUrl:
+        "https://database.ich.org/sites/default/files/isolated-concept.pdf",
+      sourcePage: "https://database.ich.org/",
+      type: "Concept Paper",
+      status: "",
+      attachments: [
+        "https://database.ich.org/sites/default/files/isolated-concept.pdf",
+      ],
+      metadata: {
+        parent_guideline_code: "M1",
+        file_group: "Endorsed Documents",
+        independent_document: true,
+      },
+    },
+    "ICH",
+    () => "CONCEPT_PAPER",
+    () => "UNKNOWN",
+  ).data;
+  assert.equal(d.content_text, "");
+  assert.equal(await writeRecord(client, "source-ich", d), "new");
+  assert.equal(await writeRecord(client, "source-ich", d), "existing");
+  const row = await client.regulation.findFirstOrThrow({
+    where: { canonical_url: d.canonical_url },
+  });
+  assert.equal(row.content_text, "");
+  assert.equal(
+    await client.regulationVersion.count({ where: { regulation_id: row.id } }),
+    1,
+  );
+});

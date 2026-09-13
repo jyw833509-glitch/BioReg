@@ -35,7 +35,10 @@ export async function writeRecord(
       (data.attachment_urls?.length &&
       ((data.regulator === "CDE" &&
         data.source_metadata?.professional_category) ||
-        (data.regulator === "PMDA" && data.source_metadata?.listing_text))
+        (data.regulator === "PMDA" && data.source_metadata?.listing_text) ||
+        (data.regulator === "ICH" &&
+          (data.source_metadata?.guideline_code ||
+            data.source_metadata?.parent_guideline_code)))
         ? data.title_original
         : ""),
   );
