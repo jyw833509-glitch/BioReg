@@ -1,6 +1,8 @@
 # Phase 6 — Change Detection & Version History
 
-Status: NOT PASSED — implementation checks passed; production migration, sync and hosting acceptance pending.
+Status: PASSED — production acceptance completed on 2026-09-13 (UTC).
+
+Application commit: `b5c1289606059037453718218b4d89804bd196ae` on main. Hosting remains Netlify, database remains Supabase PostgreSQL, and scheduling remains GitHub Actions.
 
 ## Implementation
 
@@ -38,7 +40,26 @@ Existing HTTP/parser validation remains in force for all six sources, including 
 
 ## Production acceptance
 
-Baseline captured before deployment: 38 real regulations and 38 immutable snapshots. Pending migration and two syncs, historical snapshot comparison, production Changes/Updates/Detail checks, CI and bounded concurrent page requests.
+Baseline captured before deployment: 38 real regulations and 38 immutable snapshots. Post-deployment verification at 2026-09-13T15:42:13Z confirms all 38 original snapshot IDs and exact snapshot contents retained, 38 total versions, 38 real regulations and zero Mock records. Unchanged official captures generated no additional versions or events.
+
+- Production additive migration succeeded in [initial sync](https://github.com/jyw833509-glitch/BioReg/actions/runs/34752662449); subsequent preparation steps also succeeded.
+- [Main CI](https://github.com/jyw833509-glitch/BioReg/actions/runs/34753486942): success. Lint, typecheck, all 85 tests, production build and isolated production-mode smoke checks passed.
+- [Manual six-source sync](https://github.com/jyw833509-glitch/BioReg/actions/runs/34753072705): success; all sources had zero new/updated records. Initial validation identified valid ICH metadata-only concept papers being rejected by the empty-body guard. The explicit structured-metadata exception and regression test fixed this without inventing body text or weakening denial-page rejection.
+- [Natural scheduled sync](https://github.com/jyw833509-glitch/BioReg/actions/runs/34762572041): event `schedule`, main application commit, success. Database preparation, sequential scheduler and sanitized summary steps all succeeded. This was a real natural trigger, not manual dispatch.
+- [Production website](https://creative-starship-b64072.netlify.app): new Phase 6 routes and labels are live. Netlify official deployment-status badge reports success.
+- At 2026-09-13T15:38:27Z, three rounds of eight concurrent requests to `/`, `/today`, `/regulations`, `/updates`, `/agencies`, `/watchlist`, `/api/health` and `/api/dashboard` passed: **24/24 HTTP 200 with valid content**, no database-error fallback. Slowest request per round: 13,612 ms, 8,481 ms and 8,736 ms. Cold/network latency remains material; this is a bounded stability test, not a latency SLA.
+- `/api/changes` returned HTTP 200 and zero events, consistent with unchanged captures. Specific historical version and regulation detail returned HTTP 200; comparing a version with itself returned no changes. Missing version returned HTTP 404. Detail rendered both internal-version and BioReg-analysis labels.
+- Event creation and changed-content rendering were tested in the disposable integration/smoke database; no synthetic events were inserted into production for demonstration.
+
+Source health after natural sync: FDA HEALTHY; EMA HEALTHY; NMPA HEALTHY; ICH HEALTHY; PMDA HEALTHY; CDE DEGRADED (official access restriction, isolated). No unexpected version growth occurred after the natural trigger.
+
+## Modified areas and connection architecture
+
+Changes include `prisma/schema.prisma`, the additive migration, `src/server/changes/normalize.ts`, `src/server/changes/detect.ts`, the shared connector Writer, change repository and API routes, page-data integration, change-events/workspace UI, and unit/integration/smoke tests. The ICH metadata-only exception is in the shared Writer and covered by a database test.
+
+Web runtime continues to use the Supabase Transaction Pooler DATABASE_URL with the existing small singleton pool. Migration/CLI and scheduler locking retain the established DIRECT_URL connection. No hosting, secrets or scheduler infrastructure was replaced; credentials were not added to committed files.
+
+Acceptance evidence is from actual HTTP responses, preserved snapshot comparisons, GitHub Actions and the official Netlify status badge. Private Netlify function logs were not accessible; this report does not assert that all historical logs are error-free or guarantee indefinite availability.
 
 ## Known limits
 
