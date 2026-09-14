@@ -1,6 +1,6 @@
 # Phase 7 — Daily Digest / Watchlist / Notification
 
-Status: NOT PASSED — implementation complete; production acceptance pending.
+Status: NOT PASSED — production page/API acceptance passed; waiting for natural scheduled run of Phase 7.
 
 ## Implementation and data
 
@@ -34,11 +34,26 @@ APIs: /api/watchlists and /:id (existing extended); /:id/matches; /api/notificat
 
 ## Validation
 
-112 tests passed, including existing Phase 5/6 tests, matching fields/Unicode, DST, CRUD, new/change notifications, retry dedupe, delivery failure, read state, digest reuse/counts, source transitions, immutable history, and post-processing failure isolation. Production HTTP smoke passed. Final lint/typecheck/build and cloud checks are being recorded below.
+113 tests passed, including existing Phase 5/6 tests, matching fields/Unicode, DST, CRUD, new/change notifications, retry dedupe, delivery failure, read state, digest reuse/counts, source transitions, immutable history, and post-processing failure isolation. Production HTTP smoke passed. Final lint, typecheck, build and production-mode HTTP smoke passed.
 
 ## Production acceptance
 
-Pending additive migration, CI, manual and natural sync, Netlify page/API validation, bounded concurrency and original 38-record/38-snapshot retention checks. No PASSED claim until these finish.
+Application commit: 078a06734d24088803b342199d569f0a7080e4ce. [CI 34791546566](https://github.com/jyw833509-glitch/BioReg/actions/runs/34791546566) succeeded.
+
+[Manual sync 34768207852](https://github.com/jyw833509-glitch/BioReg/actions/runs/34768207852) on implementation commit 35f210e completed successfully, including additive migration. Actual logs confirmed matches/source_health/delivery/digest all SUCCESS. FDA, EMA, NMPA, ICH and PMDA HEALTHY; CDE DEGRADED.
+
+Production acceptance at 2026-09-14T00:06:20Z:
+- Netlify official deployment badge: success; new pages/API live.
+- Watchlist create, edit, disable, enable, delete: success. Temporary rule matched 8 real FDA regulations; only the temporary rule was removed.
+- Digest for 2026-09-12 generated twice with the same ID, zero new/updated records for that window.
+- Notification list/filter/read-all/statistics APIs succeeded. Zero notifications is expected without new matching events or source-state changes; populated delivery and individual/all-read behavior were verified in isolated database/HTTP tests rather than inserting fake production notices.
+- Three rounds, eight concurrent requests each: 24/24 HTTP 200 with valid content. Paths: /, /today, /regulations, /updates, /watchlist, /notifications, /digest, /api/health. Round maximum times 13,208 / 8,379 / 7,986 ms.
+- Production total 38, Mock 0. The 38 original immutable snapshot IDs/content were confirmed retained after migration. Final post-cron recheck pending.
+- Natural scheduled run and automatically generated 2026-09-13 digest pending.
+
+Production writing initially returned ORIGIN_REJECTED because Netlify rewrote request.url to its deploy permalink while browser Origin used the stable site hostname. next.config.ts now embeds only the public Netlify build URL as BIOREG_SITE_ORIGIN; http.ts validates against this trusted canonical origin (explicit APP_ORIGIN still overrides). No forwarded client headers or wildcard origins are trusted. Diagnostic output was removed. Regression tests reject unrelated origins, spoofed forwarded hosts, missing origins and cross-site requests. See [Netlify domain documentation](https://docs.netlify.com/manage/domains/domains-fundamentals/understand-domains/) for deploy permalink semantics.
+
+Browser automation could not create a tab in this session (repeated provider timeout). Validation used actual production HTTP/API responses and isolated production-mode HTTP tests; no claim of a completed browser click-through or private Netlify log review is made.
 
 ## Limits
 
