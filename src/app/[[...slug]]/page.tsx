@@ -93,6 +93,7 @@ export default async function Page({
       watchlists={data.watchlists}
       changeEvents={data.changeEvents}
       dashboard={data.dashboard}
+      topicCounts={data.topicCounts}
       pageInfo={data.pagination}
     />
   );

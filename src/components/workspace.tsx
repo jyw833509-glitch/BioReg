@@ -269,6 +269,7 @@ export function Workspace({
   syncLogs,
   databaseKind,
   dashboard,
+  topicCounts,
   sources,
   watchlists,
   pageInfo,
@@ -283,6 +284,7 @@ export function Workspace({
   syncLogs: LogView[];
   databaseKind: string;
   dashboard: DashboardView | null;
+  topicCounts: Record<string, number>;
   sources: SourceView[];
   watchlists: WatchlistView[];
   pageInfo: Pagination;
@@ -1069,7 +1071,7 @@ export function Workspace({
               />
             </>
           )}
-          {page === "topics" && dashboard && (
+          {page === "topics" && (
             <div className="topic-grid">
               {topics.map((t, i) => (
                 <Link
@@ -1080,7 +1082,7 @@ export function Workspace({
                   <span className="tile-number">0{i + 1}</span>
                   <FlaskConical size={24} />
                   <h2>{t}</h2>
-                  <p>{dashboard.byTopic[t] || 0} 条法规</p>
+                  <p>{topicCounts[t] || 0} 条法规</p>
                   <ArrowRight size={18} />
                 </Link>
               ))}

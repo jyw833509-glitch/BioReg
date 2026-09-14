@@ -162,3 +162,12 @@ export async function getDashboard(client: Db): Promise<DashboardView> {
     changes: changes.data,
   };
 }
+
+export async function getTopicCounts(
+  client: Db,
+): Promise<Record<string, number>> {
+  const rows = await client.$queryRaw<
+    { category: string; count: number }[]
+  >`SELECT category, count(*)::int AS count FROM regulations CROSS JOIN LATERAL unnest(categories) category WHERE (${!officialOnly()} OR is_mock=false) GROUP BY category`;
+  return Object.fromEntries(rows.map((r) => [r.category, r.count]));
+}

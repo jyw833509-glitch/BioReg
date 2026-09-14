@@ -2,7 +2,10 @@ import { changeRepository } from "./repositories/change-repository";
 import { sequential } from "./sequential";
 import { db } from "./db";
 import { regulationRepository } from "./repositories/regulation-repository";
-import { getDashboard } from "./repositories/dashboard-repository";
+import {
+  getDashboard,
+  getTopicCounts,
+} from "./repositories/dashboard-repository";
 import { sourceRepository } from "./repositories/source-repository";
 import { syncLogRepository } from "./repositories/sync-log-repository";
 import { watchlistRepository } from "./repositories/watchlist-repository";
@@ -14,9 +17,7 @@ export async function getPageData(page: string, query: Query, id?: string) {
   const [dashboard, sources, logs, watchlists, record, result] =
     await sequential([
       () =>
-        ["dashboard", "topics"].includes(page)
-          ? getDashboard(client)
-          : Promise.resolve(null),
+        page === "dashboard" ? getDashboard(client) : Promise.resolve(null),
       () =>
         ["dashboard", "agencies"].includes(page)
           ? sourceRepository(client).list()
@@ -47,6 +48,7 @@ export async function getPageData(page: string, query: Query, id?: string) {
     ]);
   return {
     dashboard,
+    topicCounts: page === "topics" ? await getTopicCounts(client) : {},
     changeEvents:
       page === "updates" || id ? await changeRepository(client).list(id) : [],
     sources: sources.map((s) => ({
