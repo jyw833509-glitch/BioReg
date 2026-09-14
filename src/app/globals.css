@@ -1850,10 +1850,50 @@ input[type="date"] {
 .sidebar {
   overflow-x: hidden;
 }
-.sync-overview { margin-bottom: 22px; }
-.sync-overview p { font-size: 13px; overflow-wrap: anywhere; }
-.sync-health-list { display: flex; flex-wrap: wrap; gap: 8px; margin: 14px 0; }
-.health-badge { padding: 5px 9px; border-radius: 6px; background: #eef2f6; color: #526174; font-size: 11px; font-weight: 600; }
-.health-healthy { background: #e4f4ed; color: #227353; }
-.health-degraded { background: #fff2d8; color: #946514; }
-.health-unavailable { background: #fbe7e7; color: #a84242; }
+.settings-grid > label {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.settings-grid select,
+.settings-grid input {
+  max-width: 100%;
+  width: 100%;
+  min-width: 0;
+}
+.panel pre {
+  max-width: 100%;
+  overflow-x: auto;
+}
+.sync-overview {
+  margin-bottom: 22px;
+}
+.sync-overview p {
+  font-size: 13px;
+  overflow-wrap: anywhere;
+}
+.sync-health-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 14px 0;
+}
+.health-badge {
+  padding: 5px 9px;
+  border-radius: 6px;
+  background: #eef2f6;
+  color: #526174;
+  font-size: 11px;
+  font-weight: 600;
+}
+.health-healthy {
+  background: #e4f4ed;
+  color: #227353;
+}
+.health-degraded {
+  background: #fff2d8;
+  color: #946514;
+}
+.health-unavailable {
+  background: #fbe7e7;
+  color: #a84242;
+}

@@ -13,8 +13,14 @@ export async function getPageData(page: string, query: Query, id?: string) {
   const repo = regulationRepository(client);
   const [dashboard, sources, logs, watchlists, record, result] =
     await sequential([
-      () => getDashboard(client),
-      () => sourceRepository(client).list(),
+      () =>
+        ["dashboard", "topics"].includes(page)
+          ? getDashboard(client)
+          : Promise.resolve(null),
+      () =>
+        ["dashboard", "agencies"].includes(page)
+          ? sourceRepository(client).list()
+          : Promise.resolve([]),
       () =>
         ["settings", "agencies"].includes(page)
           ? syncLogRepository(client).list()
@@ -25,7 +31,10 @@ export async function getPageData(page: string, query: Query, id?: string) {
           : Promise.resolve([]),
       () => (id ? repo.getById(id) : Promise.resolve(null)),
       () =>
-        id
+        id ||
+        !["regulations", "today", "updates", "reports", "ai-tools"].includes(
+          page,
+        )
           ? Promise.resolve({
               data: [],
               pagination: { page: 1, pageSize: 20, total: 0, totalPages: 1 },

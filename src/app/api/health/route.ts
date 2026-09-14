@@ -8,10 +8,18 @@ export async function GET() {
       status: "ok",
       database: "PostgreSQL",
       orm: "Prisma",
-      phase: 5,
+      phase: 9,
+      version: "1.0.0",
+      application: "ok",
       live_sources_connected: await db().source.findMany({
         where: { last_sync_at: { not: null } },
-        select: { code: true, last_sync_at: true, last_success_at: true, last_failure_at: true, last_status: true },
+        select: {
+          code: true,
+          last_sync_at: true,
+          last_success_at: true,
+          last_failure_at: true,
+          last_status: true,
+        },
       }),
     });
   } catch (error) {

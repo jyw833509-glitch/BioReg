@@ -247,6 +247,11 @@ async function main() {
         orderBy: { id: "asc" },
       }),
       changes: await client.changeEvent.findMany({ orderBy: { id: "asc" } }),
+      watches: await client.watchlist.findMany({ orderBy: { id: "asc" } }),
+      notifications: await client.notificationEvent.findMany({
+        orderBy: { id: "asc" },
+      }),
+      digests: await client.dailyDigest.findMany({ orderBy: { id: "asc" } }),
     });
     const savedDigest = await client.dailyDigest.findFirstOrThrow();
     for (const context of [
@@ -272,6 +277,55 @@ async function main() {
       assert.match(result.prompt, /当前提供的官方资料不足以确认/);
     }
     assert.equal((await fetch(origin + "/ai-tools")).status, 200);
+    for (const type of [
+      "regulations",
+      "changes",
+      "versions",
+      "digest",
+      "watchlist",
+      "sources",
+      "notifications",
+      "summary",
+    ]) {
+      const preview = await fetch(origin + "/api/reports?type=" + type);
+      assert.equal(preview.status, 200, type);
+      const data = await preview.json();
+      assert.ok(Array.isArray(data.data.rows));
+      const csv = await fetch(
+        origin + "/api/reports?type=" + type + "&format=csv",
+      );
+      assert.equal(csv.status, 200);
+      assert.match(await csv.text(), /id,regulation_id,agency,official_url/);
+      if (["regulations", "changes", "digest"].includes(type)) {
+        const pdf = await fetch(
+          origin + "/api/reports?type=" + type + "&format=pdf&limit=2",
+        );
+        assert.equal(pdf.status, 200);
+        assert.equal(
+          Buffer.from(await pdf.arrayBuffer())
+            .subarray(0, 4)
+            .toString(),
+          "%PDF",
+        );
+      }
+    }
+    const reportComparison = await fetch(
+      origin +
+        "/api/reports?" +
+        new URLSearchParams({
+          type: "comparison",
+          regulation: event.regulation_id,
+          from: event.previous_version_id,
+          to: event.current_version_id,
+        }),
+    );
+    assert.equal(reportComparison.status, 200);
+    assert.match(await reportComparison.text(), /unchanged_fields/);
+    assert.equal(
+      (await fetch(origin + "/api/reports?start=2026-02-30")).status,
+      400,
+    );
+    assert.equal((await fetch(origin + "/reports")).status, 200);
     assert.equal(
       (await fetch(origin + "/api/ai?kind=regulation&id=missing")).status,
       404,
@@ -287,6 +341,11 @@ async function main() {
           orderBy: { id: "asc" },
         }),
         changes: await client.changeEvent.findMany({ orderBy: { id: "asc" } }),
+        watches: await client.watchlist.findMany({ orderBy: { id: "asc" } }),
+        notifications: await client.notificationEvent.findMany({
+          orderBy: { id: "asc" },
+        }),
+        digests: await client.dailyDigest.findMany({ orderBy: { id: "asc" } }),
       }),
       beforeAI,
       "AI API must not write official data",

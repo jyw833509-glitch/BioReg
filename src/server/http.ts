@@ -1,5 +1,15 @@
 import { z } from "zod";
 export function json(data: unknown, status = 200) {
+  if (status >= 400 && data && typeof data === "object") {
+    const error = data as Record<string, unknown>;
+    data = {
+      ...error,
+      code: error.code || error.error || "REQUEST_FAILED",
+      message: error.message || "请求未完成，请检查输入或稍后重试。",
+      request_id: crypto.randomUUID(),
+      timestamp: new Date().toISOString(),
+    };
+  }
   return Response.json(data, {
     status,
     headers: { "Cache-Control": "no-store" },
@@ -19,6 +29,11 @@ export function failure(error: unknown) {
       400,
     );
   const code = (error as { code?: string })?.code;
+  if (code === "REPORT_TOO_LARGE")
+    return json(
+      { error: code, message: "报告超过大小上限，请缩小日期范围或记录数。" },
+      413,
+    );
   if (code === "P2025") return json({ error: "NOT_FOUND" }, 404);
   if (code === "P2002") return json({ error: "CONFLICT" }, 409);
   console.error("BioReg data-layer request failed", {

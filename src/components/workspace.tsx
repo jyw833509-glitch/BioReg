@@ -40,6 +40,7 @@ import {
   topics,
 } from "@/lib/data";
 import { AITools } from "./ai-tools";
+import { Reports } from "./reports";
 import type { Regulation, Agency } from "@/lib/types";
 import { SyncStatus } from "./sync-status";
 import type {
@@ -281,7 +282,7 @@ export function Workspace({
   regulations: Regulation[];
   syncLogs: LogView[];
   databaseKind: string;
-  dashboard: DashboardView;
+  dashboard: DashboardView | null;
   sources: SourceView[];
   watchlists: WatchlistView[];
   pageInfo: Pagination;
@@ -306,11 +307,11 @@ export function Workspace({
       setToast("浏览器存储不可用，收藏仅在当前页面有效。");
     }
   }
-  const DEMO_DATE = dashboard.date;
+  const DEMO_DATE = dashboard?.date ?? new Date().toISOString().slice(0, 10);
 
-  const latest = dashboard.recent;
-  const updates = dashboard.changes;
-  const high = dashboard.priority;
+  const latest = dashboard?.recent ?? [];
+  const updates = dashboard?.changes ?? [];
+  const high = dashboard?.priority ?? [];
   const active = nav.find((n) => n[0] === page)!;
   function cards(list: Regulation[]) {
     return (
@@ -338,7 +339,7 @@ export function Workspace({
             JSON.stringify(
               {
                 label: "Official / Development data; see each record.is_mock",
-                date: dashboard.date,
+                date: DEMO_DATE,
                 coverage:
                   payload.pagination.total > 100
                     ? "First 100 records only"
@@ -354,7 +355,7 @@ export function Workspace({
       );
       const link = document.createElement("a");
       link.href = url;
-      link.download = "bioreg-digest-" + dashboard.date + ".json";
+      link.download = "bioreg-digest-" + DEMO_DATE + ".json";
       link.click();
       URL.revokeObjectURL(url);
       setToast("数据库日报已导出。");
@@ -375,7 +376,7 @@ export function Workspace({
           </span>
         </Link>
         <div className="workspace-label">
-          WORKSPACE <span>Phase 05</span>
+          WORKSPACE <span>V1.0.0</span>
         </div>
         <nav>
           {nav.map(([key, label, zh, Icon], i) => (
@@ -391,7 +392,7 @@ export function Workspace({
                 <small>{zh}</small>
               </span>
               {key === "today" && (
-                <b className="nav-count">{dashboard.todayTotal}</b>
+                <b className="nav-count">{dashboard?.todayTotal ?? ""}</b>
               )}
               {key === "updates" && <span className="nav-dot" />}
             </Link>
@@ -465,7 +466,7 @@ export function Workspace({
               <span className="banner-separator">|</span> 数据库驱动 ·
               官方数据与 Mock 示例逐条标识 · 各源接入状态见监管机构页
             </span>
-            <span className="phase-label">PHASE 7 · DAILY DIGEST</span>
+            <span className="phase-label">V1.0.0 · BIOREG RADAR</span>
           </div>
           <div className="page-heading">
             <div>
@@ -476,7 +477,7 @@ export function Workspace({
                   : page === "dashboard"
                     ? "全球法规，一览掌握"
                     : active[2]}
-                {page === "dashboard" && dashboard.total === 0 && (
+                {page === "dashboard" && dashboard && dashboard.total === 0 && (
                   <section className="empty-state">
                     <h2>No regulatory records available yet.</h2>
                     <p>
@@ -484,7 +485,7 @@ export function Workspace({
                     </p>
                   </section>
                 )}
-                {page === "dashboard" && (
+                {page === "dashboard" && dashboard && (
                   <span className="live-label">
                     <span className="dot" /> LIVE
                   </span>
@@ -501,14 +502,14 @@ export function Workspace({
             <div className="heading-actions">
               <span className="date-chip">
                 <CalendarDays size={15} />
-                {dashboard.date} <small>UTC</small>
+                {DEMO_DATE} <small>UTC</small>
               </span>
               <button className="button" onClick={download}>
                 <ArrowDownToLine size={15} /> 导出日报
               </button>
             </div>
           </div>
-          {page === "dashboard" && (
+          {page === "dashboard" && dashboard && (
             <>
               <section className="panel sync-overview">
                 <h2>Source Health Summary</h2>
@@ -1068,7 +1069,7 @@ export function Workspace({
               />
             </>
           )}
-          {page === "topics" && (
+          {page === "topics" && dashboard && (
             <div className="topic-grid">
               {topics.map((t, i) => (
                 <Link
@@ -1163,70 +1164,7 @@ export function Workspace({
               ))}
             </div>
           )}
-          {page === "reports" && (
-            <>
-              <section className="panel report-hero">
-                <span className="eyebrow">DAILY REGULATORY DIGEST</span>
-                <h2>每日生物药法规简报</h2>
-                <p>{DEMO_DATE} · Development / Mock Data</p>
-                <div className="report-numbers">
-                  <span>
-                    <b>{dashboard.todayNew}</b>新增法规
-                  </span>
-                  <span>
-                    <b>{dashboard.todayUpdated}</b>更新法规
-                  </span>
-                  <span>
-                    <b>{dashboard.todayHigh}</b>
-                    重点关注
-                  </span>
-                </div>
-                <div className="tags">
-                  {agencies.map((a) => (
-                    <span className="tag" key={a}>
-                      {a}: {dashboard.byAgency[a] || 0}
-                    </span>
-                  ))}
-                </div>
-                <button className="button primary" onClick={download}>
-                  <ArrowDownToLine size={15} />
-                  导出模拟日报 JSON
-                </button>
-                <Link className="button" href="/today">
-                  阅读今日重点
-                </Link>
-              </section>
-              <section className="panel">
-                <div className="section-head">
-                  <h2>Global Biologics Regulatory Weekly Digest</h2>
-                  <span className="badge neutral">规划中</span>
-                </div>
-                <p>周报页面骨架 · 自动汇总将在后续阶段接入。</p>
-                <div className="type-grid">
-                  {[
-                    "Executive Summary",
-                    "Critical Updates",
-                    "FDA Updates",
-                    "EMA Updates",
-                    "NMPA / CDE Updates",
-                    "ICH Updates",
-                    "CMC",
-                    "Analytical",
-                    "Clinical",
-                    "Safety",
-                    "Biosimilar",
-                    "Change Detection",
-                    "Upcoming Consultations",
-                  ].map((x) => (
-                    <span key={x}>
-                      {x}
-                      <Clock3 size={14} />
-                    </span>
-                  ))}
-                </div>
-              </section>
-            </>
-          )}
+          {page === "reports" && <Reports records={regulations} />}
           {page === "ai-tools" && <AITools records={regulations} />}
           {["settings", "agencies"].includes(page) && (
             <SyncStatus logs={syncLogs} kind={databaseKind} />
