@@ -1,6 +1,6 @@
 # Phase 7 — Daily Digest / Watchlist / Notification
 
-Status: NOT PASSED — production page/API acceptance passed; waiting for natural scheduled run of Phase 7.
+Status: PASSED — natural scheduled Phase 7 post-processing and production acceptance passed under the explicitly agreed acceptance scope below.
 
 ## Implementation and data
 
@@ -48,12 +48,47 @@ Production acceptance at 2026-09-14T00:06:20Z:
 - Digest for 2026-09-12 generated twice with the same ID, zero new/updated records for that window.
 - Notification list/filter/read-all/statistics APIs succeeded. Zero notifications is expected without new matching events or source-state changes; populated delivery and individual/all-read behavior were verified in isolated database/HTTP tests rather than inserting fake production notices.
 - Three rounds, eight concurrent requests each: 24/24 HTTP 200 with valid content. Paths: /, /today, /regulations, /updates, /watchlist, /notifications, /digest, /api/health. Round maximum times 13,208 / 8,379 / 7,986 ms.
-- Production total 38, Mock 0. The 38 original immutable snapshot IDs/content were confirmed retained after migration. Final post-cron recheck pending.
-- Natural scheduled run and automatically generated 2026-09-13 digest pending.
+- Production total 38, Mock 0. The 38 original immutable snapshot IDs/content were confirmed retained after migration and in the post-cron recheck below.
+- Natural scheduled execution and the automatically generated 2026-09-13 digest are verified below.
 
 Production writing initially returned ORIGIN_REJECTED because Netlify rewrote request.url to its deploy permalink while browser Origin used the stable site hostname. next.config.ts now embeds only the public Netlify build URL as BIOREG_SITE_ORIGIN; http.ts validates against this trusted canonical origin (explicit APP_ORIGIN still overrides). No forwarded client headers or wildcard origins are trusted. Diagnostic output was removed. Regression tests reject unrelated origins, spoofed forwarded hosts, missing origins and cross-site requests. See [Netlify domain documentation](https://docs.netlify.com/manage/domains/domains-fundamentals/understand-domains/) for deploy permalink semantics.
 
 Browser automation could not create a tab in this session (repeated provider timeout). Validation used actual production HTTP/API responses and isolated production-mode HTTP tests; no claim of a completed browser click-through or private Netlify log review is made.
+
+## Final natural schedule acceptance — 2026-09-14
+
+The owner explicitly clarified that SKIPPED_NOT_DUE is a normal Scheduler business result, not a failure. Phase 7 acceptance concerns the Daily Digest / Watchlist / Notification pipeline. An additional due-source fetch on this commit is not required to repeat the previously verified Phase 5 connector/scheduler acceptance. No actual fetch is claimed for this run.
+
+- Run: [34794601862](https://github.com/jyw833509-glitch/BioReg/actions/runs/34794601862).
+- Triggered: 2026-09-14T01:02:40Z (2026-09-14 09:02:40 Asia/Shanghai).
+- Event: schedule, naturally triggered by the existing GitHub Actions cron; not workflow_dispatch.
+- Commit: e7cb1a589bbf0b51937a47f1ee7ddf56ce7e4267 (Phase 7; no Phase 8).
+- Workflow conclusion: success. Scheduler mode: incremental; dry_run: false.
+- Persisted SyncJob: cmu0jh7qk0000r942a4v7acp7, confirmed against the production dashboard API. Job interval: 2026-09-14T01:03:14.513Z to 2026-09-14T01:03:25.402Z; aggregate status SKIPPED.
+- Artifact: regulatory-sync-summary-34794601862, artifact ID 10329440993; downloaded and inspected successfully.
+
+| Source | Scheduler result | Retained source health |
+| --- | --- | --- |
+| FDA | SKIPPED_NOT_DUE | HEALTHY |
+| EMA | SKIPPED_NOT_DUE | HEALTHY |
+| NMPA | SKIPPED_NOT_DUE | HEALTHY |
+| CDE | SKIPPED_NOT_DUE | DEGRADED |
+| ICH | SKIPPED_NOT_DUE | HEALTHY |
+| PMDA | SKIPPED_NOT_DUE | HEALTHY |
+
+All six sources were evaluated normally and were not due. Found/new/updated/failed counts were zero and error_kind was null for every source. This run did not fetch documents or create fresh per-source fetch SyncLogs. Existing actual-fetch SyncLogs from manual run 34768207852 remained available: five successful sources and an isolated CDE access limitation. The natural run's persisted evidence is its SyncJob and summary artifact; these are not represented as new fetch logs.
+
+The artifact reports matches, source_health, delivery and digest all SUCCESS. This is the Phase 7 post-processing chain actually exercised by the natural run. Production NotificationEvent count remained zero, consistent with no new matching events or health transitions; no notification storm occurred. Populated notification delivery and retry deduplication were covered by the previously passing isolated tests, not fabricated production events.
+
+The natural run generated the 2026-09-13 DailyDigest at 2026-09-14T01:03:25.256Z, ID cmu0jhetm0001r942wv611kgk. Its Asia/Shanghai day window is [2026-09-12T16:00:00Z, 2026-09-13T16:00:00Z). Production digest dates were unique (September 12 and September 13); the earlier same-day regeneration test reused the same row. No duplicate Digest was observed.
+
+Post-cron production recheck at 2026-09-14T04:46:45Z confirmed 38 real regulations, Mock 0, and all 38 original snapshot IDs and exact captured content retained. ChangeEvent count remained zero, consistent with no detected changes. Change Detection and Version History regression tests remain passed; no duplicate versions or historical data loss was observed.
+
+Post-cron concurrent HTTP validation completed at 2026-09-14T04:48:48Z: two rounds of eight simultaneous requests, 16/16 HTTP 200 with valid content, covering /, /today, /watchlist, /notifications, /digest, /api/health, /api/dashboard and /agencies. Round maximum response times were 12,842 ms and 8,172 ms. No database fallback or HTTP 500 was observed in these checks. Together with the prior successful Netlify deployment, CI, 113 tests, lint, typecheck, production build, manual sync and production CRUD checks, the agreed Phase 7 acceptance is PASSED.
+
+Non-blocking known item: 尚未额外等待 Phase 7 commit 上的来源 due-run 实际抓取，该能力已在前序阶段和手动同步中验证。
+
+This acceptance update changes only this report. No Scheduler changes, artificial due state, extra cron, manual sync, or manual redeployment were performed. Phase 8 may begin separately; no Phase 8 code is included.
 
 ## Limits
 
