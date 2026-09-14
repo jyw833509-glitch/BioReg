@@ -1,6 +1,8 @@
 # Phase 8 — External AI Tools
 
-Status: NOT PASSED — implementation and local acceptance complete; CI and production acceptance pending.
+Phase 8: PASSED
+
+Acceptance completed on 2026-09-14. Browser interaction and production dataset limitations are explicitly recorded below; no unperformed click-through or fabricated production changes are claimed.
 
 ## Architecture and scope
 
@@ -18,6 +20,8 @@ Official HTTPS homepages only, without prompt parameters, credentials or tokens:
 - Kimi: https://www.kimi.com/ (official reference: https://www.kimi.com/en/help/new-user-guide/overview)
 
 Provider records contain id, name, homepage_url, enabled and description. Disabled providers cannot generate prompts. Templates have applicable contexts, instructions, body, version and enabled status. Twelve templates: Regulation Explain; Regulatory Impact Analysis; CMC / Quality Analysis; Clinical Analysis; Nonclinical Analysis; Change Analysis; Version Comparison; Department Impact; Action Items; Chinese Explanation; Bilingual Summary; Daily Digest Analysis.
+
+Scope correction: GPT / ChatGPT / OpenAI 已从当前产品范围彻底移除。No corresponding provider, adapter, environment variable dependency, button or future integration remains. This sentence records removal, not supported functionality. Only DeepSeek, Doubao, Qwen and Kimi are supported; the common provider architecture is retained. Existing Git history was not rewritten.
 
 CMC includes all requested quality topics and requires explicit non-confirmation for unsupported topics. Product types and departments are analysis context, not inferred official requirements. Chinese / English / Bilingual output instructions are supported.
 
@@ -41,8 +45,25 @@ Lint, typecheck and production build passed. Production-mode HTTP smoke passed i
 
 ## CI and production acceptance
 
-Pending deployment of this implementation and remote verification. Do not interpret this report as PASSED yet.
+Correction commit: `0f578b44838281efc461fdacdc5f0866796e783c`, following implementation `ae868c9ad1fac0865d76ce39247b69e3ccd7f425`.
+
+[CI 34835238588](https://github.com/jyw833509-glitch/BioReg/actions/runs/34835238588): completed / success, job 103947453267. Corrected implementation passed 135 tests, lint, typecheck, production build and real production-mode Prompt API HTTP smoke. A local smoke attempt initially found the local test PostgreSQL stopped; restarting that existing test instance and rerunning succeeded. This was not a production failure.
+
+Netlify official deployment badge returned success. The [production site](https://creative-starship-b64072.netlify.app/ai-tools) and `/api/ai` served the corrected four-provider catalog including Kimi, matching the corrected commit's product configuration. No private Netlify console/log access is claimed. No new environment variables or migration were needed.
+
+Production HTTP/API acceptance at 2026-09-14T10:55:38.066Z:
+
+- Catalog: exactly deepseek, doubao, qwen, kimi; 12 templates. The AI Tools HTML contains the corrected selector without removed providers.
+- Regulation/CMC prompt generation succeeded for each of the four providers. Chinese/compact, English/standard and Bilingual/detailed requests succeeded, with evidence constraints and correct selected provider URL. Saved Digest prompt generation succeeded with the system-summary evidence label.
+- Two rounds of ten simultaneous requests: 20/20 HTTP 200, no database fallback page. Routes: Dashboard `/`, `/regulations`, a real Regulation Detail (including Version History), `/updates`, `/today`, `/watchlist`, `/notifications`, `/digest`, `/ai-tools`, `/api/health`. Health returned status ok.
+- Four official provider homepages independently returned HTTP 200. Doubao redirected to its official `/chat/` path. No login or prompt submission was performed.
+- Before/after public API data were identical for the complete regulation list, selected regulation with history, ChangeEvents, Watchlists, Notifications and Digests. No AI-generated facts or writes occurred. Production has 38 regulations, Mock 0, 0 ChangeEvents, 0 Notifications, 2 Digests and 30 visible SyncLogs.
+- Independent historical check at 2026-09-14T10:55:47.850Z confirmed all 38 original version IDs and exact captured content retained. FDA / EMA / NMPA / ICH / PMDA HEALTHY; CDE DEGRADED, correctly isolated. Existing Phase 5–7 regression tests passed; Regulatory Sync run 34812709046 also completed successfully on the preceding Phase 8 implementation commit.
+
+Production currently has zero ChangeEvents and only one captured version per regulation. Consequently a populated ChangeEvent → AI and two-distinct-versions → AI success case cannot be exercised against existing production data. Both are verified via real HTTP APIs against an isolated migrated PostgreSQL database, including complete before/after official-row equality. No artificial production event/version was created. These are explicit dataset coverage limits, not evidence of failed generators.
+
+Browser interaction verification: 未完全完成。Reason: browser control tool timeout. Retrying `cua.createBrowserTab` for production AI Tools returned `js execution timed out; kernel reset, rerun your request` after 20.6 seconds. HTTP/API production verification: PASSED as above. Copy Prompt uses the browser clipboard API with a visible manual-copy fallback and provider links use normal safe anchors; actual clipboard clicking and third-party browser navigation were not completed by the unavailable tool. No third-party AI output was read.
 
 ## Known limitations
 
-No AI output is produced inside BioReg. Provider availability/login is controlled by the third party. Generated instructions constrain use but cannot guarantee third-party accuracy. Existing shared-workspace access model is retained. Selectors show up to 100 regulations, 50 recent changes and saved digest history; direct record links carry the selected ID. Full browser interaction and remote acceptance are pending. Phase 9 is not included.
+No AI output is produced inside BioReg. Provider availability/login is controlled by the third party. Generated instructions constrain use but cannot guarantee third-party accuracy. Existing shared-workspace access model is retained. Selectors show up to 100 regulations, 50 recent changes and saved digest history; direct record links carry the selected ID. Browser interaction and absent production change fixtures have the coverage limits described above. Future API/BYOK support requires a separate scoped design; no implementation or provider-specific interface is reserved. Phase 9 is not included and work stops after this acceptance.
