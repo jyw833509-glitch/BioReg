@@ -21,11 +21,11 @@ export const providers = [
     description: "使用自己的 Qwen 账号",
   },
   {
-    id: "chatgpt",
-    name: "ChatGPT",
-    homepage_url: "https://chatgpt.com/",
+    id: "kimi",
+    name: "Kimi",
+    homepage_url: "https://www.kimi.com/",
     enabled: true,
-    description: "使用自己的 ChatGPT 账号",
+    description: "使用自己的 Kimi 账号",
   },
 ];
 export const boundary = `Official Fact / BioReg Translation / BioReg System Summary / External AI Interpretation 必须分开标记。

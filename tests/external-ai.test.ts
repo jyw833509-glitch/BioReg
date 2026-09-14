@@ -171,7 +171,7 @@ test("disabled provider and incompatible templates rejected", () => {
 test("provider URLs fixed HTTPS without credentials or payloads", () => {
   assert.deepEqual(
     providers.map((p) => new URL(p.homepage_url).hostname),
-    ["chat.deepseek.com", "www.doubao.com", "chat.qwen.ai", "chatgpt.com"],
+    ["chat.deepseek.com", "www.doubao.com", "chat.qwen.ai", "www.kimi.com"],
   );
   for (const p of providers) {
     const u = new URL(p.homepage_url);

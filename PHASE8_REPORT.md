@@ -15,7 +15,7 @@ Official HTTPS homepages only, without prompt parameters, credentials or tokens:
 - DeepSeek: https://chat.deepseek.com/ (official reference: https://deepseek.com/en/news/deepseek-v3-1/)
 - Doubao: https://www.doubao.com/ (official reference: https://www.doubao.com/about)
 - Qwen: https://chat.qwen.ai/
-- ChatGPT: https://chatgpt.com/
+- Kimi: https://www.kimi.com/ (official reference: https://www.kimi.com/en/help/new-user-guide/overview)
 
 Provider records contain id, name, homepage_url, enabled and description. Disabled providers cannot generate prompts. Templates have applicable contexts, instructions, body, version and enabled status. Twelve templates: Regulation Explain; Regulatory Impact Analysis; CMC / Quality Analysis; Clinical Analysis; Nonclinical Analysis; Change Analysis; Version Comparison; Department Impact; Action Items; Chinese Explanation; Bilingual Summary; Daily Digest Analysis.
 
