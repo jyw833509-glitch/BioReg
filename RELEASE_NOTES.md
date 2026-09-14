@@ -1,6 +1,6 @@
 # BioReg V1.0.0
 
-Release candidate — publish only after PHASE9_REPORT.md release gate passes.
+Phase 9 accepted. See PHASE9_REPORT.md for measured production results and evidence limits.
 
 BioReg is a public-source biologics regulatory intelligence workspace on GitHub Actions, Supabase PostgreSQL and Netlify/Next.js.
 
@@ -20,3 +20,5 @@ Browser automation may time out; report distinguishes HTTP/API checks from uncom
 
 Shared workspace, not authenticated private multi-user tenancy. Do not add sensitive internal records without separately implementing access control. Free hosting/database availability and backup retention are not guaranteed; see RECOVERY_RUNBOOK.md. Regeneration cannot replace a backup of historical evidence.
 
+
+Minimal performance repair removes unused Dashboard/source/list queries on other pages; Topics uses a single aggregation. Final ordinary HTTP timings: homepage 7.3s, Today 1.7s, Notifications 0.9s, Reports 2.4s, Agencies 1.6s. All 21 concurrent requests succeeded; Dashboard API peaked at 10.6s. Full performance optimization is deferred.

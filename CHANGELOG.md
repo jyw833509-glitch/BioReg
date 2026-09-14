@@ -1,6 +1,6 @@
 # Changelog
 
-## 1.0.0 — Phase 9 release candidate
+## 1.0.0 — 2026-09-15 · Phase 9 accepted
 - Reports service with bounded PDF/CSV export, evidence labels, stable identifiers, CSV formula protection and embedded Chinese font.
 - Safer API error envelope, application version health metadata, production QA and recovery documentation.
 - Phase 8: external AI contexts/templates; current providers DeepSeek, Doubao, Qwen, Kimi.
