@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import type { digestSummary } from "@/server/engagement/digest";
 type Summary = Awaited<ReturnType<typeof digestSummary>>;
 type Notice = {
@@ -282,6 +283,19 @@ export function EngagementPanel({ page }: { page: string }) {
                 {d.digest_date} · 新增 {d.summary.new_count} · 更新{" "}
                 {d.summary.updated_count}
               </summary>
+              <Link
+                className="button"
+                href={
+                  "/ai-tools#" +
+                  new URLSearchParams({
+                    kind: "digest",
+                    id: d.id,
+                    template: "digest",
+                  })
+                }
+              >
+                Analyze Digest with AI
+              </Link>
               <DigestSummary data={d.summary} />
             </details>
           ))}

@@ -35,6 +35,19 @@ export function ChangeEvents({ events }: { events: ChangeView[] }) {
             </p>
             <p>{e.change_types.join(" · ")}</p>
             <p>{e.change_summary}</p>
+            <Link
+              className="button"
+              href={
+                "/ai-tools#" +
+                new URLSearchParams({
+                  kind: "change",
+                  id: e.id,
+                  template: "change",
+                })
+              }
+            >
+              Analyze Change with AI
+            </Link>
             <details>
               <summary>旧值 → 新值 / Sections</summary>
               {Array.isArray(e.changed_fields) &&

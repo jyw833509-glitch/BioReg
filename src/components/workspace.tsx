@@ -16,8 +16,6 @@ import {
   ChevronLeft,
   ChevronRight,
   Clock3,
-  Copy,
-  ExternalLink,
   FileText,
   FlaskConical,
   Globe2,
@@ -41,7 +39,7 @@ import {
   statuses,
   topics,
 } from "@/lib/data";
-import { generatePrompt } from "@/lib/search";
+import { AITools } from "./ai-tools";
 import type { Regulation, Agency } from "@/lib/types";
 import { SyncStatus } from "./sync-status";
 import type {
@@ -156,70 +154,40 @@ export function RegulationCard({
 }
 export function AIExplainModal({
   records,
-  task,
   onClose,
 }: {
   records: Regulation[];
-  task?: string;
   onClose: () => void;
 }) {
-  const [message, setMessage] = useState("");
   const ref = useRef<HTMLDialogElement>(null);
-  const prompt = generatePrompt(records, task);
   useEffect(() => {
     const d = ref.current;
     d?.showModal();
     return () => d?.close();
   }, []);
-  async function copy(url?: string) {
-    try {
-      await navigator.clipboard.writeText(prompt);
-      setMessage("提示词已复制，请在平台中粘贴。");
-      if (url) window.open(url, "_blank", "noopener,noreferrer");
-    } catch {
-      setMessage("剪贴板不可用，请手动选择下方提示词复制。");
-    }
-  }
   return (
-    <dialog
-      ref={ref}
-      onCancel={onClose}
-      onClick={(e) => {
-        if (e.target === e.currentTarget) onClose();
-      }}
-      className="ai-modal"
-    >
-      <div className="section-head">
-        <div>
-          <span className="eyebrow">EXTERNAL AI ASSISTANCE</span>
-          <h2>让法规解读更进一步</h2>
-        </div>
-        <button aria-label="关闭弹窗" className="icon-btn" onClick={onClose}>
-          <X />
-        </button>
-      </div>
-      <p>复制提示词并打开官方 AI 网页，使用您自己的账号进行解读。</p>
-      <div className="notice">
-        记录来源逐条标识 · AI 解读不属于监管机构原文。
-      </div>
-      <textarea aria-label="生成的 AI 提示词" readOnly value={prompt} />
-      <div className="ai-platforms">
-        {[
-          ["DeepSeek", "https://chat.deepseek.com"],
-          ["豆包", "https://www.doubao.com"],
-          ["通义千问", "https://www.qianwen.com"],
-          ["ChatGPT", "https://chatgpt.com"],
-        ].map(([label, url]) => (
-          <button className="button" key={label} onClick={() => copy(url)}>
-            {label}
-            <ExternalLink size={14} />
-          </button>
-        ))}
-      </div>
-      <button className="button primary" onClick={() => copy()}>
-        <Copy size={15} /> Copy Prompt
+    <dialog ref={ref} className="ai-modal" onCancel={onClose}>
+      <button className="button" onClick={onClose}>
+        关闭
       </button>
-      <p role="status">{message}</p>
+      <p>选择法规进入完整上下文工作台：</p>
+      {records.map((r) => (
+        <p key={r.id}>
+          <Link
+            href={
+              "/ai-tools#" +
+              new URLSearchParams({
+                kind: "regulation",
+                id: r.id,
+                template: "explain",
+              })
+            }
+            onClick={onClose}
+          >
+            {r.title_original} · AI Explain
+          </Link>
+        </p>
+      ))}
     </dialog>
   );
 }
@@ -326,8 +294,6 @@ export function Workspace({
 
   const [saved, setSaved] = usePreference("bioreg-saved");
   const [ai, setAi] = useState<Regulation[] | null>(null);
-  const [task, setTask] = useState("Explain Regulation");
-  const [selected, setSelected] = useState<string[]>([]);
 
   const [toast, setToast] = useState("");
   function save(id: string) {
@@ -1040,6 +1006,19 @@ export function Workspace({
                 <p>{record.summary_zh}</p>
                 <ChangeEvents events={changeEvents} />
                 <h2>Version History · BioReg Internal Version</h2>
+                <Link
+                  className="button"
+                  href={
+                    "/ai-tools#" +
+                    new URLSearchParams({
+                      kind: "comparison",
+                      id: record.id,
+                      template: "compare",
+                    })
+                  }
+                >
+                  Compare with AI · 选择 Version A / B
+                </Link>
                 {record.versions.map((v) => (
                   <div className="version" key={v.id}>
                     <span className="version-dot" />
@@ -1248,70 +1227,7 @@ export function Workspace({
               </section>
             </>
           )}
-          {page === "ai-tools" && (
-            <section className="panel">
-              <div className="section-head">
-                <div>
-                  <span className="eyebrow">YOUR DOCUMENTS. YOUR AI.</span>
-                  <h2>法规分析提示词工作台</h2>
-                </div>
-                <Sparkles size={27} />
-              </div>
-              <p>
-                选择任务与法规，生成可复制的提示词。外部 AI
-                解读不会写入官方事实字段。
-              </p>
-              <label className="field-label">
-                分析任务
-                <select value={task} onChange={(e) => setTask(e.target.value)}>
-                  {[
-                    "Explain Regulation",
-                    "Compare Regulations",
-                    "Compare FDA vs EMA",
-                    "Compare FDA vs NMPA",
-                    "CMC Impact",
-                    "Clinical Impact",
-                    "Biosimilar Requirements",
-                    "Summarize Recent Changes",
-                  ].map((t) => (
-                    <option key={t}>{t}</option>
-                  ))}
-                </select>
-              </label>
-              <div className="ai-selection">
-                {regulations.map((r) => (
-                  <label key={r.id}>
-                    <input
-                      type="checkbox"
-                      checked={selected.includes(r.id)}
-                      onChange={() =>
-                        setSelected(
-                          selected.includes(r.id)
-                            ? selected.filter((x) => x !== r.id)
-                            : [...selected, r.id],
-                        )
-                      }
-                    />
-                    <AgencyBadge agency={r.regulator} />
-                    <span>
-                      {r.title_zh || r.title_original}
-                      <small>{r.title_original}</small>
-                    </span>
-                  </label>
-                ))}
-              </div>
-              <button
-                className="button primary"
-                disabled={!selected.length}
-                onClick={() =>
-                  setAi(regulations.filter((r) => selected.includes(r.id)))
-                }
-              >
-                <Sparkles size={15} />
-                Generate Prompt · {selected.length} 个文件
-              </button>
-            </section>
-          )}
+          {page === "ai-tools" && <AITools records={regulations} />}
           {["settings", "agencies"].includes(page) && (
             <SyncStatus logs={syncLogs} kind={databaseKind} />
           )}
@@ -1373,13 +1289,7 @@ export function Workspace({
           </footer>
         </main>
       </div>
-      {ai && (
-        <AIExplainModal
-          records={ai}
-          task={page === "ai-tools" ? task : undefined}
-          onClose={() => setAi(null)}
-        />
-      )}{" "}
+      {ai && <AIExplainModal records={ai} onClose={() => setAi(null)} />}{" "}
       {toast && (
         <div className="toast" role="status">
           <Check size={17} />

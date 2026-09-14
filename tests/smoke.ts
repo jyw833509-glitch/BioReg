@@ -241,6 +241,56 @@ async function main() {
     ]) {
       assert.equal((await fetch(origin + p)).status, 200, p);
     }
+    const beforeAI = JSON.stringify({
+      records: await client.regulation.findMany({ orderBy: { id: "asc" } }),
+      versions: await client.regulationVersion.findMany({
+        orderBy: { id: "asc" },
+      }),
+      changes: await client.changeEvent.findMany({ orderBy: { id: "asc" } }),
+    });
+    const savedDigest = await client.dailyDigest.findFirstOrThrow();
+    for (const context of [
+      { kind: "regulation", id: event.regulation_id, template: "cmc" },
+      { kind: "change", id: event.id, template: "change" },
+      {
+        kind: "comparison",
+        id: event.regulation_id,
+        template: "compare",
+        from: event.previous_version_id,
+        to: event.current_version_id,
+      },
+      { kind: "digest", id: savedDigest.id, template: "digest" },
+    ]) {
+      const response = await fetch(
+        origin +
+          "/api/ai?" +
+          new URLSearchParams(context as Record<string, string>),
+      );
+      assert.equal(response.status, 200, JSON.stringify(context));
+      const result = await response.json();
+      assert.match(result.prompt, /External AI Interpretation/);
+      assert.match(result.prompt, /当前提供的官方资料不足以确认/);
+    }
+    assert.equal((await fetch(origin + "/ai-tools")).status, 200);
+    assert.equal(
+      (await fetch(origin + "/api/ai?kind=regulation&id=missing")).status,
+      404,
+    );
+    assert.equal(
+      (await fetch(origin + "/api/ai?kind=comparison&id=x&from=a&to=a")).status,
+      400,
+    );
+    assert.equal(
+      JSON.stringify({
+        records: await client.regulation.findMany({ orderBy: { id: "asc" } }),
+        versions: await client.regulationVersion.findMany({
+          orderBy: { id: "asc" },
+        }),
+        changes: await client.changeEvent.findMany({ orderBy: { id: "asc" } }),
+      }),
+      beforeAI,
+      "AI API must not write official data",
+    );
     console.log(
       "Production HTTP smoke checks passed: four empty pages, 404/400/403, seeded pagination/search, detail history, and Watchlist persistence.",
     );
