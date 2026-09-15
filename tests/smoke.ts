@@ -241,6 +241,12 @@ async function main() {
     ]) {
       assert.equal((await fetch(origin + p)).status, 200, p);
     }
+    const measured = await fetch(origin + "/api/dashboard");
+    assert.equal(measured.status, 200);
+    assert.match(
+      measured.headers.get("server-timing") || "",
+      /queries;desc="[1-9][0-9]*"/,
+    );
     const beforeAI = JSON.stringify({
       records: await client.regulation.findMany({ orderBy: { id: "asc" } }),
       versions: await client.regulationVersion.findMany({

@@ -13,9 +13,20 @@ export interface PerformanceMetrics {
   pool_total: number;
   pool_waiting: number;
 }
-const storage = new AsyncLocalStorage<PerformanceMetrics>();
-const driver = { acquire_ms: 0, query_ms: 0, query_count: 0 };
-const active = new Set<PerformanceMetrics>();
+// Route bundles can load distinct module instances while reusing one global DB.
+// Share counters and context across those instances, just like the DB singleton.
+const globalPerformance = globalThis as unknown as {
+  bioregPerformance?: {
+    storage: AsyncLocalStorage<PerformanceMetrics>;
+    driver: { acquire_ms: number; query_ms: number; query_count: number };
+    active: Set<PerformanceMetrics>;
+  };
+};
+const { storage, driver, active } = (globalPerformance.bioregPerformance ??= {
+  storage: new AsyncLocalStorage<PerformanceMetrics>(),
+  driver: { acquire_ms: 0, query_ms: 0, query_count: 0 },
+  active: new Set<PerformanceMetrics>(),
+});
 const round = (n: number) => Math.round(n * 100) / 100;
 export function recordSerialization(ms: number) {
   const m = storage.getStore();
@@ -130,7 +141,10 @@ export async function measuredResponse(
     `app;dur=${m.duration_ms}, acquire;dur=${m.acquire_ms}, query;dur=${m.query_ms}, serialize;dur=${m.serialization_ms}, queries;desc="${m.query_count}", overlap;desc="${m.overlapping_scopes}"`,
   );
   value.headers.set("X-Request-Id", m.request_id);
-  value.headers.set("X-BioReg-Commit", process.env.COMMIT_REF || "local");
+  value.headers.set(
+    "X-BioReg-Commit",
+    process.env.BIOREG_BUILD_COMMIT || "local",
+  );
   console.info("BioReg performance", m);
   return value;
 }

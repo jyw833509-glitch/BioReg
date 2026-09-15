@@ -6,6 +6,8 @@ const config: NextConfig = {
   },
   // Public site origin only; no credentials. Netlify rewrites runtime URLs to deploy permalinks.
   env: {
+    // Public Git identity only; never put database variables in bundled env.
+    BIOREG_BUILD_COMMIT: process.env.COMMIT_REF || "local",
     BIOREG_SITE_ORIGIN:
       process.env.NETLIFY === "true" ? process.env.URL || "" : "",
   },
