@@ -1,3 +1,5 @@
+import { Pool } from "pg";
+import { instrumentPool } from "./performance";
 import { PrismaPg } from "@prisma/adapter-pg";
 import { PrismaClient } from "../generated/prisma/client";
 const connections = new WeakMap<PrismaClient, string>();
@@ -14,14 +16,18 @@ export function createClient(url: string) {
     throw new Error("INVALID_SCHEMA");
   const client = new PrismaClient({
     adapter: new PrismaPg(
-      {
-        connectionString: url,
-        max: 1,
-        idleTimeoutMillis: 10000,
-        connectionTimeoutMillis: 10000,
-        ...(schema === "public" ? {} : { options: `-c search_path=${schema}` }),
-      },
-      { schema },
+      instrumentPool(
+        new Pool({
+          connectionString: url,
+          max: 1,
+          idleTimeoutMillis: 10000,
+          connectionTimeoutMillis: 10000,
+          ...(schema === "public"
+            ? {}
+            : { options: `-c search_path=${schema}` }),
+        }),
+      ),
+      { schema, disposeExternalPool: true },
     ),
     // Transaction acquisition includes pool wait; keep it aligned with pg.
     transactionOptions: { maxWait: 10000, timeout: 10000 },

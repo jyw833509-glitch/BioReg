@@ -79,22 +79,28 @@ export default async function Page({
     if (value) filters[key] = value;
   }
   return (
-    <Workspace
-      key={slug.join("/") + "?" + JSON.stringify(search)}
-      page={page}
-      record={data.record || undefined}
-      initialQuery={query.q}
-      initialFilters={filters}
-      initialSort={query.sort}
-      regulations={data.regulations}
-      syncLogs={data.logs}
-      databaseKind="postgres"
-      sources={data.sources}
-      watchlists={data.watchlists}
-      changeEvents={data.changeEvents}
-      dashboard={data.dashboard}
-      topicCounts={data.topicCounts}
-      pageInfo={data.pagination}
-    />
+    <>
+      <meta
+        name="bioreg-performance"
+        content={JSON.stringify(data.performance)}
+      />
+      <Workspace
+        key={slug.join("/") + "?" + JSON.stringify(search)}
+        page={page}
+        record={data.record || undefined}
+        initialQuery={query.q}
+        initialFilters={filters}
+        initialSort={query.sort}
+        regulations={data.regulations}
+        syncLogs={data.logs}
+        databaseKind="postgres"
+        sources={data.sources}
+        watchlists={data.watchlists}
+        changeEvents={data.changeEvents}
+        dashboard={data.dashboard}
+        topicCounts={data.topicCounts}
+        pageInfo={data.pagination}
+      />
+    </>
   );
 }

@@ -1,3 +1,4 @@
+import { measure } from "../src/server/performance";
 import test, { before, after } from "node:test";
 import assert from "node:assert/strict";
 import { randomUUID } from "node:crypto";
@@ -1252,4 +1253,17 @@ test("Phase7 post-processing persistence failures do not fail regulatory schedul
   } finally {
     client.watchlist.findMany = original;
   }
+});
+
+test("performance measurements isolate requests and count real driver queries without SQL", async () => {
+  const a = await measure("test.a", () => client.$queryRaw`SELECT 1`);
+  const b = await measure("test.b", () => client.$queryRaw`SELECT 2`);
+  for (const x of [a, b]) {
+    assert.equal(x.metrics.query_count, 1);
+    assert.ok(x.metrics.query_ms >= 0);
+    assert.ok(x.metrics.acquire_ms >= 0);
+    assert.ok(x.metrics.duration_ms >= x.metrics.query_ms);
+    assert.ok(!JSON.stringify(x.metrics).includes("SELECT"));
+  }
+  assert.notEqual(a.metrics.request_id, b.metrics.request_id);
 });

@@ -1,3 +1,4 @@
+import { recordSerialization } from "./performance";
 import { z } from "zod";
 export function json(data: unknown, status = 200) {
   if (status >= 400 && data && typeof data === "object") {
@@ -10,10 +11,13 @@ export function json(data: unknown, status = 200) {
       timestamp: new Date().toISOString(),
     };
   }
-  return Response.json(data, {
+  const start = performance.now();
+  const response = Response.json(data, {
     status,
     headers: { "Cache-Control": "no-store" },
   });
+  recordSerialization(performance.now() - start);
+  return response;
 }
 export function failure(error: unknown) {
   if (error instanceof z.ZodError)

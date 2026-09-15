@@ -1,3 +1,4 @@
+import { measure } from "./performance";
 import { changeRepository } from "./repositories/change-repository";
 import { sequential } from "./sequential";
 import { db } from "./db";
@@ -11,7 +12,7 @@ import { syncLogRepository } from "./repositories/sync-log-repository";
 import { watchlistRepository } from "./repositories/watchlist-repository";
 import type { Query } from "./validation";
 import type { LogView, SourceView, WatchlistView } from "../lib/view-types";
-export async function getPageData(page: string, query: Query, id?: string) {
+async function buildPageData(page: string, query: Query, id?: string) {
   const client = db();
   const repo = regulationRepository(client);
   const [dashboard, sources, logs, watchlists, record, result] =
@@ -73,4 +74,12 @@ export async function getPageData(page: string, query: Query, id?: string) {
     regulations: result.data,
     pagination: result.pagination,
   };
+}
+
+export async function getPageData(page: string, query: Query, id?: string) {
+  const { value, metrics } = await measure("page." + page, () =>
+    buildPageData(page, query, id),
+  );
+  console.info("BioReg performance", metrics);
+  return { ...value, performance: metrics };
 }
