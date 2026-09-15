@@ -1,3 +1,4 @@
+import { getDashboard as getDashboardV100 } from "./dashboard-v100";
 import { measure } from "../src/server/performance";
 import test, { before, after } from "node:test";
 import assert from "node:assert/strict";
@@ -1266,4 +1267,43 @@ test("performance measurements isolate requests and count real driver queries wi
     assert.ok(!JSON.stringify(x.metrics).includes("SELECT"));
   }
   assert.notEqual(a.metrics.request_id, b.metrics.request_id);
+});
+
+test("optimized dashboard exactly matches V1.0.0 and reduces driver round trips", async () => {
+  for (const production of [false, true]) {
+    const previous = process.env.NODE_ENV;
+    const override = process.env.BIOREG_INCLUDE_MOCK_DATA;
+    (process.env as Record<string, string | undefined>).NODE_ENV = production
+      ? "production"
+      : "test";
+    delete process.env.BIOREG_INCLUDE_MOCK_DATA;
+    try {
+      const before = await measure("dashboard.reference", () =>
+        getDashboardV100(client),
+      );
+      const after = await measure("dashboard.optimized", () =>
+        getDashboard(client),
+      );
+      assert.deepEqual(after.value, before.value);
+      assert.ok(
+        after.metrics.query_count < before.metrics.query_count * 0.6,
+        JSON.stringify({ before: before.metrics, after: after.metrics }),
+      );
+      console.log(
+        "Dashboard SQL count",
+        JSON.stringify({
+          production,
+          before: before.metrics.query_count,
+          after: after.metrics.query_count,
+        }),
+      );
+    } finally {
+      if (previous === undefined)
+        delete (process.env as Record<string, string | undefined>).NODE_ENV;
+      else
+        (process.env as Record<string, string | undefined>).NODE_ENV = previous;
+      if (override === undefined) delete process.env.BIOREG_INCLUDE_MOCK_DATA;
+      else process.env.BIOREG_INCLUDE_MOCK_DATA = override;
+    }
+  }
 });

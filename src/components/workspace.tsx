@@ -291,7 +291,9 @@ export function Workspace({
   initialSort: string;
 }) {
   const router = useRouter();
-  const agencies = sources.map((s) => s.code as Agency);
+  const agencies = dashboard
+    ? (Object.keys(dashboard.sourceHealthSummary).sort() as Agency[])
+    : sources.map((s) => s.code as Agency);
   const [mobile, setMobile] = useState(false);
   const [query, setQuery] = useState(initialQuery);
 

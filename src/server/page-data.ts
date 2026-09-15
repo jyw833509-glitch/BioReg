@@ -20,7 +20,7 @@ async function buildPageData(page: string, query: Query, id?: string) {
       () =>
         page === "dashboard" ? getDashboard(client) : Promise.resolve(null),
       () =>
-        ["dashboard", "agencies"].includes(page)
+        page === "agencies"
           ? sourceRepository(client).list()
           : Promise.resolve([]),
       () =>
