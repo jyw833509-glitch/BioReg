@@ -14,7 +14,7 @@ body {
   background: var(--bg);
   color: var(--ink);
   font-family: Arial, "Microsoft YaHei", sans-serif;
-  font-size: 13px;
+  font-size: 15px;
 }
 button,
 input,
@@ -50,19 +50,19 @@ p {
   margin-top: 0;
 }
 h1 {
-  font-size: 27px;
+  font-size: 29px;
   letter-spacing: -0.6px;
   line-height: 1.5;
   margin-bottom: 8px;
   font-weight: 700;
 }
 h2 {
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 650;
   margin-bottom: 12px;
 }
 h3 {
-  font-size: 15px;
+  font-size: 17px;
   font-weight: 600;
 }
 p {
@@ -74,7 +74,7 @@ p {
   min-height: 100vh;
 }
 .sidebar {
-  width: 232px;
+  width: 264px;
   position: fixed;
   inset: 0 auto 0 0;
   z-index: 40;
@@ -88,7 +88,7 @@ p {
   display: flex;
   align-items: center;
   gap: 10px;
-  font-size: 21px;
+  font-size: 23px;
   letter-spacing: -0.6px;
   padding: 0 7px 32px;
   font-weight: 700;
@@ -98,7 +98,7 @@ p {
 }
 .brand small {
   display: block;
-  font-size: 7px;
+  font-size: 11px;
   letter-spacing: 1.5px;
   margin-top: 7px;
   color: #9ba5b4;
@@ -115,13 +115,13 @@ p {
 .workspace-label {
   display: flex;
   justify-content: space-between;
-  font-size: 9px;
+  font-size: 11px;
   letter-spacing: 1.6px;
   color: #9aa4b4;
   padding: 0 14px 16px;
 }
 .workspace-label span {
-  font-size: 8px;
+  font-size: 11px;
   border: 1px solid var(--border);
   padding: 2px 5px;
   letter-spacing: 0;
@@ -138,11 +138,11 @@ nav a {
   margin: 3px 0;
 }
 nav a span {
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 550;
 }
 nav a small {
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 400;
   margin-left: 7px;
   color: #9aa5b3;
@@ -161,7 +161,7 @@ nav a:hover {
   margin-left: auto;
   background: #dbe8ff;
   color: #3470d9;
-  font-size: 10px;
+  font-size: 12px;
   padding: 2px 6px;
   border-radius: 4px;
 }
@@ -188,12 +188,12 @@ nav a:hover {
   align-items: center;
   padding: 17px 10px;
   color: #609382;
-  font-size: 11px;
+  font-size: 13px;
 }
 .source-health small {
   display: block;
   color: #98a3b0;
-  font-size: 9px;
+  font-size: 11px;
   margin-top: 6px;
 }
 .profile {
@@ -202,11 +202,11 @@ nav a:hover {
   gap: 9px;
   border-top: 1px solid var(--border);
   padding: 20px 0;
-  font-size: 10px;
+  font-size: 12px;
 }
 .profile small {
   display: block;
-  font-size: 8px;
+  font-size: 11px;
   color: #9aa5b4;
   margin-top: 5px;
 }
@@ -222,7 +222,7 @@ nav a:hover {
   border-radius: 50%;
   background: #edf2fb;
   color: #6180b6;
-  font-size: 10px;
+  font-size: 12px;
   font-weight: bold;
 }
 .avatar.small {
@@ -230,8 +230,8 @@ nav a:hover {
   height: 29px;
 }
 .main-shell {
-  margin-left: 232px;
-  width: calc(100% - 232px);
+  margin-left: 264px;
+  width: calc(100% - 264px);
 }
 .topbar {
   height: 72px;
@@ -248,7 +248,7 @@ nav a:hover {
   align-items: center;
   gap: 14px;
   color: #9aa5b4;
-  font-size: 11px;
+  font-size: 13px;
 }
 .breadcrumb strong {
   color: #58677d;
@@ -272,7 +272,7 @@ nav a:hover {
   outline: 0;
   min-width: 0;
   flex: 1;
-  font-size: 11px;
+  font-size: 13px;
 }
 .global-search kbd {
   border: 1px solid #dfe5ed;
@@ -342,7 +342,7 @@ main {
   color: #7086a8;
   padding: 9px 13px;
   border-radius: 5px;
-  font-size: 10px;
+  font-size: 12px;
   margin-bottom: 26px;
 }
 .demo-banner > span:first-child {
@@ -355,7 +355,7 @@ main {
   color: #bdcce2;
 }
 .phase-label {
-  font-size: 8px;
+  font-size: 11px;
   letter-spacing: 1.2px;
   color: #8299ba;
 }
@@ -367,20 +367,20 @@ main {
   margin-bottom: 25px;
 }
 .eyebrow {
-  font-size: 8px;
+  font-size: 11px;
   letter-spacing: 2px;
   color: #9aa7b9;
   margin-bottom: 8px;
 }
 .page-heading p {
-  font-size: 11px;
+  font-size: 13px;
   margin: 0;
 }
 .live-label {
   display: inline-flex;
   gap: 5px;
   align-items: center;
-  font-size: 8px;
+  font-size: 11px;
   letter-spacing: 1px;
   color: #5a9c89;
   vertical-align: middle;
@@ -408,10 +408,10 @@ main {
   gap: 7px;
   align-items: center;
   color: #7f8b9d;
-  font-size: 10px;
+  font-size: 12px;
 }
 .date-chip small {
-  font-size: 8px;
+  font-size: 11px;
   color: #a5aebb;
 }
 .button {
@@ -423,7 +423,7 @@ main {
   border: 1px solid #dfe5ef;
   border-radius: 5px;
   padding: 9px 12px;
-  font-size: 11px;
+  font-size: 13px;
   color: #586880;
   white-space: nowrap;
 }
@@ -452,7 +452,7 @@ main {
   align-items: center;
   justify-content: space-between;
   color: #6f7d91;
-  font-size: 11px;
+  font-size: 13px;
 }
 .kpi-icon {
   display: grid;
@@ -477,13 +477,13 @@ main {
 }
 .kpi > strong {
   display: block;
-  font-size: 35px;
+  font-size: 37px;
   font-weight: 600;
   letter-spacing: -1px;
   margin: 9px 0 16px;
 }
 .kpi > strong > span {
-  font-size: 10px;
+  font-size: 12px;
   letter-spacing: 0;
   color: #9aa5b4;
   margin-left: 9px;
@@ -493,7 +493,7 @@ main {
   display: flex;
   align-items: center;
   gap: 6px;
-  font-size: 9px;
+  font-size: 11px;
   color: #8592a5;
 }
 .kpi > small .dot {
@@ -503,7 +503,7 @@ main {
   font-style: normal;
   margin-left: auto;
   color: #b4bcc8;
-  font-size: 8px;
+  font-size: 11px;
 }
 .mini-stats {
   display: flex;
@@ -514,7 +514,7 @@ main {
   background: #eef2f7;
   border-radius: 5px;
   color: #8c98a9;
-  font-size: 10px;
+  font-size: 12px;
 }
 .mini-stats > span {
   display: flex;
@@ -523,7 +523,7 @@ main {
 }
 .mini-stats b {
   color: #60718b;
-  font-size: 11px;
+  font-size: 13px;
 }
 .dashboard-columns {
   display: grid;
@@ -544,7 +544,7 @@ main {
   margin: 0;
 }
 .section-head p {
-  font-size: 10px;
+  font-size: 12px;
   margin: 7px 0 0;
 }
 .section-marker {
@@ -554,7 +554,7 @@ main {
   border-radius: 2px;
 }
 .count {
-  font-size: 9px;
+  font-size: 11px;
   color: #8097b9;
   background: #e9eff8;
   border-radius: 4px;
@@ -566,7 +566,7 @@ main {
   align-items: center;
   gap: 5px;
   background: transparent;
-  font-size: 10px;
+  font-size: 12px;
   color: #6a87b1;
   padding: 0;
 }
@@ -593,12 +593,12 @@ main {
   gap: 9px;
   align-items: center;
   color: #a0a9b6;
-  font-size: 9px;
+  font-size: 11px;
   margin-bottom: 13px;
 }
 .card-meta .meta-date {
   margin-left: auto;
-  font-size: 9px;
+  font-size: 11px;
   white-space: nowrap;
 }
 .agency {
@@ -606,7 +606,7 @@ main {
   align-items: center;
   justify-content: center;
   font-weight: 700;
-  font-size: 9px;
+  font-size: 11px;
   padding: 4px 7px;
   border-radius: 4px;
   letter-spacing: 0.3px;
@@ -631,7 +631,7 @@ main {
 }
 .record-title {
   display: block;
-  font-size: 13px;
+  font-size: 15px;
   line-height: 1.8;
   font-weight: 600;
   color: #34445b;
@@ -641,7 +641,7 @@ main {
   color: var(--blue);
 }
 .original {
-  font-size: 10px;
+  font-size: 12px;
   color: #8b97a7;
   line-height: 1.6;
   min-height: 32px;
@@ -658,7 +658,7 @@ main {
   display: inline-flex;
   align-items: center;
   gap: 5px;
-  font-size: 9px;
+  font-size: 11px;
   padding: 4px 6px;
   line-height: 1.2;
   border-radius: 3px;
@@ -697,7 +697,7 @@ main {
   background: #f1f4f8;
 }
 .record-summary {
-  font-size: 10px;
+  font-size: 12px;
   margin: 13px 0 15px;
   line-height: 1.9;
   color: #98a1af;
@@ -708,7 +708,7 @@ main {
   border-top: 1px solid #f0f3f7;
   padding: 12px 0;
   gap: 12px;
-  font-size: 9px;
+  font-size: 11px;
 }
 .new,
 .updated {
@@ -722,7 +722,7 @@ main {
 }
 .mock-small {
   color: #aeb6c2;
-  font-size: 8px;
+  font-size: 11px;
 }
 .reg-card footer > .text-btn:first-of-type {
   margin-left: auto;
@@ -742,10 +742,10 @@ main {
 }
 .muted {
   color: #98a4b3;
-  font-size: 10px;
+  font-size: 12px;
 }
 .right-column .section-head h2 {
-  font-size: 13px;
+  font-size: 15px;
 }
 .donut-wrap {
   display: flex;
@@ -779,31 +779,31 @@ main {
   transform: rotate(90deg);
 }
 .donut strong {
-  font-size: 29px;
+  font-size: 31px;
   font-weight: 600;
 }
 .donut small {
   color: #a1aab7;
-  font-size: 9px;
+  font-size: 11px;
   margin-top: 6px;
 }
 .agency-legend a {
   display: flex;
   align-items: center;
   gap: 9px;
-  font-size: 10px;
+  font-size: 12px;
   color: #75839a;
   padding: 6px 0;
 }
 .agency-legend b {
   margin-left: auto;
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 500;
   color: #65748c;
 }
 .agency-legend small {
   color: #aab3bf;
-  font-size: 9px;
+  font-size: 11px;
   width: 30px;
   text-align: right;
 }
@@ -832,7 +832,7 @@ main {
 .topic-bar > span {
   display: flex;
   justify-content: space-between;
-  font-size: 9px;
+  font-size: 11px;
   color: #8492a6;
 }
 .topic-bar b {
@@ -860,14 +860,14 @@ main {
 .ai-callout h3 {
   margin: 13px 0 8px;
   color: #566f94;
-  font-size: 13px;
+  font-size: 15px;
 }
 .ai-callout p {
   color: #8b9bb2;
-  font-size: 10px;
+  font-size: 12px;
 }
 .ai-callout a {
-  font-size: 10px;
+  font-size: 12px;
   display: flex;
   align-items: center;
   gap: 8px;
@@ -888,7 +888,7 @@ main {
   align-items: center;
   border-bottom: 1px solid #edf1f6;
   padding: 18px 0;
-  font-size: 11px;
+  font-size: 13px;
   color: #5d6e85;
 }
 .recent-table > a:last-child {
@@ -896,14 +896,14 @@ main {
 }
 .recent-table small {
   display: block;
-  font-size: 9px;
+  font-size: 11px;
   color: #a3acb9;
   margin-top: 7px;
 }
 .table-date {
   margin-left: auto;
   color: #9eabbc;
-  font-size: 9px;
+  font-size: 11px;
   white-space: nowrap;
 }
 .bottom-grid {
@@ -918,7 +918,7 @@ main {
   gap: 12px;
   padding: 13px 0;
   border-bottom: 1px solid #f0f3f6;
-  font-size: 11px;
+  font-size: 13px;
   color: #6d7d92;
 }
 .change-row:last-child {
@@ -935,7 +935,7 @@ main {
 }
 .change-row small {
   display: block;
-  font-size: 9px;
+  font-size: 11px;
   color: #a2acba;
   margin-top: 7px;
 }
@@ -954,7 +954,7 @@ main {
   border: 1px solid #edf1f6;
   border-radius: 4px;
   padding: 9px;
-  font-size: 10px;
+  font-size: 12px;
   color: #8b98ab;
 }
 .type-grid b {
@@ -967,7 +967,7 @@ main {
   border-top: 1px solid var(--border);
   padding: 20px 0;
   margin-top: 27px;
-  font-size: 9px;
+  font-size: 11px;
   color: #a8b1be;
   gap: 10px;
 }
@@ -994,14 +994,14 @@ input[type="date"] {
   border-radius: 4px;
   padding: 8px;
   color: #77879c;
-  font-size: 11px;
+  font-size: 13px;
 }
 .date-label {
   display: flex;
   gap: 7px;
   align-items: center;
   color: #8795a8;
-  font-size: 11px;
+  font-size: 13px;
 }
 .results-toolbar {
   display: flex;
@@ -1009,7 +1009,7 @@ input[type="date"] {
   gap: 15px;
   margin: 18px 0;
   color: #8593a7;
-  font-size: 11px;
+  font-size: 13px;
 }
 .list-search {
   margin-left: auto;
@@ -1026,7 +1026,7 @@ input[type="date"] {
   background: transparent;
   outline: 0;
   width: 220px;
-  font-size: 11px;
+  font-size: 13px;
 }
 .pagination {
   display: flex;
@@ -1035,14 +1035,14 @@ input[type="date"] {
   gap: 12px;
   margin-top: 24px;
   color: #91a0b3;
-  font-size: 11px;
+  font-size: 13px;
 }
 .notice {
   padding: 13px;
   background: #f0f5fd;
   border: 1px solid #e0eaf8;
   color: #7d91ae;
-  font-size: 11px;
+  font-size: 13px;
   border-radius: 5px;
   margin: 14px 0;
   line-height: 1.7;
@@ -1062,7 +1062,7 @@ input[type="date"] {
   color: #68809f;
 }
 .empty-state p {
-  font-size: 12px;
+  font-size: 14px;
 }
 .inline-form {
   display: flex;
@@ -1085,7 +1085,7 @@ input[type="date"] {
 }
 .detail-panel > h1 {
   margin-top: 18px;
-  font-size: 25px;
+  font-size: 27px;
 }
 .detail-panel > h2 {
   margin-top: 30px;
@@ -1093,7 +1093,7 @@ input[type="date"] {
   border-top: 1px solid var(--border);
 }
 .detail-original {
-  font-size: 15px;
+  font-size: 17px;
 }
 .info-grid {
   display: grid;
@@ -1101,13 +1101,13 @@ input[type="date"] {
   gap: 22px;
 }
 .info-grid dt {
-  font-size: 10px;
+  font-size: 12px;
   color: #98a4b5;
   margin-bottom: 8px;
 }
 .info-grid dd {
   margin: 0;
-  font-size: 12px;
+  font-size: 14px;
   overflow-wrap: anywhere;
 }
 .tag-detail {
@@ -1119,7 +1119,7 @@ input[type="date"] {
 .tag-detail > span {
   width: 145px;
   color: #8a99ae;
-  font-size: 11px;
+  font-size: 13px;
 }
 .version {
   display: flex;
@@ -1141,10 +1141,10 @@ input[type="date"] {
 }
 .version p {
   margin: 8px 0;
-  font-size: 11px;
+  font-size: 13px;
 }
 .version details {
-  font-size: 11px;
+  font-size: 13px;
   color: #8094b0;
 }
 .update-panel {
@@ -1153,7 +1153,7 @@ input[type="date"] {
   align-items: center;
 }
 .update-panel p {
-  font-size: 10px;
+  font-size: 12px;
   margin: 5px 0 0;
 }
 .version-comparison {
@@ -1163,7 +1163,7 @@ input[type="date"] {
 }
 .version-comparison small {
   display: block;
-  font-size: 8px;
+  font-size: 11px;
   color: #9ca9bb;
   margin-bottom: 8px;
 }
@@ -1191,7 +1191,7 @@ input[type="date"] {
   right: 20px;
   top: 20px;
   color: #c2cee0;
-  font-size: 24px;
+  font-size: 26px;
 }
 .source-status {
   display: flex;
@@ -1210,11 +1210,11 @@ input[type="date"] {
   display: flex;
   flex-direction: column;
   color: #8999ae;
-  font-size: 12px;
+  font-size: 14px;
   gap: 8px;
 }
 .report-numbers b {
-  font-size: 32px;
+  font-size: 34px;
   color: #476caa;
 }
 .report-hero .tags {
@@ -1253,7 +1253,7 @@ input[type="date"] {
 .ai-selection small {
   display: block;
   color: #97a5b7;
-  font-size: 10px;
+  font-size: 12px;
   margin-top: 5px;
 }
 .ai-selection input {
@@ -1271,7 +1271,7 @@ input[type="date"] {
   padding: 20px 0;
   gap: 12px;
   border-bottom: 1px solid var(--border);
-  font-size: 12px;
+  font-size: 14px;
 }
 .setting-row:last-child {
   border: 0;
@@ -1280,7 +1280,7 @@ input[type="date"] {
   display: block;
   margin-top: 8px;
   color: #a4adba;
-  font-size: 10px;
+  font-size: 12px;
 }
 .ai-modal {
   position: fixed;
@@ -1300,7 +1300,7 @@ input[type="date"] {
   backdrop-filter: blur(3px);
 }
 .ai-modal h2 {
-  font-size: 21px;
+  font-size: 23px;
 }
 .ai-modal textarea {
   width: 100%;
@@ -1308,7 +1308,7 @@ input[type="date"] {
   border: 1px solid #dde5f0;
   border-radius: 6px;
   padding: 15px;
-  font-size: 11px;
+  font-size: 13px;
   line-height: 1.8;
   color: #6d8099;
   background: #f8faff;
@@ -1321,7 +1321,7 @@ input[type="date"] {
   margin: 15px 0;
 }
 .ai-modal > p {
-  font-size: 11px;
+  font-size: 13px;
 }
 .toast {
   position: fixed;
@@ -1354,27 +1354,27 @@ input[type="date"] {
     padding: 22px 24px 0;
   }
   .record-title {
-    font-size: 15px;
+    font-size: 17px;
   }
   .record-summary {
-    font-size: 11px;
+    font-size: 13px;
   }
   .original {
-    font-size: 11px;
+    font-size: 13px;
   }
 }
 @media (max-width: 1200px) {
   .sidebar {
-    width: 205px;
+    width: 240px;
     padding-left: 11px;
     padding-right: 11px;
   }
   .brand {
-    font-size: 18px;
+    font-size: 20px;
   }
   .main-shell {
-    margin-left: 205px;
-    width: calc(100% - 205px);
+    margin-left: 240px;
+    width: calc(100% - 240px);
   }
   main {
     padding-left: 22px;
@@ -1395,7 +1395,7 @@ input[type="date"] {
     justify-content: flex-end;
   }
   .date-chip {
-    font-size: 9px;
+    font-size: 11px;
   }
   .date-chip small {
     display: none;
@@ -1404,13 +1404,13 @@ input[type="date"] {
     padding: 15px;
   }
   .page-heading h1 {
-    font-size: 24px;
+    font-size: 26px;
   }
   .phase-label {
     display: none;
   }
   .card-meta {
-    font-size: 10px;
+    font-size: 12px;
   }
   .original {
     min-height: 0;
@@ -1442,11 +1442,11 @@ input[type="date"] {
 }
 @media (max-width: 900px) {
   .sidebar {
-    width: 185px;
+    width: 212px;
   }
   .main-shell {
-    margin-left: 185px;
-    width: calc(100% - 185px);
+    margin-left: 212px;
+    width: calc(100% - 212px);
   }
   nav a {
     padding: 12px 10px;
@@ -1455,7 +1455,7 @@ input[type="date"] {
     display: none;
   }
   .brand {
-    font-size: 16px;
+    font-size: 18px;
     padding-left: 0;
   }
   .brand-icon {
@@ -1463,7 +1463,7 @@ input[type="date"] {
     height: 36px;
   }
   .brand small {
-    font-size: 6px;
+    font-size: 11px;
     letter-spacing: 1px;
   }
   .dashboard-columns {
@@ -1524,7 +1524,7 @@ input[type="date"] {
     width: 150px;
   }
   .demo-banner {
-    font-size: 9px;
+    font-size: 11px;
   }
   .demo-banner > span:first-child {
     display: block;
@@ -1544,7 +1544,7 @@ input[type="date"] {
 @media (max-width: 640px) {
   .sidebar {
     transform: translateX(-100%);
-    width: 232px;
+    width: 264px;
     transition: transform 0.2s;
   }
   .sidebar.mobile-open {
@@ -1578,7 +1578,7 @@ input[type="date"] {
   }
   .global-search input {
     width: 70px;
-    font-size: 10px;
+    font-size: 12px;
   }
   .global-search kbd {
     display: none;
@@ -1594,24 +1594,24 @@ input[type="date"] {
     margin-bottom: 20px;
   }
   .page-heading h1 {
-    font-size: 21px;
+    font-size: 23px;
   }
   .page-heading p {
-    font-size: 10px;
+    font-size: 12px;
   }
   .eyebrow {
-    font-size: 6px;
+    font-size: 11px;
     letter-spacing: 1.4px;
   }
   .heading-actions .button {
     padding: 8px;
-    font-size: 9px;
+    font-size: 11px;
   }
   .page-heading .heading-actions {
     max-width: 90px;
   }
   .live-label {
-    font-size: 6px;
+    font-size: 11px;
     margin-left: 7px;
   }
   .kpi-grid {
@@ -1621,13 +1621,13 @@ input[type="date"] {
     padding: 14px;
   }
   .kpi > strong {
-    font-size: 30px;
+    font-size: 32px;
   }
   .kpi > small {
-    font-size: 8px;
+    font-size: 11px;
   }
   .kpi-label {
-    font-size: 10px;
+    font-size: 12px;
   }
   .kpi-icon {
     width: 26px;
@@ -1643,7 +1643,7 @@ input[type="date"] {
     gap: 0;
   }
   .page-footer {
-    font-size: 8px;
+    font-size: 11px;
     line-height: 1.8;
   }
   .filter-bar select {
@@ -1672,7 +1672,7 @@ input[type="date"] {
     padding: 18px;
   }
   .detail-panel > h1 {
-    font-size: 21px;
+    font-size: 23px;
   }
   .detail-panel .heading-actions {
     max-width: none;
@@ -1696,14 +1696,14 @@ input[type="date"] {
     padding: 20px;
   }
   .ai-modal h2 {
-    font-size: 19px;
+    font-size: 21px;
   }
   .ai-selection label {
     gap: 8px;
-    font-size: 11px;
+    font-size: 13px;
   }
   .setting-row {
-    font-size: 10px;
+    font-size: 12px;
   }
   .setting-row .badge {
     white-space: normal;
@@ -1711,13 +1711,13 @@ input[type="date"] {
   .toast {
     left: 15px;
     right: 15px;
-    font-size: 11px;
+    font-size: 13px;
   }
   .panel {
     padding: 18px;
   }
   .notice {
-    font-size: 10px;
+    font-size: 12px;
   }
   .inline-form input {
     width: 100%;
@@ -1726,14 +1726,14 @@ input[type="date"] {
     display: inline;
   }
   .brand {
-    font-size: 21px;
+    font-size: 23px;
   }
 }
 .sidebar {
   overflow-y: auto;
 }
 .brand {
-  font-size: 18px;
+  font-size: 20px;
   flex-shrink: 0;
 }
 .brand > span:last-child {
@@ -1743,7 +1743,7 @@ input[type="date"] {
   flex-shrink: 0;
 }
 .brand small {
-  font-size: 6px;
+  font-size: 11px;
   letter-spacing: 1px;
 }
 .watch-fields {
@@ -1757,7 +1757,7 @@ input[type="date"] {
   flex-direction: column;
   gap: 8px;
   color: #6e7f96;
-  font-size: 11px;
+  font-size: 13px;
 }
 .watch-fields input {
   width: 100%;
@@ -1787,7 +1787,7 @@ input[type="date"] {
   width: 100%;
   border-collapse: collapse;
   text-align: left;
-  font-size: 11px;
+  font-size: 13px;
 }
 .sync-table th {
   font-weight: 500;
@@ -1802,7 +1802,7 @@ input[type="date"] {
 }
 .sync-table td small {
   display: block;
-  font-size: 9px;
+  font-size: 11px;
   color: #95a3b6;
   margin-top: 6px;
 }
@@ -1820,7 +1820,7 @@ input[type="date"] {
     grid-template-columns: 1fr;
   }
   .sync-table {
-    font-size: 10px;
+    font-size: 12px;
   }
   .pagination {
     justify-content: center;
@@ -1835,7 +1835,7 @@ input[type="date"] {
 }
 @media (max-width: 900px) and (min-width: 641px) {
   .brand {
-    font-size: 14px;
+    font-size: 16px;
     gap: 7px;
   }
   .brand-icon {
@@ -1843,7 +1843,7 @@ input[type="date"] {
     height: 31px;
   }
   .brand small {
-    font-size: 5px;
+    font-size: 11px;
     letter-spacing: 0.6px;
   }
 }
@@ -1868,7 +1868,7 @@ input[type="date"] {
   margin-bottom: 22px;
 }
 .sync-overview p {
-  font-size: 13px;
+  font-size: 15px;
   overflow-wrap: anywhere;
 }
 .sync-health-list {
@@ -1882,7 +1882,7 @@ input[type="date"] {
   border-radius: 6px;
   background: #eef2f6;
   color: #526174;
-  font-size: 11px;
+  font-size: 13px;
   font-weight: 600;
 }
 .health-healthy {
@@ -1896,4 +1896,33 @@ input[type="date"] {
 .health-unavailable {
   background: #fbe7e7;
   color: #a84242;
+}
+
+/* Readable module navigation and controls; icons retain their aspect ratio. */
+.sidebar nav a > svg {
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+}
+.sidebar nav a > span {
+  min-width: 0;
+}
+.sidebar nav a small {
+  display: block;
+  margin-left: 0;
+  margin-top: 3px;
+}
+main .lucide,
+.topbar .lucide {
+  min-width: 18px;
+  min-height: 18px;
+  flex-shrink: 0;
+}
+body {
+  line-height: 1.6;
+}
+@media (max-width: 900px) and (min-width: 641px) {
+  .sidebar nav a small {
+    display: none;
+  }
 }
