@@ -8,7 +8,12 @@ export function parseList(html: string, url: string): Candidate[] {
   const result = new Map<string, Candidate>();
   $("main a[href]").each((_, e) => {
     const href = $(e).attr("href") || "";
-    if (!/scientific-guideline$/.test(href)) return;
+    // EMA migrated guideline landing pages to /en/scientific-guidelines/<slug>.
+    const pathname = new URL(href, url).pathname;
+    if (
+      !/scientific-guideline$/.test(pathname) &&
+      !/^\/en\/scientific-guidelines\/[^/]+\/?$/.test(pathname)
+    ) return;
     const target = officialUrl(href, url, config.hosts);
     result.set(target, {
       url: target,
