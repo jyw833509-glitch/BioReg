@@ -1271,10 +1271,12 @@ test("performance measurements isolate requests and count real driver queries wi
   assert.notEqual(a.metrics.request_id, b.metrics.request_id);
 });
 
-test("optimized dashboard exactly matches V1.0.0 and reduces driver round trips", async () => {
+test("dashboard display data matches V1.0.0 while evidence stays on detail routes and round trips fall", async () => {
   for (const production of [false, true]) {
     const previous = process.env.NODE_ENV;
     const override = process.env.BIOREG_INCLUDE_MOCK_DATA;
+    const cacheOverride = process.env.BIOREG_DISABLE_READ_CACHE;
+    process.env.BIOREG_DISABLE_READ_CACHE = "true"; // Measure actual cold SQL, not cache hits.
     (process.env as Record<string, string | undefined>).NODE_ENV = production
       ? "production"
       : "test";
@@ -1286,7 +1288,22 @@ test("optimized dashboard exactly matches V1.0.0 and reduces driver round trips"
       const after = await measure("dashboard.optimized", () =>
         getDashboard(client),
       );
-      assert.deepEqual(after.value, before.value);
+      const compactCards = (rows: typeof before.value.recent) =>
+        rows.map((r) => ({
+          ...Object.fromEntries(
+            Object.entries(r).filter(
+              ([key]) => !["content_text", "attachment_urls"].includes(key),
+            ),
+          ),
+          source_metadata: {},
+          versions: [],
+        }));
+      assert.deepEqual(after.value, {
+        ...before.value,
+        recent: compactCards(before.value.recent),
+        priority: compactCards(before.value.priority),
+        changes: compactCards(before.value.changes),
+      });
       assert.ok(
         after.metrics.query_count < before.metrics.query_count * 0.6,
         JSON.stringify({ before: before.metrics, after: after.metrics }),
@@ -1300,6 +1317,9 @@ test("optimized dashboard exactly matches V1.0.0 and reduces driver round trips"
         }),
       );
     } finally {
+      if (cacheOverride === undefined)
+        delete process.env.BIOREG_DISABLE_READ_CACHE;
+      else process.env.BIOREG_DISABLE_READ_CACHE = cacheOverride;
       if (previous === undefined)
         delete (process.env as Record<string, string | undefined>).NODE_ENV;
       else
