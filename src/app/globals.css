@@ -1,4 +1,21 @@
 @import "tailwindcss";
+.admin-page { padding: 24px; }
+.admin-panel { max-width: 640px; margin: 24px auto; }
+.admin-panel form { display: grid; gap: 12px; margin: 24px 0; }
+.admin-panel label { font-size: 17px; font-weight: 600; }
+.admin-panel input[type="password"] {
+  display: block; width: 100%; min-height: 52px; padding: 12px 14px;
+  border: 2px solid #64748b; border-radius: 8px; background: #fff;
+  color: #0f172a; font-size: 16px;
+}
+.admin-panel input[type="password"]:focus-visible {
+  border-color: #2563eb; outline: 3px solid #93c5fd; outline-offset: 3px;
+}
+.admin-panel input::placeholder { color: #64748b; }
+.admin-panel p { color: #475569; }
+.admin-panel .admin-configuration { padding: 12px; border-radius: 8px; background: #eff6ff; }
+.admin-actions { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+.admin-panel .admin-message { margin-top: 20px; color: #1e293b; overflow-wrap: anywhere; }
 :root {
   --blue: #2563eb;
   --ink: #1e293b;

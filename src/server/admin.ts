@@ -1,5 +1,11 @@
 import { createHmac, timingSafeEqual, randomBytes } from "node:crypto";
 export const ADMIN_COOKIE = "bioreg_admin";
+// Readiness only: never expose the value, length or a fingerprint.
+export function adminConfiguration() {
+  const value = process.env.BIOREG_ADMIN_KEY;
+  if (!value) return "missing" as const;
+  return value.length >= 32 ? "ready" as const : "invalid" as const;
+}
 const key = () => {
   const k = process.env.BIOREG_ADMIN_KEY;
   return k && k.length >= 32 ? k : null;
