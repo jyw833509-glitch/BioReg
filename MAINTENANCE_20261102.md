@@ -31,3 +31,5 @@ Production Regulatory Sync run `41368863501` succeeded on 2026-11-02 at 00:47 UT
 - Date-filtered weekly digest JSON/CSV/PDF exports returned 200. JSON/CSV contained the weekly key; PDF had a valid `%PDF-` header (not a full visual PDF audit).
 - FDA, EMA, NMPA, ICH and PMDA remain HEALTHY. CDE remains truthfully DEGRADED because official access is restricted; no bypass or fabricated success.
 - Weekly cron remains unchanged. These two manual checks are not represented as natural scheduled executions.
+
+Operator requested a fresh Netlify deployment on 2026-11-02 after verification; application code and database schema are unchanged.
