@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import type { WatchlistView } from "@/lib/view-types";
@@ -106,7 +107,7 @@ export function WatchlistEditor({ items }: { items: WatchlistView[] }) {
       if (editing.id === id) setEditing({ ...blank });
       router.refresh();
     } catch {
-      setMessage("删除失败，请重试。");
+      setMessage("删除失败，请确认已在 /admin 登录。");
     } finally {
       setBusy(false);
     }
@@ -116,10 +117,11 @@ export function WatchlistEditor({ items }: { items: WatchlistView[] }) {
       <section className="panel watch-panel">
         <div className="section-head">
           <h2>我的关注规则</h2>
-          <span className="badge green">PostgreSQL · 单用户工作区</span>
+          <span className="badge green">共享工作区 · 公共只读</span>
         </div>
         <p>
-          BioReg Watchlist Match：字段之间 AND，同一字段多个值
+          管理员登录后可修改。BioReg Watchlist Match：字段之间
+          AND，同一字段多个值
           OR；空字段不限制。关键词匹配标题、摘要和已抓取正文。通知从关注创建后的新发现和变化开始。
         </p>
         <form key={(editing.id || "new") + revision} onSubmit={save}>
@@ -305,21 +307,21 @@ function WatchlistResults({ id }: { id: string }) {
           </p>
           {result.matches.map((r) => (
             <p key={r.id}>
-              <a href={"/regulations/" + r.id}>{r.title}</a>
+              <Link href={"/regulations/" + r.id}>{r.title}</Link>
               <small> · {r.reasons.join("; ")}</small>
             </p>
           ))}
           <h4>最近更新匹配（最近 100 个变化中）</h4>
           {result.updated.map((r) => (
             <p key={r.event_id}>
-              <a href={"/regulations/" + r.id}>{r.title}</a> ·{" "}
+              <Link href={"/regulations/" + r.id}>{r.title}</Link> ·{" "}
               {r.reasons.join("; ")}
             </p>
           ))}
           {result.recent.map((r) => (
             <p key={r.id}>
               {r.match_type} · {r.detected_at} ·{" "}
-              <a href={"/regulations/" + r.regulation_id}>查看法规</a>
+              <Link href={"/regulations/" + r.regulation_id}>查看法规</Link>
             </p>
           ))}
         </>

@@ -1,3 +1,4 @@
+import { isAdmin } from "@/server/admin";
 import { z } from "zod";
 import { db } from "@/server/db";
 import { notificationRepository } from "@/server/engagement/notifications";
@@ -24,6 +25,14 @@ export async function GET(request: Request) {
 }
 export async function PATCH(request: Request) {
   if (!sameOrigin(request)) return json({ error: "ORIGIN_REJECTED" }, 403);
+  if (!isAdmin(request))
+    return json(
+      {
+        error: "ADMIN_REQUIRED",
+        message: "公共工作区只读，请先在 /admin 登录。",
+      },
+      401,
+    );
   try {
     const input = z
       .object({

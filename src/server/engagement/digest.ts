@@ -2,7 +2,7 @@ import { eligibleRegulation } from "./matcher";
 import { z } from "zod";
 import type { Db } from "../db";
 import type { Prisma } from "../../generated/prisma/client";
-import { dayWindow, dueDate, localDate } from "./time";
+import { dayWindow, dueDate, localDate, shiftDate } from "./time";
 export const settingsSchema = z
   .object({
     digest_enabled: z.boolean(),
@@ -26,8 +26,14 @@ export const digestSettings = (db: Db) =>
     create: { id: "workspace" },
     update: {},
   });
-export async function digestSummary(db: Db, date: string, timezone: string) {
-  const { start, end } = dayWindow(date, timezone);
+export async function digestSummary(
+  db: Db,
+  date: string,
+  timezone: string,
+  days = 1,
+) {
+  const start = dayWindow(shiftDate(date, 1 - days), timezone).start;
+  const end = dayWindow(date, timezone).end;
   const range = { gte: start, lt: end };
   const regulations = (
     await db.regulation.findMany({
@@ -84,6 +90,7 @@ export async function digestSummary(db: Db, date: string, timezone: string) {
   });
   return {
     date,
+    period: days === 7 ? "weekly" : "daily",
     timezone,
     window_start: start.toISOString(),
     window_end: end.toISOString(),
@@ -160,8 +167,31 @@ export async function todaySummary(db: Db) {
 export function digestRepository(db: Db) {
   return {
     list: () =>
-      db.dailyDigest.findMany({ orderBy: { digest_date: "desc" }, take: 90 }),
+      db.dailyDigest.findMany({ orderBy: { window_end: "desc" }, take: 90 }),
     get: (date: string) =>
       db.dailyDigest.findUnique({ where: { digest_date: date } }),
   };
+}
+
+// Separate keys preserve historical daily summaries; retries update one weekly record.
+export async function generateWeeklyDigest(db: Db, now = new Date()) {
+  const settings = await digestSettings(db);
+  if (!settings.digest_enabled) return null;
+  const date = localDate(now, settings.timezone);
+  const weekday = new Date(date + "T12:00:00Z").getUTCDay();
+  if (weekday !== 1) return null;
+  const summary = await digestSummary(db, date, settings.timezone, 7);
+  const key = "weekly:" + date;
+  const data = {
+    timezone: settings.timezone,
+    window_start: new Date(summary.window_start),
+    window_end: new Date(summary.window_end),
+    generated_at: now,
+    summary: summary as unknown as Prisma.InputJsonObject,
+  };
+  return db.dailyDigest.upsert({
+    where: { digest_date: key },
+    create: { digest_date: key, ...data },
+    update: data,
+  });
 }

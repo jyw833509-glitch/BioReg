@@ -78,6 +78,7 @@ model Source {
   country_or_region String
   official_base_url String
   enabled           Boolean      @default(true)
+  sync_cursor       Int          @default(0) // rotation within discovered official links
   sync_frequency    Int          @default(12) // hours between attempts
   last_sync_at      DateTime?     @db.Timestamptz(3)
   last_success_at   DateTime? @db.Timestamptz(3)

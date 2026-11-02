@@ -257,12 +257,24 @@ export async function buildReport(db: Db, q: ReportQuery): Promise<Report> {
   } else if (q.type === "digest") {
     const ds = await db.dailyDigest.findMany({
       where: {
-        digest_date: {
-          ...(q.start ? { gte: q.start } : {}),
-          ...(q.end ? { lte: q.end } : {}),
-        },
+        OR: [
+          {
+            digest_date: {
+              ...(q.start ? { gte: q.start } : {}),
+              ...(q.end ? { lte: q.end } : {}),
+              not: { startsWith: "weekly:" },
+            },
+          },
+          {
+            digest_date: {
+              startsWith: "weekly:",
+              ...(q.start ? { gte: "weekly:" + q.start } : {}),
+              ...(q.end ? { lte: "weekly:" + q.end } : {}),
+            },
+          },
+        ],
       },
-      orderBy: { digest_date: "desc" },
+      orderBy: { window_end: "desc" },
       take,
     });
     limited = ds.length > q.limit;
@@ -297,7 +309,7 @@ export async function buildReport(db: Db, q: ReportQuery): Promise<Report> {
           undefined,
           d.generated_at,
           undefined,
-          "BioReg System Summary · Daily Digest / Watchlist Match",
+          "BioReg System Summary · Digest / Watchlist Match",
         ),
       );
     }

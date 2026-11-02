@@ -1,3 +1,4 @@
+import { rotateCandidates } from "./rotation";
 import type { Db } from "../../db";
 import type { Adapter, Candidate } from "./types";
 import type { HtmlClient } from "./client";
@@ -80,6 +81,7 @@ async function runSource(
         },
       });
   let completed = 0;
+  let nextCursor = source.sync_cursor;
   try {
     const batches: Candidate[][] = [];
     for (const pageUrl of adapter.pages.slice(
@@ -133,10 +135,18 @@ async function runSource(
           context: r.issuing_offices.join(" "),
         }));
       // Reserve a bounded portion for old records; recent-list reads stay bounded too.
-      candidates = [
-        ...new Map([...rechecks, ...listed].map((c) => [c.url, c])).values(),
-      ].slice(0, options.limit);
+      const selected = rotateCandidates(
+        listed,
+        rechecks,
+        options.limit,
+        source.sync_cursor,
+      );
+      candidates = selected.candidates;
+      nextCursor = selected.nextCursor;
     }
+    result.warnings.push(
+      `Coverage: ${listed.length} discovered links on ${batches.length} configured pages; ${candidates.length} selected; next rotation ${nextCursor}. Not a complete agency archive.`,
+    );
     result.records_found = candidates.length;
     const seen = new Set<string>();
     for (const candidate of candidates) {
@@ -230,6 +240,7 @@ async function runSource(
       await tx.source.update({
         where: { id: source.id },
         data: {
+          sync_cursor: nextCursor,
           last_status: healthFor(result.status, result.errors),
           ...(result.status === "SUCCESS"
             ? { last_success_at: new Date() }

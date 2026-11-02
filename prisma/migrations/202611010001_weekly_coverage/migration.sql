@@ -1,0 +1,1 @@
+ALTER TABLE "sources" ADD COLUMN "sync_cursor" INTEGER NOT NULL DEFAULT 0;

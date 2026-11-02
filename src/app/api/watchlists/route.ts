@@ -1,3 +1,4 @@
+import { isAdmin } from "@/server/admin";
 import { db } from "@/server/db";
 import { watchlistRepository } from "@/server/repositories/watchlist-repository";
 import { watchlistSchema } from "@/server/validation";
@@ -12,6 +13,14 @@ export async function GET() {
 }
 export async function POST(request: Request) {
   if (!sameOrigin(request)) return json({ error: "ORIGIN_REJECTED" }, 403);
+  if (!isAdmin(request))
+    return json(
+      {
+        error: "ADMIN_REQUIRED",
+        message: "公共工作区只读，请先在 /admin 登录。",
+      },
+      401,
+    );
   let body: unknown;
   try {
     body = await readJson(request);

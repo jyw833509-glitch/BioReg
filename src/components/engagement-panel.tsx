@@ -86,7 +86,8 @@ export function EngagementPanel({ page }: { page: string }) {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body),
       });
-      if (!r.ok) throw new Error("操作失败，请检查输入后重试");
+      if (!r.ok)
+        throw new Error("操作失败：公共访问只读，修改前请在 /admin 登录");
       setRevision((v) => v + 1);
       setError("");
     } catch (e) {
@@ -99,12 +100,12 @@ export function EngagementPanel({ page }: { page: string }) {
         {page === "notifications"
           ? "Notifications · 站内通知"
           : page === "settings"
-            ? "Daily Digest 设置"
-            : "Daily Digest · 每日摘要"}
+            ? "汇总设置"
+            : "Weekly Digest · 每周汇总 / 历史日报"}
       </h2>
       <p>
-        单工作区 · BioReg Digest Summary / Watchlist Match
-        属于规则分析；Official Source 为官方事实来源。
+        公共访问只读 · 管理员登录 /admin 后可修改 · BioReg Digest Summary /
+        Watchlist Match 属于规则分析；Official Source 为官方事实来源。
       </p>
       {error && <p role="alert">{error}</p>}
       {page === "notifications" && (
@@ -172,9 +173,9 @@ export function EngagementPanel({ page }: { page: string }) {
               </p>
               <p>{n.message}</p>
               {n.regulation_id && (
-                <a href={"/regulations/" + n.regulation_id}>
+                <Link href={"/regulations/" + n.regulation_id}>
                   法规详情 · BioReg
-                </a>
+                </Link>
               )}{" "}
               {!n.read_at && (
                 <button
@@ -224,10 +225,10 @@ export function EngagementPanel({ page }: { page: string }) {
                 setSettings({ ...settings, digest_enabled: e.target.checked })
               }
             />
-            启用每日摘要
+            启用每周汇总
           </label>
           <label>
-            当地生成时间{" "}
+            历史日报时间（每周同步不使用）{" "}
             <input
               type="time"
               required
@@ -249,9 +250,8 @@ export function EngagementPanel({ page }: { page: string }) {
           </label>
           <button className="button">保存摘要设置</button>
           <p>
-            到达设置时间后的首次 Scheduler
-            运行生成前一完整自然日摘要。当前按小时检查，GitHub
-            可能延迟。邮件未启用。
+            每周一北京时间 09:17
+            抓取后生成近七个自然日汇总（含当日，按设置时区计算）。当日数据尚未结束，汇总仅反映已抓取记录。历史日报继续保留；邮件未启用。
           </p>
         </form>
       )}
@@ -335,7 +335,7 @@ function DigestSummary({ data: d }: { data: Summary }) {
       <h4>New Regulations · Official Fact</h4>
       {d.new_regulations.map((r) => (
         <p key={r.id}>
-          <a href={r.detail_url}>{r.title}</a> ·{" "}
+          <Link href={r.detail_url}>{r.title}</Link> ·{" "}
           {r.official_url && (
             <a href={r.official_url} target="_blank" rel="noreferrer">
               Official Source
@@ -346,7 +346,8 @@ function DigestSummary({ data: d }: { data: Summary }) {
       <h4>Updated Regulations · BioReg Change Detection</h4>
       {d.updated_regulations.map((r) => (
         <p key={r.event_id}>
-          <a href={r.detail_url}>{r.title}</a> · {r.severity} · {r.summary} ·{" "}
+          <Link href={r.detail_url}>{r.title}</Link> · {r.severity} ·{" "}
+          {r.summary} ·{" "}
           {r.official_url && (
             <a href={r.official_url} target="_blank" rel="noreferrer">
               Official Source
@@ -357,14 +358,14 @@ function DigestSummary({ data: d }: { data: Summary }) {
       <h4>High Priority Changes</h4>
       {d.high_priority.map((r, i) => (
         <p key={r.id + i}>
-          <a href={r.detail_url}>{r.title}</a> · {r.summary}
+          <Link href={r.detail_url}>{r.title}</Link> · {r.summary}
         </p>
       ))}
       <h4>BioReg Watchlist Match</h4>
       {d.watchlist_matches.map((m) => (
         <p key={m.id}>
           {m.name} ({d.watchlist_counts[m.watchlist_id]}) ·{" "}
-          <a href={"/regulations/" + m.regulation_id}>{m.type}</a>
+          <Link href={"/regulations/" + m.regulation_id}>{m.type}</Link>
         </p>
       ))}
       <h4>Source Health Summary（生成时状态）</h4>

@@ -63,7 +63,7 @@ const nav = [
   ["regulations", "Regulations", "法规数据库", BookOpen],
   ["updates", "Updates", "法规更新", Activity],
   ["notifications", "Notifications", "站内通知", Bell],
-  ["digest", "Daily Digest", "每日摘要", CalendarDays],
+  ["digest", "Digest", "每周汇总", CalendarDays],
   ["watchlist", "Watchlist", "我的关注", Bookmark],
   ["topics", "Topics", "主题分类", FlaskConical],
   ["agencies", "Agencies", "监管机构", Building2],
@@ -342,7 +342,8 @@ export function Workspace({
           [
             JSON.stringify(
               {
-                label: "Official / Development data; see each record.is_mock",
+                label:
+                  "Official regulatory records; provenance available per record",
                 date: DEMO_DATE,
                 coverage:
                   payload.pagination.total > 100
@@ -412,7 +413,7 @@ export function Workspace({
           <div className="profile">
             <span className="avatar">BR</span>
             <div>
-              Research Workspace<small>Official / Mock 标识</small>
+              Research Workspace<small>官方来源 · 可追溯</small>
             </div>
             <Settings size={16} />
           </div>
@@ -466,9 +467,10 @@ export function Workspace({
         <main>
           <div className="demo-banner">
             <span>
-              <FlaskConical size={14} /> Official / Development Data{" "}
+              <Link href="/admin">管理员登录</Link> · <FlaskConical size={14} />{" "}
+              Official Regulatory Data{" "}
               <span className="banner-separator">|</span> 数据库驱动 ·
-              官方数据与 Mock 示例逐条标识 · 各源接入状态见监管机构页
+              每周一同步官方来源 · 覆盖范围与受限状态见监管机构页
             </span>
             <span className="phase-label">V1.0.0 · BIOREG RADAR</span>
           </div>
@@ -1182,7 +1184,7 @@ export function Workspace({
                   <span>
                     数据模式<small>官方记录与开发示例逐条标识</small>
                   </span>
-                  <span className="badge blue">Official / Mock</span>
+                  <span className="badge blue">官方来源与溯源</span>
                 </div>
                 <div className="setting-row">
                   <span>显示语言</span>
@@ -1226,7 +1228,7 @@ export function Workspace({
             </span>
             <span>
               <ShieldCheck size={13} /> Official sources first <span>·</span>{" "}
-              Daily Digest / Watchlist / Notification
+              Weekly Digest / Watchlist / Notification
             </span>
           </footer>
         </main>

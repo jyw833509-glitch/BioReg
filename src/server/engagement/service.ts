@@ -7,7 +7,7 @@ import type {
 import { eventRecord } from "./snapshot";
 import { matchWatchlist, priority } from "./matcher";
 import { deliver } from "./notifications";
-import { generateDueDigest } from "./digest";
+import { generateWeeklyDigest } from "./digest";
 // Persisted source checkpoint + notification are committed atomically. Baseline is silent.
 export async function sourceHealthNotifications(db: Db) {
   for (const source of await db.source.findMany()) {
@@ -187,7 +187,7 @@ export async function engagementAfterSync(db: Db) {
         }
       },
     ],
-    ["digest", () => generateDueDigest(db)],
+    ["digest", () => generateWeeklyDigest(db)],
   ];
   for (const [name, run] of stages) {
     try {

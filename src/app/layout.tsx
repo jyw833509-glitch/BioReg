@@ -3,7 +3,7 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "BioReg Radar · 全球生物药法规情报平台",
   description:
-    "Global biologics regulatory intelligence — Phase 1 demonstration",
+    "全球生物药法规情报：官方来源、版本追踪、每周同步与可追溯汇总",
 };
 export default function RootLayout({
   children,

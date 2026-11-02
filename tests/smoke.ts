@@ -11,6 +11,7 @@ loadEnvConfig(process.cwd());
 async function main() {
   const original = process.env.TEST_DATABASE_URL || process.env.DATABASE_URL;
   assert.ok(original);
+  const adminKey = randomUUID() + randomUUID();
   const schema = "bioreg_smoke_" + randomUUID().replaceAll("-", "");
   const admin = createClient(original);
   await admin.$executeRawUnsafe(`CREATE SCHEMA "${schema}"`);
@@ -53,6 +54,7 @@ async function main() {
           ...process.env,
           DATABASE_URL: url.toString(),
           APP_ORIGIN: origin,
+          BIOREG_ADMIN_KEY: adminKey,
           BIOREG_INCLUDE_MOCK_DATA: "true",
         },
         stdio: ["ignore", "pipe", "pipe"],
@@ -115,9 +117,26 @@ async function main() {
       )
     ).json();
     assert.equal(search.data.length, 1);
-    const write = await fetch(origin + "/api/watchlists", {
+    const denied = await fetch(origin + "/api/watchlists", {
       method: "POST",
       headers: { Origin: origin, "Content-Type": "application/json" },
+      body: JSON.stringify({ name: "Denied" }),
+    });
+    assert.equal(denied.status, 401);
+    const login = await fetch(origin + "/api/admin", {
+      method: "POST",
+      headers: { Origin: origin, "Content-Type": "application/json" },
+      body: JSON.stringify({ key: adminKey }),
+    });
+    assert.equal(login.status, 200);
+    const adminCookie = login.headers.get("set-cookie")!.split(";")[0];
+    const write = await fetch(origin + "/api/watchlists", {
+      method: "POST",
+      headers: {
+        Origin: origin,
+        "Content-Type": "application/json",
+        Cookie: adminCookie,
+      },
       body: JSON.stringify({ name: "Smoke test watch", regulators: ["FDA"] }),
     });
     assert.equal(write.status, 201);
@@ -134,7 +153,11 @@ async function main() {
 
     await fetch(origin + "/api/watchlists/" + watch.data.id, {
       method: "PATCH",
-      headers: { Origin: origin, "Content-Type": "application/json" },
+      headers: {
+        Origin: origin,
+        "Content-Type": "application/json",
+        Cookie: adminCookie,
+      },
       body: JSON.stringify({ regulators: ["EMA"] }),
     });
     // All fixtures remain confined to this disposable random schema.
@@ -216,7 +239,11 @@ async function main() {
     assert.equal(notices.data.length, 2);
     const read = await fetch(origin + "/api/notifications", {
       method: "PATCH",
-      headers: { Origin: origin, "Content-Type": "application/json" },
+      headers: {
+        Origin: origin,
+        "Content-Type": "application/json",
+        Cookie: adminCookie,
+      },
       body: JSON.stringify({ all: true }),
     });
     assert.equal(read.status, 200);
@@ -227,7 +254,11 @@ async function main() {
     );
     const digest = await fetch(origin + "/api/digests", {
       method: "POST",
-      headers: { Origin: origin, "Content-Type": "application/json" },
+      headers: {
+        Origin: origin,
+        "Content-Type": "application/json",
+        Cookie: adminCookie,
+      },
       body: JSON.stringify({ date: new Date().toISOString().slice(0, 10) }),
     });
     assert.equal(digest.status, 200);
