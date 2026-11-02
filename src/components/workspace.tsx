@@ -2,6 +2,7 @@
 import { ChangeEvents, type ChangeView } from "./change-events";
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import dynamic from "next/dynamic";
 import { useRouter } from "next/navigation";
 import {
   Activity,
@@ -39,8 +40,8 @@ import {
   statuses,
   topics,
 } from "@/lib/data";
-import { AITools } from "./ai-tools";
-import { Reports } from "./reports";
+const AITools = dynamic(() => import("./ai-tools").then((m) => m.AITools));
+const Reports = dynamic(() => import("./reports").then((m) => m.Reports));
 import type { Regulation, Agency } from "@/lib/types";
 import { SyncStatus } from "./sync-status";
 import type {
@@ -55,6 +56,7 @@ import { FavoriteRegulations } from "./favorite-regulations";
 import { NotificationBell } from "./notification-bell";
 import { EngagementPanel } from "./engagement-panel";
 import { WatchlistEditor } from "./watchlist-editor";
+import { NavigationLink } from "./navigation-link";
 
 import { usePreference } from "@/lib/preferences";
 const nav = [
@@ -385,7 +387,7 @@ export function Workspace({
         </div>
         <nav>
           {nav.map(([key, label, zh, Icon], i) => (
-            <Link
+            <NavigationLink
               key={key}
               onClick={() => setMobile(false)}
               className={`${page === key ? "active" : ""} ${i === 7 ? "nav-divider" : ""}`}
@@ -400,7 +402,7 @@ export function Workspace({
                 <b className="nav-count">{dashboard?.todayTotal ?? ""}</b>
               )}
               {key === "updates" && <span className="nav-dot" />}
-            </Link>
+            </NavigationLink>
           ))}
         </nav>
         <div className="sidebar-bottom">
@@ -470,7 +472,8 @@ export function Workspace({
               <Link href="/admin">管理员登录</Link> · <FlaskConical size={14} />{" "}
               Official Regulatory Data{" "}
               <span className="banner-separator">|</span> 数据库驱动 ·
-              每周一同步官方来源 · 覆盖范围与受限状态见监管机构页
+              每周一同步官方来源 · 公开概览最多延迟约 1 分钟 ·
+              覆盖范围见监管机构页
             </span>
             <span className="phase-label">V1.0.0 · BIOREG RADAR</span>
           </div>

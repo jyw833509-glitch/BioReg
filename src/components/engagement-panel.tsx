@@ -58,12 +58,12 @@ export function EngagementPanel({ page }: { page: string }) {
           if (active) setWatches(w.data);
         }
         if (page === "digest" || page === "today") {
-          const d = await get("/api/digests");
-          if (active) setDigests(d.data);
           if (page === "today") {
             const t = await get("/api/digests?today=true");
             if (active) setToday(t.data);
           }
+          const d = await get("/api/digests");
+          if (active) setDigests(d.data);
         }
         if (page === "settings") {
           const s = await get("/api/digest-settings");

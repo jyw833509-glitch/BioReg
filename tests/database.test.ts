@@ -1,3 +1,5 @@
+import { buildContext } from "../src/server/ai/context";
+import { generate, promptRequest } from "../src/server/ai/generator";
 import { getDashboard as getDashboardV100 } from "./dashboard-v100";
 import { measure } from "../src/server/performance";
 import test, { before, after } from "node:test";
@@ -1306,4 +1308,59 @@ test("optimized dashboard exactly matches V1.0.0 and reduces driver round trips"
       else process.env.BIOREG_INCLUDE_MOCK_DATA = override;
     }
   }
+});
+
+test("lightweight page lists preserve display fields and details retain full evidence", async () => {
+  const repo = regulationRepository(client);
+  const full = await repo.list({ pageSize: 100 });
+  const light = await repo.list({ pageSize: 100 }, true);
+  assert.deepEqual(light.pagination, full.pagination);
+  assert.deepEqual(
+    light.data.map((r) => r.id),
+    full.data.map((r) => r.id),
+  );
+  assert.ok(JSON.stringify(light).length < JSON.stringify(full).length);
+  for (const r of light.data) {
+    const original = full.data.find((x) => x.id === r.id)!;
+    assert.equal(r.content_text, undefined);
+    assert.deepEqual(
+      r.versions.map((v) => v.content_snapshot),
+      r.versions.map(() => undefined),
+    );
+    for (const key of [
+      "title_original",
+      "title_zh",
+      "categories",
+      "official_summary",
+      "is_mock",
+      "publication_date",
+      "importance_level",
+    ] as const)
+      assert.deepEqual(r[key], original[key]);
+    const detail = await repo.getById(r.id);
+    assert.equal(typeof detail?.content_text, "string");
+  }
+});
+test("compact AI prompt excludes body loading while detailed context retains it", async () => {
+  const id = "performance-body-fixture";
+  const body = "Long official text ".repeat(10000);
+  await client.regulation.create({
+    data: { ...data(id), is_mock: false, content_text: body },
+  });
+  const compact = promptRequest.parse({
+    kind: "regulation",
+    id,
+    level: "compact",
+  });
+  const blocks = await buildContext(client, compact);
+  assert.ok(!JSON.stringify(blocks).includes(body));
+  const p = generate(compact, blocks);
+  assert.match(p.prompt, /Content omitted by compact context policy/);
+  const detailed = await buildContext(client, {
+    ...compact,
+    level: "detailed",
+  });
+  assert.equal(detailed.find((b) => b.body)?.data, body);
+  const simulatedOld = blocks.map((b) => (b.body ? { ...b, data: body } : b));
+  assert.deepEqual(generate(compact, blocks), generate(compact, simulatedOld));
 });

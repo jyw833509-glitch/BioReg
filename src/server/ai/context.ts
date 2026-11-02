@@ -31,7 +31,27 @@ export async function buildContext(
       : null;
   if (q.kind === "change" && !change) return missing();
   const id = change?.regulation_id || q.id;
-  const r = await db.regulation.findFirst({ where: { id, is_mock: false } });
+  const r = await db.regulation.findFirst({
+    where: { id, is_mock: false },
+    select: {
+      id: true,
+      regulator: true,
+      title_original: true,
+      document_number: true,
+      document_type: true,
+      status: true,
+      publication_date: true,
+      effective_date: true,
+      official_summary: true,
+      official_url: true,
+      title_zh: true,
+      summary_zh: true,
+      categories: true,
+      product_types: true,
+      affected_departments: true,
+      content_text: q.level !== "compact" && q.kind === "regulation",
+    },
+  });
   if (!r) return missing();
   const blocks: ContextBlock[] = [
     {

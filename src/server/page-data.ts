@@ -1,4 +1,5 @@
 import { measure } from "./performance";
+import { publicRead } from "./public-read";
 import { changeRepository } from "./repositories/change-repository";
 import { sequential } from "./sequential";
 import { db } from "./db";
@@ -42,10 +43,10 @@ async function buildPageData(page: string, query: Query, id?: string) {
               pagination: { page: 1, pageSize: 20, total: 0, totalPages: 1 },
             })
           : page === "today"
-            ? repo.getToday(query)
+            ? repo.getToday(query, true)
             : page === "updates"
-              ? repo.getUpdated(query)
-              : repo.list(query),
+              ? repo.getUpdated(query, true)
+              : repo.list(query, true),
     ]);
   return {
     dashboard,
@@ -77,8 +78,23 @@ async function buildPageData(page: string, query: Query, id?: string) {
 }
 
 export async function getPageData(page: string, query: Query, id?: string) {
+  const cacheable =
+    !id &&
+    [
+      "regulations",
+      "today",
+      "updates",
+      "topics",
+      "agencies",
+      "reports",
+      "ai-tools",
+    ].includes(page);
   const { value, metrics } = await measure("page." + page, () =>
-    buildPageData(page, query, id),
+    cacheable
+      ? publicRead("page:" + page + ":" + JSON.stringify(query), () =>
+          buildPageData(page, query, id),
+        )
+      : buildPageData(page, query, id),
   );
   console.info("BioReg performance", metrics);
   return { ...value, performance: metrics };

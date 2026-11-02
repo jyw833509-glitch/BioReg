@@ -6,6 +6,7 @@ import { regulationDto } from "../mappers";
 import { officialOnly, visibleWhere } from "../visibility";
 import { dayRange, whereQuery } from "./regulation-repository";
 import { querySchema } from "../validation";
+import { publicRead } from "../public-read";
 
 type Counts = Pick<
   DashboardView,
@@ -59,6 +60,9 @@ export async function dashboardAggregates(client: Db, now = new Date()) {
   return result;
 }
 export async function getDashboard(client: Db): Promise<DashboardView> {
+  return publicRead("dashboard", () => buildDashboard(client));
+}
+async function buildDashboard(client: Db): Promise<DashboardView> {
   const now = new Date(),
     day = dayRange(now);
   const aggregate = await dashboardAggregates(client, now);
@@ -71,9 +75,7 @@ export async function getDashboard(client: Db): Promise<DashboardView> {
       { publication_date: { sort: "desc", nulls: "last" } },
       { id: "asc" },
     ],
-    include: {
-      versions: { take: 2, orderBy: [{ detected_at: "desc" }, { id: "asc" }] },
-    },
+    omit: { content_text: true, source_metadata: true, attachment_urls: true },
   });
   const priority = await client.regulation.findMany({
     where: visibleWhere({
@@ -94,15 +96,13 @@ export async function getDashboard(client: Db): Promise<DashboardView> {
       { publication_date: { sort: "desc", nulls: "last" } },
       { id: "asc" },
     ],
-    include: { versions: { take: 2, orderBy: { detected_at: "desc" } } },
+    omit: { content_text: true, source_metadata: true, attachment_urls: true },
   });
   const changes = await client.regulation.findMany({
     where: whereQuery(querySchema.parse({ updates: true }), now),
     take: 3,
     orderBy: [{ updated_at: "desc" }, { id: "asc" }],
-    include: {
-      versions: { take: 2, orderBy: [{ detected_at: "desc" }, { id: "asc" }] },
-    },
+    omit: { content_text: true, source_metadata: true, attachment_urls: true },
   });
   const job = await client.syncJob.findFirst({
     orderBy: [{ started_at: "desc" }, { id: "desc" }],

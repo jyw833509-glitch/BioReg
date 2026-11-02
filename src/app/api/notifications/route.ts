@@ -15,10 +15,15 @@ const filter = z
 export async function GET(request: Request) {
   try {
     const repo = notificationRepository(db());
-    const result = await repo.list(
-      filter.parse(Object.fromEntries(new URL(request.url).searchParams)),
+    const q = filter.parse(
+      Object.fromEntries(new URL(request.url).searchParams),
     );
-    return json({ ...result, statistics: await repo.stats() });
+    const result = await repo.list(q);
+    const statistics =
+      q.state === "unread" && !q.severity && !q.watchlist_id
+        ? { unread: result.total }
+        : await repo.stats();
+    return json({ ...result, statistics });
   } catch (e) {
     return failure(e);
   }

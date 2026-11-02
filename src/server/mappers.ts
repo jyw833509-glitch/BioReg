@@ -9,7 +9,16 @@ import type {
   Importance,
 } from "../lib/types";
 import { documentLabels, statusLabels, importanceLabels } from "../lib/labels";
-export function versionDto(v: DbVersion): RegulationVersion {
+type ListVersion = Omit<DbVersion, "content_snapshot"> &
+  Partial<Pick<DbVersion, "content_snapshot">>;
+type ListRecord = Omit<
+  DbRegulation,
+  "content_text" | "source_metadata" | "attachment_urls"
+> &
+  Partial<
+    Pick<DbRegulation, "content_text" | "source_metadata" | "attachment_urls">
+  >;
+export function versionDto(v: ListVersion): RegulationVersion {
   return {
     ...v,
     publication_date: v.publication_date?.toISOString().slice(0, 10) || "",
@@ -21,7 +30,7 @@ export function versionDto(v: DbVersion): RegulationVersion {
   };
 }
 export function regulationDto(
-  r: DbRegulation & { versions?: DbVersion[] },
+  r: ListRecord & { versions?: ListVersion[] },
 ): Regulation {
   return {
     ...r,

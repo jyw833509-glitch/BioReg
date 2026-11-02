@@ -1,5 +1,7 @@
 import type { NextConfig } from "next";
 const config: NextConfig = {
+  // Limit intentional full-page prefetch freshness; mutable APIs stay uncached.
+  experimental: { staleTimes: { dynamic: 0, static: 30 } },
   serverExternalPackages: ["pg", "pdfkit"],
   outputFileTracingIncludes: {
     "/api/reports": ["./assets/fonts/NotoSansSC.ttf"],

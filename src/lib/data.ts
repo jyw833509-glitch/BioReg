@@ -227,7 +227,10 @@ const samples: [Agency, string, string, string, string, Status, Importance][] =
       "Low",
     ],
   ];
-export const regulations: Regulation[] = samples.map(
+export const regulations: (Omit<Regulation, "content_text" | "versions"> & {
+  content_text: string;
+  versions: (Regulation["versions"][number] & { content_snapshot: string })[];
+})[] = samples.map(
   (
     [
       regulator,

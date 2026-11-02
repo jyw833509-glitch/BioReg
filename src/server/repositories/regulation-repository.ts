@@ -85,7 +85,7 @@ export function regulationRepository(client: Db) {
       });
       return r ? regulationDto(r) : null;
     },
-    async list(input: Partial<Query> = {}) {
+    async list(input: Partial<Query> = {}, lightweight = false) {
       const q = querySchema.parse(input);
       const where = whereQuery(q);
       const orderBy: Prisma.RegulationOrderByWithRelationInput[] =
@@ -115,9 +115,15 @@ export function regulationRepository(client: Db) {
             orderBy,
             skip: (q.page - 1) * q.pageSize,
             take: q.pageSize,
+            omit: {
+              content_text: lightweight,
+              source_metadata: lightweight,
+              attachment_urls: lightweight,
+            },
             include: {
               versions: {
                 take: 2,
+                omit: { content_snapshot: lightweight },
                 orderBy: [{ detected_at: "desc" }, { id: "asc" }],
               },
             },
@@ -152,11 +158,11 @@ export function regulationRepository(client: Db) {
         pageSize: Math.min(100, Math.max(1, limit)),
       });
     },
-    async getToday(options: Partial<Query> = {}) {
-      return this.list({ ...options, today: true });
+    async getToday(options: Partial<Query> = {}, lightweight = false) {
+      return this.list({ ...options, today: true }, lightweight);
     },
-    async getUpdated(options: Partial<Query> = {}) {
-      return this.list({ ...options, updates: true });
+    async getUpdated(options: Partial<Query> = {}, lightweight = false) {
+      return this.list({ ...options, updates: true }, lightweight);
     },
     async getHighPriority(limit = 6) {
       const rows = await client.regulation.findMany({

@@ -22,7 +22,7 @@ export interface RegulationVersion {
   content_hash: string;
   source_hash?: string;
   created_at?: string;
-  content_snapshot: string;
+  content_snapshot?: string;
   previous_version_id: string | null;
   change_detected: string;
 }
@@ -51,7 +51,7 @@ export interface Regulation {
   source_page_url: string | null;
   official_summary: string | null;
   summary_zh: string;
-  content_text: string;
+  content_text?: string;
   categories: string[];
   subcategories: string[];
   keywords: string[];
