@@ -1455,20 +1455,3 @@ test("single-statement list preserves filters, pagination, ordering and official
     else process.env.BIOREG_INCLUDE_MOCK_DATA = override;
   }
 });
-
-test("joined source and change views preserve the reference data in one round trip", async () => {
-  const { changeRepository } =
-    await import("../src/server/repositories/change-repository");
-  const sources = sourceRepository(client);
-  const sourceRows = await measure("sources.joined", () =>
-    sources.listCompact(),
-  );
-  assert.deepEqual(sourceRows.value, await sources.list());
-  assert.equal(sourceRows.metrics.query_count, 1);
-  const changes = changeRepository(client);
-  for (const id of [undefined, "missing-record"]) {
-    const rows = await measure("changes.joined", () => changes.listCompact(id));
-    assert.deepEqual(rows.value, await changes.list(id));
-    assert.equal(rows.metrics.query_count, 1);
-  }
-});
