@@ -22,7 +22,7 @@ async function buildPageData(page: string, query: Query, id?: string) {
         page === "dashboard" ? getDashboard(client) : Promise.resolve(null),
       () =>
         page === "agencies"
-          ? sourceRepository(client).list()
+          ? sourceRepository(client).listCompact()
           : Promise.resolve([]),
       () =>
         ["settings", "agencies"].includes(page)
@@ -52,7 +52,9 @@ async function buildPageData(page: string, query: Query, id?: string) {
     dashboard,
     topicCounts: page === "topics" ? await getTopicCounts(client) : {},
     changeEvents:
-      page === "updates" || id ? await changeRepository(client).list(id) : [],
+      page === "updates" || id
+        ? await changeRepository(client).listCompact(id)
+        : [],
     sources: sources.map((s) => ({
       ...s,
       last_sync_at: s.last_sync_at?.toISOString() || null,
