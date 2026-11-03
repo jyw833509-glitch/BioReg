@@ -49,6 +49,33 @@ async function buildPageData(page: string, query: Query, id?: string) {
               : repo.list(query, true),
     ]);
   return {
+    searchCoverage:
+      page === "regulations" && !id
+        ? (
+            await client.source.findMany({
+              select: {
+                code: true,
+                enabled: true,
+                last_status: true,
+                last_sync_at: true,
+                last_success_at: true,
+                _count: {
+                  select: {
+                    regulations: { where: { is_mock: false } },
+                    catalog_entries: true,
+                  },
+                },
+              },
+            })
+          ).map((s) => ({
+            code: s.code,
+            status: s.enabled ? s.last_status : "DISABLED",
+            lastSync: s.last_sync_at?.toISOString() || null,
+            lastSuccess: s.last_success_at?.toISOString() || null,
+            documents: s._count.regulations,
+            discovered: s._count.catalog_entries,
+          }))
+        : [],
     dashboard,
     topicCounts: page === "topics" ? await getTopicCounts(client) : {},
     changeEvents:

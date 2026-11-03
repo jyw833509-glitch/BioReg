@@ -12,6 +12,10 @@ const itemSchema = z.object({
     .object({
       stepDate: z.string().optional(),
       stepDateLabel: z.string().optional(),
+      infoTitle: z.string().optional(),
+      info: z
+        .array(z.object({ party: z.string(), text: z.string() }))
+        .optional(),
     })
     .optional(),
   fileGroups: z
@@ -103,6 +107,16 @@ export function parseList(body: string, url: string): Candidate[] {
           metadata: {
             guideline_code: item.code,
             current_step: item.status || null,
+            publication_status: item.status || null,
+            regional_implementation: /implementation/i.test(
+              item.details?.infoTitle || "",
+            )
+              ? (item.details?.info || []).map((entry) => ({
+                  region: entry.party,
+                  statement: text(entry.text),
+                  source_url: publicUrl,
+                }))
+              : [],
             revision: item.code.match(/\(R\d+\)/)?.[0] || null,
             adoption_date_raw: item.details?.stepDate || null,
             adoption_date_label: item.details?.stepDateLabel

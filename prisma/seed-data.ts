@@ -103,7 +103,7 @@ export async function seedDatabase(client: Db) {
             data: { previous_version_id: r.previous_version_id },
           });
       }
-      for (const source of sources.filter((s) => s.code !== "PMDA"))
+      for (const source of sources.filter((s) => !["PMDA", "USP", "EDQM"].includes(s.code)))
         await tx.syncLog.upsert({
           where: { id: `mock-log-${source.code}` },
           update: {},

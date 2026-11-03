@@ -28,7 +28,7 @@ export const reportQuery = z
     format: z.enum(["json", "csv", "pdf"]).default("json"),
     start: date.optional(),
     end: date.optional(),
-    agency: z.enum(["FDA", "EMA", "NMPA", "CDE", "ICH", "PMDA"]).optional(),
+    agency: z.enum(["FDA", "EMA", "NMPA", "CDE", "ICH", "PMDA", "USP", "EDQM"]).optional(),
     category: z.string().min(1).max(100).optional(),
     product: z.string().min(1).max(100).optional(),
     watchlist: z.string().min(1).max(160).optional(),

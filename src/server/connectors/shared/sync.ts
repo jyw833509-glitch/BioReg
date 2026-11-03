@@ -1,4 +1,5 @@
 import { rotateCandidates } from "./rotation";
+import { retainCatalog } from "./catalog";
 import type { Db } from "../../db";
 import type { Adapter, Candidate } from "./types";
 import type { HtmlClient } from "./client";
@@ -102,12 +103,13 @@ async function runSource(
       }
     }
     // Round-robin prevents the first ICH category consuming every record slot.
-    const listed: Candidate[] = [];
+    let listed: Candidate[] = [];
     for (let i = 0; i < Math.max(0, ...batches.map((b) => b.length)); i++)
       for (const batch of batches) if (batch[i]) listed.push(batch[i]);
     if (!listed.length) {
       result.status = "FAILED";
     }
+    if (!options.dryRun) listed = await retainCatalog(db, source.id, listed);
     let candidates = listed.slice(0, options.limit);
     if (options.mode === "incremental" && options.limit > 1) {
       const recheckCount = Math.max(1, Math.floor(options.limit / 3));

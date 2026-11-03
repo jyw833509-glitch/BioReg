@@ -56,7 +56,7 @@ export function DatabaseList({
       />
       <div className="results-toolbar">
         <span>
-          共 <b>{pagination.total}</b> 条法规 · 数据库查询
+          已入库结果：<b>{pagination.total}</b> 条官方文件
         </span>
         <form
           className="list-search"
@@ -81,11 +81,15 @@ export function DatabaseList({
           value={initialSort}
           onChange={(e) => navigate({ sort: e.target.value, page: "1" })}
         >
-          {["Newest", "Recently Updated", "Importance", "Regulator"].map(
-            (s) => (
-              <option key={s}>{s}</option>
-            ),
-          )}
+          {[
+            "Relevance",
+            "Newest",
+            "Recently Updated",
+            "Importance",
+            "Regulator",
+          ].map((s) => (
+            <option key={s}>{s}</option>
+          ))}
         </select>
       </div>
       {records.length ? (
@@ -103,13 +107,13 @@ export function DatabaseList({
       ) : (
         <div className="empty-state">
           <BookOpen size={30} />
-          <h2>No regulatory records available yet.</h2>
+          <h2>当前检索范围内未找到</h2>
           <p>
             {pagination.total
               ? "当前页无数据，请返回上一页。"
-              : "没有符合条件的法规。可以调整关键词和筛选条件。"}
+              : "可调整关键词或筛选条件，或使用官网扩展检索入口。"}
           </p>
-          <p>Real regulatory sources will be connected in later phases.</p>
+          <p>此结果不代表不存在相关规定；历史补录和正文覆盖仍有限。</p>
         </div>
       )}
       <div className="pagination">

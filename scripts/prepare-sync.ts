@@ -50,7 +50,7 @@ async function main() {
         create: { ...source, id: `source-${source.code.toLowerCase()}` },
       });
     console.log(
-      "Migrations applied; six Source configurations ensured. No mock data seeded.",
+      "Migrations applied; Source configurations ensured. No mock data seeded.",
     );
   } finally {
     await client.$disconnect();

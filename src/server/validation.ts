@@ -22,9 +22,19 @@ export const querySchema = z
     page: z.coerce.number().int().min(1).max(100000).default(1),
     pageSize: z.coerce.number().int().min(1).max(100).default(20),
     sort: z
-      .enum(["Newest", "Recently Updated", "Importance", "Regulator"])
+      .enum([
+        "Relevance",
+        "Newest",
+        "Recently Updated",
+        "Importance",
+        "Regulator",
+      ])
       .default("Newest"),
     regulator: z.enum(Agency).optional(),
+    region: z.string().max(100).optional(),
+    effect: z
+      .enum(["not-yet-effective", "effective", "unspecified"])
+      .optional(),
     categories: z.string().max(150).optional(),
     subcategories: z.string().max(150).optional(),
     product_types: z.string().max(150).optional(),
@@ -108,5 +118,6 @@ export function parseQuery(raw: Record<string, string | undefined>) {
   }
   for (const key of Object.keys(input))
     if (input[key] === "" || input[key] === undefined) delete input[key];
+  if (input.q && !input.sort) input.sort = "Relevance";
   return querySchema.parse(input);
 }

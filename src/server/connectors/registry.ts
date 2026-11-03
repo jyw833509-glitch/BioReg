@@ -1,4 +1,5 @@
 import type { Adapter } from "./shared/types";
+import { pharmacopoeiaAdapter } from "./pharmacopoeia";
 import { fdaAdapter } from "./fda/sync";
 import { config as emaConfig } from "./ema/config";
 import { config as nmpaConfig } from "./nmpa/config";
@@ -21,6 +22,8 @@ import * as pmdaParser from "./pmda/parser";
 import { normalize as pmdaNormalize } from "./pmda/normalizer";
 import { createClient as pmdaClient } from "./pmda/client";
 export const adapters: Record<string, Adapter> = { FDA: fdaAdapter };
+adapters.USP = pharmacopoeiaAdapter("USP");
+adapters.EDQM = pharmacopoeiaAdapter("EDQM");
 for (const [config, parser, normalize, client] of [
   [emaConfig, emaParser, emaNormalize, emaClient],
   [nmpaConfig, nmpaParser, nmpaNormalize, nmpaClient],

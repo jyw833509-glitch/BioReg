@@ -258,6 +258,8 @@ export const regulations: (Omit<Regulation, "content_text" | "versions"> & {
         CDE: "China",
         ICH: "International",
         PMDA: "Japan",
+        USP: "United States",
+        EDQM: "Europe",
       }[regulator],
       title_original: title,
       title_zh,

@@ -1,4 +1,5 @@
-export type Agency = "FDA" | "EMA" | "NMPA" | "CDE" | "ICH" | "PMDA";
+export type Agency =
+  "FDA" | "EMA" | "NMPA" | "CDE" | "ICH" | "PMDA" | "USP" | "EDQM";
 export type Status =
   | "Draft"
   | "Final"

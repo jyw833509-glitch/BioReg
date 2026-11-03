@@ -134,7 +134,7 @@ test("idempotent seed preserves records and keeps every fixture explicitly mock"
   assert.equal(before, 15);
   assert.equal(await client.regulation.count(), before);
   assert.equal(await client.regulationVersion.count(), versions);
-  assert.equal(await client.source.count(), 6);
+  assert.equal(await client.source.count(), 8);
   assert.equal(await client.syncLog.count(), 5);
   assert.equal(await client.watchlist.count(), 1);
   assert.equal(await client.regulation.count({ where: { is_mock: false } }), 0);
@@ -145,7 +145,7 @@ test("idempotent seed preserves records and keeps every fixture explicitly mock"
 });
 test("source codes and Source → Regulation / SyncLog relations", async () => {
   const repo = sourceRepository(client);
-  assert.equal((await repo.list()).length, 6);
+  assert.equal((await repo.list()).length, 8);
   assert.notEqual(
     (await repo.getByCode("NMPA"))?.id,
     (await repo.getByCode("CDE"))?.id,
@@ -764,7 +764,7 @@ test("Scheduler invokes six sources; access denial preserves records and later r
     limit: 1,
   });
   assert.equal(first.status, "PARTIAL_SUCCESS");
-  assert.equal(first.sources.length, 6);
+  assert.equal(first.sources.length, 8);
   assert.equal(
     first.sources.find((s) => s.source === "CDE")?.health,
     "DEGRADED",
@@ -781,7 +781,7 @@ test("Scheduler invokes six sources; access denial preserves records and later r
   );
   assert.equal(
     await client.syncLog.count({ where: { job_id: first.job_id } }),
-    6,
+    8,
   );
   const failed = await client.source.findUniqueOrThrow({
     where: { code: "CDE" },
@@ -1439,7 +1439,18 @@ test("single-statement list preserves filters, pagination, ordering and official
               ([key]) => !["content_text", "attachment_urls"].includes(key),
             ),
           ),
-          source_metadata: {},
+          source_metadata: Object.fromEntries(
+            Object.entries(r.source_metadata || {}).filter(
+              ([key, value]) =>
+                [
+                  "guideline_code",
+                  "revision",
+                  "current_step",
+                  "capture_scope",
+                  "catalog_excerpt",
+                ].includes(key) && value != null,
+            ),
+          ),
           versions: [],
         }));
         assert.deepEqual(light.value.data, expected, JSON.stringify(input));
@@ -1454,4 +1465,84 @@ test("single-statement list preserves filters, pagination, ordering and official
     if (override === undefined) delete process.env.BIOREG_INCLUDE_MOCK_DATA;
     else process.env.BIOREG_INCLUDE_MOCK_DATA = override;
   }
+});
+
+test("historical unchanged files support bilingual, identifier, body, region and relevance searches", async () => {
+  const id = "historical-search-fixture";
+  await client.regulation.create({
+    data: {
+      ...data(id),
+      is_mock: false,
+      is_new: false,
+      is_updated: false,
+      title_original: "Stability testing of biological products",
+      title_zh: "",
+      document_number: "ARCHIVE-1998-Q5C",
+      content_text: "Captured historical body: archivalprotein",
+      official_summary: "Stability testing",
+      publication_date: new Date("1998-01-01"),
+      first_detected_at: new Date("1998-01-01"),
+    },
+  });
+  const repo = regulationRepository(client);
+  for (const q of [
+    "稳定性",
+    "stability",
+    "ARCHIVE-1998-Q5C",
+    "archivalprotein",
+  ]) {
+    const results = await repo.list(
+      { q, sort: "Relevance", pageSize: 100 },
+      true,
+    );
+    assert.ok(
+      results.data.some((r) => r.id === id),
+      q,
+    );
+  }
+  const results = await repo.list(
+    {
+      q: "ARCHIVE-1998-Q5C",
+      sort: "Relevance",
+      region: "United States",
+      date: "1990-01-01",
+      dateTo: "1999-12-31",
+    },
+    true,
+  );
+  assert.equal(results.data[0]?.id, id);
+  assert.equal(
+    (await repo.getToday({ q: "ARCHIVE-1998-Q5C" }, true)).pagination.total,
+    0,
+  );
+  assert.equal(
+    (await repo.getUpdated({ q: "ARCHIVE-1998-Q5C" }, true)).pagination.total,
+    0,
+  );
+  assert.equal(
+    (await repo.list({ q: "no-such-archival-document-fixture" }, true))
+      .pagination.total,
+    0,
+  );
+});
+
+test("discovery queue retains historical links after they leave a current index", async () => {
+  const { retainCatalog } =
+    await import("../src/server/connectors/shared/catalog");
+  const first = {
+    url: "https://www.fda.gov/regulatory-information/search-fda-guidance-documents/historical-test",
+    title: "Historical fixture",
+    context: "",
+  };
+  await retainCatalog(client, "source-fda", [first]);
+  const rows = await retainCatalog(client, "source-fda", []);
+  assert.ok(rows.some((r) => r.url === first.url));
+  const before = await client.catalogEntry.count({
+    where: { source_id: "source-fda" },
+  });
+  await retainCatalog(client, "source-fda", [first]);
+  assert.equal(
+    await client.catalogEntry.count({ where: { source_id: "source-fda" } }),
+    before,
+  );
 });

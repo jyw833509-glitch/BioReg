@@ -1,5 +1,7 @@
 "use client";
 import { ChangeEvents, type ChangeView } from "./change-events";
+import { SearchScope, type SearchCoverage } from "./search-scope";
+import { DocumentFacts } from "./document-facts";
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import dynamic from "next/dynamic";
@@ -129,6 +131,7 @@ export function RegulationCard({
         {r.title_zh || r.title_original}
       </Link>
       <p className="original">{r.title_original}</p>
+      <DocumentFacts record={r} />
       <div className="tags">
         <ImportanceBadge importance={r.importance_level} />
         <StatusBadge status={r.status} />
@@ -138,6 +141,22 @@ export function RegulationCard({
         {r.summary_zh || r.official_summary || "官方摘要未提供"}
       </p>
       <footer>
+        {(r.official_url || r.pdf_url) && (
+          <a
+            className="button"
+            href={(r.pdf_url || r.official_url)!}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            查看官方原文 ↗
+          </a>
+        )}
+        <Link
+          className="text-btn"
+          href={`/regulations/${r.id}#version-history`}
+        >
+          版本与变更记录
+        </Link>
         <span className={r.is_updated ? "updated" : "new"}>
           <span className="dot" />
           {r.is_updated ? "Updated" : "New"}{" "}
@@ -205,7 +224,19 @@ export function FilterBar({
 }) {
   const [expanded, setExpanded] = useState(false);
   const fields = [
-    ["regulator", "监管机构", [...agencies, "PMDA"]],
+    ["regulator", "来源", [...agencies, "PMDA", "USP", "EDQM"]],
+    [
+      "region",
+      "地区",
+      [
+        "United States",
+        "European Union",
+        "Europe",
+        "China",
+        "Japan",
+        "International",
+      ],
+    ],
     ["categories", "主题领域", topics],
     ["product_types", "产品类型", products],
     ["status", "法规状态", statuses],
@@ -242,6 +273,29 @@ export function FilterBar({
         {expanded ? "收起" : "更多筛选"}
       </button>
       {expanded && (
+        <label>
+          截止发布日期{" "}
+          <input
+            aria-label="截止发布日期"
+            type="date"
+            value={filters.dateTo || ""}
+            onChange={(e) => onChange("dateTo", e.target.value)}
+          />
+        </label>
+      )}
+      {expanded && (
+        <select
+          aria-label="生效信息"
+          value={filters.effect || ""}
+          onChange={(e) => onChange("effect", e.target.value)}
+        >
+          <option value="">生效信息 · 全部</option>
+          <option value="not-yet-effective">所载生效日未到</option>
+          <option value="effective">已标明生效</option>
+          <option value="unspecified">未提供生效信息</option>
+        </select>
+      )}
+      {expanded && (
         <label className="date-label">
           发布于{" "}
           <input
@@ -262,6 +316,7 @@ export function FilterBar({
   );
 }
 export function Workspace({
+  searchCoverage = [],
   changeEvents = [],
   page,
   record,
@@ -277,6 +332,7 @@ export function Workspace({
   pageInfo,
   initialSort,
 }: {
+  searchCoverage?: SearchCoverage[];
   changeEvents?: ChangeView[];
   page: string;
   record?: Regulation;
@@ -445,7 +501,9 @@ export function Workspace({
             className="global-search"
             onSubmit={(e) => {
               e.preventDefault();
-              router.push(`/regulations?q=${encodeURIComponent(query)}`);
+              router.push(
+                `/regulations?q=${encodeURIComponent(query)}&sort=Relevance`,
+              );
             }}
           >
             <Search size={16} />
@@ -821,6 +879,13 @@ export function Workspace({
               </div>
             </>
           )}
+          {page === "regulations" && !record && (
+            <SearchScope
+              query={initialQuery}
+              source={initialFilters.regulator}
+              coverage={searchCoverage}
+            />
+          )}
           {["today", "regulations"].includes(page) && !record && (
             <DatabaseList
               key={JSON.stringify([
@@ -997,6 +1062,7 @@ export function Workspace({
                     </div>
                   </div>
                 ))}
+                <DocumentFacts record={record} detailed />
                 <h2>Official Summary</h2>
                 <p>
                   {record.official_summary ||
@@ -1015,7 +1081,9 @@ export function Workspace({
                 </p>
                 <p>{record.summary_zh}</p>
                 <ChangeEvents events={changeEvents} />
-                <h2>Version History · BioReg Internal Version</h2>
+                <h2 id="version-history">
+                  Version History · BioReg Internal Version
+                </h2>
                 <Link
                   className="button"
                   href={
@@ -1109,6 +1177,8 @@ export function Workspace({
                         CDE: "国家药监局药品审评中心",
                         ICH: "国际人用药品注册技术协调会",
                         PMDA: "日本医药品医疗器械综合机构",
+                        USP: "美国药典",
+                        EDQM: "欧洲药典 / EDQM",
                       }[a]
                     }
                   </h2>

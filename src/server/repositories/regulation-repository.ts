@@ -4,6 +4,7 @@ import { regulationDto } from "../mappers";
 import { querySchema, type Query } from "../validation";
 import { visibleWhere } from "../visibility";
 import { compactList } from "./list-query";
+import { searchTerms } from "../../lib/search";
 export function dayRange(date = new Date()) {
   const start = new Date(date);
   start.setUTCHours(0, 0, 0, 0);
@@ -15,18 +16,28 @@ export function whereQuery(
 ): Prisma.RegulationWhereInput {
   const and: Prisma.RegulationWhereInput[] = [];
   if (q.q.trim()) {
-    const term = q.q.trim();
-    and.push({
-      OR: [
-        { title_original: { contains: term, mode: "insensitive" } },
-        { title_zh: { contains: term, mode: "insensitive" } },
-        { document_number: { contains: term, mode: "insensitive" } },
-        { official_summary: { contains: term, mode: "insensitive" } },
-        { content_text: { contains: term, mode: "insensitive" } },
-        { keywords: { has: term } },
-      ],
-    });
+    for (const term of [q.q.trim()]) {
+      and.push({
+        OR: searchTerms(term).flatMap((term) => [
+          { title_original: { contains: term, mode: "insensitive" } },
+          { title_zh: { contains: term, mode: "insensitive" } },
+          { document_number: { contains: term, mode: "insensitive" } },
+          { official_summary: { contains: term, mode: "insensitive" } },
+          { content_text: { contains: term, mode: "insensitive" } },
+          { keywords: { has: term } },
+        ]),
+      });
+    }
   }
+  if (q.region) and.push({ country_or_region: q.region });
+  if (q.effect === "not-yet-effective")
+    and.push({
+      effective_date: { gt: now },
+      status: { notIn: ["WITHDRAWN", "SUPERSEDED", "ARCHIVED"] },
+    });
+  if (q.effect === "effective") and.push({ status: "EFFECTIVE" });
+  if (q.effect === "unspecified")
+    and.push({ effective_date: null, status: { not: "EFFECTIVE" } });
   if (q.regulator) and.push({ regulator: q.regulator });
   for (const key of [
     "categories",
@@ -88,7 +99,7 @@ export function regulationRepository(client: Db) {
     },
     async list(input: Partial<Query> = {}, lightweight = false) {
       const q = querySchema.parse(input);
-      if (lightweight) return compactList(client, q);
+      if (lightweight || q.sort === "Relevance") return compactList(client, q);
       const where = whereQuery(q);
       const orderBy: Prisma.RegulationOrderByWithRelationInput[] =
         q.sort === "Importance"

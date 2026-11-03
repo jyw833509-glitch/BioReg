@@ -41,4 +41,18 @@ export const sourceDefaults = [
     official_base_url: "https://www.ich.org/",
     sync_frequency: 24,
   },
+  {
+    code: "USP",
+    name: "United States Pharmacopeia — public catalog",
+    country_or_region: "United States",
+    official_base_url: "https://www.usp.org/",
+    sync_frequency: 168,
+  },
+  {
+    code: "EDQM",
+    name: "European Pharmacopoeia / EDQM — public catalog",
+    country_or_region: "Europe",
+    official_base_url: "https://www.edqm.eu/",
+    sync_frequency: 168,
+  },
 ] as const;

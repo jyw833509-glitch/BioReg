@@ -67,6 +67,9 @@ export default async function Page({
     "document_type",
     "importance_level",
     "date",
+    "dateTo",
+    "region",
+    "effect",
     "change",
   ]) {
     const value =
@@ -87,6 +90,7 @@ export default async function Page({
       <Workspace
         key={slug.join("/") + "?" + JSON.stringify(search)}
         page={page}
+        searchCoverage={data.searchCoverage}
         record={data.record || undefined}
         initialQuery={query.q}
         initialFilters={filters}

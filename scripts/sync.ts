@@ -24,7 +24,7 @@ async function main() {
   const requested = positionals[0]?.toUpperCase();
   const codes = requested === "ALL" ? Object.keys(adapters) : [requested];
   if (positionals.length !== 1 || codes.some((c) => !c || !adapters[c]))
-    throw new Error("Use sync <all|fda|ema|nmpa|cde|ich|pmda>");
+    throw new Error("Use sync <all|fda|ema|nmpa|cde|ich|pmda|usp|edqm>");
   if (!["initial", "incremental"].includes(values.mode))
     throw new Error("Invalid mode");
   if (!["cli", "scheduled", "manual"].includes(values.trigger))

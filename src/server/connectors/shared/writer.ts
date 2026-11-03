@@ -71,6 +71,7 @@ export async function writeRecord(
           product_types: data.product_types,
           development_stages: data.development_stages,
           affected_departments: data.affected_departments,
+          source_metadata: data.source_metadata,
         },
       });
       return outcome;
