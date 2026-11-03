@@ -19,3 +19,6 @@ Tests verify cache expiration, filter-key separation, coalescing, bounded evicti
 A loading boundary was removed after HTTP smoke revealed it would turn missing-detail 404 responses into streamed 200 responses. Loading placeholders are not counted as performance success.
 
 Release gates: CI 41556053109 passed lint, typecheck, all automated tests, production build and production-mode HTTP smoke on b94beff7de7afdd2e14797ed112847f482397bd7. Today's aggregate also uses the public 30-second cache; successful digest/settings writes invalidate this runtime's public cache, while other instances expire within the TTL. Settings reads now fetch existing settings without an unnecessary upsert transaction.
+
+Cold-query follow-up: compact UI lists now obtain their filtered total and ordered page in one parameterized PostgreSQL statement. Dashboard counters, cards, latest job and health also share one statement/snapshot. Legacy full evidence endpoints remain unchanged. CI 41557265385 and 41557648084 passed all gates; equivalence tests cover list filters, sort orders, empty/out-of-range pagination, official-only visibility, and every dashboard display field. Both cold queries are asserted to use exactly one SQL statement. No database migration is required.
+

@@ -1,7 +1,4 @@
-import {
-  Prisma,
-  type Regulation as DbRegulation,
-} from "../../generated/prisma/client";
+import { Prisma } from "../../generated/prisma/client";
 import type { Query } from "../validation";
 import type { Db } from "../db";
 import { officialOnly } from "../visibility";
