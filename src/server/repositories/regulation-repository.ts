@@ -3,6 +3,7 @@ import type { Db } from "../db";
 import { regulationDto } from "../mappers";
 import { querySchema, type Query } from "../validation";
 import { visibleWhere } from "../visibility";
+import { compactList } from "./list-query";
 export function dayRange(date = new Date()) {
   const start = new Date(date);
   start.setUTCHours(0, 0, 0, 0);
@@ -87,6 +88,7 @@ export function regulationRepository(client: Db) {
     },
     async list(input: Partial<Query> = {}, lightweight = false) {
       const q = querySchema.parse(input);
+      if (lightweight) return compactList(client, q);
       const where = whereQuery(q);
       const orderBy: Prisma.RegulationOrderByWithRelationInput[] =
         q.sort === "Importance"

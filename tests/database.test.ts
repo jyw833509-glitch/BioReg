@@ -1384,3 +1384,73 @@ test("compact AI prompt excludes body loading while detailed context retains it"
   const simulatedOld = blocks.map((b) => (b.body ? { ...b, data: body } : b));
   assert.deepEqual(generate(compact, blocks), generate(compact, simulatedOld));
 });
+
+test("single-statement list preserves filters, pagination, ordering and official visibility", async () => {
+  const cases: Record<string, unknown>[] = [
+    {},
+    { page: 2, pageSize: 3 },
+    { page: 9999 },
+    { regulator: "FDA" },
+    { regulator: "EMA", sort: "Importance" },
+    { sort: "Regulator" },
+    { sort: "Recently Updated" },
+    { q: "body" },
+    { q: "%" },
+    { q: "' OR 1=1 --" },
+    { categories: "CMC / Quality" },
+    { subcategories: "missing" },
+    { product_types: "Monoclonal Antibody" },
+    { development_stages: "Phase I" },
+    { affected_departments: "CMC" },
+    { status: "Final" },
+    { document_type: "Guideline" },
+    { importance_level: "High" },
+    { date: "2026-01-01", dateTo: "2026-12-31" },
+    { change: "New" },
+    { change: "Updated" },
+    { is_new: "false" },
+    { is_updated: "true" },
+    { today: true },
+    { updates: true },
+    { regulator: "FDA", updates: true, pageSize: 2 },
+  ];
+  const previous = process.env.NODE_ENV;
+  const override = process.env.BIOREG_INCLUDE_MOCK_DATA;
+  try {
+    for (const mode of ["test", "production"]) {
+      (process.env as Record<string, string | undefined>).NODE_ENV = mode;
+      delete process.env.BIOREG_INCLUDE_MOCK_DATA;
+      for (const input of cases) {
+        const query = input;
+        const repo = regulationRepository(client);
+        const full = await repo.list(query as Parameters<typeof repo.list>[0]);
+        const light = await measure("list.compact", () =>
+          repo.list(query as Parameters<typeof repo.list>[0], true),
+        );
+        assert.deepEqual(
+          light.value.pagination,
+          full.pagination,
+          JSON.stringify(input),
+        );
+        const expected = full.data.map((r) => ({
+          ...Object.fromEntries(
+            Object.entries(r).filter(
+              ([key]) => !["content_text", "attachment_urls"].includes(key),
+            ),
+          ),
+          source_metadata: {},
+          versions: [],
+        }));
+        assert.deepEqual(light.value.data, expected, JSON.stringify(input));
+        assert.equal(light.metrics.query_count, 1);
+      }
+    }
+  } finally {
+    if (previous === undefined)
+      delete (process.env as Record<string, string | undefined>).NODE_ENV;
+    else
+      (process.env as Record<string, string | undefined>).NODE_ENV = previous;
+    if (override === undefined) delete process.env.BIOREG_INCLUDE_MOCK_DATA;
+    else process.env.BIOREG_INCLUDE_MOCK_DATA = override;
+  }
+});
