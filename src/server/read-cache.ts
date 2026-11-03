@@ -7,6 +7,9 @@ export function createReadCache(
   type Entry = { promise: Promise<unknown>; expires: number; pending: boolean };
   const entries = new Map<string, Entry>();
   return {
+    clear() {
+      entries.clear();
+    },
     async read<T>(key: string, load: () => Promise<T>): Promise<T> {
       const existing = entries.get(key);
       if (existing && (existing.pending || existing.expires > now())) {

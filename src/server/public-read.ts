@@ -4,6 +4,9 @@ const shared = globalThis as unknown as {
   bioregPublicReadsV1?: ReturnType<typeof createReadCache>;
 };
 const cache = (shared.bioregPublicReadsV1 ??= createReadCache());
+export function invalidatePublicReads() {
+  cache.clear();
+}
 // Only explicitly public, read-only callers use this. Auth, mutable workspace
 // state, reports/evidence exports and live health checks always bypass it.
 export function publicRead<T>(key: string, load: () => Promise<T>): Promise<T> {

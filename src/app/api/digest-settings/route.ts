@@ -1,4 +1,5 @@
 import { isAdmin } from "@/server/admin";
+import { invalidatePublicReads } from "@/server/public-read";
 import { db } from "@/server/db";
 import { digestSettings, settingsSchema } from "@/server/engagement/digest";
 import { json, failure, sameOrigin, readJson } from "@/server/http";
@@ -22,13 +23,13 @@ export async function PATCH(request: Request) {
     );
   try {
     const data = settingsSchema.parse(await readJson(request));
-    return json({
-      data: await db().digestSettings.upsert({
-        where: { id: "workspace" },
-        create: { id: "workspace", ...data },
-        update: data,
-      }),
+    const settings = await db().digestSettings.upsert({
+      where: { id: "workspace" },
+      create: { id: "workspace", ...data },
+      update: data,
     });
+    invalidatePublicReads();
+    return json({ data: settings });
   } catch (e) {
     return failure(e);
   }

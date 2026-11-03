@@ -20,12 +20,17 @@ export const settingsSchema = z
       }, "Invalid IANA timezone"),
   })
   .strict();
-export const digestSettings = (db: Db) =>
-  db.digestSettings.upsert({
+export async function digestSettings(db: Db) {
+  const existing = await db.digestSettings.findUnique({
+    where: { id: "workspace" },
+  });
+  if (existing) return existing;
+  return db.digestSettings.upsert({
     where: { id: "workspace" },
     create: { id: "workspace" },
     update: {},
   });
+}
 export async function digestSummary(
   db: Db,
   date: string,

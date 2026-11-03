@@ -15,29 +15,50 @@ test("login diagnostics separate missing config, invalid key and origin without 
   process.env.APP_ORIGIN = "https://example.org";
   const logs: unknown[][] = [];
   t.mock.method(console, "warn", (...args: unknown[]) => logs.push(args));
-  const request = (key: string, origin = "https://example.org") => new Request("https://example.org/api/admin", {
-    method: "POST", headers: { origin, "Content-Type": "application/json" }, body: JSON.stringify({ key }),
-  });
+  const request = (key: string, origin = "https://example.org") =>
+    new Request("https://example.org/api/admin", {
+      method: "POST",
+      headers: { origin, "Content-Type": "application/json" },
+      body: JSON.stringify({ key }),
+    });
   delete process.env.BIOREG_ADMIN_KEY;
-  assert.equal((await (await GET(new Request("https://example.org"))).json()).configuration, "missing");
+  assert.equal(
+    (await (await GET(new Request("https://example.org"))).json())
+      .configuration,
+    "missing",
+  );
   assert.equal((await POST(request("not-the-secret"))).status, 503);
   process.env.BIOREG_ADMIN_KEY = "short";
-  assert.equal((await (await GET(new Request("https://example.org"))).json()).configuration, "invalid");
+  assert.equal(
+    (await (await GET(new Request("https://example.org"))).json())
+      .configuration,
+    "invalid",
+  );
   const secret = "test-only-diagnostic-secret-".repeat(3);
   process.env.BIOREG_ADMIN_KEY = secret;
   const state = await GET(new Request("https://example.org"));
-  assert.deepEqual(await state.json(), { admin: false, configuration: "ready" });
+  assert.deepEqual(await state.json(), {
+    admin: false,
+    configuration: "ready",
+  });
   assert.match(state.headers.get("cache-control")!, /no-store/);
   const mismatch = await POST(request("not-the-secret"));
   assert.equal(mismatch.status, 401);
   assert.equal((await mismatch.json()).code, "ADMIN_KEY_MISMATCH");
-  assert.equal((await POST(request(secret, "https://other.invalid"))).status, 403);
+  assert.equal(
+    (await POST(request(secret, "https://other.invalid"))).status,
+    403,
+  );
   const login = await POST(request(secret));
   assert.equal(login.status, 200);
   const cookie = login.headers.get("set-cookie")!;
   assert.match(cookie, /HttpOnly; SameSite=Strict/);
   assert.match(cookie, /; Secure/);
-  const session = await GET(new Request("https://example.org", { headers: { cookie: cookie.split(";")[0] } }));
+  const session = await GET(
+    new Request("https://example.org", {
+      headers: { cookie: cookie.split(";")[0] },
+    }),
+  );
   assert.equal((await session.json()).admin, true);
   assert.equal(JSON.stringify(logs).includes(secret), false);
   assert.equal(JSON.stringify(logs).includes("not-the-secret"), false);
@@ -87,6 +108,10 @@ test("weekly summary includes Monday ingestion, reuses key and keeps daily keys 
   const saved = new Map<string, unknown>();
   const fake = {
     digestSettings: {
+      findUnique: async () => ({
+        digest_enabled: true,
+        timezone: "Asia/Shanghai",
+      }),
       upsert: async () => ({ digest_enabled: true, timezone: "Asia/Shanghai" }),
     },
     regulation: { findMany: async () => [] },

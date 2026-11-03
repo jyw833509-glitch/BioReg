@@ -1,4 +1,5 @@
 import { isAdmin } from "@/server/admin";
+import { publicRead, invalidatePublicReads } from "@/server/public-read";
 import { z } from "zod";
 import { db } from "@/server/db";
 import {
@@ -20,7 +21,7 @@ export async function GET(request: Request) {
       .parse(Object.fromEntries(new URL(request.url).searchParams));
     return json({
       data: q.today
-        ? await todaySummary(db())
+        ? await publicRead("today-summary", () => todaySummary(db()))
         : q.date
           ? await digestRepository(db()).get(q.date)
           : await digestRepository(db()).list(),
@@ -44,7 +45,9 @@ export async function POST(request: Request) {
       .object({ date: calendarDate })
       .strict()
       .parse(await readJson(request));
-    return json({ data: await generateDigest(db(), date) });
+    const data = await generateDigest(db(), date);
+    invalidatePublicReads();
+    return json({ data });
   } catch (e) {
     return failure(e);
   }

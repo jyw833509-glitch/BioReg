@@ -18,7 +18,11 @@ test("public cache coalesces concurrent reads, expires without serving stale val
   assert.equal(await cache.read("FDA", load), 3);
   assert.equal(calls, 3);
   time = 60;
-  await assert.rejects(cache.read("FDA", async () => { throw new Error("offline"); }));
+  await assert.rejects(
+    cache.read("FDA", async () => {
+      throw new Error("offline");
+    }),
+  );
   assert.equal(await cache.read("FDA", load), 4);
 });
 test("cache rejects failed loads, retries and evicts least recently used entries", async () => {
@@ -34,4 +38,6 @@ test("cache rejects failed loads, retries and evicts least recently used entries
   await cache.read("B", load);
   await cache.read("C", load);
   assert.equal(await cache.read("failure", load), 4);
+  cache.clear();
+  assert.equal(await cache.read("C", load), 5);
 });
