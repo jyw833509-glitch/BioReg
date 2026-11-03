@@ -5,7 +5,7 @@ import {
 import type { Query } from "../validation";
 import type { Db } from "../db";
 import { officialOnly } from "../visibility";
-import { regulationDto } from "../mappers";
+import { regulationJsonDto } from "../mappers";
 
 // One PostgreSQL statement gives count and page rows the same MVCC snapshot.
 // SQL identifiers/orderings come only from static allowlists; inputs are parameters.
@@ -75,28 +75,7 @@ export async function compactList(client: Db, q: Query, now = new Date()) {
     page AS (SELECT r.*, row_number() OVER (ORDER BY ${order}) AS list_rank FROM filtered r ORDER BY ${order} LIMIT ${q.pageSize} OFFSET ${(q.page - 1) * q.pageSize})
     SELECT (SELECT count(*)::int FROM filtered) AS total,
       COALESCE((SELECT jsonb_agg(to_jsonb(p) - ARRAY['content_text','source_metadata','attachment_urls','list_rank'] ORDER BY p.list_rank) FROM page p), '[]'::jsonb) AS items`);
-  const data = result.items.map((row) => {
-    for (const field of [
-      "publication_date",
-      "effective_date",
-      "updated_date",
-      "first_detected_at",
-      "last_checked_at",
-      "created_at",
-      "updated_at",
-    ]) {
-      if (typeof row[field] === "string") {
-        const value = row[field] as string;
-        row[field] = new Date(
-          value.includes("T") && !/(Z|[+-]\d\d:\d\d)$/.test(value)
-            ? value + "Z"
-            : value,
-        );
-      }
-    }
-    // Body fields are deliberately absent; detail/evidence APIs still use Prisma's full record.
-    return regulationDto(row as unknown as DbRegulation);
-  });
+  const data = result.items.map(regulationJsonDto);
   return {
     data,
     pagination: {

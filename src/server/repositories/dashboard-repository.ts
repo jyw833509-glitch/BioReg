@@ -2,10 +2,9 @@ import { Prisma } from "../../generated/prisma/client";
 import type { Db } from "../db";
 import type { DashboardView } from "../../lib/view-types";
 import { documentLabels } from "../../lib/labels";
-import { regulationDto } from "../mappers";
-import { officialOnly, visibleWhere } from "../visibility";
-import { dayRange, whereQuery } from "./regulation-repository";
-import { querySchema } from "../validation";
+import { regulationJsonDto } from "../mappers";
+import { officialOnly } from "../visibility";
+import { dayRange } from "./regulation-repository";
 import { publicRead } from "../public-read";
 
 type Counts = Pick<
@@ -65,66 +64,51 @@ export async function getDashboard(client: Db): Promise<DashboardView> {
 async function buildDashboard(client: Db): Promise<DashboardView> {
   const now = new Date(),
     day = dayRange(now);
-  const aggregate = await dashboardAggregates(client, now);
-  // Keep queries sequential on the existing single-connection runtime. The three
-  // small card lists do not consume pagination totals or need count transactions.
-  const recent = await client.regulation.findMany({
-    where: visibleWhere(),
-    take: 4,
-    orderBy: [
-      { publication_date: { sort: "desc", nulls: "last" } },
-      { id: "asc" },
-    ],
-    omit: { content_text: true, source_metadata: true, attachment_urls: true },
-  });
-  const priority = await client.regulation.findMany({
-    where: visibleWhere({
-      importance_level: { in: ["CRITICAL", "HIGH"] },
-      OR: [
-        { is_new: true, first_detected_at: day },
-        {
-          is_updated: true,
-          versions: {
-            some: { previous_version_id: { not: null }, detected_at: day },
-          },
-        },
-      ],
-    }),
-    take: 4,
-    orderBy: [
-      { importance_level: "asc" },
-      { publication_date: { sort: "desc", nulls: "last" } },
-      { id: "asc" },
-    ],
-    omit: { content_text: true, source_metadata: true, attachment_urls: true },
-  });
-  const changes = await client.regulation.findMany({
-    where: whereQuery(querySchema.parse({ updates: true }), now),
-    take: 3,
-    orderBy: [{ updated_at: "desc" }, { id: "asc" }],
-    omit: { content_text: true, source_metadata: true, attachment_urls: true },
-  });
-  const job = await client.syncJob.findFirst({
-    orderBy: [{ started_at: "desc" }, { id: "desc" }],
-    select: { id: true, started_at: true, status: true },
-  });
-  const health = await client.source.findMany({
-    select: {
-      code: true,
-      enabled: true,
-      last_status: true,
-      last_sync_at: true,
-    },
-  });
+  const cards = (
+    filter: Prisma.Sql,
+    order: Prisma.Sql,
+    take: number,
+  ) => Prisma.sql`
+    (SELECT COALESCE(jsonb_agg(to_jsonb(r) - ARRAY['content_text','source_metadata','attachment_urls'] ORDER BY ${order}), '[]'::jsonb)
+      FROM (SELECT r.* FROM regulations r WHERE (${!officialOnly()} OR NOT r.is_mock) AND ${filter} ORDER BY ${order} LIMIT ${take}) r)`;
+  const recentOrder = Prisma.sql`r.publication_date DESC NULLS LAST, r.id ASC`;
+  const priorityOrder = Prisma.sql`r.importance_level ASC, r.publication_date DESC NULLS LAST, r.id ASC`;
+  const changesOrder = Prisma.sql`r.updated_at DESC, r.id ASC`;
+  const todayFilter = Prisma.sql`((r.is_new AND r.first_detected_at >= ${day.gte} AND r.first_detected_at < ${day.lt}) OR (r.is_updated AND EXISTS (SELECT 1 FROM regulation_versions v WHERE v.regulation_id=r.id AND v.previous_version_id IS NOT NULL AND v.detected_at >= ${day.gte} AND v.detected_at < ${day.lt})))`;
+  type Snapshot = Awaited<ReturnType<typeof dashboardAggregates>> & {
+    recent: Record<string, unknown>[];
+    priority: Record<string, unknown>[];
+    changes: Record<string, unknown>[];
+    job: { id: string; started_at: string; status: string } | null;
+    health: {
+      code: string;
+      enabled: boolean;
+      last_status: string;
+      last_sync_at: string | null;
+    }[];
+  };
+  // One snapshot/round trip, not concurrent work on the single-connection pool.
+  const [aggregate] = await client.$queryRaw<Snapshot[]>(Prisma.sql`
+    WITH aggregate AS (${dashboardAggregateQuery(now)})
+    SELECT aggregate.*,
+      ${cards(Prisma.sql`TRUE`, recentOrder, 4)} AS recent,
+      ${cards(Prisma.sql`r.importance_level IN ('CRITICAL','HIGH') AND ${todayFilter}`, priorityOrder, 4)} AS priority,
+      ${cards(Prisma.sql`(r.is_new OR r.is_updated OR EXISTS (SELECT 1 FROM regulation_versions v WHERE v.regulation_id=r.id AND v.previous_version_id IS NOT NULL))`, changesOrder, 3)} AS changes,
+      (SELECT to_jsonb(j) FROM (SELECT id, started_at, status FROM sync_jobs ORDER BY started_at DESC, id DESC LIMIT 1) j) AS job,
+      (SELECT COALESCE(jsonb_agg(s), '[]'::jsonb) FROM (SELECT code, enabled, last_status, last_sync_at FROM sources) s) AS health
+    FROM aggregate`);
+  const { recent, priority, changes, job, health } = aggregate;
   const lastSync =
     health
-      .map((s) => s.last_sync_at?.toISOString())
+      .map((s) =>
+        s.last_sync_at ? new Date(s.last_sync_at).toISOString() : undefined,
+      )
       .filter((s): s is string => !!s)
       .sort()
       .at(-1) || null;
   return {
     ...aggregate.stats,
-    lastGlobalSync: job?.started_at.toISOString() || null,
+    lastGlobalSync: job ? new Date(job.started_at).toISOString() : null,
     latestSyncResult: job?.status || "NOT_RUN",
     globalJobId: job?.id || null,
     healthySources: health.filter(
@@ -147,9 +131,9 @@ async function buildDashboard(client: Db): Promise<DashboardView> {
         n,
       ]),
     ),
-    recent: recent.map(regulationDto),
-    priority: priority.map(regulationDto),
-    changes: changes.map(regulationDto),
+    recent: recent.map(regulationJsonDto),
+    priority: priority.map(regulationJsonDto),
+    changes: changes.map(regulationJsonDto),
   };
 }
 export async function getTopicCounts(

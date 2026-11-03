@@ -18,6 +18,22 @@ type ListRecord = Omit<
   Partial<
     Pick<DbRegulation, "content_text" | "source_metadata" | "attachment_urls">
   >;
+/** Decode PostgreSQL JSON aggregates through the same DTO mapping as Prisma rows. */
+export function regulationJsonDto(input: Record<string, unknown>): Regulation {
+  const row = { ...input };
+  for (const field of [
+    "publication_date",
+    "effective_date",
+    "updated_date",
+    "first_detected_at",
+    "last_checked_at",
+    "created_at",
+    "updated_at",
+  ]) {
+    if (typeof row[field] === "string") row[field] = new Date(row[field]);
+  }
+  return regulationDto(row as unknown as ListRecord);
+}
 export function versionDto(v: ListVersion): RegulationVersion {
   return {
     ...v,

@@ -1308,6 +1308,7 @@ test("dashboard display data matches V1.0.0 while evidence stays on detail route
         after.metrics.query_count < before.metrics.query_count * 0.6,
         JSON.stringify({ before: before.metrics, after: after.metrics }),
       );
+      assert.equal(after.metrics.query_count, 1);
       console.log(
         "Dashboard SQL count",
         JSON.stringify({
