@@ -511,7 +511,7 @@ test("FDA sync logs, dry-run isolation and per-record failure isolation", async 
       get: async (url: string) => ({
         url,
         html:
-          url === RECENT_URL
+          (url === RECENT_URL || url.endsWith("/cellular-gene-therapy-guidances"))
             ? brokenList
             : url.endsWith("broken")
               ? "<h1>Invalid</h1>"
