@@ -477,7 +477,10 @@ test("FDA sync logs, dry-run isolation and per-record failure isolation", async 
   const fake = {
     get: async (url: string) => ({
       url,
-      html: url === RECENT_URL ? list : detail,
+      html:
+        url === RECENT_URL || url.endsWith("/cellular-gene-therapy-guidances")
+          ? list
+          : detail,
     }),
   };
   const before = await client.syncLog.count();

@@ -58,7 +58,7 @@ export const synonymGroups = [
 export function searchTerms(input: string): string[] {
   const q = input.normalize("NFKC").trim().toLowerCase();
   if (!q) return [];
-  const terms = new Set([q]);
+  const terms = new Set([input.normalize("NFKC").trim(), q]);
   terms.add(q.replace(/^(?:usp|ep|ph\.?\s*eur\.?)\s+/i, ""));
   const code = q.match(/(?:ich\s*)?\b([qsem]\d+[a-z]?)(?:\s*\(?r\d+\)?)?/i);
   if (code) terms.add(code[1].toLowerCase());
