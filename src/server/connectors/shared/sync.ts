@@ -109,6 +109,9 @@ async function runSource(
     if (!listed.length) {
       result.status = "FAILED";
     }
+    // The same document may appear in both recent and historical directories.
+    // Deduplicate before fetching so a failed document is not retried per directory.
+    listed = [...new Map(listed.map((c) => [c.url, c])).values()];
     if (!options.dryRun) listed = await retainCatalog(db, source.id, listed);
     let candidates = listed.slice(0, options.limit);
     if (options.mode === "incremental" && options.limit > 1) {
