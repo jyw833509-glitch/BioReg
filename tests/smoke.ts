@@ -79,7 +79,7 @@ async function main() {
       assert.equal(response.status, 200, route);
       assert.match(
         await response.text(),
-        /No regulatory records available yet\./,
+        route === "/" ? /No regulatory records available yet\./ : /当前检索范围内未找到/,
         route,
       );
     }
