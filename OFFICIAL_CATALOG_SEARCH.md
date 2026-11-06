@@ -26,3 +26,6 @@ The previously withheld agency/update-page performance experiment was reverted b
 
 ## Migration and bounded initial catalog sync
 2026-11-06: existing workflow 42193589906 completed successfully; migration/source preparation succeeded. Scheduler result PARTIAL_SUCCESS (truthful source isolation): FDA +3, EMA +6, USP +8, NMPA +0; CDE/EDQM unavailable, ICH/PMDA partial. EDQM official endpoints returned HTTP 403. No whole-archive coverage claim. This release commit enables Netlify auto-deployment after the database gate; production HTTP acceptance remains pending.
+
+## Live deployment checks
+Release 2c732e686e230dff2b580970412aa58482079f87 confirmed by production /api/health HTTP 200 X-BioReg-Commit. Core pages /regulations,/today,/updates,/agencies,/watchlist,/notifications,/digest returned 200 without database-unavailable fallback. Live queries: stability=4, 稳定性=4, ICH Q5A=1, G-01=1; deliberately unmatched query=0. Returned official URLs include ICH/EMA/USP. Production totals after bounded sync: regulations 69, versions 77, changes 39, digests 51 (same digest content as backup); 17 new regulations/versions/changes match sync totals. Mock in all 69 API records: 0. No complete archive/full-text or visual browser validation claimed. Source access/parse limitations remain as recorded above.
