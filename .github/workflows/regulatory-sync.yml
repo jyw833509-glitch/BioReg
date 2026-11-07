@@ -20,7 +20,7 @@ on:
         type: boolean
         default: false
       limit:
-        description: Maximum documents per source (manual historical backfill, 1-200)
+        description: Maximum documents per source (manual historical backfill, 1-100)
         type: string
         default: '8'
 permissions:
@@ -53,8 +53,8 @@ jobs:
       - name: Run sequential scheduler
         shell: bash
         run: |
-          if ! [[ "$SYNC_LIMIT" =~ ^[0-9]+$ ]] || (( 10#$SYNC_LIMIT < 1 || 10#$SYNC_LIMIT > 200 )); then
-            echo 'Invalid sync limit (expected 1-200)'
+          if ! [[ "$SYNC_LIMIT" =~ ^[0-9]+$ ]] || (( 10#$SYNC_LIMIT < 1 || 10#$SYNC_LIMIT > 100 )); then
+            echo 'Invalid sync limit (expected 1-100)'
             exit 1
           fi
           args=("$SYNC_SOURCE" --mode "$SYNC_MODE" --limit "$SYNC_LIMIT")
@@ -81,3 +81,4 @@ jobs:
           path: .data/sync-summary.json
           retention-days: 30
           if-no-files-found: ignore
+
