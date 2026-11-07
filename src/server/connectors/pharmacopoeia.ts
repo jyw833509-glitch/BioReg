@@ -7,13 +7,16 @@ import type { Adapter, Candidate } from "./shared/types";
 
 export function pharmacopoeiaAdapter(code: "USP" | "EDQM"): Adapter {
   const hosts =
-    code === "USP" ? ["www.usp.org", "usp.org"] : ["www.edqm.eu", "edqm.eu"];
+    code === "USP"
+      ? ["www.usp.org", "usp.org"]
+      : ["www.edqm.eu", "edqm.eu", "faq.edqm.eu"];
   const pages =
     code === "USP"
       ? ["https://www.usp.org/harmonized-standards/pdg/general-chapters"]
       : [
           "https://www.edqm.eu/en/ph-eur-technical-guides",
           "https://www.edqm.eu/en/harmonisation-status-for-general-texts-pdg-",
+          "https://faq.edqm.eu/pages/viewpage.action?pageId=143130671",
         ];
   return {
     code,
@@ -26,6 +29,34 @@ export function pharmacopoeiaAdapter(code: "USP" | "EDQM"): Adapter {
       const $ = load(html),
         records = new Map<string, Candidate>();
       $("nav,header,footer,aside,script,style").remove();
+      if (code === "EDQM" && new URL(page).hostname === "faq.edqm.eu") {
+        const title = clean($("#title-text").text() || $("h1").first().text());
+        const excerpt = clean($("#main-content").text());
+        if (!title || !excerpt || !/2\.6\.14/.test(title)) return [];
+        return [
+          {
+            url: page,
+            title,
+            context: excerpt,
+            sourcePage: page,
+            document: {
+              title,
+              url: page,
+              sourcePage: page,
+              type: "Q&A",
+              status: "",
+              attachments: [],
+              content: excerpt,
+              metadata: {
+                capture_scope: "public_official_faq",
+                full_text_captured: false,
+                related_chapter: "2.6.14",
+                access: "public_metadata",
+              },
+            },
+          },
+        ];
+      }
       $(
         "main a[href], [role=main] a[href], .journal-content-article a[href]",
       ).each((_, el) => {
