@@ -82,7 +82,7 @@ export function DocumentFacts({
       )}
       {(r.regulator === "USP" || r.regulator === "EDQM") && (
         <p>
-          公开目录资料；未取得完整药典正文。协调／征求意见文件不等于现行药典正文，适用版本请在官网核验。
+          公开目录资料；药典正文需订阅或获得授权，本站未取得完整药典正文。协调／征求意见文件不等于现行药典正文，适用版本请在官网核验。
         </p>
       )}
       {typeof meta.catalog_excerpt === "string" && (

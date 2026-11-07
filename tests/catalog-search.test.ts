@@ -75,3 +75,16 @@ test("ICH publication step and regional implementation are separate official fac
     },
   ]);
 });
+
+test("EDQM official FAQ is a specific public document, not a portal result", () => {
+  const a = pharmacopoeiaAdapter("EDQM");
+  const page = "https://faq.edqm.eu/pages/viewpage.action?pageId=143130671";
+  const rows = a.parseList(
+    '<h1 id="title-text">What changes were made to general chapter 2.6.14. Bacterial endotoxins?</h1><div id="main-content">Public explanation of the revised chapter.</div>',
+    page,
+  );
+  assert.equal(rows.length, 1);
+  assert.equal(rows[0].url, page);
+  assert.equal(a.parseList("<h1>Access denied</h1>", page).length, 0);
+  assert.equal(a.read("", page, rows[0], page).data.publication_date, null);
+});
