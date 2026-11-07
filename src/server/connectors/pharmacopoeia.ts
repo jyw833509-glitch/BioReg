@@ -12,7 +12,10 @@ export function pharmacopoeiaAdapter(code: "USP" | "EDQM"): Adapter {
       : ["www.edqm.eu", "edqm.eu", "faq.edqm.eu"];
   const pages =
     code === "USP"
-      ? ["https://www.usp.org/harmonized-standards/pdg/general-chapters"]
+      ? [
+          "https://www.usp.org/harmonized-standards/pdg/general-chapters",
+          "https://www.usp.org/harmonized-standards/pdg/general-methods",
+        ]
       : [
           "https://www.edqm.eu/en/ph-eur-technical-guides",
           "https://www.edqm.eu/en/harmonisation-status-for-general-texts-pdg-",
