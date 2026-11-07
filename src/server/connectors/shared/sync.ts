@@ -134,11 +134,14 @@ async function runSource(
             !adapter.embeddedDocuments ||
             listed.some((c) => c.url === r.canonical_url),
         )
-        .map((r) => ({
-          url: r.canonical_url!,
-          title: r.title_original,
-          context: r.issuing_offices.join(" "),
-        }));
+        .map(
+          (r) =>
+            listed.find((c) => c.url === r.canonical_url) || {
+              url: r.canonical_url!,
+              title: r.title_original,
+              context: r.issuing_offices.join(" "),
+            },
+        );
       // Reserve a bounded portion for old records; recent-list reads stay bounded too.
       const selected = rotateCandidates(
         listed,

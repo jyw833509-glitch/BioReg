@@ -47,6 +47,7 @@ export const synonymGroups = [
   ["药典", "pharmacopoeia", "pharmacopeia", "pharmacopeial"],
   ["内毒素", "endotoxin", "endotoxins"],
   ["无菌", "sterility", "sterile"],
+  ["微生物", "microbial", "microbiological"],
   ["单克隆抗体", "单抗", "monoclonal antibody", "monoclonal antibodies"],
   ["细胞治疗", "cell therapy"],
   ["基因治疗", "gene therapy"],

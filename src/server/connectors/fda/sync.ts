@@ -6,7 +6,12 @@ import { syncSource, type SyncOptions } from "../shared/sync";
 export type { SyncOptions } from "../shared/sync";
 export const fdaAdapter = {
   code: "FDA" as const,
-  pages: [RECENT_URL, "https://www.fda.gov/vaccines-blood-biologics/biologics-guidances/cellular-gene-therapy-guidances"],
+  pages: [
+    "https://www.fda.gov/drugs/biosimilars/industry-information-and-guidance",
+    "https://www.fda.gov/vaccines-blood-biologics/biologics-guidances/general-biologics-guidances",
+    RECENT_URL,
+    "https://www.fda.gov/vaccines-blood-biologics/biologics-guidances/cellular-gene-therapy-guidances",
+  ],
   client: new FdaClient(),
   parseList,
   read: (

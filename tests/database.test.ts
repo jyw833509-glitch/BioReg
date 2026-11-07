@@ -478,7 +478,10 @@ test("FDA sync logs, dry-run isolation and per-record failure isolation", async 
     get: async (url: string) => ({
       url,
       html:
-        url === RECENT_URL || url.endsWith("/cellular-gene-therapy-guidances")
+        url === RECENT_URL ||
+        /\/(cellular-gene-therapy-guidances|general-biologics-guidances|industry-information-and-guidance)$/.test(
+          url,
+        )
           ? list
           : detail,
     }),
@@ -511,7 +514,10 @@ test("FDA sync logs, dry-run isolation and per-record failure isolation", async 
       get: async (url: string) => ({
         url,
         html:
-          (url === RECENT_URL || url.endsWith("/cellular-gene-therapy-guidances"))
+          url === RECENT_URL ||
+          /\/(cellular-gene-therapy-guidances|general-biologics-guidances|industry-information-and-guidance)$/.test(
+            url,
+          )
             ? brokenList
             : url.endsWith("broken")
               ? "<h1>Invalid</h1>"

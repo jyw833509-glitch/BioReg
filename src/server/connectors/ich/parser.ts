@@ -95,7 +95,7 @@ export function parseList(body: string, url: string): Candidate[] {
         if (!/^[QSEM]\d+[A-Z]?$/.test(stableCode)) continue;
         const d: Document = {
           title: item.title,
-          url: publicUrl,
+          url: attachments[0],
           canonicalUrl: attachments[0],
           sourcePage: url,
           documentNumber: stableCode,
