@@ -1,27 +1,61 @@
-# Historical official catalog expansion — acceptance
+# Historical official catalog expansion — final acceptance
 
-Existing directory queue, Regulation/RegulationVersion, weekly scheduler and search routes are reused. Full text is not an admission requirement for verified directory records. No subscription bypass; no generic search portal counted as a document.
+Accepted on 2026-11-08 for the bounded coverage described below. Existing directory queue, Regulation/RegulationVersion, search, official-link UI and weekly Monday 09:17 Asia/Shanghai scheduler are reused. No new infrastructure, workflow, schema migration or subscription bypass was introduced. Full text is not required for a verified official document record.
 
-Completed full-source runs: 42336154814 and repeat 42336479199. Initial new records: FDA 45, EMA 29, ICH 91, USP 11, EDQM 1, PMDA 63, NMPA 0, CDE 0 (total 240). Repeat: every source new=0 and updated=0. First run ICH updated six existing records for specific official document links; immutable prior versions retained.
+## Production data
 
-Remaining limitations: FDA general-biologics directory yielded no recognized document links; EMA clinical-pharmacology FAQ uses a different layout and was not ingested; EDQM two main directory endpoints HTTP403; CDE HTTP202. EDQM public 2.6.14 FAQ was successfully ingested through its supported official FAQ host. Source degradation remains truthful.
+Read-only audit at 2026-11-08T05:22:20Z: **381 regulations**, **395 immutable versions**, 357 change events, 51 daily digests, 283 sync jobs and 492 sync logs. All **69 baseline regulation IDs retained**. Mock=0. Duplicate (source_id, canonical_url) groups=0.
 
-USP general-methods directory subsequently verified: contains bacterial endotoxins <85>, microbial enumeration <61>, limits for non-sterile products <1111>, sterility <71>. Follow-up run 42375465339 on d39b387c15ce25298bc016650ee20e8f11703bf8 added 12 records. Repeat 42375800718: found 31, new 0, updated 0, failed 0. Both succeeded, including engagement post-processing and summary artifact upload.
+| Source | Added in this expansion | Current total | Actual coverage / limitation |
+|---|---:|---:|---|
+| FDA | 45 | 61 | Official biosimilar industry guidance, recent and cell/gene therapy directories. General-biologics directory returned no recognized document links; remains DEGRADED. |
+| EMA | 29 | 50 | Configured official scientific/biological/biosimilar guideline directories. One clinical-pharmacology FAQ layout is unsupported; remains DEGRADED. |
+| ICH | 151 | 160 | Four official guideline categories, selected related Q&A/concept/reflection papers; 26 numbered Q-series main guidelines verified. Not a complete historical revision/training archive. |
+| USP | 23 | 31 | Public PDG general-chapters and general-methods directories, including <85>, <61>, <1111>, <71>. No subscribed chapter body obtained. |
+| EDQM | 1 | 1 | Specific public FAQ about chapter 2.6.14; two main directory endpoints remain HTTP 403. No claim to have indexed all European Pharmacopoeia chapters or its microbiology/sterility content. |
+| PMDA | 63 | 72 | Configured public official review/guidance directories; not the whole agency archive. |
+| NMPA | 0 | 6 | Existing configured records retained; no new document from this pass. |
+| CDE | 0 | 0 | HTTP 202 verification/access limitation; no error page ingested. |
+| Total | **312** | **381** | Partial official coverage, not a complete global catalog. |
 
-Total added across this expansion: 252 (FDA 45, EMA 29, ICH 91, USP 23, EDQM 1, PMDA 63, NMPA 0, CDE 0). Read-only production audit at 2026-11-07T13:15:52Z: 321 regulations, 335 immutable versions, 297 change events, 51 digests. All 69 baseline regulation IDs retained; Mock=0; duplicate (source_id, canonical_url) groups=0. Current source totals: FDA 61, EMA 50, NMPA 6, CDE 0, ICH 100, PMDA 72, USP 31, EDQM 1.
+ICH Q-series main identifiers verified in the database: Q1A/B/C/D/E, Q2, Q3A/B/C/D, Q4B, Q5A/B/C/D/E, Q6A/B, Q7, Q8, Q9, Q10, Q11, Q12, Q13, Q14. Revisions and regional implementation statements remain separate metadata; ICH originals and EMA regional records remain separate. Supplemental documents do not inherit their parent's adoption date/status.
 
-CI 42374737823 on d39b387 passed dependency install, isolated database preparation, lint, typecheck, all tests, production build and production-mode HTTP smoke. No schema change is required for this expansion. Existing production migration remains unchanged. Deployment and final production HTTP checks are recorded below after publication.
+## Sync and deduplication evidence
 
-ICH Q5A and Q5A(R2) searches return separate ICH original and EMA regional implementation records. Q5A detail has directory summary (498 characters), not PDF full text. Each run is capped at 100 documents; subsequent incremental rotations continue the retained official directory queue.
+All run IDs refer to the existing GitHub Actions Regulatory Sync workflow; these are explicitly manual historical backfill/recheck runs, not natural scheduled-run claims.
 
-## Follow-up ICH coverage and parser correction (2026-11-08)
+- 42336154814: all-source initial batch, 240 new; ICH updated six existing records for official links, preserving prior versions.
+- 42336479199: repeat all-source batch, every source new=0 and updated=0; restricted endpoints remained honestly degraded.
+- 42375465339: USP general-methods addition, 12 new; repeat 42375800718 found 31, new=0, updated=0, failed=0.
+- ICH incremental rotation: 42377015444 new=0; 42377470407 new=55; 42377969747 new=0. No version updates in these runs.
+- Real official JSON contained trailing whitespace in Q3C(R9)'s code and Q12's Guideline group name. Structural trimming plus a regression test corrected the omissions without inventing facts. Runs 42439902567 and 42440256734 added 2 and 3 records respectively (including other affected directory items), updated=0.
+- Final ICH recheck **42440574881** on 69a8d23ab478d885df7425074d0c9e5e9cf64f70: found=100, new=0, updated=0, failed=0, skipped=100, SUCCESS. Watchlist matching, source health, delivery and digest post-processing succeeded. Summary artifacts uploaded by the existing workflow.
 
-Runs 42377015444 / 42377470407 / 42377969747 continued the existing ICH rotation: new 0 / 55 / 0, updated 0 throughout. The last run was a successful no-change recheck. The official directory contains trailing whitespace in Q3C(R9)'s code and Q12's Guideline group name. Trimming these structural fields fixes omitted records without inferring regulatory facts; a regression test covers both cases. CI 42439688600 on 46f5ceba25e3ef35b5bc4b747e14fcc4c018de67 passed all validation gates. Run 42439902567 added two records with no updates; the following rotation and final integrity checks are pending at this release checkpoint.
+Each batch is limited to 100; existing incremental cursor rotation covered the remaining discovered ICH candidates. The weekly schedule and default limit were not changed. The earlier 200-limit attempt failed validation before ingest; the manual limit is now validated as 1–100.
 
-## Production HTTP acceptance
+## Code and release checks
 
-Release d82d192ea2d927ce6a88bb6da9218c0f7ef4e77b was served by Netlify (`X-BioReg-Commit`), /api/health HTTP 200. Its CI 42376272107 passed all gates. Dashboard, Today, Regulations, Updates, Agencies, Watchlist, Notifications, Digest and a document detail returned 200 without the database error view. Two rounds of four concurrent requests also returned 200 (observed response headers 0.4–2.8 seconds; this is not browser paint timing or a latency guarantee).
+Changes are confined to shared candidate rechecks (reuse current official embedded metadata), FDA directory configuration/test fixtures, ICH links and structural whitespace normalization, pharmacopoeia public directory/FAQ parsing, microbial search synonyms, subscription wording, catalog tests and a bounded manual workflow limit.
 
-Searches: ICH Q5A and Q5A(R2) each returned 2 results (ICH and EMA separately); 内毒素/endotoxin each 2, 微生物/microbial each 4, 无菌 6; a synthetic absent query returned 0. Number searches <85>, <61>, <71> locate corresponding chapters but may also match references in other captured text. USP <61> (PDG Q-05b), <85> (PDG Q-06), <71> (PDG Q-11) official document pages and the EDQM 2.6.14 FAQ returned HTTP 200. USP records have full_text_captured=false, short public catalog excerpts only, unknown publication/effective dates and status; the detail displays the subscription notice. Q1A retains two immutable versions and its previous-version link.
+CI 42439688600 on 46f5ceba25e3ef35b5bc4b747e14fcc4c018de67 and release CI **42440337120** on **69a8d23ab478d885df7425074d0c9e5e9cf64f70** passed: lint, typecheck, all automated tests, production build and production-mode HTTP smoke. Earlier expansion CI 42374737823 and release CI 42376272107 also passed. No new production schema migration was needed; the previously applied catalog migration remains in place.
 
-Limits: no complete agency/pharmacopoeia archive claim; no full PDF extraction claim; no subscription content obtained. USP PDG sign-off information is not represented as a chapter effective date. EDQM coverage is currently one specific public FAQ, not the full European Pharmacopoeia chapters. Supplementary ICH materials and other sources may point to a public directory plus an attached official PDF. Final post-correction deployment and rotation evidence will be appended after verification.
+Netlify production https://bioreg-global.netlify.app served commit **69a8d23ab478d885df7425074d0c9e5e9cf64f70**, confirmed with X-BioReg-Commit; /api/health returned 200. This final report-only commit uses [skip netlify] to avoid a redundant deployment.
+
+## Online acceptance
+
+- ICH Q5A and Q5A(R2): each returns 2 results, ICH original and EMA separately. Q3C and Q12 exact-number records now exist and have direct official PDF links.
+- 内毒素 / endotoxin: each 2 results; 微生物 / microbial: each 4; 无菌: 6. Searches <85>, <61>, <71> find the corresponding USP records and may also match references within other captured text.
+- Synthetic absent query BioRegNoSuchDocument987654 returns 0; this means no result within indexed scope, not that no regulation exists.
+- USP Microbial Enumeration <61> (PDG Q-05b), Bacterial Endotoxins <85> (Q-06), Sterility Test <71> (Q-11): full_text_captured=false; only 116/83/90-character public catalog excerpts. Official document pages returned HTTP 200. Title/identifier/synonym search works without full chapter text. Publication/effective dates remain missing and status Unknown; PDG sign-off information is not treated as a chapter effective date. Detail renders the subscription notice.
+- EDQM specific chapter 2.6.14 FAQ official link returned HTTP 200, without verification-page content.
+- ICH Q5A contains a 498-character directory summary, not PDF full text. Its PDF link is verified from the official directory, but direct PDF fetching from this test client encountered a connection reset; no claim of full PDF extraction or universal link reachability.
+- Existing Q1A retains two versions with a valid previous-version link. New representative USP entries each retain one version after repeated syncs.
+- Dashboard, Today, Regulations, Updates, Agencies, Watchlist, Notifications, Digest and a USP detail returned 200 without the database error view. Two rounds of four concurrent core-page requests ultimately returned 200. Some client connections reset and required retry. Successful concurrent responses ranged approximately 0.4–8.4 seconds in the final run; this is HTTP evidence, not browser rendering QA or a 1.5-second performance guarantee.
+
+Official representative pages:
+- https://www.usp.org/harmonization-standards/pdg/general-methods/microbial-enumeration
+- https://www.usp.org/harmonization-standards/pdg/general-methods/bacterial-endotoxins
+- https://www.usp.org/harmonization-standards/pdg/general-methods/sterility-test
+- https://faq.edqm.eu/pages/viewpage.action?pageId=143130671
+
+No generic search portal was counted as a document. Some supplemental ICH/other-source records retain a directory page plus official PDF attachment. Missing metadata is not inferred; official facts, translations and system summaries remain distinct. No credential values, private backup contents or subscription bodies are included in this report.
