@@ -76,6 +76,32 @@ test("ICH publication step and regional implementation are separate official fac
   ]);
 });
 
+test("ICH directory whitespace does not exclude Q3C and Q12 guidelines", () => {
+  const rows = parseList(
+    JSON.stringify({
+      entityInfo: { bundle: "guideline" },
+      items: ["Q3C(R9) ", "Q12"].map((code, i) => ({
+        code,
+        title: i ? "Product Lifecycle Management" : "Residual Solvents",
+        fileGroups: [
+          {
+            title: "Guideline ",
+            files: [
+              { title: code, uri: `https://database.ich.org/test-${i}.pdf` },
+            ],
+          },
+        ],
+      })),
+    }),
+    "https://admin.ich.org/api?alias=/page/quality-guidelines",
+  );
+  assert.deepEqual(
+    rows.map((row) => row.document?.documentNumber),
+    ["Q3C", "Q12"],
+  );
+  assert.equal(rows[1].document?.url, "https://database.ich.org/test-1.pdf");
+});
+
 test("EDQM official FAQ is a specific public document, not a portal result", () => {
   const a = pharmacopoeiaAdapter("EDQM");
   const page = "https://faq.edqm.eu/pages/viewpage.action?pageId=143130671";

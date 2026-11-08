@@ -4,7 +4,7 @@ import type { Candidate, Document } from "../shared/types";
 import { config } from "./config";
 import { z } from "zod";
 const itemSchema = z.object({
-  code: z.string(),
+  code: z.string().trim(),
   title: z.string(),
   description: z.string().optional(),
   status: z.string().optional(),
@@ -21,7 +21,7 @@ const itemSchema = z.object({
   fileGroups: z
     .array(
       z.object({
-        title: z.string(),
+        title: z.string().trim(),
         files: z
           .array(z.object({ uri: z.string(), title: z.string() }))
           .default([]),
