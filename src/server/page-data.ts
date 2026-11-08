@@ -90,6 +90,9 @@ async function buildPageData(page: string, query: Query, id?: string) {
       latest_regulation: s.regulations[0] || null,
       sync_status: s.sync_logs[0]?.status || "NOT_CONNECTED",
       sync_error: s.sync_logs[0]?.error_message || null,
+      sync_error_kind: s.sync_logs[0]?.error_kind || null,
+      sync_records_found: s.sync_logs[0]?.records_found || 0,
+      sync_records_failed: s.sync_logs[0]?.records_failed || 0,
     })) as SourceView[],
     logs: logs.map((l) => ({
       ...l,

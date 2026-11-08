@@ -20,6 +20,7 @@ export function pharmacopoeiaAdapter(code: "USP" | "EDQM"): Adapter {
           "https://www.edqm.eu/en/ph-eur-technical-guides",
           "https://www.edqm.eu/en/harmonisation-status-for-general-texts-pdg-",
           "https://faq.edqm.eu/pages/viewpage.action?pageId=143130671",
+          "https://faq.edqm.eu/display/FAQS/MICROBIOLOGY",
         ];
   return {
     code,
@@ -28,14 +29,36 @@ export function pharmacopoeiaAdapter(code: "USP" | "EDQM"): Adapter {
     client: new OfficialClient((url, base) =>
       officialUrl(url, base || pages[0], hosts),
     ),
+    directoryLinks(html, page) {
+      if (
+        code !== "EDQM" ||
+        new URL(page).pathname !== "/display/FAQS/MICROBIOLOGY"
+      )
+        return [];
+      const $ = load(html);
+      return $(".childpages-macro a[href]")
+        .toArray()
+        .flatMap((el) => {
+          if (!/\?\s*$/.test(clean($(el).text()))) return [];
+          try {
+            return [officialUrl($(el).attr("href")!, page, hosts)];
+          } catch {
+            return [];
+          }
+        });
+    },
     parseList(html, page) {
       const $ = load(html),
         records = new Map<string, Candidate>();
       $("nav,header,footer,aside,script,style").remove();
       if (code === "EDQM" && new URL(page).hostname === "faq.edqm.eu") {
+        if ($(".childpages-macro").length) return [];
         const title = clean($("#title-text").text() || $("h1").first().text());
-        const excerpt = clean($("#main-content").text());
-        if (!title || !excerpt || !/2\.6\.14/.test(title)) return [];
+        const excerpt = clean(
+          $(".wiki-content").text() || $("#main-content").text(),
+        );
+        if (title.length < 20 || excerpt.length < 20 || !/\?\s*$/.test(title))
+          return [];
         return [
           {
             url: page,
@@ -53,7 +76,7 @@ export function pharmacopoeiaAdapter(code: "USP" | "EDQM"): Adapter {
               metadata: {
                 capture_scope: "public_official_faq",
                 full_text_captured: false,
-                related_chapter: "2.6.14",
+                related_chapters: title.match(/\b\d+\.\d+\.\d+\b/g) || [],
                 access: "public_metadata",
               },
             },
@@ -130,7 +153,7 @@ export function pharmacopoeiaAdapter(code: "USP" | "EDQM"): Adapter {
       const normalized = normalizeDocument(
         candidate.document,
         code,
-        () => "OTHER",
+        (type) => (type === "Q&A" ? "QA" : "OTHER"),
         () => "UNKNOWN",
       );
       normalized.data.country_or_region =

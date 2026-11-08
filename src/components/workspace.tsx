@@ -2,13 +2,13 @@
 import { ChangeEvents, type ChangeView } from "./change-events";
 import { SearchScope, type SearchCoverage } from "./search-scope";
 import { DocumentFacts } from "./document-facts";
+import { sourceCoverageStatus, syncStatusLabel } from "@/lib/sync-status";
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/navigation";
 import {
   Activity,
-  ArrowDownToLine,
   ArrowRight,
   Bell,
   Bookmark,
@@ -390,42 +390,6 @@ export function Workspace({
       </div>
     );
   }
-  async function download() {
-    try {
-      const response = await fetch("/api/regulations?today=true&pageSize=100");
-      if (!response.ok) throw new Error();
-      const payload = await response.json();
-      const url = URL.createObjectURL(
-        new Blob(
-          [
-            JSON.stringify(
-              {
-                label:
-                  "Official regulatory records; provenance available per record",
-                date: DEMO_DATE,
-                coverage:
-                  payload.pagination.total > 100
-                    ? "First 100 records only"
-                    : "Complete daily digest",
-                ...payload,
-              },
-              null,
-              2,
-            ),
-          ],
-          { type: "application/json" },
-        ),
-      );
-      const link = document.createElement("a");
-      link.href = url;
-      link.download = "bioreg-digest-" + DEMO_DATE + ".json";
-      link.click();
-      URL.revokeObjectURL(url);
-      setToast("数据库日报已导出。");
-    } catch {
-      setToast("日报导出失败，请重试。");
-    }
-  }
   return (
     <div className="app-shell">
       <aside className={`sidebar ${mobile ? "mobile-open" : ""}`}>
@@ -527,8 +491,7 @@ export function Workspace({
         <main>
           <div className="demo-banner">
             <span>
-              <Link href="/admin">管理员登录</Link> · <FlaskConical size={14} />{" "}
-              Official Regulatory Data{" "}
+              <FlaskConical size={14} /> Official Regulatory Data{" "}
               <span className="banner-separator">|</span> 数据库驱动 ·
               每周一同步官方来源 · 公开概览最多延迟约 1 分钟 ·
               覆盖范围见监管机构页
@@ -571,9 +534,6 @@ export function Workspace({
                 <CalendarDays size={15} />
                 {DEMO_DATE} <small>UTC</small>
               </span>
-              <button className="button" onClick={download}>
-                <ArrowDownToLine size={15} /> 导出日报
-              </button>
             </div>
           </div>
           {page === "dashboard" && dashboard && (
@@ -584,8 +544,20 @@ export function Workspace({
                   Last Global Sync: {dashboard.lastGlobalSync || "尚未运行"}
                 </p>
                 <p>
-                  Latest Sync Result:{" "}
-                  <strong>{dashboard.latestSyncResult}</strong>
+                  最近任务执行结果：{" "}
+                  <strong>
+                    {syncStatusLabel(dashboard.latestSyncResult)} ·{" "}
+                    {dashboard.latestSyncResult}
+                  </strong>
+                </p>
+                <p>
+                  各来源抓取整体状态：{" "}
+                  <strong>
+                    {syncStatusLabel(
+                      sourceCoverageStatus(dashboard.sourceHealthSummary),
+                    )}
+                  </strong>{" "}
+                  （最近一次单来源任务成功，不代表所有来源均完成）
                 </p>
                 <p>
                   Healthy Sources: <strong>{dashboard.healthySources}</strong> ·
@@ -594,12 +566,13 @@ export function Workspace({
                 <div className="sync-health-list">
                   {Object.entries(dashboard.sourceHealthSummary).map(
                     ([source, health]) => (
-                      <span
+                      <Link
+                        href={`/agencies#source-${source}`}
                         key={source}
                         className={`health-badge health-${health.toLowerCase()}`}
                       >
                         {source} · {health}
-                      </span>
+                      </Link>
                     ),
                   )}
                 </div>
@@ -1166,7 +1139,7 @@ export function Workspace({
           {page === "agencies" && (
             <div className="topic-grid">
               {agencies.map((a) => (
-                <section className="panel" key={a}>
+                <section className="panel" key={a} id={`source-${a}`}>
                   <AgencyBadge agency={a} />
                   <h2>
                     {
@@ -1199,7 +1172,7 @@ export function Workspace({
                       "尚未尝试同步"}
                   </p>
                   <p>
-                    Last Successful Sync:{" "}
+                    最近完整成功时间：{" "}
                     {sources.find((s) => s.code === a)?.last_success_at ||
                       "尚无成功记录"}
                   </p>
@@ -1227,14 +1200,41 @@ export function Workspace({
                     )}
                   </p>
                   <p className="source-status">
-                    <span className="dot" /> 同步状态（Mock 日志为示例）:{" "}
-                    {sources.find((s) => s.code === a)?.sync_status ||
-                      "NOT_CONNECTED"}
+                    <span className="dot" /> 最近抓取结果：{" "}
+                    {syncStatusLabel(
+                      sources.find((s) => s.code === a)?.sync_status ||
+                        "NOT_RUN",
+                    )}
+                  </p>
+                  <p>
+                    本批检查文件：
+                    {sources.find((s) => s.code === a)?.sync_records_found || 0}{" "}
+                    · 未完成入口/文件：
+                    {sources.find((s) => s.code === a)?.sync_records_failed ||
+                      0}
                   </p>
                   {sources.find((s) => s.code === a)?.sync_error && (
-                    <p className="notice">
-                      {sources.find((s) => s.code === a)?.sync_error}
-                    </p>
+                    <details className="notice" open>
+                      <summary>
+                        失败原因与受影响范围（
+                        {sources.find((s) => s.code === a)?.sync_error_kind ||
+                          "UNKNOWN"}
+                        ）
+                      </summary>
+                      <ul>
+                        {sources
+                          .find((s) => s.code === a)
+                          ?.sync_error?.split("\n")
+                          .map((error, i) => (
+                            <li key={i} style={{ overflowWrap: "anywhere" }}>
+                              {error}
+                            </li>
+                          ))}
+                      </ul>
+                      <p>
+                        以上入口未完成；其他成功入库文件及历史版本继续保留。当前目录不代表完整机构档案。
+                      </p>
+                    </details>
                   )}
                   <Link href={`/regulations?agency=${a}`} className="text-btn">
                     查看法规 <ArrowRight size={14} />
@@ -1253,6 +1253,14 @@ export function Workspace({
               <section className="panel">
                 <h2>工作区设置</h2>
                 <p>数据库与浏览器本地偏好</p>
+                <div className="setting-row">
+                  <span>
+                    管理员访问<small>登录后可执行受保护的管理操作</small>
+                  </span>
+                  <Link href="/admin" className="button">
+                    管理员登录
+                  </Link>
+                </div>
                 <div className="setting-row">
                   <span>
                     数据模式<small>官方记录与开发示例逐条标识</small>
@@ -1279,7 +1287,7 @@ export function Workspace({
               <section className="panel">
                 <h2>数据与通知连接</h2>
                 <p>
-                  六个来源共用统一调度。云端运行记录请查看 GitHub
+                  已配置来源共用统一调度。云端运行记录请查看 GitHub
                   Actions；站内通知已接入，其他渠道未启用。
                 </p>
                 {[

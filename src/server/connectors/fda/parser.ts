@@ -27,6 +27,32 @@ export interface Candidate {
   title: string;
   context: string;
 }
+export function directoryLinks(html: string, url: string): string[] {
+  if (
+    new URL(url).pathname !==
+    "/vaccines-blood-biologics/biologics-guidances/general-biologics-guidances"
+  )
+    return [];
+  const $ = load(html);
+  return [
+    ...new Set(
+      $("main a[href], [role=main] a[href]")
+        .toArray()
+        .flatMap((el) => {
+          try {
+            const target = canonicalUrl($(el).attr("href")!, url);
+            return /^\/vaccines-blood-biologics\/general-biologics-guidances\/[^/]+$/.test(
+              new URL(target).pathname,
+            )
+              ? [target]
+              : [];
+          } catch {
+            return [];
+          }
+        }),
+    ),
+  ];
+}
 export function parseList(html: string, url: string): Candidate[] {
   const $ = load(html);
   const result = new Map<string, Candidate>();

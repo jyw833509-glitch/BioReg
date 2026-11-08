@@ -1,6 +1,6 @@
 import type { Db } from "../../db";
 import { FdaClient, type HtmlClient } from "./client";
-import { RECENT_URL, parseList, parseDetail } from "./parser";
+import { RECENT_URL, parseList, parseDetail, directoryLinks } from "./parser";
 import { normalize } from "./normalizer";
 import { syncSource, type SyncOptions } from "../shared/sync";
 export type { SyncOptions } from "../shared/sync";
@@ -14,6 +14,7 @@ export const fdaAdapter = {
   ],
   client: new FdaClient(),
   parseList,
+  directoryLinks,
   read: (
     html: string,
     url: string,

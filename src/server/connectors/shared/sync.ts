@@ -85,23 +85,43 @@ async function runSource(
   let nextCursor = source.sync_cursor;
   try {
     const batches: Candidate[][] = [];
-    for (const pageUrl of adapter.pages.slice(
-      0,
-      options.maxPages || adapter.pages.length,
-    )) {
+    const queue = adapter.pages.map((url) => ({ url, depth: 0 }));
+    const visited = new Set<string>();
+    const pageLimit = options.maxPages || 32;
+    for (
+      let index = 0;
+      index < queue.length && visited.size < pageLimit;
+      index++
+    ) {
+      const { url: pageUrl, depth } = queue[index];
+      if (visited.has(pageUrl)) continue;
+      visited.add(pageUrl);
       try {
         const page = await client.get(pageUrl);
+        const children =
+          depth === 0
+            ? adapter.directoryLinks?.(page.html, page.url) || []
+            : [];
+        for (const url of children) {
+          if (!queue.some((entry) => entry.url === url))
+            queue.push({ url, depth: depth + 1 });
+        }
         const parsed = adapter.parseList(page.html, page.url);
-        if (!parsed.length)
+        if (!parsed.length && !children.length)
           throw new Error(
             "Official source list returned no recognized guidance links",
           );
-        batches.push(parsed.map((c) => ({ ...c, sourcePage: page.url })));
+        if (parsed.length)
+          batches.push(parsed.map((c) => ({ ...c, sourcePage: page.url })));
       } catch (error) {
         result.records_failed++;
         result.errors.push(`${pageUrl}: ${safeError(error)}`);
       }
     }
+    if (queue.some((entry) => !visited.has(entry.url)))
+      result.warnings.push(
+        `Directory traversal limited to ${pageLimit} pages; remaining directory pages were not checked.`,
+      );
     // Round-robin prevents the first ICH category consuming every record slot.
     let listed: Candidate[] = [];
     for (let i = 0; i < Math.max(0, ...batches.map((b) => b.length)); i++)

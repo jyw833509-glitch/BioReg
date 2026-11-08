@@ -4,6 +4,17 @@ import { officialUrl } from "../shared/url";
 import type { Candidate, Document } from "../shared/types";
 import { config } from "./config";
 export function parseList(html: string, url: string): Candidate[] {
+  if (new URL(url).hostname === "www.ydcdei.org.cn") {
+    const document = parseDetail(
+      html,
+      url,
+      { url, title: "", context: "" },
+      url,
+    );
+    return [
+      { url, title: document.title, context: "官方分中心转载", document },
+    ];
+  }
   const $ = load(html);
   const result = new Map<string, Candidate>();
   $("a[href]").each((_, e) => {
@@ -25,6 +36,48 @@ export function parseDetail(
   sourcePage: string,
 ): Document {
   const $ = load(html);
+  if (new URL(url).hostname === "www.ydcdei.org.cn") {
+    const heading = clean($(".detailBox > .title").text());
+    const content = clean($(".detailBox > .content").text());
+    const attribution = clean($(".detailBox > .pull-right").text());
+    const title = heading.match(/《([^》]+)》/)?.[1];
+    if (
+      !title ||
+      !/指导原则/.test(title) ||
+      content.length < 60 ||
+      !/来源：国家药监局药审中心/.test(attribution)
+    )
+      throw new Error(
+        "Unverified CDE document on official regional center page",
+      );
+    return {
+      title,
+      url: officialUrl(url, url, config.hosts),
+      sourcePage,
+      type: "技术指导原则",
+      status: "",
+      content,
+      attachments: $(".detailBox .content a[href]")
+        .toArray()
+        .flatMap((el) => {
+          try {
+            const target = officialUrl($(el).attr("href")!, url, config.hosts);
+            return /\.pdf(?:\?|$)/i.test(target) ? [target] : [];
+          } catch {
+            return [];
+          }
+        }),
+      metadata: {
+        capture_scope: "official_regional_center_announcement",
+        full_text_captured: false,
+        issuing_authority: "国家药监局药审中心",
+        republication_host: "国家药品监督管理局药品审评检查长三角分中心",
+        announcement_title: heading,
+        republication_date_raw: clean($(".detailBox > .date").text()),
+        publication_status: "not_verified",
+      },
+    };
+  }
   const fields: Record<string, string> = {};
   $("tr").each((_, e) => {
     const cells = $(e).find("td,th");

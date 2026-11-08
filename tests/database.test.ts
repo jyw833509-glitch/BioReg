@@ -612,6 +612,58 @@ test("All five additional adapters share dry-run, upsert, source-local identity 
   }
 });
 
+test("Directory traversal keeps a failed child visible while indexing a verified sibling", async () => {
+  const visited: string[] = [];
+  const candidate = {
+    url: "https://www.ema.europa.eu/en/scientific-guidelines/test-directory-document",
+    title: "Biological quality directory document",
+    context: "Biologicals",
+    document: {
+      title: "Biological quality directory document",
+      url: "https://www.ema.europa.eu/en/scientific-guidelines/test-directory-document",
+      sourcePage: "https://www.ema.europa.eu/good",
+      type: "Guideline",
+      status: "",
+      attachments: [],
+    },
+  };
+  const adapter: Adapter = {
+    ...adapters.EMA,
+    pages: ["https://www.ema.europa.eu/hub"],
+    directoryLinks: () => [
+      "https://www.ema.europa.eu/good",
+      "https://www.ema.europa.eu/blocked",
+    ],
+    parseList: (_html, url) => (url.endsWith("/good") ? [candidate] : []),
+    read: () =>
+      normalizeDocument(
+        candidate.document,
+        "EMA",
+        () => "GUIDELINE",
+        () => "UNKNOWN",
+      ),
+    client: {
+      get: async (url) => {
+        visited.push(url);
+        if (url.endsWith("/blocked"))
+          throw new Error("official source HTTP 403");
+        return { html: "public directory", url };
+      },
+    },
+  };
+  const result = await syncSource(client, adapter, {
+    mode: "initial",
+    limit: 10,
+    dryRun: true,
+  });
+  assert.equal(result.status, "PARTIAL_SUCCESS");
+  assert.equal(result.records_found, 1);
+  assert.equal(result.records_new, 1);
+  assert.equal(result.records_failed, 1);
+  assert.match(result.errors.join(" "), /blocked.*403/);
+  assert.equal(visited.length, 3);
+});
+
 test("One blocked source cannot prevent another source from persisting", async () => {
   const fixture = readFileSync("tests/fixtures/ema/list.html", "utf8"),
     detail = readFileSync("tests/fixtures/ema/detail.html", "utf8");

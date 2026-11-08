@@ -73,6 +73,8 @@ export interface Adapter {
   pages: string[];
   client: HtmlClient;
   parseList(body: string, url: string): Candidate[];
+  // One bounded level of official directory navigation; never document results.
+  directoryLinks?(body: string, url: string): string[];
   read(
     body: string,
     url: string,

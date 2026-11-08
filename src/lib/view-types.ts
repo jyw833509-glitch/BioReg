@@ -21,6 +21,9 @@ export interface SourceView {
   latest_regulation?: { id: string; title_original: string } | null;
   sync_status?: string;
   sync_error?: string | null;
+  sync_error_kind?: string | null;
+  sync_records_found?: number;
+  sync_records_failed?: number;
 }
 export interface LogView {
   id: string;

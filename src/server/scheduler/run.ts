@@ -147,6 +147,11 @@ export async function runScheduler(
           health: healthFor(result.status, result.errors),
           error_kind: classifyFailure(result.errors),
           error: result.errors.join("\n").slice(0, 8000),
+          coverage: result.warnings
+            .filter((warning) =>
+              /^(Coverage:|Directory traversal)/.test(warning),
+            )
+            .join("\n"),
           finished_at: new Date().toISOString(),
           duration_ms: Date.now() - start.getTime(),
         });

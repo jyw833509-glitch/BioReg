@@ -13,7 +13,8 @@ export function parseList(html: string, url: string): Candidate[] {
     if (
       !/scientific-guideline$/.test(pathname) &&
       !/^\/en\/scientific-guidelines\/[^/]+\/?$/.test(pathname)
-    ) return;
+    )
+      return;
     const target = officialUrl(href, url, config.hosts);
     result.set(target, {
       url: target,
@@ -36,7 +37,33 @@ export function parseDetail(
   if (!section.length) section = $(".paragraph--type--ema-documents").first();
   const file = section.find(".bcl-file").first();
   const title = clean(file.find(".file-title").text());
-  if (!title) throw new Error("Unrecognized EMA guideline document structure");
+  if (!title) {
+    const heading = clean($("h1.content-banner-title").text());
+    const article = $("article.ema-scientific-guideline");
+    const content = clean(article.find(".ecl-editor").text());
+    // EMA also publishes scientific Q&A directly as HTML, without a file card.
+    if (
+      !article.length ||
+      !/questions.*answers/i.test(heading) ||
+      content.length < 80
+    )
+      throw new Error("Unrecognized EMA guideline document structure");
+    return {
+      title: heading.replace(/\s*-\s*Scientific guideline\s*$/i, ""),
+      url: officialUrl(url, url, config.hosts),
+      sourcePage,
+      type: "Questions and answers",
+      status: "",
+      attachments: [],
+      content,
+      topics: ["Clinical pharmacology"],
+      metadata: {
+        capture_scope: "official_html_qa",
+        full_text_captured: false,
+        publication_status: "not_verified",
+      },
+    };
+  }
   const value = (label: string) => {
     let out = "";
     file.find("small").each((_, e) => {

@@ -79,11 +79,19 @@ async function main() {
       assert.equal(response.status, 200, route);
       assert.match(
         await response.text(),
-        route === "/" ? /No regulatory records available yet\./ : /当前检索范围内未找到/,
+        route === "/"
+          ? /No regulatory records available yet\./
+          : /当前检索范围内未找到/,
         route,
       );
     }
     assert.equal((await fetch(origin + "/regulations/missing")).status, 404);
+    const homeHtml = await (await fetch(origin + "/")).text();
+    assert.doesNotMatch(homeHtml, /导出日报|href="\/admin"/);
+    const settingsHtml = await (await fetch(origin + "/settings")).text();
+    assert.match(settingsHtml, /href="\/admin"/);
+    assert.match(settingsHtml, /管理员登录/);
+    assert.equal((await fetch(origin + "/admin")).status, 200);
     assert.equal((await fetch(origin + "/api/regulations?page=0")).status, 400);
     assert.equal(
       (

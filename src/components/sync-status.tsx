@@ -1,4 +1,5 @@
 import type { LogView } from "@/lib/view-types";
+import { syncStatusLabel } from "@/lib/sync-status";
 export function SyncStatus({ logs, kind }: { logs: LogView[]; kind: string }) {
   return (
     <section className="panel">
@@ -9,7 +10,7 @@ export function SyncStatus({ logs, kind }: { logs: LogView[]; kind: string }) {
         </span>
       </div>
       <p>
-        Development / Mock Data：种子日志仅演示数据结构，不代表已访问监管网站。
+        下列状态为各来源抓取结果。任务执行完成不代表所有入口均可访问；部分成功会保留已入库文件及失败原因。
       </p>
       {logs.length ? (
         <div className="sync-table-wrap">
@@ -23,6 +24,7 @@ export function SyncStatus({ logs, kind }: { logs: LogView[]; kind: string }) {
                 <th>新增</th>
                 <th>更新</th>
                 <th>失败</th>
+                <th>失败原因与范围</th>
               </tr>
             </thead>
             <tbody>
@@ -31,20 +33,37 @@ export function SyncStatus({ logs, kind }: { logs: LogView[]; kind: string }) {
                   <td>{log.source}</td>
                   <td>{log.started_at.slice(0, 19).replace("T", " ")}</td>
                   <td>
-                    {log.status}
+                    {syncStatusLabel(log.status)} · {log.status}
                     {log.is_mock && <small>Development / Mock Data</small>}
                   </td>
                   <td>{log.records_found}</td>
                   <td>{log.records_new}</td>
                   <td>{log.records_updated}</td>
                   <td>{log.records_failed}</td>
+                  <td>
+                    {log.error_message ? (
+                      <details>
+                        <summary>查看受影响入口</summary>
+                        <p
+                          style={{
+                            whiteSpace: "pre-wrap",
+                            overflowWrap: "anywhere",
+                          }}
+                        >
+                          {log.error_message}
+                        </p>
+                      </details>
+                    ) : (
+                      "无"
+                    )}
+                  </td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
       ) : (
-        <p>尚无同步日志。真实来源将在后续阶段接入。</p>
+        <p>尚无同步日志。</p>
       )}
     </section>
   );
