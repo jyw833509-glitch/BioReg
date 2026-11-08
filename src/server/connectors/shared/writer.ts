@@ -3,6 +3,29 @@ import { assertOfficialContent, normalizedUrl } from "../../changes/normalize";
 import type { Prisma } from "../../../generated/prisma/client";
 import type { Db } from "../../db";
 import type { OfficialRecord } from "./types";
+export function verifiedMetadataOnly(data: OfficialRecord) {
+  if (!data.official_url || data.source_metadata?.metadata_verified !== true)
+    return false;
+  try {
+    const url = new URL(data.official_url);
+    if (url.protocol !== "https:" || url.username || url.password || url.port)
+      return false;
+    return (
+      (data.regulator === "FDA" &&
+        data.source_metadata.capture_scope === "official_guidance_metadata" &&
+        ["www.fda.gov", "fda.gov"].includes(url.hostname) &&
+        /^\/regulatory-information\/search-fda-guidance-documents\/[^/]+$/.test(
+          url.pathname,
+        )) ||
+      (data.regulator === "EMA" &&
+        data.source_metadata.capture_scope === "official_guideline_metadata" &&
+        ["www.ema.europa.eu", "ema.europa.eu"].includes(url.hostname) &&
+        /^\/en\/scientific-guidelines\/[^/]+\/?$/.test(url.pathname))
+    );
+  } catch {
+    return false;
+  }
+}
 export function identity(
   sourceId: string,
   data: OfficialRecord,
@@ -32,6 +55,9 @@ export async function writeRecord(
     data.title_original,
     data.content_text ||
       data.official_summary ||
+      // A parser-verified specific official document page is sufficient evidence.
+      // Keep the stored body empty; do not fabricate a summary or claim PDF capture.
+      (verifiedMetadataOnly(data) ? data.title_original : "") ||
       (data.attachment_urls?.length &&
       ((data.regulator === "CDE" &&
         data.source_metadata?.professional_category) ||

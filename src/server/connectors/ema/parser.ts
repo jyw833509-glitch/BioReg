@@ -102,6 +102,9 @@ export function parseDetail(
     summary,
     topics: ["Biologicals"],
     metadata: {
+      capture_scope: "official_guideline_metadata",
+      metadata_verified: true,
+      full_text_captured: false,
       adoption_status: statuses || null,
       consultation_status: value("Consultation dates") || null,
       responsible_committee: null,

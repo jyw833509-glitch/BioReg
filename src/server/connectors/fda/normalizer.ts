@@ -61,6 +61,11 @@ export function normalize(raw: RawDocument) {
       ...official,
       regulator: "FDA" as const,
       country_or_region: "United States",
+      source_metadata: {
+        capture_scope: "official_guidance_metadata",
+        metadata_verified: true,
+        full_text_captured: false,
+      },
       source_page_url: raw.sourcePage,
       categories: tags.categories,
       subcategories: [],

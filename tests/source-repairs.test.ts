@@ -8,6 +8,8 @@ import { parseDetail as emaDetail } from "../src/server/connectors/ema/parser";
 import { parseList as cdeList } from "../src/server/connectors/cde/parser";
 import { pharmacopoeiaAdapter } from "../src/server/connectors/pharmacopoeia";
 import { sourceCoverageStatus } from "../src/lib/sync-status";
+import { verifiedMetadataOnly } from "../src/server/connectors/shared/writer";
+import type { OfficialRecord } from "../src/server/connectors/shared/types";
 
 test("FDA hub navigation is official and separate from document results", () => {
   const url =
@@ -68,4 +70,29 @@ test("a successful single-source task cannot hide other degraded sources", () =>
     "SUCCESS",
   );
   assert.equal(sourceCoverageStatus({ CDE: "UNAVAILABLE" }), "FAILED");
+});
+
+test("metadata-only admission requires parser verification and a specific official document URL", () => {
+  const data = {
+    regulator: "FDA",
+    official_url:
+      "https://www.fda.gov/regulatory-information/search-fda-guidance-documents/biological-quality",
+    source_metadata: {
+      metadata_verified: true,
+      capture_scope: "official_guidance_metadata",
+    },
+  } as unknown as OfficialRecord;
+  assert.equal(verifiedMetadataOnly(data), true);
+  assert.equal(
+    verifiedMetadataOnly({ ...data, official_url: "https://www.fda.gov/" }),
+    false,
+  );
+  assert.equal(
+    verifiedMetadataOnly({
+      ...data,
+      official_url: data.official_url!.replace("www.fda.gov", "evil.test"),
+    }),
+    false,
+  );
+  assert.equal(verifiedMetadataOnly({ ...data, source_metadata: {} }), false);
 });
