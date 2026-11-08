@@ -13,6 +13,7 @@ import {
 } from "../src/lib/sync-status";
 import { verifiedMetadataOnly } from "../src/server/connectors/shared/writer";
 import type { OfficialRecord } from "../src/server/connectors/shared/types";
+import { adapters } from "../src/server/connectors/registry";
 
 test("unfinished log is running rather than its provisional failed status", () => {
   assert.equal(
@@ -70,6 +71,13 @@ test("CDE official republication requires attribution; repost date is not origin
   assert.equal(row.document?.title, "生物类似药说明书撰写技术指导原则");
   assert.equal(row.document?.date, undefined);
   assert.equal(row.document?.metadata?.full_text_captured, false);
+  const normalized = adapters.CDE.read("", url, row, url);
+  assert.equal(
+    normalized.data.title_original,
+    "生物类似药说明书撰写技术指导原则",
+  );
+  assert.equal(normalized.relevant, true);
+  assert.equal(normalized.data.publication_date, null);
   assert.throws(() =>
     cdeList(html.replace("来源：国家药监局药审中心", "来源：未知"), url),
   );

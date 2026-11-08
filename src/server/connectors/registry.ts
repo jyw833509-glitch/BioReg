@@ -36,6 +36,8 @@ for (const [config, parser, normalize, client] of [
     client: client(),
     parseList: parser.parseList,
     read: (html, url, candidate, source) =>
-      normalize(parser.parseDetail(html, url, candidate, source)),
+      normalize(
+        candidate.document || parser.parseDetail(html, url, candidate, source),
+      ),
   };
 }
