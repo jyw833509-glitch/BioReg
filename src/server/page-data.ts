@@ -1,4 +1,5 @@
 import { measure } from "./performance";
+import { syncLogDisplayStatus } from "../lib/sync-status";
 import { publicRead } from "./public-read";
 import { changeRepository } from "./repositories/change-repository";
 import { sequential } from "./sequential";
@@ -88,7 +89,9 @@ async function buildPageData(page: string, query: Query, id?: string) {
       health: s.enabled ? s.last_status : "DISABLED",
       official_count: s._count.regulations,
       latest_regulation: s.regulations[0] || null,
-      sync_status: s.sync_logs[0]?.status || "NOT_CONNECTED",
+      sync_status: s.sync_logs[0]
+        ? syncLogDisplayStatus(s.sync_logs[0])
+        : "NOT_CONNECTED",
       sync_error: s.sync_logs[0]?.error_message || null,
       sync_error_kind: s.sync_logs[0]?.error_kind || null,
       sync_records_found: s.sync_logs[0]?.records_found || 0,
@@ -96,6 +99,7 @@ async function buildPageData(page: string, query: Query, id?: string) {
     })) as SourceView[],
     logs: logs.map((l) => ({
       ...l,
+      status: syncLogDisplayStatus(l),
       source: l.source.code,
       started_at: l.started_at.toISOString(),
       finished_at: l.finished_at?.toISOString() || null,

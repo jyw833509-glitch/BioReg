@@ -7,9 +7,23 @@ import {
 import { parseDetail as emaDetail } from "../src/server/connectors/ema/parser";
 import { parseList as cdeList } from "../src/server/connectors/cde/parser";
 import { pharmacopoeiaAdapter } from "../src/server/connectors/pharmacopoeia";
-import { sourceCoverageStatus } from "../src/lib/sync-status";
+import {
+  sourceCoverageStatus,
+  syncLogDisplayStatus,
+} from "../src/lib/sync-status";
 import { verifiedMetadataOnly } from "../src/server/connectors/shared/writer";
 import type { OfficialRecord } from "../src/server/connectors/shared/types";
+
+test("unfinished log is running rather than its provisional failed status", () => {
+  assert.equal(
+    syncLogDisplayStatus({ status: "FAILED", finished_at: null }),
+    "RUNNING",
+  );
+  assert.equal(
+    syncLogDisplayStatus({ status: "FAILED", finished_at: new Date() }),
+    "FAILED",
+  );
+});
 
 test("FDA hub navigation is official and separate from document results", () => {
   const url =

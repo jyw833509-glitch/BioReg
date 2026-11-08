@@ -1,4 +1,11 @@
 // Current source coverage is independent of the most recent (possibly one-source) job.
+export function syncLogDisplayStatus(log: {
+  status: string;
+  finished_at: Date | string | null;
+}) {
+  return log.finished_at === null ? "RUNNING" : log.status;
+}
+
 export function sourceCoverageStatus(health: Record<string, string>) {
   const active = Object.values(health).filter((value) => value !== "DISABLED");
   if (!active.length) return "NOT_RUN";
