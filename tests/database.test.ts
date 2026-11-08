@@ -622,6 +622,8 @@ test("Directory traversal keeps a failed child visible while indexing a verified
       title: "Biological quality directory document",
       url: "https://www.ema.europa.eu/en/scientific-guidelines/test-directory-document",
       sourcePage: "https://www.ema.europa.eu/good",
+      content:
+        "Public official directory entry for this biological quality document.",
       type: "Guideline",
       status: "",
       attachments: [],
