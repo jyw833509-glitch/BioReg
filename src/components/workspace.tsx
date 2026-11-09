@@ -432,13 +432,6 @@ export function Workspace({
               官方来源优先<small>可追溯 · 可比较 · 可关注</small>
             </span>
           </div>
-          <div className="profile">
-            <span className="avatar">BR</span>
-            <div>
-              Research Workspace<small>官方来源 · 可追溯</small>
-            </div>
-            <Settings size={16} />
-          </div>
         </div>
       </aside>
       {mobile && (
@@ -489,15 +482,6 @@ export function Workspace({
           <span className="avatar small">BR</span>
         </header>
         <main>
-          <div className="demo-banner">
-            <span>
-              <FlaskConical size={14} /> Official Regulatory Data{" "}
-              <span className="banner-separator">|</span> 数据库驱动 ·
-              每周一同步官方来源 · 公开概览最多延迟约 1 分钟 ·
-              覆盖范围见监管机构页
-            </span>
-            <span className="phase-label">V1.0.0 · BIOREG RADAR</span>
-          </div>
           <div className="page-heading">
             <div>
               <div className="eyebrow">BIOLOGICS REGULATORY INTELLIGENCE</div>

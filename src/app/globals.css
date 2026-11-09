@@ -214,24 +214,6 @@ nav a:hover {
   font-size: 11px;
   margin-top: 6px;
 }
-.profile {
-  display: flex;
-  align-items: center;
-  gap: 9px;
-  border-top: 1px solid var(--border);
-  padding: 20px 0;
-  font-size: 12px;
-}
-.profile small {
-  display: block;
-  font-size: 11px;
-  color: #9aa5b4;
-  margin-top: 5px;
-}
-.profile > svg {
-  margin-left: auto;
-  color: #97a2b1;
-}
 .avatar {
   display: grid;
   place-items: center;
@@ -350,32 +332,6 @@ main {
   padding: 23px 34px 0;
   max-width: 1660px;
   margin: auto;
-}
-.demo-banner {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: #edf3ff;
-  border: 1px solid #dfe9fb;
-  color: #7086a8;
-  padding: 9px 13px;
-  border-radius: 5px;
-  font-size: 12px;
-  margin-bottom: 26px;
-}
-.demo-banner > span:first-child {
-  display: flex;
-  align-items: center;
-  gap: 7px;
-}
-.banner-separator {
-  margin: 0 6px;
-  color: #bdcce2;
-}
-.phase-label {
-  font-size: 11px;
-  letter-spacing: 1.2px;
-  color: #8299ba;
 }
 .page-heading {
   display: flex;
@@ -1424,9 +1380,6 @@ input[type="date"] {
   .page-heading h1 {
     font-size: 26px;
   }
-  .phase-label {
-    display: none;
-  }
   .card-meta {
     font-size: 12px;
   }
@@ -1541,17 +1494,6 @@ input[type="date"] {
   .list-search input {
     width: 150px;
   }
-  .demo-banner {
-    font-size: 11px;
-  }
-  .demo-banner > span:first-child {
-    display: block;
-    line-height: 1.8;
-  }
-  .demo-banner svg {
-    display: inline;
-    vertical-align: middle;
-  }
   .inline-form {
     flex-wrap: wrap;
   }
@@ -1603,9 +1545,6 @@ input[type="date"] {
   }
   main {
     padding: 16px 16px 0;
-  }
-  .demo-banner {
-    margin-bottom: 20px;
   }
   .page-heading {
     gap: 8px;
