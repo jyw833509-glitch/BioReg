@@ -22,20 +22,35 @@ export function DocumentFacts({
     : [];
   return (
     <div className="document-facts">
-      <p>中文标题：{r.title_zh || "未提供（未自动翻译）"}</p>
+      {!detailed && (
+        <>
+          <p>中文标题：{r.title_zh || "未提供（未自动翻译）"}</p>
+          <p>
+            编号：{r.document_number || "未提供"} ·{" "}
+            {r.regulator === "USP" || r.regulator === "EDQM"
+              ? "目录版本/协调状态（非生效状态）"
+              : "官方版本"}
+            ：{officialVersion} · 系统记录版本：v{r.version}
+          </p>
+          <p>
+            发布日期：{r.publication_date || r.publication_date_raw || "未提供"}{" "}
+            · 生效日期：{r.effective_date || "未提供"}
+          </p>
+        </>
+      )}
+      {detailed && officialVersion !== "未提供" && (
+        <p>
+          {r.regulator === "USP" || r.regulator === "EDQM"
+            ? "目录版本/协调状态（非生效状态）"
+            : "官方版本"}
+          ：{officialVersion}
+        </p>
+      )}
       <p>
-        编号：{r.document_number || "未提供"} ·{" "}
-        {r.regulator === "USP" || r.regulator === "EDQM"
-          ? "目录版本/协调状态（非生效状态）"
-          : "官方版本"}
-        ：{officialVersion} · BioReg 快照：v{r.version}
-      </p>
-      <p>
-        发布日期：{r.publication_date || r.publication_date_raw || "未提供"} ·
-        生效日期：{r.effective_date || "未提供"}
-      </p>
-      <p>
-        发布状态：{r.status} · 生效信息：
+        {!detailed && (
+          <>发布状态：{r.status === "Unknown" ? "状态待核实" : r.status} · </>
+        )}
+        生效信息：
         {future
           ? "尚未生效（所载生效日未到）"
           : r.status === "Effective"

@@ -88,7 +88,7 @@ export function StatusBadge({ status }: { status: string }) {
     <span
       className={`badge ${["Final", "Effective"].includes(status) ? "green" : "neutral"}`}
     >
-      {status}
+      {status === "Unknown" ? "状态待核实" : status}
     </span>
   );
 }
@@ -913,14 +913,14 @@ export function Workspace({
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      Official Source ↗
+                      查看官方原文 ↗
                     </a>
                   ) : (
                     <button className="button" disabled>
                       Official Source · 未提供
                     </button>
                   )}
-                  {record.pdf_url ? (
+                  {record.pdf_url && (
                     <a
                       className="button"
                       href={record.pdf_url}
@@ -929,10 +929,6 @@ export function Workspace({
                     >
                       Official PDF ↗
                     </a>
-                  ) : (
-                    <button className="button" disabled>
-                      PDF · 未提供
-                    </button>
                   )}
                 </div>
                 <h2>Official Information</h2>
@@ -946,33 +942,70 @@ export function Workspace({
                     ["Regulator", record.regulator],
                     ["Document Number", record.document_number],
                     ["Document Type", record.document_type],
-                    ["Status", record.status],
+                    [
+                      "Status",
+                      record.status === "Unknown"
+                        ? "状态待核实"
+                        : record.status,
+                    ],
                     [
                       "Publication Date",
                       record.publication_date ||
                         (record.publication_date_raw
                           ? `${record.publication_date_raw}（官方未提供完整日期）`
-                          : "未提供"),
+                          : null),
                     ],
-                    ["Effective Date", record.effective_date || "未提供"],
-                    [
-                      "Issuing Office",
-                      record.issuing_offices?.join("; ") || "未提供",
-                    ],
-                    ["Docket Number", record.docket_number || "未提供"],
-                    ["BioReg Internal Version", `v${record.version}`],
-                    ["Official URL", record.official_url || "未提供"],
-                    ["PDF", record.pdf_url || "未提供"],
-                    ["First Detected", record.first_detected_at],
-                    ["Last Checked", record.last_checked_at],
-                  ].map(([k, v]) => (
-                    <div key={k}>
-                      <dt>{k}</dt>
-                      <dd>{v || "未提供"}</dd>
-                    </div>
-                  ))}
+                    ["Effective Date", record.effective_date],
+                    ["Issuing Office", record.issuing_offices?.join("; ")],
+                    ["Docket Number", record.docket_number],
+                  ]
+                    .filter(([, v]) => Boolean(v))
+                    .map(([k, v]) => (
+                      <div key={k}>
+                        <dt>{k}</dt>
+                        <dd>{v || "未提供"}</dd>
+                      </div>
+                    ))}
                 </dl>
-                <h2>Official Attachments</h2>
+                {!record.publication_date &&
+                !record.publication_date_raw &&
+                !record.effective_date ? (
+                  <p className="muted">发布日期及生效日期尚未核实</p>
+                ) : (
+                  <>
+                    {!record.publication_date &&
+                      !record.publication_date_raw && (
+                        <p className="muted">发布日期尚未核实</p>
+                      )}
+                    {!record.effective_date && (
+                      <p className="muted">生效日期尚未核实</p>
+                    )}
+                  </>
+                )}
+                <details>
+                  <summary>收录与版本信息</summary>
+                  <p className="muted">
+                    系统记录版本用于追踪 BioReg
+                    收录变化，不代表官方文件版本。收录及检查时间不代表官方发布日期。
+                  </p>
+                  <dl className="info-grid">
+                    {[
+                      ["系统记录版本", `v${record.version}`],
+                      ["首次收录时间", record.first_detected_at],
+                      ["最近检查时间", record.last_checked_at],
+                    ]
+                      .filter(([, v]) => Boolean(v))
+                      .map(([k, v]) => (
+                        <div key={k}>
+                          <dt>{k}</dt>
+                          <dd>{v}</dd>
+                        </div>
+                      ))}
+                  </dl>
+                </details>
+                {!!record.attachment_urls?.length && (
+                  <h2>Official Attachments</h2>
+                )}
                 <div className="tags">
                   {record.attachment_urls?.map((url) => (
                     <a
@@ -1038,9 +1071,7 @@ export function Workspace({
                 </p>
                 <p>{record.summary_zh}</p>
                 <ChangeEvents events={changeEvents} />
-                <h2 id="version-history">
-                  Version History · BioReg Internal Version
-                </h2>
+                <h2 id="version-history">版本历史 · 系统记录版本</h2>
                 <Link
                   className="button"
                   href={
@@ -1058,7 +1089,7 @@ export function Workspace({
                   <div className="version" key={v.id}>
                     <span className="version-dot" />
                     <div>
-                      <strong>BioReg Internal v{v.version_name}</strong>{" "}
+                      <strong>系统记录版本 v{v.version_name}</strong>{" "}
                       <StatusBadge status={v.status} />
                       <p>
                         {v.publication_date || "日期未完整提供"} ·{" "}
@@ -1192,7 +1223,8 @@ export function Workspace({
                   </p>
                   <p>
                     本批检查文件：
-                    {sources.find((s) => s.code === a)?.sync_records_found || 0}{" "}
+                    {sources.find((s) => s.code === a)?.sync_records_found ||
+                      0}{" "}
                     · 未完成入口/文件：
                     {sources.find((s) => s.code === a)?.sync_records_failed ||
                       0}

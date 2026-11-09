@@ -235,7 +235,7 @@ async function main() {
       await (
         await fetch(origin + "/regulations/" + event.regulation_id)
       ).text(),
-      /BioReg Internal/,
+      /系统记录版本/,
     );
     const { engagementAfterSync } =
       await import("../src/server/engagement/service");
