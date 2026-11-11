@@ -7,6 +7,28 @@ import {
   disclaimer,
   privacyWarning,
 } from "@/lib/external-ai";
+const labels: Record<string, string> = {
+  regulation: "法规文件",
+  change: "法规变更",
+  comparison: "版本对比",
+  digest: "每周汇总",
+  compact: "精简：基本信息与摘要",
+  standard: "标准：增加已采集正文片段",
+  detailed: "详细：更多可用正文与版本资料",
+  Chinese: "中文",
+  English: "英文",
+  Bilingual: "中英双语",
+  explain: "法规解读",
+  impact: "法规影响分析",
+  cmc: "CMC／质量分析",
+  clinical: "临床分析",
+  nonclinical: "非临床分析",
+  compare: "版本比较",
+  department: "部门影响分析",
+  actions: "建议行动清单",
+  chinese: "中文解读",
+  bilingual: "双语摘要",
+};
 type Option = { id: string; label: string };
 export function AITools({
   records,
@@ -33,6 +55,35 @@ export function AITools({
     truncated: boolean;
   } | null>(null);
   const generation = useRef(0);
+  const [search, setSearch] = useState("");
+  const [selected, setSelected] = useState<Regulation | null>(null);
+  const [detailError, setDetailError] = useState("");
+  useEffect(() => {
+    if (!id || !["regulation", "comparison"].includes(kind)) return;
+    const controller = new AbortController();
+    fetch("/api/regulations/" + encodeURIComponent(id), {
+      signal: controller.signal,
+    })
+      .then(async (r) => {
+        if (!r.ok) throw new Error();
+        return r.json();
+      })
+      .then((d) => {
+        setSelected(d.data);
+        setDetailError("");
+      })
+      .catch(() => {
+        if (!controller.signal.aborted) {
+          setSelected(null);
+          setDetailError("文件资料加载失败，请重新选择后重试。");
+        }
+      });
+    return () => controller.abort();
+  }, [id, kind]);
+  const currentRecord =
+    selected?.id === id && ["regulation", "comparison"].includes(kind)
+      ? selected
+      : null;
   useEffect(() => {
     const readHash = () => {
       const p = new URLSearchParams(window.location.hash.slice(1));
@@ -58,7 +109,8 @@ export function AITools({
             ? "/api/digests"
             : kind === "change"
               ? "/api/changes"
-              : "/api/regulations?pageSize=100";
+              : "/api/regulations?pageSize=100&sort=Relevance&q=" +
+                encodeURIComponent(search);
         const res = await fetch(url);
         if (!res.ok) throw new Error("上下文列表暂不可用");
         const data = await res.json();
@@ -66,12 +118,17 @@ export function AITools({
           (x: {
             id: string;
             title_original?: string;
+            regulator?: string;
+            document_number?: string;
             digest_date?: string;
             change_summary?: string;
           }) => ({
             id: x.id,
-            label:
-              x.title_original || x.digest_date || x.change_summary || x.id,
+            label: x.title_original
+              ? [x.regulator, x.document_number, x.title_original]
+                  .filter(Boolean)
+                  .join(" · ")
+              : x.digest_date || x.change_summary || x.id,
           }),
         );
         if (active) setOptions(list);
@@ -79,11 +136,12 @@ export function AITools({
         if (active) setError(String(e));
       }
     }
-    void load();
+    const timer = setTimeout(() => void load(), 300);
     return () => {
+      clearTimeout(timer);
       active = false;
     };
-  }, [kind]);
+  }, [kind, search]);
   useEffect(() => {
     let active = true;
     if (kind !== "comparison" || !id) return;
@@ -95,7 +153,7 @@ export function AITools({
           setVersions(
             d.data.map((v: { id: string; version_name: string }) => ({
               id: v.id,
-              label: "Internal v" + v.version_name,
+              label: "系统记录版本 v" + v.version_name,
             })),
           );
       })
@@ -147,31 +205,22 @@ export function AITools({
   }
   return (
     <section className="panel">
-      <h2>External AI Tools · 法规分析提示词</h2>
-      <p>选择上下文 → 预览完整 Prompt → 复制 → 打开官方平台自行粘贴</p>
+      <h2>法规分析提示词助手</h2>
+      <p>
+        ① 选择文件或资料 → ② 选择分析任务 → ③ 生成并检查提示词 → ④ 复制到外部 AI
+      </p>
       <div className="notice">
-        {disclaimer}
-        <p>{privacyWarning}</p>
+        AI
+        解读不代表监管机构意见，请核对官方原文。内容需手动复制，本站不会自动发送。
+        <details>
+          <summary>使用与隐私说明</summary>
+          <p>{disclaimer}</p>
+          <p>{privacyWarning}</p>
+        </details>
       </div>
       <div className="settings-grid">
         <label>
-          AI Provider
-          <select
-            value={provider}
-            onChange={(e) => {
-              reset();
-              setProvider(e.target.value);
-            }}
-          >
-            {providers.map((p) => (
-              <option key={p.id} value={p.id} disabled={!p.enabled}>
-                {p.name}
-              </option>
-            ))}
-          </select>
-        </label>
-        <label>
-          Context
+          分析对象
           <select
             value={kind}
             onChange={(e) => {
@@ -192,12 +241,22 @@ export function AITools({
             }}
           >
             {["regulation", "change", "comparison", "digest"].map((k) => (
-              <option key={k}>{k}</option>
+              <option key={k} value={k}>
+                {labels[k]}
+              </option>
             ))}
           </select>
         </label>
         <label>
-          BioReg record
+          选择文件或记录
+          {["regulation", "comparison"].includes(kind) && (
+            <input
+              aria-label="搜索文件标题或编号"
+              placeholder="搜索标题、编号或关键词"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+            />
+          )}
           <select
             value={id}
             onChange={(e) => {
@@ -209,7 +268,11 @@ export function AITools({
           >
             <option value="">请选择</option>
             {!options.some((o) => o.id === id) && id && (
-              <option value={id}>{id}</option>
+              <option value={id}>
+                {currentRecord?.title_original ||
+                  records.find((r) => r.id === id)?.title_original ||
+                  "已选记录（正在加载）"}
+              </option>
             )}
             {options.map((o) => (
               <option key={o.id} value={o.id}>
@@ -219,7 +282,7 @@ export function AITools({
           </select>
         </label>
         <label>
-          Prompt Template
+          分析任务
           <select
             value={template}
             onChange={(e) => {
@@ -229,13 +292,13 @@ export function AITools({
           >
             {available.map((t) => (
               <option key={t.id} value={t.id}>
-                {t.name}
+                {labels[t.id] || t.name}
               </option>
             ))}
           </select>
         </label>
         <label>
-          Context Level
+          提供给 AI 的资料范围
           <select
             value={level}
             onChange={(e) => {
@@ -244,12 +307,14 @@ export function AITools({
             }}
           >
             {["compact", "standard", "detailed"].map((k) => (
-              <option key={k}>{k}</option>
+              <option key={k} value={k}>
+                {labels[k]}
+              </option>
             ))}
           </select>
         </label>
         <label>
-          Language
+          输出语言
           <select
             value={language}
             onChange={(e) => {
@@ -258,16 +323,81 @@ export function AITools({
             }}
           >
             {["Chinese", "English", "Bilingual"].map((k) => (
-              <option key={k}>{k}</option>
+              <option key={k} value={k}>
+                {labels[k]}
+              </option>
             ))}
           </select>
         </label>
       </div>
+      {id && (
+        <section
+          className="notice"
+          aria-label="已选资料与可用范围"
+          style={{ overflowWrap: "anywhere" }}
+        >
+          <h3>已选资料</h3>
+          {currentRecord ? (
+            <>
+              <p>
+                <strong>{currentRecord.title_original}</strong>
+              </p>
+              {currentRecord.title_zh &&
+                currentRecord.title_zh !== currentRecord.title_original && (
+                  <p>{currentRecord.title_zh}</p>
+                )}
+              <p>
+                来源：{currentRecord.regulator} · 编号：
+                {currentRecord.document_number || "尚未获取"}
+              </p>
+              <p>
+                官方摘要：
+                {currentRecord.official_summary?.trim() ? "已获取" : "未获取"} ·
+                已采集文本：
+                {currentRecord.content_text?.trim()
+                  ? currentRecord.content_text.length +
+                    " 字符（不代表完整正文）"
+                  : "未获取"}
+              </p>
+              <p>
+                {level === "compact"
+                  ? "本次仅提供基本信息和可用摘要，不包含正文。"
+                  : kind === "comparison"
+                    ? "对比使用所选历史快照；当前文件文本不等于历史版本文本，请核对生成后的资料预览。"
+                    : currentRecord.content_text?.trim()
+                      ? "本次可使用已采集文本；过长内容会截断，具体范围以生成后的资料预览为准。"
+                      : "当前缺少正文，只能依据已获取的基本信息及摘要提供分析线索，不能据此解读完整法规要求。"}
+              </p>
+              {currentRecord.official_url && (
+                <a
+                  href={currentRecord.official_url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  查看官方原文 ↗
+                </a>
+              )}
+            </>
+          ) : ["regulation", "comparison"].includes(kind) ? (
+            <p>{detailError || "正在核对文件资料…"}</p>
+          ) : (
+            <>
+              <p>{options.find((o) => o.id === id)?.label || "记录 " + id}</p>
+              <p>
+                {kind === "digest"
+                  ? "使用已保存的系统汇总，不等于法规全文。"
+                  : "使用已保存的变更记录和相关版本信息。"}
+                实际字段与缺失项请核对生成后的资料预览。
+              </p>
+            </>
+          )}
+        </section>
+      )}
       {kind === "comparison" && (
         <div className="settings-grid">
           {[
-            ["Version A", from, setFrom],
-            ["Version B", to, setTo],
+            ["系统记录版本 A", from, setFrom],
+            ["系统记录版本 B", to, setTo],
           ].map(([label, value, set]) => (
             <label key={label as string}>
               {label as string}
@@ -290,8 +420,27 @@ export function AITools({
         </div>
       )}
       <p>
-        compact：元数据与摘要；standard：有限正文片段；detailed：可用正文及版本差异。缺失内容不会补造。
+        资料范围只决定使用多少已取得的内容，不会自动下载全文或补造缺失信息。
       </p>
+      <div className="settings-grid">
+        {" "}
+        <label>
+          使用的外部 AI 平台
+          <select
+            value={provider}
+            onChange={(e) => {
+              reset();
+              setProvider(e.target.value);
+            }}
+          >
+            {providers.map((p) => (
+              <option key={p.id} value={p.id} disabled={!p.enabled}>
+                {p.name}
+              </option>
+            ))}
+          </select>
+        </label>
+      </div>
       <button
         className="button primary"
         disabled={
@@ -301,12 +450,12 @@ export function AITools({
         }
         onClick={generate}
       >
-        {busy ? "正在生成…" : "Generate Prompt"}
+        {busy ? "正在生成…" : "生成分析提示词"}
       </button>
       <p role="status">{error}</p>
       {result && (
         <>
-          <h3>Context Preview · Official Evidence / BioReg Metadata</h3>
+          <h3>实际提供的资料 · 官方信息与系统记录</h3>
           <pre
             style={{ whiteSpace: "pre-wrap", maxHeight: 350, overflow: "auto" }}
           >
@@ -314,12 +463,12 @@ export function AITools({
           </pre>
           {result.truncated && (
             <p className="notice">
-              内容已截断，请查阅原文；完整 Prompt 中保留截断标记。
+              内容已截断，请查阅原文；完整提示词中保留截断标记。
             </p>
           )}
-          <h3>Generated Prompt · Prompt Instructions / Evidence Boundary</h3>
+          <h3>完整分析提示词</h3>
           <textarea
-            aria-label="Generated Prompt"
+            aria-label="完整分析提示词"
             readOnly
             value={result.prompt}
             style={{ width: "100%", minHeight: 420 }}
@@ -329,13 +478,13 @@ export function AITools({
             onClick={async () => {
               try {
                 await navigator.clipboard.writeText(result.prompt);
-                setError("Prompt 已复制");
+                setError("提示词已复制");
               } catch {
-                setError("请手动选择上方完整 Prompt 复制");
+                setError("请手动选择上方完整提示词复制");
               }
             }}
           >
-            Copy Prompt
+            复制提示词
           </button>{" "}
           {selectedProvider && (
             <a
@@ -344,7 +493,7 @@ export function AITools({
               target="_blank"
               rel="noopener noreferrer"
             >
-              Open in {selectedProvider.name}
+              打开 {selectedProvider.name}
             </a>
           )}
         </>
