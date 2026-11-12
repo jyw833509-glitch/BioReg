@@ -55,7 +55,6 @@ import type {
 } from "@/lib/view-types";
 import { DatabaseList } from "./database-list";
 import { FavoriteRegulations } from "./favorite-regulations";
-import { NotificationBell } from "./notification-bell";
 import { EngagementPanel } from "./engagement-panel";
 import { WatchlistEditor } from "./watchlist-editor";
 import { NavigationLink } from "./navigation-link";
@@ -474,11 +473,6 @@ export function Workspace({
             />
             <kbd>↵</kbd>
           </form>
-          <span className="top-divider" />
-          <NotificationBell />
-          <Link className="icon-btn" href="/settings" aria-label="设置">
-            <Settings size={19} />
-          </Link>
           <span className="avatar small">BR</span>
         </header>
         <main>
