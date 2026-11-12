@@ -211,7 +211,7 @@ export function AITools({
       </p>
       <div className="notice">
         AI
-        解读不代表监管机构意见，请核对官方原文。内容需手动复制，本站不会自动发送。
+        解读不代表监管机构意见，请核对官方原文。点击按钮复制并跳转后，请手动粘贴；本站不会自动发送。
         <details>
           <summary>使用与隐私说明</summary>
           <p>{disclaimer}</p>
@@ -475,27 +475,23 @@ export function AITools({
           />
           <button
             className="button primary"
+            disabled={!selectedProvider}
             onClick={async () => {
+              if (!selectedProvider) return;
               try {
                 await navigator.clipboard.writeText(result.prompt);
-                setError("提示词已复制");
               } catch {
-                setError("请手动选择上方完整提示词复制");
+                setError("复制失败，请允许剪贴板权限后重试；尚未跳转。");
+                return;
               }
+              window.location.assign(selectedProvider.homepage_url);
             }}
           >
-            复制提示词
-          </button>{" "}
-          {selectedProvider && (
-            <a
-              className="button"
-              href={selectedProvider.homepage_url}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              打开 {selectedProvider.name}
-            </a>
-          )}
+            复制并打开 {selectedProvider?.name || "外部 AI"}
+          </button>
+          <p className="muted">
+            复制成功后在当前标签页打开所选平台，请在对话框中粘贴。不会自动发送提示词。
+          </p>
         </>
       )}
     </section>
