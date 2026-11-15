@@ -23,7 +23,7 @@ for agency in sorted({row['regulator'] for row in pending}):
 for row in pending:
     selected.setdefault(row['id'], row)
 rows = list(selected.values())[:int(os.environ.get('TITLE_REVIEW_LIMIT', '16'))]
-terms = {'biosimilar':'生物类似药','biosimilarity':'生物相似性','reference product':'参照制剂','comparative efficacy':'比较疗效','cell line':'细胞系','early consideration':'初步考虑','endotoxin':'内毒素','sterility':'无菌','immunogenicity':'免疫原性','pharmacokinetics':'药代动力学','viral safety':'病毒安全性','potency':'效价','contract manufacturing':'委托生产','washout period':'洗脱期','initial clinical trial notification':'首次临床试验申报','sponsor':'申办方','therapeutic protein':'治疗性蛋白','RS strategy consultation':'RS策略咨询'}
+terms = {'biosimilar':'生物类似药','biosimilarity':'生物相似性','reference product':'参照制剂','comparative efficacy':'比较疗效','cell line':'细胞系','early consideration':'初步考虑','endotoxin':'内毒素','sterility':'无菌','immunogenicity':'免疫原性','pharmacokinetics':'药代动力学','viral safety':'病毒安全性','potency':'效价','contract manufacturing':'委托生产','washout period':'洗脱期','initial clinical trial notification':'首次临床试验申报','sponsor':'申办方','therapeutic protein':'治疗性蛋白','RS strategy consultation':'RS策略咨询','homeopathic':'顺势疗法','performance status':'体能状态','shedding':'脱落','unrelated allogeneic':'非亲缘同种异体','minimally manipulated':'最低限度操作','hematopoietic':'造血','immunologic reconstitution':'免疫重建','placental/umbilical cord blood':'胎盘/脐带血','active immunotherapy':'主动免疫治疗','GCP':'GCP（药物临床试验质量管理规范）'}
 out = []
 for row in rows:
     title = row['title_original']
@@ -38,7 +38,7 @@ for row in rows:
     # Qwen's documented ChatML non-thinking prefix, with no tool capabilities.
     text = ''.join('<|im_start|>'+m['role']+'\n'+m['content']+'<|im_end|>\n' for m in messages)
     text += '<|im_start|>assistant\n<think>\n\n</think>\n\n'
-    response = model(text, max_tokens=256, temperature=0, seed=0, stop=['<|im_end|>'])
+    response = model(text, max_tokens=512, temperature=0, seed=0, stop=['<|im_end|>'])
     translated = response['choices'][0]['text'].strip()
     issues = []
     for en, zh in [('biosimilar','生物类似药'),('endotoxin','内毒素'),('immunogenicity','免疫原性'),('early consideration','初步考虑')]:
