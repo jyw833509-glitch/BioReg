@@ -3,6 +3,7 @@ import { assertOfficialContent, normalizedUrl } from "../../changes/normalize";
 import type { Prisma } from "../../../generated/prisma/client";
 import type { Db } from "../../db";
 import type { OfficialRecord } from "./types";
+import { retainTitleProvenance } from "../../enrichment/title-quality";
 export function verifiedMetadataOnly(data: OfficialRecord) {
   if (!data.official_url || data.source_metadata?.metadata_verified !== true)
     return false;
@@ -81,6 +82,15 @@ export async function writeRecord(
     // Translation is derived data; preserve it when an unchanged official title is re-synced.
     if (existing?.title_original === data.title_original && !data.title_zh)
       data = { ...data, title_zh: existing.title_zh };
+    if (existing)
+      data = {
+        ...data,
+        source_metadata: retainTitleProvenance(
+          data.title_original,
+          existing.source_metadata as Record<string, unknown>,
+          data.source_metadata || {},
+        ) as Prisma.InputJsonObject,
+      };
     const change = detectChange(existing || null, data);
     const outcome = !existing
       ? "new"
