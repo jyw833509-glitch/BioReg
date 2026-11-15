@@ -4,7 +4,33 @@ async function main() {
   const db = directDb();
   try {
     mkdirSync(".data", { recursive: true });
-    if (process.argv[2] === "export") {
+    if (process.argv[2] === "withdraw-unreviewed") {
+      await db.$transaction(async (tx) => {
+        const where = {
+          updated_at: {
+            gte: new Date("2026-11-15T05:21:11Z"),
+            lt: new Date("2026-11-15T05:40:00Z"),
+          },
+          title_zh: { not: "" },
+          is_mock: false,
+        };
+        const rows = await tx.regulation.findMany({
+          where,
+          select: { id: true, title_original: true },
+        });
+        if (!rows.length) return;
+        if (
+          rows.length !== 453 ||
+          rows.some((r) => /[\u3400-\u9fff]/.test(r.title_original))
+        )
+          throw new Error("WITHDRAWAL_SCOPE_MISMATCH");
+        await tx.regulation.updateMany({
+          where: { id: { in: rows.map((r) => r.id) } },
+          data: { title_zh: "" },
+        });
+        console.log(JSON.stringify({ withdrawnUnreviewedTitles: rows.length }));
+      });
+    } else if (process.argv[2] === "export") {
       const rows = await db.regulation.findMany({
         where: { is_mock: false, title_zh: "" },
         select: { id: true, title_original: true },
