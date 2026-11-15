@@ -2,11 +2,11 @@ import json, re, os
 import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
-MODEL = 'Qwen/Qwen3-1.7B'
-REVISION = 'd725c74310cdd265b5bc7208124d0b0be61261bc'
+MODEL = 'Qwen/Qwen3-4B-Instruct-2507'
+REVISION = 'cdbee75f17c01a7cc42f958dc650907174af0554'
 torch.set_num_threads(2)
 tokenizer = AutoTokenizer.from_pretrained(MODEL, revision=REVISION)
-model = AutoModelForCausalLM.from_pretrained(MODEL, revision=REVISION, torch_dtype=torch.float32).eval()
+model = AutoModelForCausalLM.from_pretrained(MODEL, revision=REVISION, torch_dtype=torch.bfloat16).eval()
 rows = json.load(open('.data/title-input.json', encoding='utf-8'))
 # This review stage never imports translations into the database.
 pending = [row for row in rows if not row.get('title_zh')]
@@ -36,6 +36,12 @@ for row in rows:
     for en, zh in [('biosimilar','生物类似药'),('endotoxin','内毒素'),('immunogenicity','免疫原性'),('early consideration','初步考虑')]:
         if en in title.lower() and zh not in translated: issues.append('term:'+en)
     if not re.search(r'[\u3400-\u9fff]', translated): issues.append('no_chinese')
+    if re.search(r'\b(?:the|for|from|between|considerations|guideline|products|testing)\b', translated, re.I):
+        issues.append('untranslated_words')
+    if re.findall(r'\d+', title) != re.findall(r'\d+', translated):
+        issues.append('number_mismatch')
+    if 'therapeutic proteins' in title.lower() and '治疗性蛋白' not in translated:
+        issues.append('term:therapeutic proteins')
     out.append({**row,'translation':translated,'model':MODEL,'revision':REVISION,'issues':issues})
     print(json.dumps({'completed':len(out),'issues':issues}), flush=True)
 json.dump(out,open('.data/title-output.json','w',encoding='utf-8'),ensure_ascii=False,indent=2)
