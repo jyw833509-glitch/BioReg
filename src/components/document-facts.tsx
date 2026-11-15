@@ -24,7 +24,12 @@ export function DocumentFacts({
     <div className="document-facts">
       {!detailed && (
         <>
-          <p>中文标题：{r.title_zh || "未提供（未自动翻译）"}</p>
+          <p>
+            中文标题：{r.title_zh || "待翻译"}
+            {r.title_zh &&
+              r.title_zh !== r.title_original &&
+              "（BioReg 译名，非官方中文标题）"}
+          </p>
           <p>
             编号：{r.document_number || "未提供"} ·{" "}
             {r.regulator === "USP" || r.regulator === "EDQM"

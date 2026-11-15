@@ -78,6 +78,9 @@ export async function writeRecord(
         "Conflicting source document identities; manual review required",
       );
     const existing = matches[0];
+    // Translation is derived data; preserve it when an unchanged official title is re-synced.
+    if (existing?.title_original === data.title_original && !data.title_zh)
+      data = { ...data, title_zh: existing.title_zh };
     const change = detectChange(existing || null, data);
     const outcome = !existing
       ? "new"
