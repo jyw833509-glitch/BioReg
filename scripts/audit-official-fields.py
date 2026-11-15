@@ -26,6 +26,7 @@ CACHE = Path('.data/official-field-evidence')
 CACHE.mkdir(parents=True, exist_ok=True)
 locks = {host: threading.Lock() for host in HOSTS}
 last_requests = {}
+rate_limited_hosts = set()
 
 def validate(url):
     u = urllib.parse.urlsplit(url)
@@ -68,6 +69,8 @@ def collect(url):
         validate(url)
         host = urllib.parse.urlsplit(url).hostname
         with locks[host]:
+            if host in rate_limited_hosts:
+                raise ValueError('deferred_after_host_HTTP_429')
             time.sleep(max(0, 1.2 - (time.monotonic() - last_requests.get(host, 0))))
             last_requests[host] = time.monotonic()
             req = urllib.request.Request(url, headers={'User-Agent': 'BioRegRadar/1.0 public official document metadata verification'})
@@ -83,7 +86,8 @@ def collect(url):
                 result['content_sha256'] = hashlib.sha256(data).hexdigest()
                 if data.startswith(b'%PDF-'):
                     pdf = PdfReader(io.BytesIO(data))
-                    if pdf.is_encrypted:
+                    # A blank user password is a publicly readable PDF, not a paywall.
+                    if pdf.is_encrypted and not pdf.decrypt(''):
                         raise ValueError('encrypted_pdf_not_accessed')
                     page_count = len(pdf.pages)
                     # Bounded metadata inspection, explicitly not a full-text capture.
@@ -105,6 +109,8 @@ def collect(url):
                     raise ValueError('insufficient_extractable_text')
                 result.update(outcome='captured_for_review', text=text)
     except urllib.error.HTTPError as error:
+        if error.code == 429:
+            rate_limited_hosts.add(urllib.parse.urlsplit(url).hostname)
         result.update(outcome='restricted', reason='HTTP_' + str(error.code))
     except Exception as error:
         # Never serialize request objects, credentials, or arbitrary exception strings.

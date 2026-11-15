@@ -1,36 +1,15 @@
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { directDb } from "../src/server/direct-db";
+import {
+  titleHash,
+  translationIssues,
+} from "../src/server/enrichment/title-quality";
+import type { Prisma } from "../src/generated/prisma/client";
 async function main() {
   const db = directDb();
   try {
     mkdirSync(".data", { recursive: true });
-    if (process.argv[2] === "withdraw-unreviewed") {
-      await db.$transaction(async (tx) => {
-        const where = {
-          updated_at: {
-            gte: new Date("2026-11-15T05:21:11Z"),
-            lt: new Date("2026-11-15T05:40:00Z"),
-          },
-          title_zh: { not: "" },
-          is_mock: false,
-        };
-        const rows = await tx.regulation.findMany({
-          where,
-          select: { id: true, title_original: true },
-        });
-        if (!rows.length) return;
-        if (
-          rows.length !== 453 ||
-          rows.some((r) => /[\u3400-\u9fff]/.test(r.title_original))
-        )
-          throw new Error("WITHDRAWAL_SCOPE_MISMATCH");
-        await tx.regulation.updateMany({
-          where: { id: { in: rows.map((r) => r.id) } },
-          data: { title_zh: "" },
-        });
-        console.log(JSON.stringify({ withdrawnUnreviewedTitles: rows.length }));
-      });
-    } else if (process.argv[2] === "export") {
+    if (process.argv[2] === "export") {
       const rows = await db.regulation.findMany({
         where: { is_mock: false },
         select: {
@@ -52,26 +31,83 @@ async function main() {
       writeFileSync(".data/title-input.json", JSON.stringify(rows));
       console.log(JSON.stringify({ pending: rows.length }));
     } else if (process.argv[2] === "import") {
-      const rows = JSON.parse(
-        readFileSync(".data/title-output.json", "utf8"),
-      ) as { id: string; title_original: string; translation: string }[];
-      let updated = 0;
+      // Candidate output is deliberately not an import format. A reviewed, hashed
+      // manifest is required, so a successful model job cannot silently publish it.
+      const manifest = JSON.parse(
+        readFileSync(".data/title-approved.json", "utf8"),
+      ) as {
+        schema: number;
+        batch: string;
+        rows: {
+          id: string;
+          title_original: string;
+          translation: string;
+          reviewed_sha256: string;
+          model: string;
+          revision: string;
+          review: string;
+        }[];
+      };
+      if (
+        manifest.schema !== 1 ||
+        !/^[a-zA-Z0-9_-]{1,80}$/.test(manifest.batch)
+      )
+        throw new Error("REVIEW_MANIFEST_REQUIRED");
+      const rows = manifest.rows;
+      if (new Set(rows.map((r) => r.id)).size !== rows.length)
+        throw new Error("DUPLICATE_REVIEW");
       for (const row of rows) {
         if (
-          !/[\u3400-\u9fff]/.test(row.translation) ||
-          row.translation.length > 2000
+          row.review !== "terminology_and_full_title_review" ||
+          row.reviewed_sha256 !==
+            titleHash(row.title_original + "\n" + row.translation) ||
+          translationIssues(row.title_original, row.translation).length
         )
-          throw new Error("INVALID_TRANSLATION");
-        const r = await db.regulation.updateMany({
-          where: {
-            id: row.id,
-            title_original: row.title_original,
-            title_zh: "",
-            is_mock: false,
-          },
-          data: { title_zh: row.translation },
+          throw new Error("TITLE_QUALITY_GATE_FAILED");
+      }
+      let updated = 0;
+      for (const row of rows) {
+        const initial = await db.regulation.findUnique({
+          where: { id: row.id },
+          select: { source_id: true },
         });
-        updated += r.count;
+        if (!initial) throw new Error("REVIEWED_RECORD_NOT_FOUND");
+        await db.$transaction(async (tx) => {
+          await tx.$queryRaw`SELECT pg_advisory_xact_lock(hashtext(${initial.source_id}))::text`;
+          const current = await tx.regulation.findUniqueOrThrow({
+            where: { id: row.id },
+          });
+          if (current.is_mock || current.title_original !== row.title_original)
+            throw new Error("REVIEWED_TITLE_CHANGED");
+          if (current.title_zh) return; // Never replace existing official/reviewed Chinese text.
+          const meta = current.source_metadata as Prisma.InputJsonObject;
+          const proof = {
+            batch: manifest.batch,
+            original_sha256: titleHash(row.title_original),
+            translation_sha256: titleHash(row.translation),
+            method: "reviewed_local_model",
+            model: row.model,
+            revision: row.revision,
+            review: row.review,
+            translated_at: new Date().toISOString(),
+            previous_title_zh: current.title_zh,
+            previous_provenance: meta.bioreg_title_translation || null,
+          };
+          // Save rollback material before mutation, and also retain it with the row.
+          writeFileSync(
+            `.data/title-rollback-${manifest.batch}-${row.id}.json`,
+            JSON.stringify({ id: row.id, ...proof }),
+          );
+          await tx.regulation.update({
+            where: { id: row.id },
+            data: {
+              title_zh: row.translation,
+              source_metadata: { ...meta, bioreg_title_translation: proof },
+              updated_at: current.updated_at,
+            },
+          });
+          updated++;
+        });
       }
       console.log(
         JSON.stringify({ translated: updated, officialFactsModified: false }),

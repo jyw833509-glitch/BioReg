@@ -32,7 +32,7 @@ jobs:
   sync:
     if: github.event_name == 'workflow_dispatch' || vars.REGULATORY_SYNC_ENABLED == 'true'
     runs-on: ubuntu-latest
-    timeout-minutes: 40
+    timeout-minutes: 120
     env:
       DIRECT_URL: ${{ secrets.DIRECT_URL }}
       SYNC_SOURCE: ${{ inputs.source || 'all' }}
@@ -94,6 +94,7 @@ jobs:
           python -m pip install 'torch>=2.6,<3' --index-url https://download.pytorch.org/whl/cpu
           python -m pip install 'transformers==4.57.1' 'sentencepiece==0.2.1' 'sacremoses==0.1.1'
           npx tsx scripts/translate-titles.ts export
+          npx tsx scripts/collect-official-chinese-titles.ts
           python scripts/translate-titles.py
           echo 'Translation candidates require review; automatic import is disabled.'
 
