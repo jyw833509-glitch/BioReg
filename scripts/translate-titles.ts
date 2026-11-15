@@ -32,8 +32,21 @@ async function main() {
       });
     } else if (process.argv[2] === "export") {
       const rows = await db.regulation.findMany({
-        where: { is_mock: false, title_zh: "" },
-        select: { id: true, title_original: true },
+        where: { is_mock: false },
+        select: {
+          id: true,
+          title_original: true,
+          title_zh: true,
+          regulator: true,
+          official_url: true,
+          pdf_url: true,
+          attachment_urls: true,
+          document_number: true,
+          publication_date: true,
+          effective_date: true,
+          status: true,
+          source_metadata: true,
+        },
         orderBy: { id: "asc" },
       });
       writeFileSync(".data/title-input.json", JSON.stringify(rows));

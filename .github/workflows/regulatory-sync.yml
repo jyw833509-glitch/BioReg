@@ -86,7 +86,7 @@ jobs:
         with:
           python-version: '3.11'
       - name: Translate missing public titles locally
-        if: success() && env.SYNC_DRY_RUN != 'true' && vars.TITLE_TRANSLATION_REVIEW_ENABLED == 'true'
+        if: success() && env.SYNC_DRY_RUN != 'true' && github.event_name == 'workflow_dispatch'
         env:
           HF_HUB_DISABLE_TELEMETRY: '1'
         run: |

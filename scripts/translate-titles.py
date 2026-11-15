@@ -9,7 +9,19 @@ tokenizer = AutoTokenizer.from_pretrained(MODEL, revision=REVISION)
 model = AutoModelForCausalLM.from_pretrained(MODEL, revision=REVISION, torch_dtype=torch.float32).eval()
 rows = json.load(open('.data/title-input.json', encoding='utf-8'))
 # This review stage never imports translations into the database.
-rows = rows[:int(os.environ.get('TITLE_REVIEW_LIMIT', '12'))]
+pending = [row for row in rows if not row.get('title_zh')]
+selected = {}
+# Include long technical titles and every agency before expanding the sample.
+for term in ['early consideration', 'biosimilar', 'endotoxin', 'immunogenicity', 'Q5A', 'sterility']:
+    match = next((row for row in pending if term.lower() in row['title_original'].lower()), None)
+    if match:
+        selected[match['id']] = match
+for agency in sorted({row['regulator'] for row in pending}):
+    match = next(row for row in pending if row['regulator'] == agency)
+    selected[match['id']] = match
+for row in pending:
+    selected.setdefault(row['id'], row)
+rows = list(selected.values())[:int(os.environ.get('TITLE_REVIEW_LIMIT', '16'))]
 glossary = 'biosimilar=生物类似药；biosimilarity=生物相似性；reference product=参照制剂；comparative efficacy=比较疗效；cell line=细胞系；early consideration=初步考虑；endotoxin=内毒素；sterility=无菌；immunogenicity=免疫原性；pharmacokinetics=药代动力学；viral safety=病毒安全性。'
 out = []
 for row in rows:
