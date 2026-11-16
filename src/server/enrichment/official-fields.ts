@@ -98,11 +98,17 @@ export function nmpaAnnouncementCandidates(
     if (value)
       add("effective_date", value, effective[0], "explicit_effective_clause");
   }
-  if (/It is hereby announced\.|is hereby promulgated/i.test(text))
+  if (
+    /It is hereby announced\.|(?:is|are) hereby (?:promulgated|announced)/i.test(
+      text,
+    )
+  )
     add(
       "status",
       "FINAL",
-      text.match(/It is hereby announced\.|is hereby promulgated/i)![0],
+      text.match(
+        /It is hereby announced\.|(?:is|are) hereby (?:promulgated|announced)/i,
+      )![0],
       "issued_announcement_not_draft",
     );
   return result;

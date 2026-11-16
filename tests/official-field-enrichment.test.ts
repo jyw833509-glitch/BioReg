@@ -114,3 +114,16 @@ test("cannot use another agency PDF as PMDA evidence", () => {
     [],
   );
 });
+
+test("plural issuance language belongs to a final NMPA announcement", () => {
+  const r = nmpaAnnouncementCandidates("Announcement of NMPA (No. 134, 2025)", {
+    url: "https://english.nmpa.gov.cn/example.htm",
+    content_sha256: "fixture",
+    text: "The following matters are hereby announced as follows.",
+  });
+  assert.equal(r.find((c) => c.field === "status")?.value, "FINAL");
+  assert.equal(
+    r.some((c) => c.field === "publication_date"),
+    false,
+  );
+});
