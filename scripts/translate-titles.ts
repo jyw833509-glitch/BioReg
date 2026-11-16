@@ -91,8 +91,9 @@ async function main() {
         JSON.stringify({
           approved: rows.length,
           unreviewed:
-            input.filter((r: { title_zh: string }) => !r.title_zh).length -
-            rows.length,
+            input.filter((r: { id: string; title_zh: string }) =>
+              !r.title_zh && !rows.some((approved) => approved.id === r.id),
+            ).length,
         }),
       );
     } else if (process.argv[2] === "prepare-generated") {
