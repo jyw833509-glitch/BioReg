@@ -24,6 +24,7 @@ export function parseList(html: string, url: string): Candidate[] {
       const $ = load(html);
       return $("a[title][href]").toArray().flatMap((el) => {
         const title = clean($(el).attr("title") || "");
+        if (/培训|研讨会|成功举办/.test(title)) return [];
         if (!/指导原则/.test(title) || !/生物制品|生物类似药|细胞|基因|疫苗|抗体|蛋白|ICH/.test(title)) return [];
         const target = officialUrl($(el).attr("href")!, url, config.hosts);
         if (!/^\/news\/show\/\d+$/.test(new URL(target).pathname)) return [];
@@ -68,9 +69,9 @@ export function parseDetail(
     const title = heading.match(/《([^》]+)》/)?.[1];
     if (
       !title ||
-      !/指导原则/.test(title) ||
+      !/指导原则/.test(heading) ||
       content.length < 60 ||
-      !/来源：国家药监局药审中心/.test(attribution)
+      !/来源[：:]\s*国家(?:药监局|局)药审中心(?:网站)?/.test(attribution)
     )
       throw new Error(
         "Unverified CDE document on official regional center page",
@@ -79,8 +80,8 @@ export function parseDetail(
       title,
       url: officialUrl(url, url, config.hosts),
       sourcePage,
-      type: /征求意见/.test(heading) ? "征求意见稿" : "技术指导原则",
-      status: /征求意见/.test(heading) ? "征求意见" : /关于发布|发布《/.test(heading) ? "正式发布" : "",
+      type: /征求.*意见/.test(heading) ? "征求意见稿" : "技术指导原则",
+      status: /征求.*意见/.test(heading) ? "征求意见" : /关于发布|发布《/.test(heading) ? "正式发布" : "",
       content,
       attachments: $(".detailBox .content a[href]")
         .toArray()
@@ -138,3 +139,4 @@ export function parseDetail(
     },
   };
 }
+
