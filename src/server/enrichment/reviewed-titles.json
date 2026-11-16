@@ -2812,5 +2812,12 @@
     "model": "Qwen/Qwen3-4B-Instruct-2507",
     "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
     "reviewed_sha256": "f017b31ccfa1d430e7beb5581ee126efc4ff59497fbd23aaf8150bb4c854cb63"
+  },
+  {
+    "original": "Good Clinical Practice for Drugs (2026 Revision): Questions and Answers",
+    "translation": "药物临床试验质量管理规范（2026年修订）：问答",
+    "model": "Qwen/Qwen3-8B-GGUF",
+    "revision": "7c41481f57cb95916b40956ab2f0b139b296d974",
+    "reviewed_sha256": "5306d53c43ef33aefd045d74710e8ea0eb81f8269d4897df70fed6fbe2e0283d"
   }
 ]

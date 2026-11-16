@@ -22,6 +22,19 @@ export interface TitleApproval {
 }
 export const officialChineseTitle = (original: string) =>
   publications.find((r) => r.original === original);
+export function canUpgradeAutomaticTitle(
+  original: string,
+  current: string,
+  metadata: Record<string, unknown>,
+  approval: Pick<TitleApproval, "method" | "translation">,
+) {
+  const proof = metadata.bioreg_title_translation as Record<string, unknown> | undefined;
+  return proof?.method === "local_model_quality_checked" &&
+    proof.original_sha256 === titleHash(original) &&
+    proof.translation_sha256 === titleHash(current) &&
+    approval.method !== "local_model_quality_checked" &&
+    approval.translation !== current;
+}
 const catalog = new Map(reviewed.map((r) => [r.original, r]));
 export function reviewedTitle(original: string) {
   const r = catalog.get(original);

@@ -18,6 +18,8 @@ export function translationIssues(original: string, translated: string) {
   const numbers = (s: string) => (s.match(/\d+/g) || []).sort().join("|");
   if (numbers(original) !== numbers(translated)) issues.push("number_mismatch");
   const terms: [RegExp, RegExp][] = [
+    [/good clinical practice/i, /临床试验质量管理规范/],
+    [/drug regulatory data/i, /药品试验数据/],
     [/biosimilars?\b/i, /生物类似药/],
     [/biosimilarity/i, /生物相似性/],
     [/endotoxins?/i, /内毒素/],

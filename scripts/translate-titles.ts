@@ -5,6 +5,7 @@ import {
   reviewedTitle,
   officialChineseTitle,
   validTitleApproval,
+  canUpgradeAutomaticTitle,
   type TitleApproval,
 } from "../src/server/enrichment/title-review";
 import type { Prisma } from "../src/generated/prisma/client";
@@ -41,7 +42,6 @@ async function main() {
       );
       const rows: TitleApproval[] = [];
       for (const row of input) {
-        if (row.title_zh) continue;
         const publication =
           row.regulator === "NMPA"
             ? officialChineseTitle(row.title_original)
@@ -55,6 +55,10 @@ async function main() {
         const reviewed = reviewedTitle(row.title_original);
         if (!found && !reviewed) continue;
         const value = found || reviewed;
+        if (row.title_zh && !canUpgradeAutomaticTitle(row.title_original, row.title_zh, row.source_metadata || {}, {
+          method: publication ? "official_publication" : found ? "official_catalog" : "reviewed_local_model",
+          translation: value.translation,
+        })) continue;
         rows.push({
           id: row.id,
           title_original: row.title_original,
@@ -199,8 +203,8 @@ async function main() {
           });
           if (current.is_mock || current.title_original !== row.title_original)
             throw new Error("REVIEWED_TITLE_CHANGED");
-          if (current.title_zh) return; // Never replace existing official/reviewed Chinese text.
           const meta = current.source_metadata as Prisma.InputJsonObject;
+          if (current.title_zh && !canUpgradeAutomaticTitle(current.title_original, current.title_zh, meta, row)) return;
           if (
             row.method === "official_catalog" &&
             (current.regulator !== "ICH" ||
