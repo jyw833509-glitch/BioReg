@@ -9,6 +9,7 @@ import { titleHash } from "../src/server/enrichment/title-quality";
 import { fingerprints } from "../src/server/changes/detect";
 import {
   nmpaAnnouncementCandidates,
+  emaTitleVersion,
   pmdaCoverCandidates,
   type FieldCandidate,
 } from "../src/server/enrichment/official-fields";
@@ -80,6 +81,10 @@ async function main() {
         const meta = {
           ...(row.source_metadata as Record<string, Prisma.InputJsonValue>),
         };
+        if (row.regulator === "EMA" && row.official_url)
+          candidates.push(
+            ...emaTitleVersion(row.title_original, row.official_url, meta),
+          );
         const previousProof = meta.bioreg_field_enrichment as
           Record<string, Prisma.InputJsonValue> | undefined;
         const values = {
@@ -89,10 +94,15 @@ async function main() {
         const updates: Prisma.RegulationUpdateInput = {};
         for (const c of candidates) {
           const checked = evidence.get(c.source_url);
+          const verifiedTitle =
+            c.basis === "previously_verified_official_title_sha256" &&
+            c.content_sha256 === titleHash(row.title_original) &&
+            row.regulator === "EMA";
           if (
             !urls.includes(c.source_url) ||
-            checked?.outcome !== "captured_for_review" ||
-            checked.content_sha256 !== c.content_sha256
+            (!verifiedTitle &&
+              (checked?.outcome !== "captured_for_review" ||
+                checked.content_sha256 !== c.content_sha256))
           )
             continue;
           if (c.field === "official_version") {

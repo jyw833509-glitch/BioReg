@@ -4,7 +4,25 @@ import {
   japaneseDate,
   pmdaCoverCandidates,
   nmpaAnnouncementCandidates,
+  emaTitleVersion,
 } from "../src/server/enrichment/official-fields";
+test("EMA revision requires a verified official title and never invents a baseline edition", () => {
+  const url = "https://www.ema.europa.eu/en/scientific-guidelines/example";
+  const meta = {
+    metadata_verified: true,
+    capture_scope: "official_guideline_metadata",
+  };
+  assert.equal(
+    emaTitleVersion("Guideline (Rev.1)", url, meta)[0].value,
+    "Rev.1",
+  );
+  assert.equal(
+    emaTitleVersion("ICH Q5A(R2) guideline - Step 5", url, meta)[0].value,
+    "Q5A(R2)",
+  );
+  assert.deepEqual(emaTitleVersion("Guideline", url, meta), []);
+  assert.deepEqual(emaTitleVersion("Guideline revision 1", url, {}), []);
+});
 const pdf = (text: string) => ({
   url: "https://www.pmda.go.jp/files/example.pdf",
   content_sha256: "test",

@@ -108,12 +108,18 @@ jobs:
             npx tsx scripts/translate-titles.ts import
             echo 'Candidates that fail quality checks remain pending; never replace official facts.'
           fi
+      - uses: actions/cache@v4
+        if: success() && env.SYNC_DRY_RUN != 'true'
+        with:
+          path: .data/official-field-evidence
+          key: official-evidence-v1-${{ github.run_id }}
+          restore-keys: official-evidence-v1-
       - name: Capture official field evidence
         if: success() && env.SYNC_DRY_RUN != 'true'
         env:
           OFFICIAL_AUDIT_INPUT: .data/title-input.json
         run: |
-          python -m pip install 'pypdf==6.3.0'
+          python -m pip install 'pypdf[crypto]==6.3.0'
           python scripts/audit-official-fields.py
           npx tsx scripts/enrich-official-fields.ts
           npx tsx scripts/verify-enrichment.ts after

@@ -21,7 +21,8 @@ import {
   watchlistSchema,
 } from "../src/server/validation";
 import { sameOrigin } from "../src/server/http";
-import { readFileSync } from "node:fs";
+import { readFileSync, mkdirSync, writeFileSync } from "node:fs";
+import { resolve } from "node:path";
 import {
   parseList,
   parseDetail,
@@ -1609,4 +1610,72 @@ test("discovery queue retains historical links after they leave a current index"
     await client.catalogEntry.count({ where: { source_id: "source-fda" } }),
     before,
   );
+});
+
+test("new-file title pipeline imports once, preserves facts/history and can roll back", async () => {
+  const id = "title-enrichment-" + randomUUID();
+  const original = "Guideline on endotoxin testing for therapeutic proteins";
+  const translation = "治疗性蛋白内毒素检验指南";
+  await client.regulation.create({
+    data: {
+      ...data(id),
+      title_original: original,
+      title_zh: "",
+      is_mock: false,
+      official_url: "https://www.fda.gov/isolated-enrichment-fixture",
+    },
+  });
+  const beforeVersions = await client.regulationVersion.count();
+  const cwd = resolve(".data", "enrichment-test-" + randomUUID());
+  mkdirSync(resolve(cwd, ".data"), { recursive: true });
+  writeFileSync(
+    resolve(cwd, ".data/title-output.json"),
+    JSON.stringify([
+      {
+        id,
+        title_original: original,
+        translation,
+        model: "Qwen/Qwen3-8B-GGUF",
+        revision: "7c41481f57cb95916b40956ab2f0b139b296d974",
+        issues: [],
+      },
+    ]),
+  );
+  const run = (...args: string[]) => {
+    const result = spawnSync(
+      process.execPath,
+      [
+        resolve("node_modules/tsx/dist/cli.mjs"),
+        resolve("scripts/translate-titles.ts"),
+        ...args,
+      ],
+      {
+        cwd,
+        env: { ...process.env, DIRECT_URL: testUrl },
+        encoding: "utf8",
+        windowsHide: true,
+      },
+    );
+    assert.equal(result.status, 0, result.stdout + result.stderr);
+  };
+  run("prepare-generated");
+  run("import");
+  const written = await client.regulation.findUniqueOrThrow({ where: { id } });
+  assert.equal(written.title_zh, translation);
+  assert.equal(written.title_original, original);
+  run("import");
+  assert.deepEqual(
+    (await client.regulation.findUniqueOrThrow({ where: { id } }))
+      .source_metadata,
+    written.source_metadata,
+  );
+  assert.equal(await client.regulationVersion.count(), beforeVersions);
+  const batch = (written.source_metadata as Record<string, Prisma.JsonValue>)
+    .bioreg_title_translation as Record<string, string>;
+  run("rollback", batch.batch);
+  assert.equal(
+    (await client.regulation.findUniqueOrThrow({ where: { id } })).title_zh,
+    "",
+  );
+  assert.equal(await client.regulationVersion.count(), beforeVersions);
 });

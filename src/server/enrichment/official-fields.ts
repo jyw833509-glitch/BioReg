@@ -1,4 +1,34 @@
 import { date } from "../connectors/shared/normalizer";
+import { titleHash } from "./title-quality";
+
+export function emaTitleVersion(
+  title: string,
+  url: string,
+  metadata: Record<string, unknown>,
+): FieldCandidate[] {
+  if (
+    metadata.metadata_verified !== true ||
+    metadata.capture_scope !== "official_guideline_metadata" ||
+    new URL(url).hostname !== "www.ema.europa.eu" ||
+    !new URL(url).pathname.startsWith("/en/scientific-guidelines/")
+  )
+    return [];
+  const match = title.match(
+    /(?:\bRevision\s+\d+(?:\.\d+)?\b|\bRev\.\s*\d+(?:\.\d+)?\b|\b[QSEM]\d+[A-Z]?\(R\d+\))/i,
+  );
+  if (!match) return [];
+  return [
+    {
+      field: "official_version",
+      value: match[0],
+      quote: title,
+      source_url: url,
+      content_sha256: titleHash(title),
+      page: 0,
+      basis: "previously_verified_official_title_sha256",
+    },
+  ];
+}
 
 export interface PdfEvidence {
   url: string;

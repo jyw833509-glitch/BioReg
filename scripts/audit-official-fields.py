@@ -63,7 +63,11 @@ def collect(url):
     key = hashlib.sha256(url.encode()).hexdigest()
     target = CACHE / (key + '.json')
     if target.exists():
-        return json.loads(target.read_text(encoding='utf-8'))
+        cached = json.loads(target.read_text(encoding='utf-8'))
+        age = (datetime.now(timezone.utc) - datetime.fromisoformat(cached['checked_at'])).total_seconds()
+        ttl = 7 * 86400 if cached.get('outcome') == 'captured_for_review' else 6 * 3600
+        if 0 <= age < ttl:
+            return cached
     result = {'url': url, 'checked_at': datetime.now(timezone.utc).isoformat()}
     try:
         validate(url)
