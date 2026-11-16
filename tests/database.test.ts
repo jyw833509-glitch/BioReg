@@ -190,11 +190,22 @@ test("database-level search includes Chinese, original title, document number an
     official_url: "https://www.fda.gov/example",
     canonical_url: "https://www.fda.gov/example",
     official_summary: "OfficialSummarySearchFixture",
+    docket_number: "FDA-2026-D-987654",
   });
   assert.equal(
     (await repo.search("OfficialSummarySearchFixture")).data[0].id,
     "official-summary",
   );
+});
+test("FDA docket search works in full and compact lists without a document number", async () => {
+  const repo = regulationRepository(client);
+  for (const lightweight of [false, true]) {
+    const result = await repo.list({ q: "FDA-2026-D-987654" }, lightweight);
+    assert.equal(result.pagination.total, 1);
+    assert.equal(result.data[0].id, "official-summary");
+  }
+  const ranked = await repo.list({ q: "FDA-2026-D-987654", sort: "Relevance" });
+  assert.equal(ranked.data[0].id, "official-summary");
 });
 test("database filters for regulator, status, importance, date and multi-value fields", async () => {
   const repo = regulationRepository(client);

@@ -13,7 +13,7 @@ export async function compactList(client: Db, q: Query, now = new Date()) {
   if (term) {
     const alternatives = searchTerms(term).map((term) => {
       const pattern = `%${term}%`;
-      return Prisma.sql`(r.title_original ILIKE ${pattern} OR r.title_zh ILIKE ${pattern} OR r.document_number ILIKE ${pattern} OR r.official_summary ILIKE ${pattern} OR r.content_text ILIKE ${pattern} OR ${term}=ANY(r.keywords))`;
+      return Prisma.sql`(r.title_original ILIKE ${pattern} OR r.title_zh ILIKE ${pattern} OR r.document_number ILIKE ${pattern} OR r.docket_number ILIKE ${pattern} OR r.docket_number ILIKE ${pattern} OR r.official_summary ILIKE ${pattern} OR r.content_text ILIKE ${pattern} OR ${term}=ANY(r.keywords))`;
     });
     and.push(Prisma.sql`(${Prisma.join(alternatives, " OR ")})`);
   }
@@ -69,7 +69,7 @@ export async function compactList(client: Db, q: Query, now = new Date()) {
     );
   const scores = searchTerms(q.q).map(
     (t) =>
-      Prisma.sql`(CASE WHEN lower(COALESCE(r.document_number,''))=${t} THEN 100 WHEN r.document_number ILIKE ${"%" + t + "%"} THEN 80 WHEN r.title_original ILIKE ${"%" + t + "%"} OR r.title_zh ILIKE ${"%" + t + "%"} THEN 40 WHEN r.official_summary ILIKE ${"%" + t + "%"} THEN 20 ELSE 0 END)`,
+      Prisma.sql`(CASE WHEN (lower(COALESCE(r.document_number,''))=${t} OR lower(COALESCE(r.docket_number,''))=${t}) THEN 100 WHEN r.document_number ILIKE ${"%" + t + "%"} OR r.docket_number ILIKE ${"%" + t + "%"} THEN 80 WHEN r.title_original ILIKE ${"%" + t + "%"} OR r.title_zh ILIKE ${"%" + t + "%"} THEN 40 WHEN r.official_summary ILIKE ${"%" + t + "%"} THEN 20 ELSE 0 END)`,
   );
   const relevance = scores.length
     ? Prisma.sql`GREATEST(${Prisma.join(scores)})`

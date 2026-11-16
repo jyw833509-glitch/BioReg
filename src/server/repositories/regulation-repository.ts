@@ -22,6 +22,7 @@ export function whereQuery(
           { title_original: { contains: term, mode: "insensitive" } },
           { title_zh: { contains: term, mode: "insensitive" } },
           { document_number: { contains: term, mode: "insensitive" } },
+          { docket_number: { contains: term, mode: "insensitive" } },
           { official_summary: { contains: term, mode: "insensitive" } },
           { content_text: { contains: term, mode: "insensitive" } },
           { keywords: { has: term } },
