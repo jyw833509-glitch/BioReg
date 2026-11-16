@@ -7,16 +7,30 @@ export function DocumentFacts({
   detailed?: boolean;
 }) {
   const meta = r.source_metadata || {};
+  const titleProof = (meta.bioreg_title_label ||
+    meta.bioreg_title_translation) as Record<string, unknown> | undefined;
+  const titleSource =
+    titleProof?.method === "official_catalog" ||
+    titleProof?.method === "official_publication";
+  const review = meta.bioreg_field_review as
+    | {
+        checked_at?: string;
+        fields?: Record<string, { state: string; reason: string }>;
+        checks?: { url: string; outcome: string; reason?: string }[];
+      }
+    | undefined;
   const future =
     r.effective_date &&
     r.effective_date > new Date().toISOString().slice(0, 10) &&
     !["Withdrawn", "Superseded", "Archived"].includes(r.status);
   const officialVersion =
-    typeof meta.guideline_code === "string"
-      ? meta.guideline_code
-      : typeof meta.revision === "string"
-        ? meta.revision
-        : "未提供";
+    typeof meta.official_version === "string"
+      ? meta.official_version
+      : typeof meta.guideline_code === "string"
+        ? meta.guideline_code
+        : typeof meta.revision === "string"
+          ? meta.revision
+          : "未提供";
   const regions = Array.isArray(meta.regional_implementation)
     ? meta.regional_implementation
     : [];
@@ -28,7 +42,9 @@ export function DocumentFacts({
             中文标题：{r.title_zh || "待翻译"}
             {r.title_zh &&
               r.title_zh !== r.title_original &&
-              "（BioReg 译名，非官方中文标题）"}
+              (titleSource
+                ? "（官方机构公开中文标题）"
+                : "（BioReg 译名，非官方中文标题）")}
           </p>
           <p>
             编号：{r.document_number || "未提供"} ·{" "}
@@ -42,6 +58,51 @@ export function DocumentFacts({
             · 生效日期：{r.effective_date || "未提供"}
           </p>
         </>
+      )}
+      {titleSource && typeof titleProof?.source_url === "string" && (
+        <p>
+          <a
+            href={titleProof.source_url}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            中文标题依据：{String(titleProof.publisher || "官方机构")}
+          </a>
+        </p>
+      )}
+      {detailed && review?.fields && (
+        <details>
+          <summary>字段核验依据及未补齐原因</summary>
+          <p>
+            最近核验：{review.checked_at?.slice(0, 10) || "未记录"}
+            。资料补录不代表法规发生新的变更。
+          </p>
+          {Object.entries(review.fields).map(([key, value]) => (
+            <p key={key}>
+              {(
+                {
+                  document_number: "文件编号",
+                  official_version: "官方版本",
+                  publication_date: "发布日期",
+                  effective_date: "生效日期",
+                  status: "发布状态",
+                } as Record<string, string>
+              )[key] || key}
+              ：{value.reason}
+            </p>
+          ))}
+          {review.checks?.map((check, i) => (
+            <p key={i}>
+              <a href={check.url} target="_blank" rel="noopener noreferrer">
+                官方依据 {i + 1}
+              </a>
+              ：
+              {check.outcome === "captured_for_review"
+                ? "已取得用于核验的资料"
+                : `未完成核验（${check.reason || check.outcome}）`}
+            </p>
+          ))}
+        </details>
       )}
       {detailed && officialVersion !== "未提供" && (
         <p>

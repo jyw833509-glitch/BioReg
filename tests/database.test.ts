@@ -1511,6 +1511,7 @@ test("single-statement list preserves filters, pagination, ordering and official
                   "current_step",
                   "capture_scope",
                   "catalog_excerpt",
+                  "official_version",
                 ].includes(key) && value != null,
             ),
           ),

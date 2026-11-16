@@ -30,11 +30,16 @@ export function translationIssues(original: string, translated: string) {
     [/potency/i, /效价|效力/],
     [/mycoplasma/i, /支原体/],
     [/pharmacokinetics/i, /药代动力学/],
+    [/homeopathic/i, /顺势疗法/],
+    [/performance status/i, /体能状态/],
+    [/shedding/i, /脱落|排出/],
+    [/unrelated allogeneic/i, /非亲缘同种异体/],
+    [/active immunotherapy/i, /主动免疫治疗/],
   ];
   for (const [source, target] of terms)
     if (source.test(original) && !target.test(translated))
       issues.push(`terminology:${source.source}`);
-  if (/生物不同物|不同生物|分析筛滤/.test(translated))
+  if (/生物不同物|不同生物|分析筛滤|家庭药|性能状态/.test(translated))
     issues.push("known_mistranslation");
   return issues;
 }

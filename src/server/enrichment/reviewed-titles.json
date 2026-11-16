@@ -1,0 +1,2816 @@
+[
+  {
+    "original": "Checklist for Quality-Related Documents for Biotechnology Products Derived from Cell Lines of Human or Animal Origin at the Time of Initial Clinical Trial Notification (Early Consideration)",
+    "translation": "首次临床试验申报时人或动物细胞系来源生物技术产品的质量相关文件核对清单（初步考虑）",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "e9b5b99fdc5a72c0b0b04d10adaa688520b5ff077d4ff4b4fefc2a3750956fde"
+  },
+  {
+    "original": "Biosimilar and Interchangeable Biosimilar Products: Considerations for Container Closure Systems and Device Constituent Parts",
+    "translation": "生物类似药和互换性生物类似药产品：关于容器密封系统和器械组成部件的考虑",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "2b760b434f446184b4c34d4ca6ca52f2d57a0d9812f6ae4143a3c5669bd2aa5c"
+  },
+  {
+    "original": "What changes were made to general chapter 2.6.14. Bacterial endotoxins?",
+    "translation": "对通用章节2.6.14《细菌内毒素》作了哪些修改？",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "afdee10889ca50a418b6aefba7128c749e8dea18c5bab0e16629477893a8461b"
+  },
+  {
+    "original": "Guideline on immunogenicity assessment of therapeutic proteins - Revision 1",
+    "translation": "治疗性蛋白免疫原性评估指导原则 - 第1次修订",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "2f5c1172857f1fd261cb8740e7859f7c7b979945b2c0d082d1c1245fd25635ff"
+  },
+  {
+    "original": "ICH Q5A(R2) Guideline on viral safety evaluation of biotechnology products derived from cell lines of human or animal origin - Step 5",
+    "translation": "ICH Q5A(R2) 关于源自人类或动物细胞系的生物技术产品病毒安全性评价指导原则 - 第5步",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "975bc5ee7b234acc8fccc2c25a0e8feac9fe5376d58d58bc813496185908b558"
+  },
+  {
+    "original": "Points to consider (checkpoints) for efficient conduct of RS strategy consultation for quality and safety from early stage of development of cellular and tissue-based products [Quality] Point to consider for Sterility Test and Mycoplasma Test",
+    "translation": "细胞和组织类产品开发早期高效开展质量与安全性 RS 策略咨询的考虑要点（核查点）[质量]：无菌检验和支原体检验的考虑要点",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "dfb45c68baf0f4d4968c098fed8cf74e9fcf50c809aa79879a2d96c31ed53308"
+  },
+  {
+    "original": "Guideline on the declaration of the quantitative composition / potency labelling of biological medicinal products that contain modified proteins as active substance",
+    "translation": "关于含有修饰蛋白作为活性成分的生物药其定量组成/效价标签声明的指导原则",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "6148284b0e09f71f0b30e9e191b5c42768fa90dc7ae1c45d4ba2ecb5bb240bcd"
+  },
+  {
+    "original": "Frequently Asked Questions — Developing Potential Cellular and Gene Therapy Products",
+    "translation": "常见问题解答——开发潜在的细胞和基因治疗产品",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "f7faf642ef1497dce0cb92f6b42752abf31c9cfa01dc9f663a3f261b973a16b3"
+  },
+  {
+    "original": "Announcement of the National Medical Products Administration on Strengthening Supervision and Administration of Contract Manufacturing of Drugs (No. 134, 2025)",
+    "translation": "国家药品监督管理局关于加强药品委托生产监督管理的公告（2025年第134号）",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "16a848551137536e3a47af3b713a1af848269f3b502d683ea685ff55f0ada7da"
+  },
+  {
+    "original": "Analytical Sieving <786>",
+    "translation": "分析筛分 <786>",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "351a21097073b00b6ad829d97e4e998edd38884a02b7648eaed9e55037893f87"
+  },
+  {
+    "original": "Potency Assessment of Active Immunotherapy Products",
+    "translation": "主动免疫治疗产品的效价评估",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "33c438e4fb12c1824a70c904abd504e9759175549f6ce65d7e771d1468afaf46"
+  },
+  {
+    "original": "Container Closure Systems for Human Drugs and Biological Products",
+    "translation": "用于人类药品和生物制品的容器密封系统",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "496d3d675ccada81d9129b78e601e65518b3a1907e299ff6f20b35043d21c10f"
+  },
+  {
+    "original": "Formal Meetings Between the FDA and Sponsors or Applicants of PDUFA Products",
+    "translation": "FDA与PDUFA产品的申办方或申请人之间的正式会议",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "3ed87ac2d804b7a40d1d0306b2971db23820a7e89e776b10262cedfc2f32eca9"
+  },
+  {
+    "original": "Cancer Clinical Trial Eligibility Criteria: Laboratory Values",
+    "translation": "癌症临床试验入组标准：实验室检查值",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "a62abbef055bdda65a4fcf4ec553fabeda04f365e17ef2521e8dfd39626b9e0d"
+  },
+  {
+    "original": "Cancer Clinical Trial Eligibility Criteria: Washout Periods and Concomitant Medications",
+    "translation": "癌症临床试验入选标准：洗脱期和联合用药",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "57828a41035772699a57ce079fd919cbe4db810353c15b78cf09c68a415dbebb"
+  },
+  {
+    "original": "Cancer Clinical Trial Eligibility Criteria: Performance Status",
+    "translation": "癌症临床试验入选标准：体能状态",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "a247a3605bc00a87a943b52c5604855f837c0e9a1f97fd5a517ed2dbb5596985"
+  },
+  {
+    "original": "Guideline on similar biological medicinal products (Rev.1)",
+    "translation": "生物类似药指导原则（修订1）",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "1172144829f1d53f26f8ab48bb951b529669056b078d53052e11718c1aa7d6fb"
+  },
+  {
+    "original": "Guidance on the description of composition of pegylated (conjugated) proteins in the SPC",
+    "translation": "关于在药品说明书（SPC）中描述聚乙二醇化（偶联）蛋白质组成的指导原则",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "af8cd4319bd2b6625b1ee17ebfa5b0086ae3a585afc176a02aa777f3443c280c"
+  },
+  {
+    "original": "Guideline on similar biological medicinal products containing biotechnology-derived proteins as active substance: non-clinical and clinical issues - Revision 1",
+    "translation": "含生物技术来源蛋白作为活性成分的生物类似药指导原则：非临床和临床问题（第1次修订）",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "e082b920a18703dc37c16877e761db6e49ec356d2800117c8a149eb6526375ea"
+  },
+  {
+    "original": "Guideline on quality aspects included in the product information for vaccines for human use - Revision 1",
+    "translation": "人用疫苗产品信息中包含的质量方面指南 - 第1次修订",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "59d27c69273670b25659f6dd2e37bf2af029f9501e5dbab5be7ef1c3e306dd77"
+  },
+  {
+    "original": "Guideline on similar biological medicinal products containing biotechnology-derived proteins as active substance: quality issues (revision 1)",
+    "translation": "含生物技术来源蛋白作为活性成分的生物类似药指导原则：质量问题（修订1）",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "91e93249eb96446e47afed89fa82300c8db641dce550fc72b79bf788691bb0fe"
+  },
+  {
+    "original": "Guideline on potency labelling for insulin analogue containing products with particular reference to the use of international units or units",
+    "translation": "关于含胰岛素类似物产品的效价标注指导原则（特别涉及国际单位或单位的使用）",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "e5fa182fb5734201f66efef7d7761fb742338a852f54b3d2194c2080a3c68dd8"
+  },
+  {
+    "original": "Guideline on non-clinical and clinical development of similar biological medicinal products containing low-molecular-weight-heparins - Revision 1",
+    "translation": "含低分子量肝素的生物类似药非临床和临床开发指导原则（第1次修订）",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "e983427bfa696c614e4c076d806acf19e0c3a883a283a15ae4eabc5ceaebc830"
+  },
+  {
+    "original": "Policy Interpretation of the National Medical Products Administration on Issuing the Administrative Provisions on Inspection and Export Certificate for Pharmaceutical Products Exported by Pharmaceutical Manufacturers",
+    "translation": "国家药品监督管理局关于发布药品生产企业出口药品检查和出口证明管理规定的政策解读",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "2e816dc87b9a595c15f45d138b36a2a3d00947ca587e0f121327a9c576198f8b"
+  },
+  {
+    "original": "Announcement of the National Medical Products Administration on Issuing the Administrative Provisions on Inspection and Export Certificate for Pharmaceutical Products Exported by Pharmaceutical Manufacturers([2025] No. 113)",
+    "translation": "国家药品监督管理局关于发布药品生产企业出口药品检查和出口证明管理规定的公告（[2025]第113号）",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "5207a5e10dd227bcfacfabf066533f521523a648e6dae5c5a8281440f213e283"
+  },
+  {
+    "original": "NMPA Announcement on Matters Concerning the Importation of Pre-approval Commercial-Scale Batch Products of Overseas-Marketed Drugs (No. 96, 2025)",
+    "translation": "国家药品监督管理局（NMPA）关于境外已上市药品获批前商业规模批次产品进口有关事项的公告（2025年第96号）",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "0f5254827bc64a68ee54c37a8273d2eb6aa8710f56af428e292598dd83d305fb"
+  },
+  {
+    "original": "Policy Interpretation of the NMPA Announcement on Matters Concerning the Importation of Pre-Approval Commercial-Scale Batch Products of Overseas-Marketed Drugs",
+    "translation": "国家药品监督管理局（NMPA）关于境外已上市药品获批前商业规模批次产品进口有关事项公告的政策解读",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "5a8baab7fea950829d6c91086cc8fb903f8446f50a88e0e8b016c033410bccf3"
+  },
+  {
+    "original": "NMPA Announcement on Optimizing of the Review and Approval Process for Clinical Trials of Innovative Drugs ([2025] No. 86)",
+    "translation": "国家药品监督管理局（NMPA）关于优化创新药临床试验审评审批流程的公告（[2025]第86号）",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "af6a28832dd70ecb00c8ef30aa1ebd30858ee74079f4bd79860f719cb87db30f"
+  },
+  {
+    "original": "M1 PTC Concept Paper",
+    "translation": "M1 PTC 概念文件",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "bcdc79f676c573cf832996cc5dbe80b0126a0f4d5b38ee4e29c86f53b54eadc2"
+  },
+  {
+    "original": "S1(R1) Concept Paper",
+    "translation": "S1(R1) 概念文件",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "30990a90e52b022db37bf7347a0d9a31a821e9f556305439122adb3cfff8a82a"
+  },
+  {
+    "original": "M2 Concept Paper",
+    "translation": "M2概念文件",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "a3e0327f18005f3d7c0245cb1adf9e57114209f02a55f29f1fa97851f5b2892c"
+  },
+  {
+    "original": "Applications for Marketing Approval of Regenerative Medical Products, PFSB Notification No. 0812-30,2014. Partial revision on 2026.",
+    "translation": "再生医学产品上市许可申请，PFSB通知第0812-30号，2014年。部分修订于2026年。",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "445ec51a373bc7ec8263d0ecc5ce656e4637a068cba915c1a9ae1d91d504ea56"
+  },
+  {
+    "original": "Considerations for Determining the Necessity of Comparative Efficacy Studies in Demonstrating Biosimilarity between Biosimilars and Reference Products (Early Consideration)",
+    "translation": "判断证明生物类似药与参照制剂生物相似性时是否需要开展比较疗效研究的考虑事项（初步考虑）",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "ec088ff15c2a863aff3c268588ec49f10699becdf464280f58c6439a8f244c0f"
+  },
+  {
+    "original": "Points to Consider for Applications for Marketing Approval of Regenerative Medical Products, PFSB/ELD/OMDE/CMS Notification No. 0812-5, 2014.Partial revision on 2026.",
+    "translation": "关于再生医学产品上市许可申请的考虑事项，PFSB/ELD/OMDE/CMS通知第0812-5号，2014年。2026年部分修订。",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "353acb53d7617586c482ed739a0f1c2b6f6b28fe7bf3294e1427ef2d5cf3dabf"
+  },
+  {
+    "original": "Questions and Answers (Q&A) on Guideline for Ensuring the Quality, Safety, and Efficacy of Biosimilars (Part 2)",
+    "translation": "关于确保生物类似药质量、安全性和有效性指导原则的问题与解答（Q&A）（第2部分）",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "353875f496900c23828f23360234668234978fe26c5ce143ac6d81da5b956d5f"
+  },
+  {
+    "original": "Guideline for Preparation of Attached Data and Overviews for Applications for Approval of Regenerative Medical Products",
+    "translation": "再生医学产品批准申请附带数据和概要的准备指南",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "3c823f0e60522bbcf2d3be616d866d28c711ef9356dd45808f2e5ee22f4aa7b4"
+  },
+  {
+    "original": "Handling of Japanese Data for Confirmation of Comparability of Biosimilars to the Original Biopharmaceuticals (Early Consideration)",
+    "translation": "日本数据在生物类似药与原研生物药可比性确认中的处理（初步考虑）",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "0bb4a9b76c88b05aa97bece1c0ecd39b7d0b35c16a84dee76f2ed44c84f3dbba"
+  },
+  {
+    "original": "Guidance for conditional and time-limited approval for regenerative medical products and the development of subsequent efficacy evaluation plan, PSB/MDED Notification No.0329-3, 2024",
+    "translation": "关于再生医学产品有条件和限时批准及后续有效性评价计划制定的指导原则，PSB/MDED通知第0329-3号，2024年",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "370bd7984edfc1dbd602da8b28f1077bdfcdd081c918204fd78067aef56d8fe7"
+  },
+  {
+    "original": "Recommendations for the Development of Blood Collection, Processing, and Storage Systems for the Manufacture of Blood Components Using the Buffy Coat Method",
+    "translation": "使用白膜层法制备血液成分的血液采集、处理和储存系统开发建议",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "d82a5e4e64b78d4eeca236f01648628e251d9ccbb14246a3c4f6bbea720bcd91"
+  },
+  {
+    "original": "Electronic Submission Template for Premarket Approval Applications (PMA)",
+    "translation": "用于上市前批准申请（PMA）的电子提交模板",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "70466d6f0056103e5732d530d897f1a1ce3b7c3d05ab32f9fd5159090b913b5a"
+  },
+  {
+    "original": "Handling of Pharmaceutical Patents in Approval Reviews under the PMD Act and NHI Drug Price Listing for Generic Drugs and Biosimilars",
+    "translation": "仿制药和生物类似药在 PMD 法下的批准审评及 NHI 药价收载中涉及的药品专利处理",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "5c4e35d227f3fb4f509b157481792c4071ba8fd5d448f5ba319934bb36878f2d"
+  },
+  {
+    "original": "Blood Pressure and Pulse Donor Eligibility Requirements – Compliance Policy",
+    "translation": "血压和脉搏供体资格要求——合规政策",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "f13711550bbd81241efc899dc0daaac5fae94d055202fd6641308c99e236c973"
+  },
+  {
+    "original": "Compliance Policy Regarding Blood and Blood Component Donation Suitability, Donor Eligibility and Source Plasma Quarantine Hold Requirements",
+    "translation": "关于血液及血液成分捐献适宜性、献血者资格及原料血浆检疫隔离要求的合规政策",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "d6f24a293b5417385dde15804c0496de91674cb33868c2df1246cd85fe60910d"
+  },
+  {
+    "original": "Individualized Human Genome Editing Products: Considerations for BLA Submission and Postapproval Management",
+    "translation": "个体化人类基因组编辑产品：生物制品许可申请（BLA）提交及批准后管理的考虑事项",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "6800606eb8ebf271e2ab4b37340d07a02584c83e9b6dee33fff69c6c87a3e319"
+  },
+  {
+    "original": "Reflection paper on a tailored clinical approach in biosimilar development",
+    "translation": "生物类似药开发中针对性临床研究方案的讨论文件",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "30830496b7a70280c52b2f98878b48e3961f4fc659a3ad54e507861054926220"
+  },
+  {
+    "original": "Guideline on the warning on transmissible agents in summary of product characteristics (SmPCs) and package leaflets for plasma-derived medicinal products",
+    "translation": "血浆来源药品的产品特性概要（SmPCs）和包装说明书中传播性病原体警示的指导原则",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "3aebd7bbe3019303f0de84dfa73f9932e271dd50f9180fa33105d78d72e84f86"
+  },
+  {
+    "original": "Annex to guideline on similar biological medicinal products containing biotechnology-derived proteins as active substance: Non-clinical and clinical issues - Guidance on similar medicinal products containing recombinant granulocyte-colony stimulating...",
+    "translation": "含生物技术来源蛋白作为活性成分的生物类似药指导原则附件：非临床和临床问题——含重组粒细胞集落刺激……的类似药品指导原则（原目录标题截断）",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "53f8afbe7476c426ccd98219d682c512b3f9c9443a15a32f841a33aaceebc2bb"
+  },
+  {
+    "original": "Points to consider for assessors. New factor VIII and factor IX products: potency determination for labelling and assays for testing post-infusion samples",
+    "translation": "评估者需考虑的事项。新型凝血因子VIII和凝血因子IX产品：标签用效价测定及输注后样本检测用检测方法",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "380f8b2e78869e9857b70a998f12efda0d7af9e5bef6b01e0a098821b4e24b7a"
+  },
+  {
+    "original": "Concept paper on potency declaration / labelling for biological medicinal products which contain modified proteins as active substance",
+    "translation": "关于含有修饰蛋白作为活性成分的生物药产品效价声明/标签的概念文件",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "3aa7b7b62ffd3973102757f4c131913b327247d696ca5c13bf7f3ce2e75b0612"
+  },
+  {
+    "original": "Guideline on non-clinical and clinical development of similar biological medicinal products containing recombinant human insulin and insulin analogues - Revision 1",
+    "translation": "含重组人胰岛素及胰岛素类似物的生物类似药非临床和临床开发指导原则（第1次修订）",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "619b69afbcf04beaf14caeb3883ed4b3ec7d707196a0c6903eb12395ee202521"
+  },
+  {
+    "original": "Development pharmaceutics for biotechnological and biological products (CPMP/BWP/328/99) Annex to note for guidance on development pharmaceutics (CPMP/QWP/155/96)",
+    "translation": "生物技术产品和生物制品的药学开发（CPMP/BWP/328/99）：药学开发指导原则说明（CPMP/QWP/155/96）的附件",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "6564021956aa45713149a4aaf21e2cf53b6b92d40c0edbbf878f563f887a1d75"
+  },
+  {
+    "original": "Leveraging Prior Knowledge in the Development of Human Gene Therapy Products Incorporating Genome Editing",
+    "translation": "利用既有知识开发采用基因组编辑技术的人用基因治疗产品",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "70ead02e76e683461ff97192bbbccc59cc5424f61bb77d633bce82854008a54d"
+  },
+  {
+    "original": "Chemistry, Manufacturing, and Controls Flexibilities for Developing Human Cellular and Gene Therapy Products for a Biologics License Application",
+    "translation": "用于生物制品许可申请的人用细胞和基因治疗产品开发中化学、生产和质量控制的灵活性措施",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "0f5e79a9ce387994d9aaf0eb063c23fca890555cecf8115d7d53577f57761e20"
+  },
+  {
+    "original": "Safety Assessment of Genome Editing in Human Gene Therapy Products Using Next-Generation Sequencing",
+    "translation": "利用下一代测序技术评估人类基因治疗产品中基因编辑的安全性",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "e206fac3ec4fedfdf8e26d9cf3852b09a6b212c8d725dfee7bc9c348f8860ea5"
+  },
+  {
+    "original": "Bulk Density of Powders <616>",
+    "translation": "粉末的堆密度 <616>",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "31d5f6c2fe2399fa1c4a6d390e49dca64a6ca2282bc2830c01575dc7dae99c71"
+  },
+  {
+    "original": "Conductivity <644>, <1644>",
+    "translation": "电导率 <644>、<1644>",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "b4877fed98cf300ebb0f0f09e85d4698afb438ae842c68f9e86d84efe9764aa4"
+  },
+  {
+    "original": "Gas Pycnometric Density of Solids <699>",
+    "translation": "气体比重瓶法测定固体密度 <699>",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "afb7fc20f6d28eed2bd5621f970c37af99eb4ebdc25525245e835e78dafae62a"
+  },
+  {
+    "original": "Powder Flow <1174>",
+    "translation": "粉末流动 <1174>",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "0f1747f0b0d6dc411a9962911e7e0e1fce73da22dc04ae3a6e9ce5c8eccf58a0"
+  },
+  {
+    "original": "Tablet Friability <1216>",
+    "translation": "片剂脆碎度 <1216>",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "92f9a711049a2ffe3baf432be89c466588f98c3545b61aa5c136ebdb66124be9"
+  },
+  {
+    "original": "Elemental Impurities <233>",
+    "translation": "元素杂质 <233>",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "da6a4422e139b4a020e954c9abb50f3454a0b558c2dc22f2bc34af18f89ac4b9"
+  },
+  {
+    "original": "Optical Microscopy <776>",
+    "translation": "光学显微镜 <776>",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "222136ed901d1e33c1befb743684ce7a6707822618b3dfa0fbcef066ade9ab7c"
+  },
+  {
+    "original": "Guideline on similar biological medicinal products containing interferon beta",
+    "translation": "含干扰素β的生物类似药指导原则",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "6e9e8db33d6fdb23d2eca153debbe7f64c3821b2b2a61cfdd552e01275d58f10"
+  },
+  {
+    "original": "Toolbox guidance on scientific elements and regulatory tools to support quality data packages for PRIME and certain marketing authorisation applications targeting an unmet medical need",
+    "translation": "关于为PRIME和某些针对未满足医疗需求的药品上市许可申请提供质量数据包的科学要素和监管工具的工具箱指导",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "dd6931f17cb6a16175923d497c1863b23a74ca67fa885c1f7e07307b75eeaea6"
+  },
+  {
+    "original": "Guideline on similar biological medicinal products containing monoclonal antibodies – non-clinical and clinical issues",
+    "translation": "含单克隆抗体的生物类似药指导原则：非临床和临床问题",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "ec688f5e6860c0a3a1bfc7a1ffdf750a2da43e9b145b29990d859cfff0574898"
+  },
+  {
+    "original": "Guideline on non-clinical and clinical development of similar biological medicinal products containing recombinant erythropoietins - Revision 1",
+    "translation": "含重组促红细胞生成素的生物类似药非临床和临床开发指导原则（第1次修订）",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "3b12ad66b6d4f80261d77bb6e99039c3f3bad366a019805d56961b8bf4c3c5eb"
+  },
+  {
+    "original": "Guideline adventitious agent safety of urine-derived medicinal products",
+    "translation": "尿源药品中外来因子安全性指导原则",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "c57fa0e7fa593f3d81d06e724d5f1463a2e218e99aecb073b4b7115716954a67"
+  },
+  {
+    "original": "Questions and Answers on Biosimilar Development and the BPCI Act",
+    "translation": "生物类似药开发及 BPCI 法案的问题与解答",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "0c79a6773f26d5307e45c082da68917f1576393eeb29ecea496c990d82cde02f"
+  },
+  {
+    "original": "Recommendations for Reducing the Risk of Transfusion-Transmitted Hepatitis B Virus",
+    "translation": "减少输血传播乙型肝炎病毒风险的建议",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "b5d110495c8135ef9240186b13fbea229141f8b063fd39342a96cd6eff852bb2"
+  },
+  {
+    "original": "Guidance for Industry: Potency Assurance for Cellular and Gene Therapy Products",
+    "translation": "行业指南：细胞和基因治疗产品效价保证",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "ed9049814b586da4edef11554adaa6fa409311c1424ff499cbbb7af66d6890c0"
+  },
+  {
+    "original": "New and Revised Draft Q&As on Biosimilar Development and the BPCI Act (Revision 4)",
+    "translation": "生物类似药开发及 BPCI 法案的新增和修订问答草案（修订4）",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "dc8134c4acdcca8dc9112507290a81ab5da51df4b6d0415d91a8c0a4a78481da"
+  },
+  {
+    "original": "Biosimilarity and Interchangeability: Additional Draft Q&As on Biosimilar Development and the BPCI Act (Revision 1)",
+    "translation": "生物相似性与互换性：生物类似药开发及 BPCI 法案的补充问答草案（修订1）",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "355e7d3a498d88cc605a6d43d3648d2c5a6a6b2520d83c3507f3d9d826f3b257"
+  },
+  {
+    "original": "Considerations for the use of the Plausible Mechanism Framework to Develop Individualized Therapies that Target Specific Genetic Conditions with Known Biological Cause",
+    "translation": "使用合理机制框架开发针对具有已知生物学病因的特定遗传性疾病个体化治疗的考虑因素",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "ffa0dd265720aad6137cdbde29ba8731e1082063046c2f4431f99f0acc01ed58"
+  },
+  {
+    "original": "Expedited Programs for Regenerative Medicine Therapies for Serious Conditions",
+    "translation": "用于严重疾病再生医学疗法的加速程序",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "5159fc2a175fae5ea9288bbd5f07b6c12452814208ddcfc1b9f46100df4b0895"
+  },
+  {
+    "original": "Postapproval Methods to Capture Safety and Efficacy Data for Cell and Gene Therapy Products",
+    "translation": "细胞与基因治疗产品获批后的安全性和有效性数据捕获方法",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "f2dcb9fb5eaf5237dfd86a1d11676c54c21201f09c39520fabdd0177e412e4dd"
+  },
+  {
+    "original": "Innovative Designs for Clinical Trials of Cellular and Gene Therapy Products in Small Populations",
+    "translation": "针对小人群细胞和基因治疗产品临床试验的创新设计",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "0eff0de8f78fc5ac40ba55f86c9b1a9ac6fb2a5d0a0a4c4fea27e3370829b608"
+  },
+  {
+    "original": "Safety Testing of Human Allogeneic Cells Expanded for Use in Cell-Based Medical Products",
+    "translation": "用于细胞类医疗产品的经扩增人同种异体细胞的安全性检测",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "ebcc67ecb4c5f0bc5e6aa77b77d004a701e53f33bd4ad94e576227ab06c14b1d"
+  },
+  {
+    "original": "Considerations for the Use of Human-and Animal-Derived Materials in the Manufacture of Cell and Gene Therapy and Tissue-Engineered Medical Products",
+    "translation": "关于在细胞和基因治疗及组织工程医疗产品制造中使用人源和动物源材料的考虑",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "d7fac41ac289e38fb8211f5f98c584743d10e90ffb270db8dbdc19c0cd954306"
+  },
+  {
+    "original": "Human Gene Therapy Products Incorporating Human Genome Editing",
+    "translation": "包含人类基因组编辑的人类基因治疗产品",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "d9b5cb30f43ecfff828c6ef0e409303f66a009c357b2ba2d1a1a7f0e088398bb"
+  },
+  {
+    "original": "Considerations for the Development of Chimeric Antigen Receptor (CAR) T Cell Products",
+    "translation": "关于嵌合抗原受体（CAR）T细胞产品的开发考虑",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "f546dde1e45aa602c98fb140078abfdc627beac0db5e6d9934df74b44a2f990a"
+  },
+  {
+    "original": "Potency Assurance for Cellular and Gene Therapy Products",
+    "translation": "细胞与基因治疗产品的效价保证",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "3e7bf4fccaece05657855e0331f176f333c0a82e0a6b1053243021c60494648a"
+  },
+  {
+    "original": "Manufacturing Changes and Comparability for Human Cellular and Gene Therapy Products",
+    "translation": "人类细胞和基因治疗产品的制造变更及可比性",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "0f47f0f17994d97c97dcb2ec8f21305e1660d0bde31754f92c959eb737d985fe"
+  },
+  {
+    "original": "Studying Multiple Versions of a Cellular or Gene Therapy Product in an Early-Phase Clinical Trial",
+    "translation": "在早期临床试验中研究细胞或基因治疗产品的多个版本",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "1f142b55b372d3ea55057c193843b9cdb7ada960a526cca3becc42f5bc10bc51"
+  },
+  {
+    "original": "Human Gene Therapy for Neurodegenerative Diseases",
+    "translation": "用于神经退行性疾病的基因治疗（人类）",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "72b6f19656fa7700c54681134d6b96b33a63fb2fc0db8238911b475d45dc93d7"
+  },
+  {
+    "original": "Interpreting Sameness of Gene Therapy Products Under the Orphan Drug Regulations",
+    "translation": "孤儿药法规下基因治疗产品相同性的解释",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "bb53d8b2ad75d0b83c748fc6ad3342ec56f07640f0240c28419e1595b35462bc"
+  },
+  {
+    "original": "Manufacturing Considerations for Licensed and Investigational Cellular and Gene Therapy Products During COVID-19 Public Health Emergency",
+    "translation": "COVID-19 公共卫生紧急状态期间已获许可及在研细胞和基因治疗产品的生产考虑事项",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "06ddcec211bb94e95b9189fd41892ae7e2298bf8df2c495e570c6ef912b6db9a"
+  },
+  {
+    "original": "Chemistry, Manufacturing, and Control (CMC) Information for Human Gene Therapy Investigational New Drug Applications (INDs)",
+    "translation": "人用基因治疗新药临床试验申请（INDs）的化学、生产和质量控制（CMC）信息",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "da9ac9300fd7f579c91c3b3c725dac1c0034fdd248d3fdd4f421f58cf58c1e20"
+  },
+  {
+    "original": "Long Term Follow-up After Administration of Human Gene Therapy Products",
+    "translation": "人源基因治疗产品给药后的长期随访",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "d973c115c4d000547436d8c14aab234ab19c70c09ef852079272de0aa3ab590a"
+  },
+  {
+    "original": "Testing of Retroviral Vector-Based Human Gene Therapy Products for Replication Competent Retrovirus During Product Manufacture and Patient Follow-up",
+    "translation": "在产品制造及患者随访期间对基于逆转录病毒载体的人基因治疗产品的复制型逆转录病毒进行检测",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "f1622877fc40fd18525079ea94e20563d5270ae3a52b6213e55331509d69cb7d"
+  },
+  {
+    "original": "Human Gene Therapy for Hemophilia",
+    "translation": "用于血友病的人类基因治疗",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "a6ba231712f0fecde319cb903474b7cf23aac94f0c70e918af276fe3e9af633f"
+  },
+  {
+    "original": "Human Gene Therapy for Rare Diseases",
+    "translation": "用于罕见病的人类基因治疗",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "c1d8d70ff284bf956b7a8846fe569a52c6da55e27f1af82d9c1bc8f9e831f8ee"
+  },
+  {
+    "original": "Human Gene Therapy for Retinal Disorders",
+    "translation": "用于治疗视网膜疾病的基因疗法",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "ea55e6448ebdcdb4865c3ffe28261a3ea6cb48e56831849784189ec97e514ee9"
+  },
+  {
+    "original": "Evaluation of Devices Used with Regenerative Medicine Advanced Therapies",
+    "translation": "用于再生医学先进疗法的设备的评估",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "54befee12b13c46fefb89b602024aa8b7c15f9f9da5d604c13bd5b7ecbc66376"
+  },
+  {
+    "original": "Regulatory Considerations for Human Cells, Tissues, and Cellular and Tissue-Based Products: Minimal Manipulation and Homologous Use",
+    "translation": "人细胞、组织及细胞和组织类产品的监管考虑：最小限度操作和同源使用",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "8117b7304493d35af727b726b348590bad5e1e4caf3805c01fd4dc3b21a7b497"
+  },
+  {
+    "original": "Same Surgical Procedure Exception under 21 CFR 1271.15(b): Questions and Answers Regarding the Scope of the Exception",
+    "translation": "21 CFR 1271.15(b)条款中的相同手术程序例外：关于该例外适用范围的问题与解答",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "bd9a9a54340fba805b0ad9143585cd393c31b64039e4dcbc7afb7e9703b507cf"
+  },
+  {
+    "original": "Deviation Reporting for Human Cells, Tissues, and Cellular and Tissue-Based Products Regulated Solely Under Section 361 of the Public Health Service Act and 21 CFR Part 1271",
+    "translation": "仅根据《公共健康服务法》第361条及21 CFR第1271部分监管的人细胞、组织及细胞和组织基产品偏差报告",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "adf9e283c50d77ec65e0cfea4ab67479d2ee2502875d1402fa2cd9d41cb5760c"
+  },
+  {
+    "original": "Recommendations for Microbial Vectors Used for Gene Therapy",
+    "translation": "用于基因治疗的微生物载体的建议",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "e3539955451cb4d9d1828413eea773f76419711d51f35b24cc4c6f0fdb98cfd9"
+  },
+  {
+    "original": "Design and Analysis of Shedding Studies for Virus or Bacteria-Based Gene Therapy and Oncolytic Products",
+    "translation": "病毒或细菌类基因治疗及溶瘤产品的脱落研究设计与分析",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "5d50cf7077741614f3b574037de68b83a3c01e65bbcd7220a2312dbd9d471f73"
+  },
+  {
+    "original": "Considerations for the Design of Early-Phase Clinical Trials of Cellular and Gene Therapy Products",
+    "translation": "细胞与基因治疗产品早期临床试验设计的考虑因素",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "f12690c22e4375d06924ae1fa4a58d0b31ff46fa7d819c808ab76f66a0c46838"
+  },
+  {
+    "original": "Determining the Need for and Content of Environmental Assessments for Gene Therapies, Vectored Vaccines, and Related Recombinant Viral or Microbial Products",
+    "translation": "确定基因治疗、载体疫苗及相关重组病毒或微生物产品的环境影响评估的必要性及内容",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "2e758801e419a2923db13af69daf2b75d6c934be814c4798e2cae0976044f845"
+  },
+  {
+    "original": "BLA for Minimally Manipulated, Unrelated Allogeneic Placental/Umbilical Cord Blood Intended for Hematopoietic and Immunologic Reconstitution in Patients with Disorders Affecting the Hematopoietic System",
+    "translation": "用于造血系统疾病患者造血和免疫重建的经最小限度操作、非亲缘同种异体胎盘血/脐带血的生物制品许可申请（BLA）",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "e4d21b7f3fa8e5f78ef53bb4cd4c9e8115c77d59558c4b0bb4d2140818e1c8a9"
+  },
+  {
+    "original": "IND Applications for Minimally Manipulated, Unrelated Allogeneic Placental/Umbilical Cord Blood Intended for Hematopoietic and Immunologic Reconstitution in Patients with Disorders Affecting the Hematopoietic System",
+    "translation": "用于造血系统疾病患者造血和免疫重建的经最小限度操作、非亲缘同种异体胎盘血/脐带血的 IND 申请",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "e36c8fae086ab481c13f73d1d68bc5ed29c684cd4ba940a6f48ba4c4555f89ce"
+  },
+  {
+    "original": "Preclinical Assessment of Investigational Cellular and Gene Therapy Products",
+    "translation": "在研细胞和基因治疗产品的临床前评价",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "518dd9ca7f92ea5b0a63f36e67aa8f119168ce305d9c480c0f3d795a1f208cf4"
+  },
+  {
+    "original": "Preparation of IDEs and INDs for Products Intended to Repair or Replace Knee Cartilage",
+    "translation": "用于修复或替代膝关节软骨的产品的 IDEs 和 INDs 申请准备",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "c6bb9a9851bdb82080cd66611c176b2615f5b9876d8077ce3f61a4b0ab1eb1e4"
+  },
+  {
+    "original": "Clinical Considerations for Therapeutic Cancer Vaccines",
+    "translation": "用于治疗性癌症疫苗的临床考虑",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "57282e61e860af612f85d83af2e5ae0c08e55e7168d523c910abf16e319e2efb"
+  },
+  {
+    "original": "Potency Tests for Cellular and Gene Therapy Products",
+    "translation": "细胞与基因治疗产品的效价试验",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "30acb9cd5f4174193e1083391e230ff25c9665d9d09d359e296cceb6ac22e529"
+  },
+  {
+    "original": "Cellular Therapy for Cardiac Disease",
+    "translation": "心脏疾病细胞治疗",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "31500ab180edb0700f3fec6af129653f0db57ce5f430240f7f5331590b5a646f"
+  },
+  {
+    "original": "Considerations for Allogeneic Pancreatic Islet Cell Products",
+    "translation": "关于异体胰岛细胞产品的考虑事项",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "87b8ffb56b49d25fc45cf7d4eef4c732cbc706b625b62ad5a2fd394da0dc6c7c"
+  },
+  {
+    "original": "Content and Review of Chemistry, Manufacturing, and Control (CMC) Information for Human Somatic Cell Therapy Investigational New Drug Applications (INDs)",
+    "translation": "人用体细胞治疗新药临床试验申请（INDs）中化学、生产和质量控制（CMC）信息的内容与审查",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "33aaaefd3af5c06a92aee23e020f62bc5b720d3744b71cf782196e8bd81250d6"
+  },
+  {
+    "original": "Eligibility Determination for Donors of Human Cells, Tissues, and Cellular and Tissue-Based Products",
+    "translation": "人类细胞、组织及细胞和组织基产品捐赠者资格判定",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "159ce17cef167f1ec307a855e0e1a7fd904e6981e856751201a424b71f7f9296"
+  },
+  {
+    "original": "Guidance for Human Somatic Cell Therapy and Gene Therapy",
+    "translation": "人类体细胞治疗和基因治疗指导原则",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "f0eaeee828451e5bb8b8c65091d263560b69a395a746f2e2dd09db18379cbbc0"
+  },
+  {
+    "original": "Powder Fineness <811>",
+    "translation": "粉末细度 <811>",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "8abf06e576ea586d91e5b8ff99f0b610ad4e32acaa2c53a00349102bada832b6"
+  },
+  {
+    "original": "Specific Surface Area <846>",
+    "translation": "比表面积 <846>",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "4501a3cda44f605fecd27f8e886d15e0119ea4846aaf7c20925338ae645d54d7"
+  },
+  {
+    "original": "Porosimetry by Mercury Intrusion <267>",
+    "translation": "压汞法测定孔隙度 <267>",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "bab1ecb156547327dd600a82d9155cf2a1cebc7891028ed7165cb9d542e60754"
+  },
+  {
+    "original": "Laser Diffraction Measurement of Particle Size <429>",
+    "translation": "激光衍射法测定粒径 <429>",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "07cc7ca7654ef76e81327175ac7c592fe8342e838a4dab85ea3351f3c9e1f3f2"
+  },
+  {
+    "original": "X-Ray Powder Diffraction <941>",
+    "translation": "X射线粉末衍射 <941>",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "d1cf76baa75df66c83d5dc79ffed48c215870f932c212b409153a1c7849bbdc9"
+  },
+  {
+    "original": "Water-Solid Interaction <1241>",
+    "translation": "水-固相互作用 <1241>",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "64201e7578d21e17bec45449482783e8da3a1537fed113ed222f592af0e03280"
+  },
+  {
+    "original": "Thermal Analysis <891>",
+    "translation": "热分析 <891>",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "d47c0e788886fc4183085c83bb083cf5aee283b3d75eb6569e0273503d1eea5b"
+  },
+  {
+    "original": "Crystallinity Determination by Solution Calorimetry <696>",
+    "translation": "通过溶液量热法测定结晶度 <696>",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "bc9cb4a83817609bab28d8587c2678ea23cde891e3aff103218f799ae10ac64c"
+  },
+  {
+    "original": "Density of Solids <699>",
+    "translation": "固体密度 <699>",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "795fbd089d7c7a881656c45c97d86924afd1bed9e712af692ff5fcf48e97508c"
+  },
+  {
+    "original": "Chromatography <621>",
+    "translation": "色谱法 <621>",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "cd6788b4203ef40b39b95c8ad168b403846b2de62e2ec0f47b24efd42691047d"
+  },
+  {
+    "original": "Dynamic Light Scattering <430>",
+    "translation": "动态光散射 <430>",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "a2fb74a244372b9594f549ef193bd0f08ef408f398a2562ea227f6c2dc532329"
+  },
+  {
+    "original": "Guideline on non-clinical and clinical development of similar biological medicinal products containing recombinant human follicle-stimulating hormone (r-hFSH)",
+    "translation": "含重组人卵泡刺激素（r-hFSH）的生物类似药非临床和临床开发指导原则",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "3274b11b1f4f172b9d2dc825c684001458c59ea62d60d148dbd33fcf51df8b15"
+  },
+  {
+    "original": "Guideline on the use of bovine serum in the manufacture of human biological medicinal products - Revision 1",
+    "translation": "人用生物药生产中使用牛血清的指导原则（第1次修订）",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "b63b563c08ab4b39a68f63e64be2bdaf8c6192b0dc16845fb637b6f5a428371c"
+  },
+  {
+    "original": "Annex to guideline on similar biological medicinal products containing biotechnology-derived proteins as active substance: non-clinical and clinical issues - Revision 1",
+    "translation": "含生物技术来源蛋白作为活性成分的生物类似药指导原则附件：非临床和临床问题（修订1）",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "9758b75ceb86636fdc40b3e41b9a841789b87ec5699c4e14c86549ed87f7dcbf"
+  },
+  {
+    "original": "Guideline on the use of porcine trypsin used in the manufacture of human biological medicinal products",
+    "translation": "人用生物药生产中使用猪胰蛋白酶的指导原则",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "44a2242e8f76ae790ecde5bb3cc6187278b11b5ae673458d5b6581fb919f1544"
+  },
+  {
+    "original": "Reflection paper: Non-clinical and clinical development of similar medicinal products containing recombinant Interferon Alfa",
+    "translation": "讨论文件：含重组干扰素α的类似药品的非临床和临床开发",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "55d2f2090398fdc46d78263e990a9f150d01edf82ad3b038a13577d7fa8b3d1a"
+  },
+  {
+    "original": "Note for guidance on virus validation studies: The design, contribution and interpretation of studies validating the inactivation and removal of viruses",
+    "translation": "病毒验证研究指导原则：关于验证灭活和去除病毒的研究的设计、贡献及解释",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "4180b33e473ba43fc92bb1d2568937eeda4f037abd7cbf1a2d64c0b4beba375e"
+  },
+  {
+    "original": "Guideline on comparability of biotechnology-derived medicinal products after a change in the manufacturing process. Non-clinical and clinical issues",
+    "translation": "关于生物技术来源药品在制造工艺变更后可比性的指导原则（非临床和临床问题）",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "9f11971beedff23199ebd7a8dee3d8c7112c860814675fb7c3ad57e2aebbe3f7"
+  },
+  {
+    "original": "Testing for SV40 in poliovirus vaccines",
+    "translation": "检测脊髓灰质炎疫苗中的SV40",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "a0684c456ede4679d00c67b90ff94cb89deabb027e7116b6f71bf8b341d6e3a8"
+  },
+  {
+    "original": "ICH: Q 5 E: Comparability of biotechnological/biological products - Step 5",
+    "translation": "ICH：Q 5E：生物技术/生物产品的可比性——第5步",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "c4237347468c4ec1d6c231a54aace3514d943bea94de86b468e839f9978ccdd2"
+  },
+  {
+    "original": "Position paper on viral safety of Oral Poliovirus Vaccine (OPV)",
+    "translation": "关于口服脊髓灰质炎疫苗（OPV）病毒安全性的立场文件",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "49535c68230947dd8ddd1d96fe200178a2e3c7a587162773da8988509326c7fd"
+  },
+  {
+    "original": "Guideline on the investigation of manufacturing processes for plasma-derived medicinal products with regard to variant Creutzfeldt-Jakob disease risk",
+    "translation": "针对变异型克雅病风险开展血浆来源药品生产工艺研究的指导原则",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "0ae4e2e850cfa1e4ee2822bf69aae456375732db8457d30ba08d1bd75409632d"
+  },
+  {
+    "original": "Guideline on immunogenicity assessment of monoclonal antibodies intended for in-vivo clinical use",
+    "translation": "单克隆抗体用于体内临床用途的免疫原性评估指导原则",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "f3f0cb621ea87929d3ab500b698acd5098252ef8c84a865673b7acc65c5191c8"
+  },
+  {
+    "original": "Minimising the risk of transmitting animal spongiform encephalopathy agents via human and veterinary medicinal products",
+    "translation": "通过人用和兽用医药产品传播动物海绵状脑病病原体的风险最小化",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "30ea869e84423e9498aa0c4a57bca81d9217bc2c3efaf6b03df50fa2316b321d"
+  },
+  {
+    "original": "Questions and answers on bovine spongiform encephalopathies (BSE) and vaccines - Revision 1",
+    "translation": "关于牛海绵状脑病（BSE）和疫苗的问答 - 修订1",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "6793a52d0b0e2fa7344fc80f47ace964cfb13b0a805e50330f09242b972544c7"
+  },
+  {
+    "original": "CHMP/CAT position statement on Creutzfeldt-Jakob disease and advanced-therapy medicinal products",
+    "translation": "CHMP/CAT 关于克雅病与先进治疗药品的立场声明",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "a0665f6004020b9550952501d3c99d320c814c7b6ca426ecc0088c15b1f75c64"
+  },
+  {
+    "original": "CHMP reflection paper on Creutzfeldt-Jakob disease and plasma-derived and urine-derived medicinal products - Revision 3",
+    "translation": "CHMP 关于克雅病与血浆来源及尿源药品的讨论文件（修订3）",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "d147d3b1be713ecf7bb7c35865896362bc4f113028f1750c4240db5904395136"
+  },
+  {
+    "original": "Public statement on the evaluation of bovine spongiform encephalopathies (BSE) - risk via the use of materials of bovine origin in or during the manufacture of vaccines",
+    "translation": "在疫苗中或疫苗生产过程中使用牛源材料所涉牛海绵状脑病（BSE）风险评估的公开声明",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "27f91eb529dca7bec7d658fdfb8fec5772ca2db9cb2f49640f41b44b50dd1fd9"
+  },
+  {
+    "original": "First cases of bovine spongiform encephalopathy in the United States (USA) and Canada: Risk assessment of ruminant materials originating from the USA and Canada",
+    "translation": "美国（USA）和加拿大首次出现牛海绵状脑病病例：来自美国（USA）和加拿大的反刍动物材料的风险评估",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "73dd365baeea1800dda147fc7c47a333bcbb7cc301110176d5338824976cef5f"
+  },
+  {
+    "original": "Position statement on Polysorbate 80",
+    "translation": "关于聚山梨酯80的立场文件",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "db729b68d92484b817f50773bd8e5276e59ad8f36a2eef377ac834e000554fda"
+  },
+  {
+    "original": "Position paper on production of Tallow derivatives for use in pharmaceuticals",
+    "translation": "关于用于药品的牛油衍生物生产的立场文件",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "f093529042a45a5fbcc60ae9c7741efc1769d982d9337e0c29218e4bd8a75e17"
+  },
+  {
+    "original": "Position paper on re-establishment of working seeds and working cell banks using TSE compliant materials - Obsolete",
+    "translation": "关于使用符合TSE要求的材料重新建立工作种子和工作细胞库的立场文件 - 作废",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "b832bd8a08a7cb20fcb148851a6249f9571ae70c60a509c7636c3c2c941e566f"
+  },
+  {
+    "original": "Public report on risk and regulatory assessment of lactose and other products prepared using calf rennet",
+    "translation": "关于使用犊牛凝乳酶制备乳糖及其他产品的风险和监管评估的公开报告",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "910f7a377235f9f66f106c8409d4b4701c5b08d63ece7ffbb3a617baf63a1a94"
+  },
+  {
+    "original": "Guideline on the requirements for quality documentation concerning biological investigational medicinal products in clinical trials - Revision 2",
+    "translation": "临床试验用生物药质量资料要求的指导原则（第2次修订）",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "b0b2089edfc1cafeaada582f03ab628985d64f0ebfb83d6123530f5be23d121b"
+  },
+  {
+    "original": "Guideline on virus safety evaluation of biotechnological investigational medicinal products",
+    "translation": "临床试验用生物技术药品病毒安全性评价指导原则",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "534c5a3f9412c66db55932883561c2f79a9081f1f67fb26e8733a6a73846f157"
+  },
+  {
+    "original": "Guideline on environmental risk assessments for medicinal products consisting of, or containing, genetically modified organisms (GMOs)",
+    "translation": "由转基因生物（GMOs）构成或含有转基因生物的药品环境风险评估指导原则",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "0300e9232e787b16aeb475fefe0d14fe44ea0587b348459aeaa625937893cfdb"
+  },
+  {
+    "original": "Guideline on scientific requirements for the environmental risk assessment of gene therapy medicinal products",
+    "translation": "基因治疗药品环境风险评估的科学要求指南",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "c79cb4bf4f1f48144534e0746fd9169c3017f0edb9e63811859d4c42ed8f928a"
+  },
+  {
+    "original": "ICH: Q 6 B: Test procedures and acceptance criteria for biotechnological/biological products - Step 5",
+    "translation": "ICH：Q 6 B：生物技术产品/生物制品的检验程序和接受标准（第5步）",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "d00262505ffe18294973fd3f6331e11e64b49bbd4711bef54d0d32b7fc9a9308"
+  },
+  {
+    "original": "ICH guideline Q12 on technical and regulatory considerations for pharmaceutical product lifecycle management - Step 5",
+    "translation": "ICH Q12 药品全生命周期管理的技术和监管考虑指导原则（第5步）",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "8becbb216e51c7f36502daddeebaaf649379be79ea7f6d90c20263a06fa5835e"
+  },
+  {
+    "original": "S1B(R1) Concept Paper",
+    "translation": "S1B(R1) 概念文件",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "0c159f9dd9decdfb2e83724999c9a2a7fd1f13708415a2470d2c47d1905a91b5"
+  },
+  {
+    "original": "E2B(R3) Concept Paper",
+    "translation": "E2B(R3) 概念文件",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "0cbcbe4a683a2f7714ca0f2d6dd52fa112cb616cf85e7fb8a44970de917720e9"
+  },
+  {
+    "original": "M3(R2) Concept Paper",
+    "translation": "M3(R2) 概念文件",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "de4dac027c2d98b57dbe5e72382d2cd6623c52265754de0fef197bc7dfa2f203"
+  },
+  {
+    "original": "E2B(R3) Q&As Questions & Answers",
+    "translation": "E2B(R3) 问题与解答",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "44192b5171bfc301215b3637fe6a10b182e314f0bf856651c648c380a479a132"
+  },
+  {
+    "original": "Guidance on Nonclinical Safety Studies for the Conduct of Human Clinical Trials and Marketing Authorization for Pharmaceuticals",
+    "translation": "关于药品开展人体临床试验及上市许可非临床安全性研究的指导原则",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "9ff4b00ca0db259143d0033e2a8720f3c34b2c22a5244f4faffeed0646703a93"
+  },
+  {
+    "original": "Evaluation of Stability Data",
+    "translation": "稳定性数据评估",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "ad495b92cd0c09947d28207944139b7308e8d4388e2bd12fe9d4c86b596cfa60"
+  },
+  {
+    "original": "S2(R1) Concept Paper",
+    "translation": "S2(R1) 概念文件",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "cbb782b5ca02e238aa629b5526f36d999721077cae36f9be8f759bea7e5dabcb"
+  },
+  {
+    "original": "M3(R2) Q&As (R2) Questions & Answers",
+    "translation": "M3(R2) 问题与解答（R2）",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "15bc015023d6d82be54ddc1a20b1e80dd0f408c0022019352d9652fcad93aec0"
+  },
+  {
+    "original": "Q1/Q5C Concept Paper",
+    "translation": "Q1/Q5C 概念文件",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "aa9f6e9ab65a4547a9810c2102e4a5218803840295f48d4844847025c12d6329"
+  },
+  {
+    "original": "E2C(R2) Concept Paper",
+    "translation": "E2C(R2) 概念文件",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "d29d2e151123b9e5a8e5ac90f2397cc17a4279c8d12874f2ccd8f081b37cfd5c"
+  },
+  {
+    "original": "M3(R2) Q&As (R2) Concept Paper",
+    "translation": "M3(R2)问答文件（R2）概念稿",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "787cc3ccc909ea1dbdc3d2939f50970bba3bff63b1f7f9f75a74b1b547c77959"
+  },
+  {
+    "original": "M6 Concept Paper",
+    "translation": "M6 概念文件",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "6530be62695b736549ce44a41bfb95fcd8b6b261c8dff24e78509b08b59b99a5"
+  },
+  {
+    "original": "ICH S3A Q&As Questions & Answers",
+    "translation": "ICH S3A 问题与解答",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "c5b1393d0286f926a721284fd4ac7e58a27e5d403a26057c72fddfd17ff10fcd"
+  },
+  {
+    "original": "E2C(R2) Q&As Questions & Answers",
+    "translation": "E2C(R2) 问题与答案",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "89befbdac9d19bce398231163bc8e91b725d9b230b2451d8724762d406c97dd3"
+  },
+  {
+    "original": "M7(R2) Concept Paper",
+    "translation": "M7(R2) 概念文件",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "4319683e229b9aab25831dc05c100d189b36a2b82389fb8bd4f33d71b01bf3f3"
+  },
+  {
+    "original": "E2C(R2) Q&As Concept Paper",
+    "translation": "E2C(R2) 问答概念文件",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "75d628382508435529a9b98bd671e29d11bafac7927f843bb9383c7f459bb95e"
+  },
+  {
+    "original": "Assessment and Control of DNA Reactive (Mutagenic) Impurities in Pharmaceuticals to Limit Potential Carcinogenic Risk",
+    "translation": "药品中DNA反应性（诱变）杂质的评估与控制，以降低潜在致癌风险",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "e0b768746ca96c8ac7e919ee0e142bb08cfaba05a3e02ff82145922a1f6ab05c"
+  },
+  {
+    "original": "Q3C(R10) Concept Paper",
+    "translation": "Q3C(R10) 概念文件",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "2bcc6563626ae153e05a1d7b96d2fc03eaad7cfff5f840aaa03cf3489234a477"
+  },
+  {
+    "original": "E2C(R2) Q&As Work Plan",
+    "translation": "E2C(R2) 问答工作计划",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "eabc752b7f687f301237556bbf28baffb52156ecea85df3f0e39bbbb8771d6bc"
+  },
+  {
+    "original": "M7(R2) Q&As",
+    "translation": "M7(R2) 问答",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "befc7f9cc69afb76e6150bc9086c82590f9cd9630040862c1d9bc5bfae5619fa"
+  },
+  {
+    "original": "Revision of S5 Guideline on Detection of Toxicity to Reproduction for Human Pharmaceuticals",
+    "translation": "人用药品生殖毒性检测 S5 指导原则的修订",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "4df193cbe87ed4de4f21ce3fd767c2541f41cc58452d274e57b932b1da90a70d"
+  },
+  {
+    "original": "E2D Concept Paper",
+    "translation": "E2D 概念文件",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "53b581088ac4745ffe68b361b042e15691ae035ee7c1103a62deaafe53ba234d"
+  },
+  {
+    "original": "M7(R2) Maintenance Concept Paper",
+    "translation": "M7(R2) 维护概念文件",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "9eb50f5f4f49bc939ac6f65dc8bec0bf5d48359178e578400cf2dfa5ef5c18e2"
+  },
+  {
+    "original": "Q3E Concept Paper",
+    "translation": "Q3E概念文件",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "fd20fcdd0833cdbef9c1b69b0ab7ec7df28d6ba420472b8e42f209f5f0e84e22"
+  },
+  {
+    "original": "S5(R3) Concept Paper 2019",
+    "translation": "S5(R3) 概念文件 2019",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "f8f7fba7aba17fed74ba2b7d2412c32972a016833b63374afd0bd8ea575b11d3"
+  },
+  {
+    "original": "M7 Sub-group Concept Paper",
+    "translation": "M7 分组概念文件",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "db43d8521cf0c13526c7e22424c46ebb87d7efc00ad7dd4e43ad6c7c51c80678"
+  },
+  {
+    "original": "Evaluation and Recommendation of Pharmacopoeial Texts for Use in the ICH Regions",
+    "translation": "用于ICH区域的药典文本评估与建议",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "bf98ba56e36e698b378ada7a01ff259bb6f1420fda1f411b6c314d858f1357a7"
+  },
+  {
+    "original": "E2D(R1) Concept Paper",
+    "translation": "E2D(R1) 概念文件",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "0436cc8764c57045e1e32389e999f8c7bcd7bfabb98187727f826f04bccf7e38"
+  },
+  {
+    "original": "M8 Concept Paper",
+    "translation": "M8 概念文件",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "8fbaf4683e33c1f899e4025115b9f8721b5b5895d8a43a2e3914e9158728855a"
+  },
+  {
+    "original": "M8 Revised Concept Paper",
+    "translation": "M8修订概念文件",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "92b2b521f13cebb4d39bcb6bf4ce9c00568d082ed8c850fa466e3ad92de8a61d"
+  },
+  {
+    "original": "S7B Concept Paper",
+    "translation": "S7B 概念文件",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "5c3be7495425f73e6ad263e6f901bdf1bf0689e79688c94533a5fe38b26f6611"
+  },
+  {
+    "original": "E2E Concept Paper",
+    "translation": "E2E 概念文件",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "7ce95d5c7dbfe4e1ae81943e877fc40d30f3e2c93eb46822b792cb9ec32c9504"
+  },
+  {
+    "original": "M9 Concept Paper",
+    "translation": "M9概念文件",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "06b640afa16df9d75337172a023c1663c9cbbe3c022f29727507b10a449fbff3"
+  },
+  {
+    "original": "Quality of Biotechnological Products: Stability Testing of Biotechnological/Biological Products",
+    "translation": "生物技术产品的质量：生物技术/生物产品的稳定性研究",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "66140db01a81a621c3bb54d8570bace7b6434860929feedcbf161b235affe270"
+  },
+  {
+    "original": "Biopharmaceutics Classification System-based Biowaivers",
+    "translation": "基于生物药剂学分类系统的生物等效性豁免",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "81527cfc798547bdfcf5d4c4c856bd3b71091f0d7cedf4522e5fd9ad303a84cb"
+  },
+  {
+    "original": "E14/S7B Q&As(R1)",
+    "translation": "E14/S7B 问答（R1）",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "d3653dea1c318fb11ad4400e7bd7cf691f332a75d2654c58aadcd2a4465aebea"
+  },
+  {
+    "original": "E2F Concept Paper",
+    "translation": "E2F 概念文件",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "2c7e06b610bb8a288ce5db5d5163b74266db86584bb0624f5804b69eeca5362b"
+  },
+  {
+    "original": "M9 Q&As",
+    "translation": "M9 问答",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "d4d68218f7070e7b0f259f0c8bda692b3121ea7fed8a7677c30509c0579c2df2"
+  },
+  {
+    "original": "S8 Concept Paper",
+    "translation": "S8 概念文件",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "964a2f6656c6db0635bd3ddec44cbad8e7054247669ff1dccc7e7e6ba3dc7236"
+  },
+  {
+    "original": "M10 Concept Paper",
+    "translation": "M10 概念文件",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "617696ea50699cb07ee301a6b508d9c0ae3b61805ab89d25f07a296225846e1c"
+  },
+  {
+    "original": "Q5E Annex Concept Paper",
+    "translation": "Q5E 附件概念文件",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "f64e1e2600207a2a2912485f44bd8106e5f7ebd76833ecf7b5f0289bd93c0c91"
+  },
+  {
+    "original": "Bioanalytical Method Validation and Study Sample Analysis",
+    "translation": "生物分析方法验证和研究样品分析",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "130a72eb0b91b0eeb547759fc28443daed70e19a40950f050fecdfb3389ec6b7"
+  },
+  {
+    "original": "S9 Concept Paper",
+    "translation": "S9概念文件",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "faab5435891c92ffc356214efcc5ae54cc0c9ca18aebbf81e3b8f9899f594d91"
+  },
+  {
+    "original": "E3 Q&As (R1) Questions & Answers",
+    "translation": "E3 问题与解答（R1）",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "92efa8debbcc9e0c0ac826ce21afed8c3747e727298b727dd785a96d153ff80b"
+  },
+  {
+    "original": "M10 Q&As",
+    "translation": "M10 问答",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "2d05daeeb27d8c8eb09d828e6079f2a6a0137395351047cc0d7cd9d5ee120828"
+  },
+  {
+    "original": "E3 Q&As (R1) Concept Paper",
+    "translation": "E3问答（R1）概念文件",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "a2339895b54f20c31bf7c54acf65db538398ec322c52b9d2dffa8ebc223eb25b"
+  },
+  {
+    "original": "M11 Concept Paper",
+    "translation": "M11概念文件",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "d63a3d1b85565c0ba848319d5921461ec782c2eea61db59090c4e4f381aac546"
+  },
+  {
+    "original": "Q6(R1) Concept Paper",
+    "translation": "Q6(R1) 概念文件",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "7627377888f523c1769d7616794d99d3e639e65085238fed6c6c37e4c5a5fbc6"
+  },
+  {
+    "original": "S9 Q&As Questions & Answers",
+    "translation": "S9 问题与解答",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "e5e95454384a7d7cbf0f794d7846d1e9c04ca2f510401f237144f554c79c8e93"
+  },
+  {
+    "original": "M12 Concept Paper",
+    "translation": "M12概念文件",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "15c246bdc3adcb3b46d8929cd68803cc71d3221d7cfaa60e700d506d63a0ccb3"
+  },
+  {
+    "original": "S9 Q&As Concept Paper",
+    "translation": "S9问答概念文件",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "f4b50c5b6a3bf956c5308e2e4554987855699b1bb6216191f8488d1d9fc46634"
+  },
+  {
+    "original": "Drug Interaction Studies",
+    "translation": "药物相互作用研究",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "b54ffd8e948dbe693f1b8b306333c99584354987ad210895c9421ca920ca8500"
+  },
+  {
+    "original": "ICH Q7 Q&As",
+    "translation": "ICH Q7 常见问题解答",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "866ae282b9f7fe301bade72935ac8106132e27810fb3916c5fec9f48d5c51a12"
+  },
+  {
+    "original": "S10 Concept Paper",
+    "translation": "S10 概念文件",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "9d4c151b075daf1a0b777671d5ed69ebcb7ce13c5cf52911419aa64da3d2995f"
+  },
+  {
+    "original": "E5 Q&As (R1) Questions & Answers",
+    "translation": "E5 问题与解答（R1）",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "047eb53dde2781349bae1a188c15c2bb64c8e03a4a3926e0b12fe6c20fd0637c"
+  },
+  {
+    "original": "M12 Q&As",
+    "translation": "M12 问答",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "0a5fb2c413bd3eb1a59a46872c3751995531fb10bbf7819f7c6bdfd4e26b74ee"
+  },
+  {
+    "original": "Good Clinical Practice (GCP)",
+    "translation": "药物临床试验质量管理规范（GCP）",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "cde2fb277ae452ba0792f17d50898288102430ebe34148f97e770a3d8f968a23"
+  },
+  {
+    "original": "M13 Concept Paper",
+    "translation": "M13概念文件",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "f90d7e141ac424e7cbdf28ae5f987c03cbc1cb3d5d8f432fb60e76527eb386ba"
+  },
+  {
+    "original": "Handling of the Conditional and Time-Limited Approval for Regenerative Medical Products, PSB/MDED Notification No.1006-1, 2025",
+    "translation": "再生医学产品有条件和限时批准的处理，PSB/MDED通知第1006-1号，2025年",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "92c8f6a59c0afbf235816413ce8983ae95e45bc21b6decacab72d214cff4c966"
+  },
+  {
+    "original": "Questions and Answers (Q&A) on Guideline for Ensuring the Quality, Safety, and Efficacy of Biosimilars",
+    "translation": "关于生物类似药质量、安全性和有效性的指南问答（Q&A）",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "51e99cea9b0b64d31ac9c0d4197586a124924146005898590a12a4720c3e6b9d"
+  },
+  {
+    "original": "Amendments to the “Handling of Applications for Approval of Combination Products”, PSEHB/PED Notification No.1122-4, PSEHB/MDED Notification No.1122-10, PSEHB/SD Notification No.1122-7, PSEHB/CND Notification No.1122-4, 2016",
+    "translation": "关于《组合产品审批申请处理办法》的修订，PSEHB/PED通知第1122-4号，PSEHB/MDED通知第1122-10号，PSEHB/SD通知第1122-7号，PSEHB/CND通知第1122-4号，2016年",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "478f3908e39b15f5289ceb7ebc45ec48a245bad7f9cb4a3d78e121e5bd26defb"
+  },
+  {
+    "original": "Guideline for Ensuring Quality, Safety, and Efficacy of Biosimilars",
+    "translation": "生物类似药质量、安全性和有效性的保证指南",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "b9dea95e195f919c17a7d283bef3961c50b52e5c5971f31b947441f119e9f43d"
+  },
+  {
+    "original": "Questions and Answers (Q&A) on Handling of Applications for Approval of Combination Products, Administrative Notice, 2016",
+    "translation": "关于组合产品审批申请处理的问答（Q&A）、行政公告、2016年",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "44386e0dd534bd25fb3605abeff356885a0235e46e405bef7b90fbe132384d4f"
+  },
+  {
+    "original": "Handling of Non-proprietary Names and Brand Names related to Biosimilars",
+    "translation": "生物类似药相关通用名和商品名的处理",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "050b9e5060c50603dffa6ea755bc6ad78f85e4712ae22b72613eb3bc91c5a1a3"
+  },
+  {
+    "original": "Questions and answers (Q&A) on release testing of the imported regenerative medical products, PSB/MDED, PSB/CLD Administrative Notice, 2024.",
+    "translation": "关于进口再生医疗产品放行检验的问题与解答（Q&A），PSB/MDED、PSB/CLD 行政通知，2024年",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "a2ae1a0e67e0398f20fdcc74e4ab3a3e4f28989db22b7f7df937dfadedb8e6ed"
+  },
+  {
+    "original": "Handling of Use-results Surveys and Re-examination of Regenerative Medical Products, PSEHB/MDED Notification No. 0328-1, 2022",
+    "translation": "再生医疗产品使用结果调查及重新审查处理，PSEHB/MDED通知第0328-1号，2022年",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "24d90e1ad7e72fd071edfb3e344d2ecd89f4555548c53e790717e4f9e9054135"
+  },
+  {
+    "original": "Handling of Applications for Confirmation of Change Management Protocol of Regenerative Medical Product, PSEHB/MDED Notification No. 0729-1, 2021",
+    "translation": "再生医学产品变更管理协议确认申请的处理，PSEHB/MDED通知第0729-1号，2021年",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "0472e4bb138c28078d47218f2326255aafc1edacbcdc84179a0d303d78ddb22e"
+  },
+  {
+    "original": "Questions and Answers (Q&A) on Applications for Confirmation of Change Management Protocol of Regenerative Medical Products, Administrative Notice, 2021",
+    "translation": "关于再生医学产品变更管理协议确认申请的问答（Q&A），行政公告，2021",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "72e200d1f01f7ef049d4aee6fe61728eabcdc203375eac02aa1b623c50d9f46c"
+  },
+  {
+    "original": "Timing of Product Replacement after Approval (Certification) of Partial Changes in Approved (Certified) Items for In Vitro Diagnostics and Regenerative Medical Products, PSB/MDED Notification No. 1225-1, PSB/CND Notification No. 1225-1,2025",
+    "translation": "获批（认证）体外诊断产品和再生医学产品在批准（认证）项目中部分变更后的产品替换时机，PSB/MDED通知第1225-1号，PSB/CND通知第1225-1号，2025年",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "a73d14ba649ba49aa9fb765049cfc23825593f0f052e32c00704cac60660d738"
+  },
+  {
+    "original": "Questions and Answers (Q&A) on Timing of Product Replacement after Approval of Partial Changes in Approved (Certified) Items for In Vitro Diagnostics and Regenerative Medical Products, Administrative Notice, 2025",
+    "translation": "关于在体外诊断产品和再生医学产品获批（认证）项目中批准部分变更后产品更换时机的问题与解答，行政公告，2025",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "dc397df1d3ac3b99bc75bc891b20b25038be353304f6f40edca7971ce8e92f9f"
+  },
+  {
+    "original": "Guideline for comparability of human cell-processed products subject to changes in their manufacturing process, PSB/MDED Notification No. 0329-1, 2024.",
+    "translation": "人源细胞治疗产品制造工艺变更的可比性指导原则，PSB/MDED通知第0329-1号，2024年。",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "d9af908f6b77c399396800a88cadc5493bacc507ce973b17e4c5b0c7abc14a4b"
+  },
+  {
+    "original": "Technical Guidance for Quality, Nonclinical Safety Studies and Clinical Studies of Regenerative Medical Products (Human Cell-Processed Products), Administrative Notice, 2016.",
+    "translation": "再生医学产品（人细胞处理产品）质量、非临床安全性研究及临床研究技术指导原则（行政通告），2016。",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "9cafa52130350f8457f4cfcd7ede906d4d20a2d7d163dab61d6d6cd9bc548f42"
+  },
+  {
+    "original": "Point to consider for Sterility Test and Mycoplasma Test",
+    "translation": "无菌检验和支原体检验需考虑的事项",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "388529806dea830d3e7a08a4de9e080aa456ec1fce6d4c0a186e140ca49ab431"
+  },
+  {
+    "original": "Points to consider (checkpoints) for efficient conduct of RS strategy consultation for quality and safety from early stage of development of cellular and tissue-based products [Nonclinical safety]",
+    "translation": "细胞和组织类产品开发早期高效开展质量与安全性 RS 策略咨询的考虑要点（核查点）[非临床安全性]",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "829e1367757ec9f6a8180c00e9b6687a7f91952a20b1ee42ce9e4da86d311455"
+  },
+  {
+    "original": "Points to consider (checkpoints) for efficient conduct of RS strategy consultation for quality and safety from early stage of development of gene therapy products [Quality]",
+    "translation": "基因治疗产品开发早期高效开展质量与安全性 RS 策略咨询的考虑要点（核查点）[质量]",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "06e3eed4190dad0486861ea56916e8d08f0e6afbf7fd7f42f5cd34f29c9b56f6"
+  },
+  {
+    "original": "Points to consider (checkpoints) for efficient conduct of RS strategy consultation for quality and safety from early stage of development of gene therapy products [Nonclinical safety]",
+    "translation": "基因治疗产品开发早期高效开展质量与安全性 RS 策略咨询的考虑要点（核查点）[非临床安全性]",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "1b07a1f047b2f1ef717d2fe5d2dc2650b7dc2f4c340b55fd5b288e582b436554"
+  },
+  {
+    "original": "Standards for biological raw materials, MHLW Notification No. 210, 2003. Note: Latest partial revision on 2026, MHLW Notification No. 155",
+    "translation": "生物来源原材料标准，MHLW 第210号通知，2003年。注：最近一次部分修订于2026年，MHLW 第155号通知",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "021a58c9d4ab95b665316ad4cdadd8eab7377679eb6c0d3d0e617bdac5a1224c"
+  },
+  {
+    "original": "Standards for biological raw materials, Operational guideline, PFSB/ELD Notification No. 1002-1, PFSB/MDRMPE Notification No. 1002-5, 2014. Partial revision on 2026.",
+    "translation": "生物来源原材料标准操作指南，PFSB/ELD 第1002-1号通知、PFSB/MDRMPE 第1002-5号通知，2014年。2026年部分修订",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "b14c5ed5abbd2474617062484b2c46d5bd34c3ecf4e14a7055271df7dcd214f4"
+  },
+  {
+    "original": "Questions and Answers (Q&A) on the operation of the Standards for biological raw material, PFSB/ELD, FSB/MDRMPE Administrative Notice, 2015. Partial revision on 2026.",
+    "translation": "生物来源原材料标准实施问题与解答（Q&A），PFSB/ELD、FSB/MDRMPE 行政通知，2015年。2026年部分修订",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "09dbc9c8c64f5f0ef80ab4d2f445858bac18dfb576b2bd7fe4e4e24ab125a616"
+  },
+  {
+    "original": "Ensuring the quality and safety of drugs, etc. manufactured from raw materials of human or animal origin, PMSB Notification No. 1314, 2000.",
+    "translation": "确保从人源或动物源性原料制成的药品、等的质量和安全，PMSB通知第1314号，2000年。",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "4bc5ff70b05090cd342d66f62868c049a445eadc2a36e88af1114ea5b6dd9cd8"
+  },
+  {
+    "original": "Guidelines on ensuring quality and safety of products derived from processed cell and tissue (Autologous cells), PFSB Notification No. 0208003, 2008.",
+    "translation": "关于确保来源于加工细胞和组织（自体细胞）产品质量和安全性的指南，PFSB通知第0208003号，2008年。",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "28ccfe1888f9b5256b010ca1960a746578bbe24e0c78afcd7225b20f5d7c6ee5"
+  },
+  {
+    "original": "Guidelines on ensuring quality and safety of products derived from processed cell and tissue (Allogeneic cells), PFSB Notification No. 0912006, 2008.",
+    "translation": "关于确保来源于加工细胞和组织（异体细胞）产品质量和安全性的指南，PFSB通知第0912006号，2008年。",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "7f3ca78ab7d2eecdf5c6faef414e41ae254fd67ce25bd5b71ff25570fcb3e03a"
+  },
+  {
+    "original": "Guidelines on ensuring quality and safety of products derived from processed cell and tissue (Autologous somatic stem cells), PFSB Notification No. 0907-2, 2012. ​",
+    "translation": "关于确保来源于加工细胞和组织（自体体细胞干细胞）产品质量和安全性的指南，PFSB通知第0907-2号，2012年。",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "801b1a32afd927833947f1b48bc92b92bad8897274e8c176f75f9250b500f5d7"
+  },
+  {
+    "original": "Guidelines on ensuring quality and safety of products derived from processed cell and tissue (Allogeneic somatic stem cells), PFSB Notification No. 0907-3, 2012.",
+    "translation": "关于确保来源于加工细胞和组织（异体体细胞干细胞）产品质量和安全性的指南，PFSB通知第0907-3号，2012年。",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "a5cc04fd14a88edea017b8542597b9a868fe7e4be42b7df254272460c81ea07c"
+  },
+  {
+    "original": "Guidelines on ensuring quality and safety of products derived from processed cell and tissue (Autologous iPS (-like) cells), PFSB Notification No. 0907-4, 2012.",
+    "translation": "关于确保来源于加工细胞和组织（自体iPS（类似）细胞）产品质量和安全性的指南，PFSB通知第0907-4号，2012年。",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "c45e4ff1fcb0ad9e1251d5efde300517f1d3736a838eed95e4463f0903a74d0e"
+  },
+  {
+    "original": "Guidelines on ensuring quality and safety of products derived from processed cell and tissue (Allogeneic iPS (-like) cells), PFSB Notification No. 0907-5, 2012.",
+    "translation": "关于确保来源于加工细胞和组织（同种异体iPS（类似）细胞）产品质量和安全性的指南，PFSB通知第0907-5号，2012年。",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "4de130484d8337ba0a89d413af48e7e58349f268fcccf1c5694f213dde3796a1"
+  },
+  {
+    "original": "Guidelines on ensuring quality and safety of products derived from processed cell and tissue (Embryonic stem cells), PFSB Notification No. 0907-6, 2012.",
+    "translation": "关于确保来源于加工细胞和组织（胚胎干细胞）产品质量和安全性的指南，PFSB通知第0907-6号，2012年。",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "9bf023de5f488ef68a78ca1d6b48bf77c1bdced13086a8c73af66e33f006db8b"
+  },
+  {
+    "original": "Points to consider regarding tests to detect undifferentiated pluripotent stem cells/transformed cells, tumorigenicity tests, and genomic stability evaluation for human cell-based therapeutic products, PSEHB/MDED Notification No .0627-1, 2019.",
+    "translation": "关于用于检测未分化的多能干细胞/转化细胞、致瘤性试验及人类细胞基治疗产品基因组稳定性评估的考虑事项，PSEHB/MDED通知第0627-1号，2019年。",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "d2b3cf678397aef720357172aa60f145bbcb24a300c04de884dd99bff893459e"
+  },
+  {
+    "original": "Current perspective on evaluation of tumorigenicity of cellular and tissue-based products derived from induced pluripotent stem cells (iPSCs) and iPSCs as their starting materials, PMDA Science Board, 2012.",
+    "translation": "诱导多能干细胞（iPSCs）来源的细胞和组织类产品及作为其起始材料的 iPSCs 的致瘤性评价现行观点，PMDA 科学委员会，2012年",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "b614dd1a2ff7dc93860908e4f6a4e1de02ce1b3af0a08cd8ae4582fa17e9734a"
+  },
+  {
+    "original": "Ensuring the quality and safety of gene therapy products, PSEHB/MDED Notification No. 0709-2, 2019.",
+    "translation": "确保基因治疗产品质量和安全性的措施，PSEHB/MDED通知第0709-2号，2019年。",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "0dd03c0c72afac7ab54ff5e9c553faa7d2a45936aca8ed0c2f049c8d893a9136"
+  },
+  {
+    "original": "Ensuring the quality and safety of gene therapy products using genome-editing technology, PMDA Science Board, 2020.",
+    "translation": "采用基因组编辑技术的基因治疗产品的质量与安全性保障，PMDA 科学委员会，2020年",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "47e1563b2596cf8d1aaccfb5215d92e616d57fc5a4dfadb043b2c7e3a8be88fa"
+  },
+  {
+    "original": "Points to Consider in the Development of in vivo Gene Therapy Products with Target Specificity – Including in vivo CAR-T Development, PMDA Science Board, 2024.",
+    "translation": "关于具有靶向特异性的体内基因治疗产品开发要点——包括体内CAR-T开发，PMDA科学委员会，2024年。",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "c4552561a067cb548c0e034e9146f61254471c0bf2b696ee162a9566ac161bc6"
+  },
+  {
+    "original": "1) General principles on late-phase clinical studies, 2) Basic principles in quality, non-clinical and clinical studies of cellular products used for cancer immunotherapy, 3) Guidance on nonclinical study for cancer vaccine/adjuvant, PSEHB/PED Notification No. 0308-1, PSEHB/MDED Notification No. 0308-1, 2019.",
+    "translation": "1) 关于晚期临床研究的一般原则，2) 用于癌症免疫治疗的细胞产品在质量、非临床及临床研究中的基本原则，3) 癌症疫苗/佐剂非临床研究的指导原则，PSEHB/PED 通知第0308-1号，PSEHB/MDED 通知第0308-1号，2019年。",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "1a296f7f3fc6c8be8dbfb138334aa4393b47a3245c2639cb18c89612dcc76098"
+  },
+  {
+    "original": "Guidance on conditional and time-limited approval for human cell-processed products derived from mesenchymal stem cells or mesenchymal stromal cells of human origin and evaluation for subsequent efficacy evaluation plan, PSB/MDED Notification No. 0329-4, 2024.",
+    "translation": "关于人间充质干细胞或人源间充质基质细胞衍生的人细胞处理产品的有条件和限时批准及后续疗效评价计划的指导原则，PSB/MDED通知第0329-4号，2024年。",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "796cd2af7f7f67654e9b1b7d9627324e812c22df5759d0573b226650f77ce091"
+  },
+  {
+    "original": "Guidance on evaluation of the treatment of severe heart failure using human (allogeneic) iPS cells-derived cardiovascular cells multilayered cell sheets, Attachment 1, PSB/MDED Notification No. 0229-1, 2024.",
+    "translation": "关于使用人（异体）iPS细胞来源的心血管细胞多层细胞片治疗严重心力衰竭的评价指导，附件1，PSB/MDED通知第0229-1号，2024年。",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "45e24f7b67012867dbec61b3f840b2d143096a23ebc2eb4bbd3d47d480aef3bd"
+  },
+  {
+    "original": "Guidance on evaluation of the treatment of ischemic cardiomyopathy using human (allogeneic) iPS cells-derived cardiomyocyte sheets, Attachment, PSEHB/MDED Notification No. 0331-15, 2023.",
+    "translation": "使用人同种异体 iPS 细胞来源心肌细胞片治疗缺血性心肌病的评价指导原则，附件，PSEHB/MDED 第0331-15号通知，2023年",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "1022c3576ea016a317d6cfbd1e2491c1d9727a64b48d74734e0f148bfbc376b0"
+  },
+  {
+    "original": "Guidance on evaluation for the treatment of decompensated cirrhosis using, 1) Autologous born marrow-derived mesenchymal stem cells, 2) Allogeneic born marrow-derived mesenchymal stem cells, 3) Autologous CD34-positive peripheral blood stem cells, PSEHB/MDED Notification No. 0217-1, 2022.",
+    "translation": "关于使用1）自体骨髓来源的间充质干细胞、2）异体骨髓来源的间充质干细胞、3）自体CD34阳性外周血干细胞治疗失代偿性肝硬化药物评价的指导原则，PSEHB/MDED通知第0217-1号，2022年。",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "691f25a00adec89d306f04f32d8446aa370189e67cb319f33f0024ecd1fa72f2"
+  },
+  {
+    "original": "Guidance on evaluation for the treatment of subacute spiral cord injury using allogeneic iPS-like cells, PSEHB/MDED Notification No. 0226-1, 2021.",
+    "translation": "关于使用异体iPS样细胞治疗亚急性脊髓损伤的评价指导，PSEHB/MDED通知第0226-1号，2021年。",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "882ffc6f1b60f01e6ba2c82600aa678e5de313c73dc4e781f4b88d204cfd9f58"
+  },
+  {
+    "original": "Guidance on evaluation of epidermis/skin regeneration using allogeneic epidermis cellular- and tissue-based product, PSEHB/MDED Notification No. 0725-1, 2018. [English]",
+    "translation": "关于使用异体表皮细胞及组织产品评估表皮/皮肤再生的指导原则，PSEHB/MDED 通知第0725-1号，2018年。[英文]",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "771e570a767ec7ebea21f11d85fc0431bc74f1398e86b5b5bd7454feaa6e8a40"
+  },
+  {
+    "original": "Guidance on evaluation of articular cartilage regeneration using cellular- and tissue-based product, PFSB/MDED Notification No. 0630-1, 2016. [English]",
+    "translation": "关于使用细胞类和组织类产品评估关节软骨再生的指导原则，PFSB/MDED 通知第0630-1号，2016年。[英文]",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "67842f280c841adb999df2a3af9a899874a892d4de82de03a166832517fb872b"
+  },
+  {
+    "original": "Guidance on evaluation of nasal cartilage regeneration, PFSB/MDRMPE Notification No. 0925-1, 2015. [English]",
+    "translation": "鼻软骨再生评价指导原则，PFSB/MDRMPE 第0925-1号通知，2015年 [英文]",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "1dfb43823ef8ba0a934af4f78ea48b3c90e7041d364609b2b2ec99828e39a68d"
+  },
+  {
+    "original": "Guidance on evaluation of allogeneic iPS-like cells derived retinal pigment epithelial cells, PFSB/MDRMPE Notification No. 0912-2, 2014.",
+    "translation": "关于评估异体iPS样细胞来源的视网膜色素上皮细胞的指导原则，PFSB/MDRMPE通知第0912-2号，2014年。",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "8e861a8b946b3d48eeb6f2818faf8c4282fd67f9cbfcb59a11b958d307b42c15"
+  },
+  {
+    "original": "Guidance on evaluation of autologous iPS-like cells-derived retinal pigment epithelial cells, PFSB/MDED Notification No. 0529-1, 2013.",
+    "translation": "关于自体iPS样细胞来源的视网膜色素上皮细胞评价的指导原则，PFSB/MDED通知第0529-1号，2013年。",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "dbbca5e21dcb8b5053cfb4e44d4bef05689501c059ba9804cb575c71620d1d81"
+  },
+  {
+    "original": "Guidance on evaluation of periodontal regeneration using cell sheet, PFSB/MDED Notification No. 1207-1, 2011. [English]",
+    "translation": "使用细胞片进行牙周再生的评价指导原则，PFSB/MDED 第1207-1号通知，2011年 [英文]",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "e8284970e8734328e7afd8163fc375fa09c096a876ad0b733cf58edc9eda6f30"
+  },
+  {
+    "original": "Guidance on evaluation of articular cartilage regeneration, PFSB/MDED Notification No. 1215-1, 2010. [English]",
+    "translation": "关于关节软骨再生评价的指导原则，PFSB/MDED通知第1215-1号，2010年。[英文]",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "40a4fbc2350502af24c75a1eac37eec6e32deca3f6027739af45bb756faf937a"
+  },
+  {
+    "original": "Guidance on evaluation of corneal endothelial cell sheet, PFSB/MDED Notification No. 0528-1, 2010. [English]",
+    "translation": "关于角膜内皮细胞片评价的指导原则，PFSB/MDED 通知单 No. 0528-1，2010年。[英文]",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "fe8b1bb41cee295761fef5b549f138b4f064aff5f3847d0163c88f6fd48f1d14"
+  },
+  {
+    "original": "Guidance on evaluation of severe heart failure using cell sheet, PFSB/MDED Notification No. 0118-1, 2010. [English]",
+    "translation": "关于使用细胞片评估严重心力衰竭的指导原则，PFSB/MDED 通知第0118-1号，2010年。[英文]",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "fef6995db6c2685483b531490f151cec8c18c31a53eafe2603d9c624cf3fe271"
+  },
+  {
+    "original": "Ministerial ordinances on GCTP for regenerative medical products, Q&A #1, PFSB/CLD Notification No. 0317-1, 2015. ​ [English]",
+    "translation": "关于再生医疗产品GCTP的部长令，问答第1号，PFSB/CLD通知第0317-1号，2015年。[英文]",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "2fb8052c63edaae7bbfa664e076bbb0b0a5b82a74d963a0522ce9603c1e135ce"
+  },
+  {
+    "original": "Ministerial ordinances on GCTP for regenerative medical products, Q&A #2, PFSB/CLD Notification No. 0728-4, 2015. ​ [English]",
+    "translation": "关于再生医疗产品GCTP的部长令，问答第2号，PFSB/CLD通知第0728-4号，2015年。[英文]",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "c036ba8372863dd382779622010edee157905aaf84e1f99254c3b0e6b954ad98"
+  },
+  {
+    "original": "Ministerial ordinances on GCTP for regenerative medical products, Q&A #3, PSEHB/ CLD Notification No. 0629-1, 2017. ​ [English]",
+    "translation": "关于再生医疗产品GCTP的部长令，问答第3号，PSEHB/CLD通知第0629-1号，2017年。[英文]",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "4f98501a1066ecf4e44783eae8f9949dc166aa17f9ce00a2a6fd77e3abefd88a"
+  },
+  {
+    "original": "Proposal on basic principle to quality assurance of cell therapy (CT) products, PMDA Science Board, 2015.",
+    "translation": "关于细胞治疗（CT）产品质量保证基本原则的提案，PMDA科学委员会，2015。",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "d9e9bf34198236d09dfe89c01cef0ba9bf96375df999b588d5e2e0e0c0513c5a"
+  },
+  {
+    "original": "Ministerial ordinance on GCP for regenerative medical products, Ministerial Ordinance No. 89, 2014. [English]",
+    "translation": "再生医疗产品临床试验质量管理规范（GCP）部令，2014年第89号部令 [英文]",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "de43a3b1fcc81a6ca4a24b6420f0bcd67d882782a41ce40d3396f68e4626235c"
+  },
+  {
+    "original": "Ministerial ordinance on GCP for regenerative medical products, Guide by Director, PFSB, PFSB Notification No. 0812-16, 2014. [English]",
+    "translation": "再生医疗产品临床试验质量管理规范（GCP）部令：PFSB 局长指导文件，PFSB 第0812-16号通知，2014年 [英文]",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "101f30d7f49b4b69a892ef2a24dba9458c9c6bf11669e8f8eb25c645d2a7e93c"
+  },
+  {
+    "original": "Ministerial ordinance on GCP for regenerative medical products, Guide by Director, PFSB/MDED, PFSB/MDED Notification No. 0730-1, 2021. [English]",
+    "translation": "再生医疗产品临床试验质量管理规范（GCP）部令：PFSB/MDED 负责人指导文件，PFSB/MDED 第0730-1号通知，2021年 [英文]",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "d573774e43056734be1130b0b72f69d5e7bd75b78e7c28d770210817f7cbf61b"
+  },
+  {
+    "original": "Procedure for document compatibility for marketing authorization application dossier and GCP/GPSP inspection for regenerative medical products, PFSB/MDED Notification No. 0520-8, 2021. [English]",
+    "translation": "再生医疗产品上市许可申报资料符合性检查及 GCP/GPSP 检查程序，PFSB/MDED 第0520-8号通知，2021年 [英文]",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "548f615c08ec4788eb6003b749a0c80d97d161233c9cdadf78a0ae2f7ca1d262"
+  },
+  {
+    "original": "Procedure for remote inspection as a part of compliance inspection on drugs and regenerative medical products, PMDA/CPE Notification No. 325, 2023.",
+    "translation": "作为药品和再生医疗产品合规检查一部分的远程检查程序，PMDA/CPE通知第325号，2023年。",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "418a7f4d032802a748b00f342de7bfa16cef289d4cf849fe4975b359d54bfb26"
+  },
+  {
+    "original": "Basic principles on utilization of registry for applications, PSEHB/PED Notification No. 0323-1, PSEHB/MDED Notification No. 0323-1, 2021.",
+    "translation": "在申请中使用登记数据库的基本原则，PSEHB/PED 第0323-1号通知、PSEHB/MDED 第0323-1号通知，2021年",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "07f2a456c84f22f76b72b1888429e5a6a70ba7354b415e4e619407c37b074939"
+  },
+  {
+    "original": "Points to consider for ensuring the reliability in utilization of registry data for applications, PSEHB/PED Notification No. 0323-2, PSEHB/MDED Notification No. 0323-2, 2021.",
+    "translation": "在申请中使用登记数据时确保可靠性的考虑要点，PSEHB/PED 第0323-2号通知、PSEHB/MDED 第0323-2号通知，2021年",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "46295aa452290960657a8d991f50138fb96004026416bcbc1f235a091db5c15e"
+  },
+  {
+    "original": "Questions and answers (Q&A) on points to consider for ensuring the reliability in utilization of data from registry or medical information database in applications for marketing approval and re-examination for regenerative medical products, PSEHB/MDED Administrative Notice, 2023.",
+    "translation": "再生医疗产品上市许可及再审查申请中使用登记数据库或医疗信息数据库数据时确保可靠性的考虑要点问题与解答（Q&A），PSEHB/MDED 行政通知，2023年",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "3267a1eba6fc4f93dc5a702c47fdc1fc31f49d8c4fc76d11798b7a5f30b55d77"
+  },
+  {
+    "original": "Points to consider for ensuring the reliability of post-marketing database study for regenerative medical products, PSEHB/MDED Notification No. 0323-4, 2020.",
+    "translation": "关于确保再生医学产品上市后数据库研究可靠性的考虑点，PSEHB/MDED通知第0323-4号，2020年。",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "cfe7f56a3bd7a7056532f08bb43529a59391a730e2d1943505bef09ce94427ed"
+  },
+  {
+    "original": "Dissolution <711>",
+    "translation": "溶出度 <711>",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "efa6b79d4a927e7978f20fc693bd042e79a49c3c2a82d160da26a8a2bc4df35b"
+  },
+  {
+    "original": "Disintegration <701>",
+    "translation": "崩解 <701>",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "6bfb62e8306ecd4729b1175cec38a42a53a0c757b7c7ad79f78da7166d0d2169"
+  },
+  {
+    "original": "Uniformity of Content/Mass <905>",
+    "translation": "含量/质量均匀性 <905>",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "25ca44979d95af19f405b853ab21624cf922b7d519d8811830de602cde09cd08"
+  },
+  {
+    "original": "Tests for Specified Microorganism <62>",
+    "translation": "特定微生物检查 <62>",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "dc84403b9dd118500c7316f75c4e0eee9bdd2fabafe37fe62885e1ff56fbb7b1"
+  },
+  {
+    "original": "Microbial Enumeration: <61>",
+    "translation": "微生物计数：<61>",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "f8ff504a6a74ac76b4bfadbc42de9066218ea9528c57e3818e2d0f880e0f9448"
+  },
+  {
+    "original": "Limits for Non-Sterile Products <1111>",
+    "translation": "非无菌产品的限度 <1111>",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "33c99660af949fcc5364b44d88611f21de8aac75769d402118f1f353fd907761"
+  },
+  {
+    "original": "Bacterial Endotoxins <85>",
+    "translation": "细菌内毒素 <85>",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "67b8227d1eb7ca595b919dfb2b716d0c30da6e0b51b5a0a4cc5e3f6827baf603"
+  },
+  {
+    "original": "Color (instrumental method) <1061>",
+    "translation": "颜色（仪器法）<1061>",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "2ec51d8e4ab1a670519b2388aeac3d45b7d889ba2ca069f3f5e9254db295b872"
+  },
+  {
+    "original": "Container Content for Injections <697>",
+    "translation": "注射剂容器内容物 <697>",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "7bf4ecef098ebcac053c517cbc5358695d9dd91774b01f099e456582c41255bd"
+  },
+  {
+    "original": "Particulate Contamination <788>",
+    "translation": "颗粒污染 <788>",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "ff179f33ff15aa6886b6c90144fb0a3def3af31165532e8803f64fa4857633c7"
+  },
+  {
+    "original": "Residue on Ignition <281>",
+    "translation": "炽灼残渣 <281>",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "5a25884280d7672dfe42fb10c66d7c286817b06f3cf02438780d8d7c35e76d0a"
+  },
+  {
+    "original": "Sterility Test <71>",
+    "translation": "无菌试验 <71>",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "3131ea7a89c8442fa3b2af48df624a0dcd39391d219a69d2c05bc4ecf7f91816"
+  },
+  {
+    "original": "ICH Q8/Q9/Q10 Q&As (R5) Questions & Answers",
+    "translation": "ICH Q8/Q9/Q10 Q&As (R5) 问题与答案",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "6ddc75304a7bac9340cd076fe4729072e0d6cad8fa6f6ea529b6c27de4b3ae98"
+  },
+  {
+    "original": "S11 Concept Paper",
+    "translation": "S11 概念文件",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "b1302116dc65facacd4b0aacde60e03345c62e6c80d427de2bf3c0a0a03ed11b"
+  },
+  {
+    "original": "M13A Q&As",
+    "translation": "M13A 问答",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "a99533e9c07ebec00851ff6332caebac5267bda88d3f212215db5ece888e5144"
+  },
+  {
+    "original": "ICH Q8/Q9/Q10 Q&As (R2) Points to Consider",
+    "translation": "ICH Q8/Q9/Q10 Q&As (R2) 需要考虑的要点",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "c61596a308edbc24d1d3a8a060db9623f4a627a8bac4bf045541c7d65189944c"
+  },
+  {
+    "original": "S12 Concept Paper",
+    "translation": "S12 概念文件",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "0ae5c204844b814507bffaecdcd059512c29a898bbdc42f4580ed6c44d5c87f8"
+  },
+  {
+    "original": "E7 Q&As Questions & Answers",
+    "translation": "E7 问题与解答",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "9d7b52595c3db755eda606c4341127919f54c9f6b93bd7f4d388b870df2e15f0"
+  },
+  {
+    "original": "ICH Q8/Q9/Q10 Q&A (R5)",
+    "translation": "ICH Q8/Q9/Q10 问答（R5）",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "25eb744ff43cd2b9883aa0518cfc94517890c050dbe0012dc233f8c6be1570b4"
+  },
+  {
+    "original": "E7 Q&As Concept Paper",
+    "translation": "E7问答概念文件",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "cf12fd9ede82d5d4562fc0c702dd98b656c56b2990ea23ef0f902bb5590c2c17"
+  },
+  {
+    "original": "M13B Concept Paper Supplement",
+    "translation": "M13B概念文件补充材料",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "27df447c87226933ece8e9ea73169c13d31e76d7cd80574214a20146c6c49c7f"
+  },
+  {
+    "original": "ICH Q8/Q9/Q10 Q&As Points to Consider (R2)",
+    "translation": "ICH Q8/Q9/Q10 问答要点（R2）",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "d829b0a6919feafa457bef30b817823d96fe9f40ca039da63d54bd312525c7f8"
+  },
+  {
+    "original": "S13 Concept Paper",
+    "translation": "S13 概念文件",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "a33c061dbdcd89c949f7e833a71c61cb84af5c7573ac11383563de181b7bba21"
+  },
+  {
+    "original": "M13B Q&As",
+    "translation": "M13B 问答",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "2e169485e68a0b2043e3ef6e5ff69a6c5ad7169b4bb576dec89f8a2994b4d43c"
+  },
+  {
+    "original": "E9(R1) Concept Paper",
+    "translation": "E9(R1) 概念文件",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "8997f42498b9d0c9593eef03bc336107e37e31b68923d7f5dfbfa90c5c836551"
+  },
+  {
+    "original": "Q9(R1) Concept Paper",
+    "translation": "Q9(R1) 概念文件",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "4fe5fedb19280580b4a1bd8e2081e67b0bcc186539001697cf22d176efd68cde"
+  },
+  {
+    "original": "M13C Concept Paper Supplement",
+    "translation": "M13C概念文件补充材料",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "48f58a2fb1956488295c0fb281a5f38fbf56de349d3349eef0bd5721742243b7"
+  },
+  {
+    "original": "M14 Concept Paper",
+    "translation": "M14 概念文件",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "92d98dc90bdeab71fd6d626b795ad16b9fc4f94cbb06631947a5a9a5f1fb5adb"
+  },
+  {
+    "original": "E11(R1) Concept Paper",
+    "translation": "E11(R1) 概念文件",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "3afa1a911563c1097d5e9b5a7bbc00dd575fe0ff20068b6f58cc0df2de05fb7c"
+  },
+  {
+    "original": "General Principles on Plan, Design, Analysis, and Reporting of Non-Interventional Studies That Utilize Real-World Data for Safety Assessment of Medicines",
+    "translation": "关于利用真实世界数据进行药品安全性评估的非干预性研究计划、设计、分析和报告的一般原则",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "4266e829446773f19fedb2fb2fed979836c2decc66dfaf5b6c7cce17cf77451a"
+  },
+  {
+    "original": "Clinical Investigation of Medicinal Products in the Pediatric Population: Guideline and Addendum",
+    "translation": "儿科人群药品临床研究：指南及补充文件",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "02ddebca295c5e540d4d2b453b132aae18f51188f863f646e1501d22e763c291"
+  },
+  {
+    "original": "M16 Concept Paper",
+    "translation": "M16 概念文件",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "cba5b2bf4143b06da00b247c8d0d8a96b95c5e6d9e0e2123674cd23b2205b58c"
+  },
+  {
+    "original": "E11A Concept Paper",
+    "translation": "E11A 概念文件",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "784e94758fe05830b304963b899f8f24b4c0e9d1168ec5fc24dc49a54cec7e2e"
+  },
+  {
+    "original": "M18 Concept Paper",
+    "translation": "M18 概念文件",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "c5584ac075a464c107339fe0291f69fb95d2e5328ed67f0d1b5fa3a46910be7f"
+  },
+  {
+    "original": "E14 Q&As (R3) Questions & Answers",
+    "translation": "E14 问题与解答（R3）",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "389a5707c31f26e9691e620a6b0cce5cb289d331bfe747c97d8feaa0c8f7812c"
+  },
+  {
+    "original": "ICH Q11 Q&As Questions & Answers",
+    "translation": "ICH Q11 问题与解答",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "3abb9e6eeb92312a578b2bef94126b41c771933d93d259c3684b40906bc9ff5c"
+  },
+  {
+    "original": "E14 Q&As (R3) Concept Paper",
+    "translation": "E14问答（R3）概念文件",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "ee7f4aa532a80e2707f82b590121a8038fb5f1f4f10b44a3c32a197348e4dcbd"
+  },
+  {
+    "original": "Q13 Concept Paper",
+    "translation": "Q13 概念文件",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "d3d2f3715c4c2e604468e06896b8b19adbf186a498eabe6b16968a152f97bcf3"
+  },
+  {
+    "original": "E15 Concept Paper",
+    "translation": "E15 概念文件",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "f684a083b79e77b04314da4dfa951206915402147935849b3e6220c25aa988df"
+  },
+  {
+    "original": "Q13 IWG Concept Paper",
+    "translation": "Q13 IWG 概念文件",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "8c1b9bd198c8bf9c111ec58985229090c56483a5232e0e5a1553445beaf7857f"
+  },
+  {
+    "original": "Q2(R2)/Q14 Concept Paper",
+    "translation": "Q2(R2)/Q14 概念文件",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "e89896d6aa4fa0a4afc96518dc7998371eb508dcc90bb81fe2b107cd69019590"
+  },
+  {
+    "original": "E16 Concept Paper",
+    "translation": "E16 概念文件",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "b8f45e0dae8b5fd7281e0062cdb87211934768515a6518368ee62b88d9401c96"
+  },
+  {
+    "original": "Q2(R2)/Q14 IWG Concept Paper",
+    "translation": "Q2(R2)/Q14 IWG 概念文件",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "bad7fe58ae658b6ba123477c336a78cf5d02e2bb97cde7195e24953bc6ee8921"
+  },
+  {
+    "original": "E17 Concept Paper",
+    "translation": "E17 概念文件",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "3c9c2554bd81f5351d398cbbd8b00bd2b14831df6e15730d178caf4f30558473"
+  },
+  {
+    "original": "General principles for planning and design of Multi-Regional Clinical Trials",
+    "translation": "多地区临床试验的规划与设计一般原则",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "13bd86ff8024ce7be488ae5c81851e3485c59c16c8721da20bbfb4b944709efe"
+  },
+  {
+    "original": "E17 IWG Concept Paper",
+    "translation": "E17 IWG 概念文件",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "5d9dd0eeff5227e3f3a52c0bf3c1ae0a514260235518f9fb90f9bb96bb65f001"
+  },
+  {
+    "original": "E18 Concept Paper",
+    "translation": "E18 概念文件",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "62334ff20d8a580004d37ee64aa9f7af56609a48db91a71a976a5cc99c4a9ecd"
+  },
+  {
+    "original": "E19 Concept Paper",
+    "translation": "E19 概念文件",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "1a000c21cc183e14fb75ad200f0845fcba886254cb57dc0dfb49212c85591210"
+  },
+  {
+    "original": "E20 Concept Paper",
+    "translation": "E20 概念文件",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "bb6bdf93533a48470d6ac248efa274d553fb47cb49db0bd3714012ab92d70d89"
+  },
+  {
+    "original": "E21 Concept Paper",
+    "translation": "E21 概念文件",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "b6ff5e6150f59ade990c3fbe6a9f2bb6c98e82cc4e361a21ffba3c1e3ba214a3"
+  },
+  {
+    "original": "E22 Concept Paper",
+    "translation": "E22 概念文件",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "2598e35f8c8e3c5214ef329c7209f0ee8bd41ffb0d79318abd72259e0603afb6"
+  },
+  {
+    "original": "E23 Concept Paper",
+    "translation": "E23 概念文件",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "5737b165a3c6e4c1d931d60eafb0be1a1ca04e4f88635d62a1fcab3121b1a363"
+  },
+  {
+    "original": "Guideline for Residual Solvents",
+    "translation": "残留溶剂指导原则",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "5bc47f5d25d01030f328d14481983bd7a107e1821d98eb9419a124043aa19cf1"
+  },
+  {
+    "original": "Nonclinical Safety Testing in Support of Development of Paediatric Medicines",
+    "translation": "支持儿童药品研发的非临床安全性研究",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "a44b55581b951114e0e74b662190a7137fae348fef6791d45dbd962237c2b432"
+  },
+  {
+    "original": "General Considerations for Clinical Studies",
+    "translation": "临床研究的一般考虑事项",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "8472f4a1e9d8d2c8782c19e34116178f1ef520e9e4115e724b86b3aeafaf6a31"
+  },
+  {
+    "original": "Technical and Regulatory Considerations for Pharmaceutical Product Lifecycle Management",
+    "translation": "制药产品生命周期管理的技术与监管考虑因素",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "65bc518e36c6792f03bb3d160b751762a5471bf0bf35a02ff36436af71aedccc"
+  },
+  {
+    "original": "Providing Submissions in Electronic Format — Postmarketing Safety Reports for Vaccines",
+    "translation": "以电子格式提交——疫苗上市后安全性报告",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "a1a4ccec4b17b00027156c4da00a5abe983f4b70038b677d4236da335b984dde"
+  },
+  {
+    "original": "Technical Specifications for Submitting Clinical Trial Data Sets for Response Assessments for Treatments of Acute Leukemias",
+    "translation": "用于急性白血病治疗药物疗效评估的临床试验数据集提交技术规范",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "1fb252a2f3e02fb244b6f1473e8ae5d11dba4b5051327488ea5abdbe46308782"
+  },
+  {
+    "original": "Information Requests and Discipline Review Letters Under the Generic Drug User Fee Amendments",
+    "translation": "仿制药使用者付费修正案下的补充信息要求及专业审评意见函",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "1267c3914d664870b529a55525eabd80b90372addaa3dd0df86d4493ece8fd42"
+  },
+  {
+    "original": "Promotional Labeling and Advertising Considerations for Prescription Biological Reference Products, Biosimilar Products, and Interchangeable Biosimilar Products: Questions and Answers",
+    "translation": "处方生物参照制剂、生物类似药和互换性生物类似药的宣传标签和广告考虑事项：问题与答案",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "3e63c51cf7fa4ef48d5de394ee03071a48f2fb5f4740d8557c9d7d4050f95156"
+  },
+  {
+    "original": "Providing Submissions in Electronic Format — Postmarketing Safety Reports",
+    "translation": "以电子格式提交——上市后安全性报告",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "cb180e65e9ce83c43a69b5f773d652f1c0f0a6ae3e96e7d89618638e57595d56"
+  },
+  {
+    "original": "Providing Regulatory Submissions in Electronic Format — Certain Human Pharmaceutical Product Applications and Related Submissions Using the eCTD Specifications Guidance for Industry",
+    "translation": "以电子格式提交监管申请——采用eCTD规范的某些人用药品申请及相关提交的行业指南",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "adefd41fc62f16c1fc9006e4bf3532be19e5699752bb7082bab7b7b6179256a9"
+  },
+  {
+    "original": "Responding to FDA Form 483 Observations at the Conclusion of a Drug CGMP Inspection",
+    "translation": "针对药品CGMP检查结束时FDA表483的观察事项作出回应",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "2a32ae5504b65d1b1c99cc16a765a6e1d45e6372159970aae403c80f170998f5"
+  },
+  {
+    "original": "Incorporating Voluntary Patient Preference Information over the Total Product Life Cycle",
+    "translation": "在产品全生命周期中纳入自愿性患者偏好信息",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "e3102722b09557bf0410bb007d413e72b02aa8ce058a3e358534b6038618713e"
+  },
+  {
+    "original": "ANDA Submissions — Content and Format of Abbreviated New Drug Applications",
+    "translation": "ANDA申报——简化新药申请的内容和格式",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "e15b3f0c9ac175301c1602ac571fbcb99cb0cfc041ec1e503b8547f14a7501b7"
+  },
+  {
+    "original": "QTc Information in Human Prescription Drug and Biological Product Labeling",
+    "translation": "人类处方药和生物制品标签中的QTc信息",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "5d38d27e88ace2da98db10075cec1d0cb4759fd4f8f72800f2df6819150262bf"
+  },
+  {
+    "original": "Conducting Remote Regulatory Assessments Questions and Answers",
+    "translation": "远程监管评估问题与解答",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "7d342b91a51434919d62a8330d4125ff9cec71bb8ca35adf3cd0d7c6d3f38dcf"
+  },
+  {
+    "original": "E2B(R3) Electronic Transmission of Individual Case Safety Reports Implementation Guide — Data Elements and Message Specification; and Appendix to the Implementation Guide — Backwards and Forwards Compatibility",
+    "translation": "E2B(R3) 个体病例安全性报告电子传输实施指南——数据元素和消息规范；以及实施指南附录——前后向兼容性",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "569ac9d8b348d197d09361a17678607513bcc2df093dfbb31a3647d31eac90f7"
+  },
+  {
+    "original": "Providing Regulatory Submissions in Electronic Format: IND Safety Reports Guidance for Industry",
+    "translation": "以电子格式提交监管文件：行业IND安全报告指南",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "0d9caaa4696ad33ef93e73407d09e2689b66b5b3d2aaeda752643a624645156c"
+  },
+  {
+    "original": "Alternative Tools: Assessing Drug Manufacturing Facilities Identified in Pending Applications",
+    "translation": "替代工具：评估在待审申请中确定的药物制造设施",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "71479e26b153e66736ca2443dfad51395ad7ec4870b589d4b8f032403855b9ad"
+  },
+  {
+    "original": "Computer Software Assurance for Production and Quality Management System Software",
+    "translation": "用于生产与质量管理体系软件的计算机软件保证",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "e9607df3837eba738a02393b291ef353f0afa030bddfc3d7a4fec79e14a868c2"
+  },
+  {
+    "original": "ANDA Submissions – Prior Approval Supplements Under GDUFA",
+    "translation": "ANDA 申报：GDUFA 下需事先批准的补充申请",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "f1a8a7e47c22bfc2b040b2acbd60ae90675414ad8bf7896b42b412e431926f5a"
+  },
+  {
+    "original": "Safety Labeling Changes—Implementation of Section 505(o)(4) of the FD&C Act",
+    "translation": "安全性标签变更：FD&C 法案第505(o)(4)条的实施",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "abfc7c0558af283c56a8bed844d1d1058e858c498eae5d87f2e80b06a3d3f28c"
+  },
+  {
+    "original": "Drug and Device Manufacturer Communications With Payors, Formulary Committees, and Similar Entities – Questions and Answers",
+    "translation": "药品和器械生产商与支付方、处方集委员会及类似机构的沟通：问题与解答",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "326611a1caf2efd89249c8567fb70e178e87ff4d752c08a7b34abc20aee5f713"
+  },
+  {
+    "original": "Postmarketing Adverse Event Reporting for Medical Products and Dietary Supplements During a Pandemic",
+    "translation": "疫情期间医疗产品和膳食补充剂的上市后不良事件报告",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "9048d63b88aba797fa7fd5dc8fb8af828cd313f9dc0b31fd6a132d99f90ddee9"
+  },
+  {
+    "original": "Charging for Investigational Drugs Under an IND: Questions and Answers",
+    "translation": "在IND下为试验性药物收费：问题与解答",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "a4c9298e073c06351a076e0bcc2ddfed31bbf18bfa5badcc42401292857529d8"
+  },
+  {
+    "original": "Master Protocols for Drug and Biological Product Development",
+    "translation": "药品和生物制品开发的主方案",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "9442ab6763aeff6e0615fca1afd60a1b90fa5f6daa239e6347781126e6cddd36"
+  },
+  {
+    "original": "Advanced Manufacturing Technologies Designation Program",
+    "translation": "先进制造技术认定计划",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "6016120b44fb2d073d0b397708d23daeacfb2956366a51b9e49eeab2ad4d312c"
+  },
+  {
+    "original": "Cybersecurity in Medical Devices: Quality Management System Considerations and Content of Premarket Submissions",
+    "translation": "医疗器械中的网络安全：质量管理体系考虑因素及上市前提交内容",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "47629343aafd002313f525c233c2804f7c24e95f40d9f06d7dec7e7d2fce4ffe"
+  },
+  {
+    "original": "Generic Drug User Fee Amendments of 2012: Questions and Answers Related to User Fee Assessments",
+    "translation": "2012年仿制药使用者付费修正案：使用者费用核定相关问题与解答",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "35b1d06023540e4c92a7f74db9933e6c88423bb47ef617ff758a30b22b8e3203"
+  },
+  {
+    "original": "Drug Interaction Information in Human Prescription Drug and Biological Product Labeling",
+    "translation": "人类处方药和生物制品标签中的药物相互作用信息",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "77abef57c6048b2173b237e2a78e27ee7ef974c7c1f53f13a100b0a93452a93a"
+  },
+  {
+    "original": "Submitting Continuous Glucose Monitoring Data in Clinical Trials",
+    "translation": "在临床试验中提交连续血糖监测数据",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "cceace8937037788ebb54dcd40da41f19b8494d8b666b650f6eec8960706c9c8"
+  },
+  {
+    "original": "Biological Product Deviation Reporting for Licensed Manufacturers of Biological Products Other than Blood and Blood Components",
+    "translation": "血液及血液成分以外生物制品的持证生产商的生物制品偏差报告",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "dd748942514c2c5f44a37d0a73edb1a85a66c27723b8e816868e3777beb25d23"
+  },
+  {
+    "original": "Study Data Technical Conformance Guide - Technical Specifications Document",
+    "translation": "研究数据技术符合性指南 - 技术规格文档",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "76a9c035519c452771056c384e7af933eaf28529026f902b6fe4877dde1e7cd9"
+  },
+  {
+    "original": "Demonstrating Substantial Evidence of Effectiveness for Human Drug and Biological Products",
+    "translation": "证明人用药品和生物制品的有效性具有充分证据",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "6be9133381f33bd71040a3c47f51da5efb6becf106394ebe7ef96881d9e91a61"
+  },
+  {
+    "original": "Translation of Good Laboratory Practice Study Reports: Questions and Answers",
+    "translation": "药物非临床研究质量管理规范研究报告的翻译：问题与解答",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "061a06f7008f81e4a4692ce0011ce8a8ba7e35a65bfed90185c6992611351f5f"
+  },
+  {
+    "original": "Clinical Decision Support Software",
+    "translation": "临床决策支持软件",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "7d704135671eb3742eb34e2d2449ea44c2c743e058e2f965b24d61f753407ca7"
+  },
+  {
+    "original": "Self-Identification of Generic Drug Facilities, Sites, and Organizations; Guidance for Industry",
+    "translation": "仿制药设施、场所和组织的自我识别；行业指南",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "43f7bbbadb2b885d3df3635e284bcf49f36d6e40ab4460f29affe1585555c28b"
+  },
+  {
+    "original": "Direct-to-Consumer Prescription Drug Advertisements: Presentation of the Major Statement in a Clear, Conspicuous, and Neutral Manner in Advertisements in Television and Radio Format Final Rule Questions and Answers",
+    "translation": "面向消费者的处方药广告：在电视和广播格式广告中以清晰、显著且中立的方式呈现主要陈述最终规则问题与解答",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "54347ad3a11bea99a9ffbe7abd8af59f058eb341c177be9eeb75e0ed2d13899b"
+  },
+  {
+    "original": "Expanded Access to Investigational Drugs for Treatment Use: Questions and Answers",
+    "translation": "以治疗为目的扩大获取在研药物：问题与解答",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "b539d8793b47048f323c807e590ea040f2b41bd48aa3d6126bc04c9259f58d9d"
+  },
+  {
+    "original": "Adverse Reactions Section of Labeling for Human Prescription Drug and Biological Products — Content and Format",
+    "translation": "人类处方药和生物制品标签中的不良反应部分——内容与格式",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "ae8ec846a039fc108e6a65edb06e935f04ef32b14152920e299b440cfe4a6b5d"
+  },
+  {
+    "original": "Identification of Medicinal Products — Implementation and Use",
+    "translation": "药品识别——实施与使用",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "3cdeb8493d0f894021f26a4834ba1a1e9b6ab284b70ac6e7cbdcce67bce6a401"
+  },
+  {
+    "original": "Postapproval Pregnancy Safety Studies",
+    "translation": "上市后妊娠安全性研究",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "2c3422ca9eaeae659634f1222faafa11eb6b88764e769d5a23ca5858b5c65f90"
+  },
+  {
+    "original": "Remote Interactive Evaluations of Drug Manufacturing and Bioresearch Monitoring Facilities",
+    "translation": "药品制造和生物研究监测设施的远程互动评估",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "49c2c6766df92902dc147ae1b7ede4f5275d1ee3b7c08721bad9015db9f3dace"
+  },
+  {
+    "original": "Use of Real-World Evidence to Support Regulatory Decision-Making for Medical Devices",
+    "translation": "利用真实世界证据支持医疗器械监管决策",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "1ed5830cf309dbaddc03ec3b10295bbdaec31ae920caeff8fbb3508e9bba1d12"
+  },
+  {
+    "original": "Human Prescription Drug and Biological Products--Labeling for Dosing Based on Weight or Body Surface Area for Ready-to-Use Containers--“Dose Banding”",
+    "translation": "即用型容器中人用处方药和生物制品按体重或体表面积给药的标签：剂量分档",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "2fbf9e6c82f51414fa45135d4f7e00550258e159f822f2f5755b43a7e8a24d73"
+  },
+  {
+    "original": "Pyrogen and Endotoxins Testing: Questions and Answers",
+    "translation": "热原及内毒素检测：问题与答案",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "84b3c9f75c5d2a4fe8d7ac10f8bb5b9b04745f21650886ba8cb8d1ef09887ed1"
+  },
+  {
+    "original": "Postmarketing Safety Reporting for Human Drug and Biological Products Including Vaccines",
+    "translation": "人类药品和生物制品（包括疫苗）的上市后安全性报告",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "f9359ae9a88f3dc2bd6b332bff33c6ee5a97ffcadc250ab7134ea026248b4af4"
+  },
+  {
+    "original": "Electronic Submission of IND Safety Reports Technical Conformance Guide",
+    "translation": "IND安全报告电子提交技术符合性指南",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "0e5ec781eff9fbdb992a8ac3ce2df8cb159b31999bd4bbf2349c8fe628477a03"
+  },
+  {
+    "original": "Bioanalytical Method Validation for Biomarkers",
+    "translation": "生物标志物的生物分析方法验证",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "91b91a72cd9b01c09bce2afbd1438e2d54a44417aaa90b96f48dca038fb295e7"
+  },
+  {
+    "original": "Policy for Testing of Alcohol (Ethanol) and Isopropyl Alcohol for Methanol",
+    "translation": "乙醇和异丙醇中甲醇检测政策",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "61545a7d647d20c83a3f162007baafc0d5e7309389c1412ddab92210f61513be"
+  },
+  {
+    "original": "eCopy Program for Medical Device Submissions",
+    "translation": "用于医疗设备申报的eCopy计划",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "9d490c862a4ab79a7d68b4953b73644987cf14bffe562ed51fadf2ef1223ae8e"
+  },
+  {
+    "original": "Regulatory Considerations for Prescription Drug Use-Related Software",
+    "translation": "处方药使用相关软件的监管考虑",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "40c9c4cbf95338c61aa0912a44b642b3eb14290aa4dfaa67db5f25ad51f9383d"
+  },
+  {
+    "original": "Investigator Responsibilities – Safety Reporting for Investigational Drugs and Devices",
+    "translation": "研究者职责：在研药品和器械的安全性报告",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "18c606147fb88b13d697ae9dcc6d92522c0abac3769daa067ce44af118c698d0"
+  },
+  {
+    "original": "Postmarketing Adverse Experience Reporting for Human Drug and Licensed Biological Products: Clarification of What to Report",
+    "translation": "人用药品及已获许可生物制品的上市后不良事件报告：明确报告内容",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "5a4206757981cb7503bf1e05abeffe4b71e7cb13c610d50f8af0252e093a597e"
+  },
+  {
+    "original": "Minimal Residual Disease and Complete Response in Multiple Myeloma: Use as Endpoints to Support Accelerated Approval",
+    "translation": "多发性骨髓瘤的微小残留病和完全缓解：作为支持加速批准的终点指标",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "1c662f9280b1bc3d4d72d5659184cb00efe4681f6808193528e7ee3ef0c678a9"
+  },
+  {
+    "original": "Comparability Protocols for Postapproval Changes to the Chemistry, Manufacturing, and Controls Information in an NDA, ANDA, or BLA",
+    "translation": "NDA、ANDA 或 BLA 中化学、生产和质量控制信息的批准后变更可比性方案",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "3d07d59397192ba0022359c4d45e45c7a13bfb975be1cb178f31a37b53e886b9"
+  },
+  {
+    "original": "Quality Management System Information for Certain Premarket Submission Reviews",
+    "translation": "用于某些上市前提交审查的质量管理体系信息",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "4991af84a82cc23b189373f733bb2f000ee1346d4e39c4fdb0e5fa41d1b7e663"
+  },
+  {
+    "original": "Presenting Quantitative Efficacy and Risk Information in Direct-to-Consumer (DTC) Promotional Labeling and Advertisements",
+    "translation": "在直接面向消费者的（DTC）促销标签和广告中呈现定量疗效和风险信息",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "a37a3a896ba8601a24b4d76b235f9c77024ac1bb95c563eb21f6a8288b8d040d"
+  },
+  {
+    "original": "Cross-Center Master Files: Where to Submit",
+    "translation": "跨中心主文件：提交地点",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "9c8a6b90df023091c01edb7fd544860fb9886b25de9947ca89afef1a77887a3f"
+  },
+  {
+    "original": "Providing Regulatory Submissions in Electronic and Non-Electronic Format—Promotional Labeling and Advertising Materials for Human Prescription Drugs",
+    "translation": "以电子和非电子格式提交监管文件——人类处方药的促销标签和广告材料",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "6b132092ffa09cef917767c4aa1121c11f051dd642f424a30e453fe7dfe8cc48"
+  },
+  {
+    "original": "Use of Bayesian Methodology in Clinical Trials of Drug and Biological Products",
+    "translation": "在药物和生物制品临床试验中使用贝叶斯方法论",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "b6ffd7861c56052e68098af1e8f687c9d09be4175c0cfab63b56acecdcff3b09"
+  },
+  {
+    "original": "Changes to Disposable Manufacturing Materials: Questions and Answers Guidance for Industry",
+    "translation": "关于一次性制造材料的变更：行业问答指南",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "8dd139672ccb2dc00bad32c255a431a6d46b7e008aab336daaa5d772739fca18"
+  },
+  {
+    "original": "Marketing Submission Recommendations for a Predetermined Change Control Plan for Artificial Intelligence-Enabled Device Software Functions",
+    "translation": "采用人工智能的器械软件功能预定变更控制计划的上市申报建议",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "26df37a852ed4f38ee0d974b6be5bd9f3c937b672b03bb691713dc2bdbbcf28c"
+  },
+  {
+    "original": "Dosage and Administration Section of Labeling for Human Prescription Drug and Biological Products — Content and Format",
+    "translation": "人用处方药和生物制品标签中的剂量和用法部分——内容与格式",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "8952a321f8550c3aa76c12bc4548db70cb82c7c8730b080819cff2eacbc7b26e"
+  },
+  {
+    "original": "Patient-Focused Drug Development: Selecting, Developing, or Modifying Fit-for-Purpose Clinical Outcome Assessments",
+    "translation": "以患者为中心的药物开发：选择、开发或修改适合目的的临床结果评估工具",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "20c632cc9458165d08daedf501e5fc31089917a1a8b8ffedc5ece8a4c983c2f9"
+  },
+  {
+    "original": "Providing Regulatory Submissions in Alternate Electronic Format Guidance for Industry",
+    "translation": "以替代电子格式提交监管申请指南（行业）",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "aa74df29aa8fe72cb1cf9d0853e4c61356fbb6997fcfa0ea7a0f6abe6bd6f02f"
+  },
+  {
+    "original": "Enhancing Participation in Clinical Trials — Eligibility Criteria, Enrollment Practices, and Trial Designs",
+    "translation": "促进临床试验参与——入选标准、招募实践和试验设计",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "fbf3f580e8fe079f4adf5fc61dc71ba270d8418d5b425c0e848b3b56b27a5c7f"
+  },
+  {
+    "original": "Drug Products, Including Biological Products, that Contain Nanomaterials - Guidance for Industry",
+    "translation": "含纳米材料的药品，包括生物制品——行业指南",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "6c247345ba7292cc522e91c909ab271e56056f27c1bc9d6a8ad3a4258b097796"
+  },
+  {
+    "original": "Medical Device User Fee Small Business Qualification and Determination",
+    "translation": "医疗器械用户费小企业资格和确定",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "ba363ca22ca3a9a3d793efeb697a10a2ada5266add97139da770e5c0da92fbd3"
+  },
+  {
+    "original": "Homeopathic Drug Products Guidance for FDA Staff and Industry",
+    "translation": "供 FDA 工作人员和行业使用的顺势疗法药品指南",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "9d77feb88cb22fa5d10c906f570ff4678901930df1d925ab9909a19790e04e3e"
+  },
+  {
+    "original": "Formal Meetings Between the FDA and Sponsors or Applicants of BsUFA Products Guidance for Industry",
+    "translation": "FDA 与 BsUFA 产品申办方或申请人之间正式会议的行业指南",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "255f9e28cbd3f7d906ffe74665d8f19600ecb10dd3022d7205b63f25705d6144"
+  },
+  {
+    "original": "Providing Regulatory Submissions in Electronic Format -- Standardized Study Data",
+    "translation": "以电子格式提交监管文件——标准化研究数据",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "68111bfb8217bdf0bf6b5a68d5a6a49df9d6f7894cffe2815dfd76be1ac76e3d"
+  },
+  {
+    "original": "Study of Sex Differences in the Clinical Evaluation of Medical Products",
+    "translation": "医疗产品临床评价中性别的差异研究",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "a51f678656c92afa71161d5e8f6bb107aa22b260280686043f5dd9950368d7a5"
+  },
+  {
+    "original": "Inspection of Injectable Products for Visible Particulates",
+    "translation": "注射剂可见颗粒物检查",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "a8cfcbf4b1065f8b687130a4ea57b04b2b73f28597bfd85726ed6391f9ee8704"
+  },
+  {
+    "original": "Transfer of a Premarket Notification (510(k)) Clearance – Questions and Answers",
+    "translation": "上市前通知（510(k)）许可的转让：问题与解答",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "8c0ad196d6ede3c36fc5f52dfe8e59103902f50a716f3ff1d6f6390b8432001c"
+  },
+  {
+    "original": "Quantitative Labeling of Sodium, Potassium, and Phosphorus for Human Over-the-Counter and Prescription Drug Products",
+    "translation": "人类非处方药和处方药产品的钠、钾和磷的定量标注",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "504e7f26ce93312fe7cb83644876efcac340a5bf20ffab1ceaef077855ed6cbf"
+  },
+  {
+    "original": "Unique Device Identifier Requirements for Combination Products",
+    "translation": "组合产品唯一设备标识要求",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "b02769c7f639d585b30dc2ee2696d1ee2254942421ac9b0e319b196ddec9f934"
+  },
+  {
+    "original": "Providing Regulatory Submissions in Electronic Format --Content of the Risk Evaluation and Mitigation Strategies Document Using Structured Product Labeling",
+    "translation": "以电子格式提交监管文件——使用结构化产品标签的风险评估与缓解策略文件内容",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "97543cf3424e1977a9330883ee624405d4dc3f40a7782847c7781255c18eb7d6"
+  },
+  {
+    "original": "Approaches to Assessment of Overall Survival in Oncology Clinical Trials",
+    "translation": "在肿瘤学临床试验中总体生存期的评估方法",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "b127d0838ad22c1b788f9ac075284152af68a1444034fd979b7611c20de24e5d"
+  },
+  {
+    "original": "Microbiology texts (e.g. chapters 2.6.1, 2.6.12, 2.6.13, 2.7.2, monograph 0008): can microbial strains other than those that are cited in the Ph. Eur. be used?",
+    "translation": "微生物学文本（例如章节2.6.1、2.6.12、2.6.13、2.7.2以及专论0008）：能否使用欧洲药典（Ph. Eur.）所列菌株以外的微生物菌株？",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "18287b29fa7b9d328edfc7037626bea960e76cd8598b305074b6822ccd4c6c47"
+  },
+  {
+    "original": "The name of a micro-organism in the Ph. Eur. does not match the ones used by culture collections (e.g. ATCC 6633 is named Bacillus subtilis in the Ph. Eur. and Bacillus spizizenii on the ATCC website). Which strain should I use?",
+    "translation": "欧洲药典（Ph. Eur.）中的微生物名称与菌种保藏机构使用的名称不一致（例如ATCC 6633在欧洲药典中称为Bacillus subtilis，而在ATCC网站上称为Bacillus spizizenii）。应使用哪个菌株？",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "de844ac430427986bc391e6374b3098f59b162e5bce10d3b3ea66a14e5fd5557"
+  },
+  {
+    "original": "Clinical pharmacology and pharmacokinetics: questions and answers",
+    "translation": "临床药理学和药代动力学：问题与答案",
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "reviewed_sha256": "f017b31ccfa1d430e7beb5581ee126efc4ff59497fbd23aaf8150bb4c854cb63"
+  }
+]

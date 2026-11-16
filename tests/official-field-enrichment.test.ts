@@ -3,11 +3,57 @@ import assert from "node:assert/strict";
 import {
   japaneseDate,
   pmdaCoverCandidates,
+  nmpaAnnouncementCandidates,
 } from "../src/server/enrichment/official-fields";
 const pdf = (text: string) => ({
   url: "https://www.pmda.go.jp/files/example.pdf",
   content_sha256: "test",
   inspected_pages: [{ page: 1, text }],
+});
+test("NMPA signature date differs from English page update and explicit effective date", () => {
+  const evidence = {
+    url: "https://english.nmpa.gov.cn/2025-12/24/example.htm",
+    content_sha256: "fixture",
+    text: "Updated: 2025-12-24 The provisions shall come into force as of January 1, 2026. It is hereby announced. National Medical Products Administration November 17, 2025 About NMPA",
+  };
+  const rows = nmpaAnnouncementCandidates(
+    "Announcement of NMPA ([2025] No. 113)",
+    evidence,
+  );
+  assert.equal(
+    rows.find((r) => r.field === "publication_date")?.value,
+    undefined,
+  );
+  assert.equal(
+    rows.find((r) => r.field === "effective_date")?.value,
+    "2026-01-01",
+  );
+  assert.equal(
+    rows.find((r) => r.field === "document_number")?.value,
+    "2025年第113号",
+  );
+  assert.deepEqual(
+    nmpaAnnouncementCandidates(
+      "Policy Interpretation of the NMPA Announcement",
+      evidence,
+    ),
+    [],
+  );
+});
+test("body citations never become a Japanese notice's own number/date", () => {
+  const rows = pmdaCoverCandidates(
+    pdf(
+      "事務連絡\n令和3年12月22日\n各都道府県衛生主管部\n令和3年7月29日付け薬生機審発0729第1号の通知について",
+    ),
+  );
+  assert.equal(
+    rows.some((r) => r.field === "document_number"),
+    false,
+  );
+  assert.equal(
+    rows.find((r) => r.field === "publication_date")?.value,
+    "2021-12-22",
+  );
 });
 test("uses notification header date, not provisional translation month or body references", () => {
   const rows = pmdaCoverCandidates(

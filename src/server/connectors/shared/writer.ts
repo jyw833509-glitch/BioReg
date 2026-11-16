@@ -4,6 +4,7 @@ import type { Prisma } from "../../../generated/prisma/client";
 import type { Db } from "../../db";
 import type { OfficialRecord } from "./types";
 import { retainTitleProvenance } from "../../enrichment/title-quality";
+import { retainVerifiedFields } from "../../enrichment/retain-fields";
 export function verifiedMetadataOnly(data: OfficialRecord) {
   if (!data.official_url || data.source_metadata?.metadata_verified !== true)
     return false;
@@ -79,6 +80,7 @@ export async function writeRecord(
         "Conflicting source document identities; manual review required",
       );
     const existing = matches[0];
+    if (existing) data = retainVerifiedFields(existing, data) as OfficialRecord;
     // Translation is derived data; preserve it when an unchanged official title is re-synced.
     if (existing?.title_original === data.title_original && !data.title_zh)
       data = { ...data, title_zh: existing.title_zh };

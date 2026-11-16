@@ -1,0 +1,965 @@
+[
+  {
+    "title_original": "Announcement of the National Medical Products Administration on Issuing the Administrative Provisions on Inspection and Export Certificate for Pharmaceutical Products Exported by Pharmaceutical Manufacturers([2025] No. 113)",
+    "official_url": "https://english.nmpa.gov.cn/2025-12/24/c_1156463.htm",
+    "pdf_url": null,
+    "regulator": "NMPA",
+    "fields": [
+      {
+        "field": "effective_date",
+        "value": "2026-01-01",
+        "quote": "shall come into force as of January 1, 2026",
+        "basis": "explicit_effective_clause",
+        "source_url": "https://english.nmpa.gov.cn/2025-12/24/c_1156463.htm",
+        "content_sha256": "b050d9b04fa7ad2374a70dfe2e9eee09def7baca889da92eeee8ca658012fde2",
+        "page": 0
+      },
+      {
+        "field": "status",
+        "value": "FINAL",
+        "quote": "is hereby promulgated",
+        "basis": "issued_announcement_not_draft",
+        "source_url": "https://english.nmpa.gov.cn/2025-12/24/c_1156463.htm",
+        "content_sha256": "b050d9b04fa7ad2374a70dfe2e9eee09def7baca889da92eeee8ca658012fde2",
+        "page": 0
+      }
+    ]
+  },
+  {
+    "title_original": "NMPA Announcement on Matters Concerning the Importation of Pre-approval Commercial-Scale Batch Products of Overseas-Marketed Drugs (No. 96, 2025)",
+    "official_url": "https://english.nmpa.gov.cn/2025-11/28/c_1144381.htm",
+    "pdf_url": null,
+    "regulator": "NMPA",
+    "fields": [
+      {
+        "field": "status",
+        "value": "FINAL",
+        "quote": "It is hereby announced.",
+        "basis": "issued_announcement_not_draft",
+        "source_url": "https://english.nmpa.gov.cn/2025-11/28/c_1144381.htm",
+        "content_sha256": "836a7ae95864f4a38d1ed1b852d85984b00881078b12d2fc45c8b6de0e98caac",
+        "page": 0
+      }
+    ]
+  },
+  {
+    "title_original": "NMPA Announcement on Optimizing of the Review and Approval Process for Clinical Trials of Innovative Drugs ([2025] No. 86)",
+    "official_url": "https://english.nmpa.gov.cn/2025-10/14/c_1138494.htm",
+    "pdf_url": null,
+    "regulator": "NMPA",
+    "fields": [
+      {
+        "field": "status",
+        "value": "FINAL",
+        "quote": "It is hereby announced.",
+        "basis": "issued_announcement_not_draft",
+        "source_url": "https://english.nmpa.gov.cn/2025-10/14/c_1138494.htm",
+        "content_sha256": "bb389f21ab5757e760c41e70cf291e3f76ffa8ca702ea58200cb893e87d05d29",
+        "page": 0
+      }
+    ]
+  },
+  {
+    "title_original": "Guideline for Preparation of Attached Data and Overviews for Applications for Approval of Regenerative Medical Products",
+    "official_url": "https://www.pmda.go.jp/english/review-services/reviews/0003.html",
+    "pdf_url": "https://www.pmda.go.jp/files/000274709.pdf",
+    "regulator": "PMDA",
+    "fields": [
+      {
+        "field": "official_version",
+        "value": "令和7年3月26日版",
+        "quote": "令和7年3月26日版",
+        "source_url": "https://www.pmda.go.jp/files/000274709.pdf",
+        "content_sha256": "7b7b0cfc40c2f71de97c9a55827d36b22474e76ebe5758f75853f93c3749da42",
+        "page": 1,
+        "basis": "explicit_dated_edition"
+      }
+    ]
+  },
+  {
+    "title_original": "Guidance for conditional and time-limited approval for regenerative medical products and the development of subsequent efficacy evaluation plan, PSB/MDED Notification No.0329-3, 2024",
+    "official_url": "https://www.pmda.go.jp/english/review-services/reviews/0003.html",
+    "pdf_url": "https://www.pmda.go.jp/files/000267914.pdf",
+    "regulator": "PMDA",
+    "fields": [
+      {
+        "field": "publication_date",
+        "value": "2024-03-29",
+        "quote": "令和6年3月29日",
+        "source_url": "https://www.pmda.go.jp/files/000267914.pdf",
+        "content_sha256": "a62b6117e55c2c9bcd237ab3020ee00497ab89c32024aabda67d67558cd13814",
+        "page": 1,
+        "basis": "notification_issuance_date"
+      }
+    ]
+  },
+  {
+    "title_original": "Handling of Pharmaceutical Patents in Approval Reviews under the PMD Act and NHI Drug Price Listing for Generic Drugs and Biosimilars",
+    "official_url": "https://www.pmda.go.jp/english/review-services/reviews/0005.html",
+    "pdf_url": "https://www.pmda.go.jp/files/000283207.pdf",
+    "regulator": "PMDA",
+    "fields": [
+      {
+        "field": "document_number",
+        "value": "HPB/DPMM Notification No.1008-1 ; PSB/PED Notification No.1008-5 ",
+        "quote": "HPB/DPMM Notification No.1008-1 ; PSB/PED Notification No.1008-5 ",
+        "source_url": "https://www.pmda.go.jp/files/000283207.pdf",
+        "content_sha256": "fa4d11d9ca8f23eeb068eaf2b4180c4be775a8dae704453da9ed02d57f9afcf6",
+        "page": 1,
+        "basis": "notification_header"
+      },
+      {
+        "field": "publication_date",
+        "value": "2025-10-08",
+        "quote": "October 8, 2025 ",
+        "source_url": "https://www.pmda.go.jp/files/000283207.pdf",
+        "content_sha256": "fa4d11d9ca8f23eeb068eaf2b4180c4be775a8dae704453da9ed02d57f9afcf6",
+        "page": 1,
+        "basis": "document_cover_date"
+      }
+    ]
+  },
+  {
+    "title_original": "Handling of the Conditional and Time-Limited Approval for Regenerative Medical Products, PSB/MDED Notification No.1006-1, 2025",
+    "official_url": "https://www.pmda.go.jp/english/review-services/reviews/0003.html",
+    "pdf_url": "https://www.pmda.go.jp/files/000277559.pdf",
+    "regulator": "PMDA",
+    "fields": [
+      {
+        "field": "publication_date",
+        "value": "2025-10-06",
+        "quote": "令和7年10月6日",
+        "source_url": "https://www.pmda.go.jp/files/000277559.pdf",
+        "content_sha256": "700f4b8c33f177469603108d77d42b3de0114728e5b287d26b3f3400a178b4bf",
+        "page": 1,
+        "basis": "notification_issuance_date"
+      }
+    ]
+  },
+  {
+    "title_original": "Questions and Answers (Q&A) on Guideline for Ensuring the Quality, Safety, and Efficacy of Biosimilars",
+    "official_url": "https://www.pmda.go.jp/english/review-services/reviews/0005.html",
+    "pdf_url": "https://www.pmda.go.jp/files/000267480.pdf",
+    "regulator": "PMDA",
+    "fields": [
+      {
+        "field": "publication_date",
+        "value": "2024-01-25",
+        "quote": "January 25, 2024 ",
+        "source_url": "https://www.pmda.go.jp/files/000267480.pdf",
+        "content_sha256": "c2f847e39491e4819b5cd5eaa56e5796b0902abe3c3f1de480a3744ba4f6c26a",
+        "page": 1,
+        "basis": "document_cover_date"
+      }
+    ]
+  },
+  {
+    "title_original": "Amendments to the “Handling of Applications for Approval of Combination Products”, PSEHB/PED Notification No.1122-4, PSEHB/MDED Notification No.1122-10, PSEHB/SD Notification No.1122-7, PSEHB/CND Notification No.1122-4, 2016",
+    "official_url": "https://www.pmda.go.jp/english/review-services/reviews/0003.html",
+    "pdf_url": "https://www.pmda.go.jp/files/000218549.pdf",
+    "regulator": "PMDA",
+    "fields": [
+      {
+        "field": "publication_date",
+        "value": "2016-11-22",
+        "quote": "平成28年11月22日",
+        "source_url": "https://www.pmda.go.jp/files/000218549.pdf",
+        "content_sha256": "7e5caeeeb3536a0adc1090c16ab705be4b6d6df46ec91f66a9eb94af876519ec",
+        "page": 1,
+        "basis": "notification_issuance_date"
+      }
+    ]
+  },
+  {
+    "title_original": "Guideline for Ensuring Quality, Safety, and Efficacy of Biosimilars",
+    "official_url": "https://www.pmda.go.jp/english/review-services/reviews/0005.html",
+    "pdf_url": "https://www.pmda.go.jp/files/000267479.pdf",
+    "regulator": "PMDA",
+    "fields": [
+      {
+        "field": "document_number",
+        "value": "PSEHD/PED Notification No.0204-1 ",
+        "quote": "PSEHD/PED Notification No.0204-1 ",
+        "source_url": "https://www.pmda.go.jp/files/000267479.pdf",
+        "content_sha256": "39a3869dbf10b20fb219ba9ad5057e9d8f6921007a975d2ae9a8d05466e86a63",
+        "page": 1,
+        "basis": "notification_header"
+      },
+      {
+        "field": "publication_date",
+        "value": "2020-02-04",
+        "quote": "February 4, 2020 ",
+        "source_url": "https://www.pmda.go.jp/files/000267479.pdf",
+        "content_sha256": "39a3869dbf10b20fb219ba9ad5057e9d8f6921007a975d2ae9a8d05466e86a63",
+        "page": 1,
+        "basis": "document_cover_date"
+      }
+    ]
+  },
+  {
+    "title_original": "Questions and Answers (Q&A) on Handling of Applications for Approval of Combination Products, Administrative Notice, 2016",
+    "official_url": "https://www.pmda.go.jp/english/review-services/reviews/0003.html",
+    "pdf_url": "https://www.pmda.go.jp/files/000218548.pdf",
+    "regulator": "PMDA",
+    "fields": [
+      {
+        "field": "publication_date",
+        "value": "2016-11-22",
+        "quote": "平成28年11月22日",
+        "source_url": "https://www.pmda.go.jp/files/000218548.pdf",
+        "content_sha256": "8bc6a310ebfb7adf0fa2c92894989a663dea80256800f6b03d2e758d28be2193",
+        "page": 1,
+        "basis": "notification_issuance_date"
+      }
+    ]
+  },
+  {
+    "title_original": "Handling of Non-proprietary Names and Brand Names related to Biosimilars",
+    "official_url": "https://www.pmda.go.jp/english/review-services/reviews/0005.html",
+    "pdf_url": "https://www.pmda.go.jp/files/000272338.pdf",
+    "regulator": "PMDA",
+    "fields": [
+      {
+        "field": "document_number",
+        "value": "PFSB/ELD Notification No. 0214-1 ",
+        "quote": "PFSB/ELD Notification No. 0214-1 ",
+        "source_url": "https://www.pmda.go.jp/files/000272338.pdf",
+        "content_sha256": "484a92aa729504d6fc08b512cd737f1390c857c29ecca16b97be9d28f35ef16e",
+        "page": 1,
+        "basis": "notification_header"
+      },
+      {
+        "field": "publication_date",
+        "value": "2013-02-14",
+        "quote": "February 14, 2013 ",
+        "source_url": "https://www.pmda.go.jp/files/000272338.pdf",
+        "content_sha256": "484a92aa729504d6fc08b512cd737f1390c857c29ecca16b97be9d28f35ef16e",
+        "page": 1,
+        "basis": "document_cover_date"
+      }
+    ]
+  },
+  {
+    "title_original": "Questions and answers (Q&A) on release testing of the imported regenerative medical products, PSB/MDED, PSB/CLD Administrative Notice, 2024.",
+    "official_url": "https://www.pmda.go.jp/english/review-services/reviews/0003.html",
+    "pdf_url": "https://www.pmda.go.jp/files/000268632.pdf",
+    "regulator": "PMDA",
+    "fields": [
+      {
+        "field": "publication_date",
+        "value": "2024-05-30",
+        "quote": "令和6年5月30日",
+        "source_url": "https://www.pmda.go.jp/files/000268632.pdf",
+        "content_sha256": "753d8695fb2d9b387ed704728e01bdf40820dea8b32db1c5debb98c0f60711aa",
+        "page": 1,
+        "basis": "notification_issuance_date"
+      }
+    ]
+  },
+  {
+    "title_original": "Handling of Use-results Surveys and Re-examination of Regenerative Medical Products, PSEHB/MDED Notification No. 0328-1, 2022",
+    "official_url": "https://www.pmda.go.jp/english/review-services/reviews/0003.html",
+    "pdf_url": "https://www.pmda.go.jp/files/000245753.pdf",
+    "regulator": "PMDA",
+    "fields": [
+      {
+        "field": "publication_date",
+        "value": "2022-03-28",
+        "quote": "令和4年3月28日",
+        "source_url": "https://www.pmda.go.jp/files/000245753.pdf",
+        "content_sha256": "249df16a1a8c5bde175a7523e40235a62fcfb016d52635de10a5bbd0cf53fea7",
+        "page": 1,
+        "basis": "notification_issuance_date"
+      }
+    ]
+  },
+  {
+    "title_original": "Handling of Applications for Confirmation of Change Management Protocol of Regenerative Medical Product, PSEHB/MDED Notification No. 0729-1, 2021",
+    "official_url": "https://www.pmda.go.jp/english/review-services/reviews/0003.html",
+    "pdf_url": "https://www.pmda.go.jp/files/000244753.pdf",
+    "regulator": "PMDA",
+    "fields": [
+      {
+        "field": "publication_date",
+        "value": "2021-07-29",
+        "quote": "令和3年7月29日",
+        "source_url": "https://www.pmda.go.jp/files/000244753.pdf",
+        "content_sha256": "0f865f0849bbf18a8a7e7b1a28804f55d6b8f0e75420d57c0e3f23680c19d704",
+        "page": 1,
+        "basis": "notification_issuance_date"
+      }
+    ]
+  },
+  {
+    "title_original": "Questions and Answers (Q&A) on Applications for Confirmation of Change Management Protocol of Regenerative Medical Products, Administrative Notice, 2021",
+    "official_url": "https://www.pmda.go.jp/english/review-services/reviews/0003.html",
+    "pdf_url": "https://www.pmda.go.jp/files/000244754.pdf",
+    "regulator": "PMDA",
+    "fields": [
+      {
+        "field": "publication_date",
+        "value": "2021-12-22",
+        "quote": "令和3年12月22日",
+        "source_url": "https://www.pmda.go.jp/files/000244754.pdf",
+        "content_sha256": "a94a3b24c98771339cd53e03cd4f305736ad9383d08f0455ce24c69eefd527c1",
+        "page": 1,
+        "basis": "notification_issuance_date"
+      }
+    ]
+  },
+  {
+    "title_original": "Timing of Product Replacement after Approval (Certification) of Partial Changes in Approved (Certified) Items for In Vitro Diagnostics and Regenerative Medical Products, PSB/MDED Notification No. 1225-1, PSB/CND Notification No. 1225-1,2025",
+    "official_url": "https://www.pmda.go.jp/english/review-services/reviews/0003.html",
+    "pdf_url": "https://www.pmda.go.jp/files/000246824.pdf",
+    "regulator": "PMDA",
+    "fields": [
+      {
+        "field": "publication_date",
+        "value": "2025-12-25",
+        "quote": "令和7年12月25日",
+        "source_url": "https://www.pmda.go.jp/files/000246824.pdf",
+        "content_sha256": "a0bb4d5733ee4e556e35c22b16e23f56db2bd5713dcc4587cce6792831379e1b",
+        "page": 1,
+        "basis": "notification_issuance_date"
+      }
+    ]
+  },
+  {
+    "title_original": "Questions and Answers (Q&A) on Timing of Product Replacement after Approval of Partial Changes in Approved (Certified) Items for In Vitro Diagnostics and Regenerative Medical Products, Administrative Notice, 2025",
+    "official_url": "https://www.pmda.go.jp/english/review-services/reviews/0003.html",
+    "pdf_url": "https://www.pmda.go.jp/files/000246825.pdf",
+    "regulator": "PMDA",
+    "fields": [
+      {
+        "field": "publication_date",
+        "value": "2025-12-25",
+        "quote": "令和7年12月25日",
+        "source_url": "https://www.pmda.go.jp/files/000246825.pdf",
+        "content_sha256": "d3d1bffd5a270cc3c1127d5e98128750219a564a3747b94c25e650fd8a31d07a",
+        "page": 1,
+        "basis": "notification_issuance_date"
+      }
+    ]
+  },
+  {
+    "title_original": "Guideline for comparability of human cell-processed products subject to changes in their manufacturing process, PSB/MDED Notification No. 0329-1, 2024.",
+    "official_url": "https://www.pmda.go.jp/english/review-services/reviews/0003.html",
+    "pdf_url": "https://www.pmda.go.jp/files/000267916.pdf",
+    "regulator": "PMDA",
+    "fields": [
+      {
+        "field": "publication_date",
+        "value": "2024-03-29",
+        "quote": "令和6年3月29日",
+        "source_url": "https://www.pmda.go.jp/files/000267916.pdf",
+        "content_sha256": "313a6ce9b90c7171b99d30a00996c6b1b7095f49ac883e2253abb040a15fa140",
+        "page": 1,
+        "basis": "notification_issuance_date"
+      }
+    ]
+  },
+  {
+    "title_original": "Technical Guidance for Quality, Nonclinical Safety Studies and Clinical Studies of Regenerative Medical Products (Human Cell-Processed Products), Administrative Notice, 2016.",
+    "official_url": "https://www.pmda.go.jp/english/review-services/reviews/0003.html",
+    "pdf_url": "https://www.pmda.go.jp/files/000212850.pdf",
+    "regulator": "PMDA",
+    "fields": [
+      {
+        "field": "publication_date",
+        "value": "2016-06-27",
+        "quote": "平成28年6月27日",
+        "source_url": "https://www.pmda.go.jp/files/000212850.pdf",
+        "content_sha256": "fb125237e0f49b70c73215479a8940fd41efcd42d051617f53eb7baff9394def",
+        "page": 1,
+        "basis": "notification_issuance_date"
+      }
+    ]
+  },
+  {
+    "title_original": "Points to consider (checkpoints) for efficient conduct of RS strategy consultation for quality and safety from early stage of development of cellular and tissue-based products [Quality] Point to consider for Sterility Test and Mycoplasma Test",
+    "official_url": "https://www.pmda.go.jp/english/review-services/reviews/0003.html",
+    "pdf_url": "https://www.pmda.go.jp/files/000238176.pdf",
+    "regulator": "PMDA",
+    "fields": [
+      {
+        "field": "official_version",
+        "value": "平成25年3月8日版",
+        "quote": "平成25年3月8日版",
+        "source_url": "https://www.pmda.go.jp/files/000238176.pdf",
+        "content_sha256": "f05fe82c5a5f36909fdbf24b629e00e46e6e8cce58b456f9b9e96fc49a33b865",
+        "page": 1,
+        "basis": "explicit_dated_edition"
+      }
+    ]
+  },
+  {
+    "title_original": "Point to consider for Sterility Test and Mycoplasma Test",
+    "official_url": "https://www.pmda.go.jp/english/review-services/reviews/0003.html",
+    "pdf_url": "https://www.pmda.go.jp/files/000161478.pdf",
+    "regulator": "PMDA",
+    "fields": [
+      {
+        "field": "official_version",
+        "value": "平成26年1月17日版",
+        "quote": "平成26年1月17日版",
+        "source_url": "https://www.pmda.go.jp/files/000161478.pdf",
+        "content_sha256": "517006a48a66277808b0497f6f7f8daf03c490e020e6f027cd13f5fc816ca1ea",
+        "page": 1,
+        "basis": "explicit_dated_edition"
+      }
+    ]
+  },
+  {
+    "title_original": "Points to consider (checkpoints) for efficient conduct of RS strategy consultation for quality and safety from early stage of development of cellular and tissue-based products [Nonclinical safety]",
+    "official_url": "https://www.pmda.go.jp/english/review-services/reviews/0003.html",
+    "pdf_url": "https://www.pmda.go.jp/files/000238178.pdf",
+    "regulator": "PMDA",
+    "fields": [
+      {
+        "field": "official_version",
+        "value": "令和2年12月25日版",
+        "quote": "令和2年12月25日版",
+        "source_url": "https://www.pmda.go.jp/files/000238178.pdf",
+        "content_sha256": "464f56f7af2612adcf21d3335fb4076572559653582d19c5138a0b79ee5522e3",
+        "page": 1,
+        "basis": "explicit_dated_edition"
+      }
+    ]
+  },
+  {
+    "title_original": "Points to consider (checkpoints) for efficient conduct of RS strategy consultation for quality and safety from early stage of development of gene therapy products [Quality]",
+    "official_url": "https://www.pmda.go.jp/english/review-services/reviews/0003.html",
+    "pdf_url": "https://www.pmda.go.jp/files/000243091.pdf",
+    "regulator": "PMDA",
+    "fields": [
+      {
+        "field": "official_version",
+        "value": "令和3年10月1日版",
+        "quote": "令和3年10月1日版",
+        "source_url": "https://www.pmda.go.jp/files/000243091.pdf",
+        "content_sha256": "ea0c66136b2fe2b153b6542510fbda3a24e4de0066c854e65e119db73d380910",
+        "page": 1,
+        "basis": "explicit_dated_edition"
+      }
+    ]
+  },
+  {
+    "title_original": "Points to consider (checkpoints) for efficient conduct of RS strategy consultation for quality and safety from early stage of development of gene therapy products [Nonclinical safety]",
+    "official_url": "https://www.pmda.go.jp/english/review-services/reviews/0003.html",
+    "pdf_url": "https://www.pmda.go.jp/files/000238180.pdf",
+    "regulator": "PMDA",
+    "fields": [
+      {
+        "field": "official_version",
+        "value": "令和2年12月25日版",
+        "quote": "令和2年12月25日版",
+        "source_url": "https://www.pmda.go.jp/files/000238180.pdf",
+        "content_sha256": "3efb86449979d4c27e44fa0cc038b0915b9ad68f88e970876cd57202d0fe0b8b",
+        "page": 1,
+        "basis": "explicit_dated_edition"
+      }
+    ]
+  },
+  {
+    "title_original": "Guidelines on ensuring quality and safety of products derived from processed cell and tissue (Autologous cells), PFSB Notification No. 0208003, 2008.",
+    "official_url": "https://www.pmda.go.jp/english/review-services/reviews/0003.html",
+    "pdf_url": "https://www.pmda.go.jp/files/000205396.pdf",
+    "regulator": "PMDA",
+    "fields": [
+      {
+        "field": "publication_date",
+        "value": "2008-02-08",
+        "quote": "平成20年2月8日",
+        "source_url": "https://www.pmda.go.jp/files/000205396.pdf",
+        "content_sha256": "722870961aaa709b6f8640bf6d206ed266398439104c03e5b1c81b4593238ca6",
+        "page": 1,
+        "basis": "notification_issuance_date"
+      }
+    ]
+  },
+  {
+    "title_original": "Guidelines on ensuring quality and safety of products derived from processed cell and tissue (Allogeneic cells), PFSB Notification No. 0912006, 2008.",
+    "official_url": "https://www.pmda.go.jp/english/review-services/reviews/0003.html",
+    "pdf_url": "https://www.pmda.go.jp/files/000205398.pdf",
+    "regulator": "PMDA",
+    "fields": [
+      {
+        "field": "publication_date",
+        "value": "2008-09-12",
+        "quote": "平成20年9月12日",
+        "source_url": "https://www.pmda.go.jp/files/000205398.pdf",
+        "content_sha256": "822c993f2899afdc20bd082aee24298af187ec6eeb2bbf97bb77f775bbe540c4",
+        "page": 1,
+        "basis": "notification_issuance_date"
+      }
+    ]
+  },
+  {
+    "title_original": "Points to consider regarding tests to detect undifferentiated pluripotent stem cells/transformed cells, tumorigenicity tests, and genomic stability evaluation for human cell-based therapeutic products, PSEHB/MDED Notification No .0627-1, 2019.",
+    "official_url": "https://www.pmda.go.jp/english/review-services/reviews/0003.html",
+    "pdf_url": "https://www.pmda.go.jp/files/000230351.pdf",
+    "regulator": "PMDA",
+    "fields": [
+      {
+        "field": "document_number",
+        "value": "薬生機審発0627第1号",
+        "quote": "薬生機審発0627第1号",
+        "source_url": "https://www.pmda.go.jp/files/000230351.pdf",
+        "content_sha256": "3694f8c0e2c0f2b8662e51e8ee963fbcd04e4d6507d84c5bbb1edf4c73f856b7",
+        "page": 1,
+        "basis": "notification_header"
+      },
+      {
+        "field": "publication_date",
+        "value": "2019-06-27",
+        "quote": "令和元年6月27日",
+        "source_url": "https://www.pmda.go.jp/files/000230351.pdf",
+        "content_sha256": "3694f8c0e2c0f2b8662e51e8ee963fbcd04e4d6507d84c5bbb1edf4c73f856b7",
+        "page": 1,
+        "basis": "notification_issuance_date"
+      }
+    ]
+  },
+  {
+    "title_original": "Ensuring the quality and safety of gene therapy products, PSEHB/MDED Notification No. 0709-2, 2019.",
+    "official_url": "https://www.pmda.go.jp/english/review-services/reviews/0003.html",
+    "pdf_url": "https://www.pmda.go.jp/files/000230508.pdf",
+    "regulator": "PMDA",
+    "fields": [
+      {
+        "field": "publication_date",
+        "value": "2019-07-09",
+        "quote": "令和元年7月9日",
+        "source_url": "https://www.pmda.go.jp/files/000230508.pdf",
+        "content_sha256": "6b765a34781f8d75e8800ea186da080e09a789baacbad54280f1ebbcb194cd62",
+        "page": 1,
+        "basis": "notification_issuance_date"
+      }
+    ]
+  },
+  {
+    "title_original": "Ensuring the quality and safety of gene therapy products using genome-editing technology, PMDA Science Board, 2020.",
+    "official_url": "https://www.pmda.go.jp/english/review-services/reviews/0003.html",
+    "pdf_url": "https://www.pmda.go.jp/files/000233744.pdf",
+    "regulator": "PMDA",
+    "fields": [
+      {
+        "field": "publication_date",
+        "value": "2020-02-07",
+        "quote": "令和2年2月7日",
+        "source_url": "https://www.pmda.go.jp/files/000233744.pdf",
+        "content_sha256": "4a375b64108f3c1a76d0bdf38b847b3ee2641f9646acc1341fd348533b94b989",
+        "page": 1,
+        "basis": "notification_issuance_date"
+      }
+    ]
+  },
+  {
+    "title_original": "Points to Consider in the Development of in vivo Gene Therapy Products with Target Specificity – Including in vivo CAR-T Development, PMDA Science Board, 2024.",
+    "official_url": "https://www.pmda.go.jp/english/review-services/reviews/0003.html",
+    "pdf_url": "https://www.pmda.go.jp/files/000269351.pdf",
+    "regulator": "PMDA",
+    "fields": [
+      {
+        "field": "publication_date",
+        "value": "2024-07-04",
+        "quote": "令和6年7月4日",
+        "source_url": "https://www.pmda.go.jp/files/000269351.pdf",
+        "content_sha256": "15645990db4b95ca9609694d6fa550434b18ceeaa9bfd9a2ae515aa9622c6cad",
+        "page": 1,
+        "basis": "notification_issuance_date"
+      }
+    ]
+  },
+  {
+    "title_original": "1) General principles on late-phase clinical studies, 2) Basic principles in quality, non-clinical and clinical studies of cellular products used for cancer immunotherapy, 3) Guidance on nonclinical study for cancer vaccine/adjuvant, PSEHB/PED Notification No. 0308-1, PSEHB/MDED Notification No. 0308-1, 2019.",
+    "official_url": "https://www.pmda.go.jp/english/review-services/reviews/0003.html",
+    "pdf_url": "https://www.pmda.go.jp/files/000228570.pdf",
+    "regulator": "PMDA",
+    "fields": [
+      {
+        "field": "publication_date",
+        "value": "2019-03-08",
+        "quote": "平成31年3月8日",
+        "source_url": "https://www.pmda.go.jp/files/000228570.pdf",
+        "content_sha256": "3f242ae799db75dac8347c43aedf98bc3f23b7b3a537dd03dc4975613be8d15d",
+        "page": 1,
+        "basis": "notification_issuance_date"
+      }
+    ]
+  },
+  {
+    "title_original": "Guidance on conditional and time-limited approval for human cell-processed products derived from mesenchymal stem cells or mesenchymal stromal cells of human origin and evaluation for subsequent efficacy evaluation plan, PSB/MDED Notification No. 0329-4, 2024.",
+    "official_url": "https://www.pmda.go.jp/english/review-services/reviews/0003.html",
+    "pdf_url": "https://www.pmda.go.jp/files/000267915.pdf",
+    "regulator": "PMDA",
+    "fields": [
+      {
+        "field": "publication_date",
+        "value": "2024-03-29",
+        "quote": "令和6年3月29日",
+        "source_url": "https://www.pmda.go.jp/files/000267915.pdf",
+        "content_sha256": "e9e6b5a73e21cf6b5762016f63d3d15703c10665126c8d8b9dd9705594f6ca41",
+        "page": 1,
+        "basis": "notification_issuance_date"
+      }
+    ]
+  },
+  {
+    "title_original": "Guidance on evaluation of the treatment of ischemic cardiomyopathy using human (allogeneic) iPS cells-derived cardiomyocyte sheets, Attachment, PSEHB/MDED Notification No. 0331-15, 2023.",
+    "official_url": "https://www.pmda.go.jp/english/review-services/reviews/0003.html",
+    "pdf_url": "https://www.pmda.go.jp/files/000252237.pdf",
+    "regulator": "PMDA",
+    "fields": [
+      {
+        "field": "publication_date",
+        "value": "2023-03-31",
+        "quote": "令和5年3月31日",
+        "source_url": "https://www.pmda.go.jp/files/000252237.pdf",
+        "content_sha256": "378a13f8f29a01a83b0f5fd654c13ac13e764a295321a2b2e117c4294a5645a4",
+        "page": 1,
+        "basis": "notification_issuance_date"
+      }
+    ]
+  },
+  {
+    "title_original": "Guidance on evaluation for the treatment of decompensated cirrhosis using, 1) Autologous born marrow-derived mesenchymal stem cells, 2) Allogeneic born marrow-derived mesenchymal stem cells, 3) Autologous CD34-positive peripheral blood stem cells, PSEHB/MDED Notification No. 0217-1, 2022.",
+    "official_url": "https://www.pmda.go.jp/english/review-services/reviews/0003.html",
+    "pdf_url": "https://www.pmda.go.jp/files/000245122.pdf",
+    "regulator": "PMDA",
+    "fields": [
+      {
+        "field": "publication_date",
+        "value": "2022-02-17",
+        "quote": "令和4年2月17日",
+        "source_url": "https://www.pmda.go.jp/files/000245122.pdf",
+        "content_sha256": "e0c4503a053fe0f3552c8a6202ed98496d351c99ef43e4382fcc440d15bcdeb2",
+        "page": 1,
+        "basis": "notification_issuance_date"
+      }
+    ]
+  },
+  {
+    "title_original": "Guidance on evaluation for the treatment of subacute spiral cord injury using allogeneic iPS-like cells, PSEHB/MDED Notification No. 0226-1, 2021.",
+    "official_url": "https://www.pmda.go.jp/english/review-services/reviews/0003.html",
+    "pdf_url": "https://www.pmda.go.jp/files/000239626.pdf",
+    "regulator": "PMDA",
+    "fields": [
+      {
+        "field": "publication_date",
+        "value": "2021-02-26",
+        "quote": "令和3年2月26日",
+        "source_url": "https://www.pmda.go.jp/files/000239626.pdf",
+        "content_sha256": "111a74454d71dc65d9d9c0e6bb9497bef3e5405801eda9e48852766f98c18960",
+        "page": 1,
+        "basis": "notification_issuance_date"
+      }
+    ]
+  },
+  {
+    "title_original": "Guidance on evaluation of epidermis/skin regeneration using allogeneic epidermis cellular- and tissue-based product, PSEHB/MDED Notification No. 0725-1, 2018. [English]",
+    "official_url": "https://www.pmda.go.jp/english/review-services/reviews/0003.html",
+    "pdf_url": "https://www.pmda.go.jp/files/000226128.pdf",
+    "regulator": "PMDA",
+    "fields": [
+      {
+        "field": "publication_date",
+        "value": "2018-07-25",
+        "quote": "平成30年7月25日",
+        "source_url": "https://www.pmda.go.jp/files/000226128.pdf",
+        "content_sha256": "18e110fca854a4190d92ad2af70cd1a79f9a3f0ed8e66f9c11381b98b28441e5",
+        "page": 1,
+        "basis": "notification_issuance_date"
+      }
+    ]
+  },
+  {
+    "title_original": "Guidance on evaluation of nasal cartilage regeneration, PFSB/MDRMPE Notification No. 0925-1, 2015. [English]",
+    "official_url": "https://www.pmda.go.jp/english/review-services/reviews/0003.html",
+    "pdf_url": "https://www.pmda.go.jp/files/000207951.pdf",
+    "regulator": "PMDA",
+    "fields": [
+      {
+        "field": "publication_date",
+        "value": "2015-09-25",
+        "quote": "平成27年9月25日",
+        "source_url": "https://www.pmda.go.jp/files/000207951.pdf",
+        "content_sha256": "8edf6b7bd6399a50978312463bd828b9220f7bbaff52edb199b27f99e631baa5",
+        "page": 1,
+        "basis": "notification_issuance_date"
+      }
+    ]
+  },
+  {
+    "title_original": "Guidance on evaluation of allogeneic iPS-like cells derived retinal pigment epithelial cells, PFSB/MDRMPE Notification No. 0912-2, 2014.",
+    "official_url": "https://www.pmda.go.jp/english/review-services/reviews/0003.html",
+    "pdf_url": "https://www.pmda.go.jp/files/000161722.pdf",
+    "regulator": "PMDA",
+    "fields": [
+      {
+        "field": "publication_date",
+        "value": "2014-09-12",
+        "quote": "平成26年9月12日",
+        "source_url": "https://www.pmda.go.jp/files/000161722.pdf",
+        "content_sha256": "3c05c57e5bc8729e11262c0f067a010d6c2fe941681423b5e134b7b9d25b00db",
+        "page": 1,
+        "basis": "notification_issuance_date"
+      }
+    ]
+  },
+  {
+    "title_original": "Guidance on evaluation of autologous iPS-like cells-derived retinal pigment epithelial cells, PFSB/MDED Notification No. 0529-1, 2013.",
+    "official_url": "https://www.pmda.go.jp/english/review-services/reviews/0003.html",
+    "pdf_url": "https://www.pmda.go.jp/files/000161654.pdf",
+    "regulator": "PMDA",
+    "fields": [
+      {
+        "field": "publication_date",
+        "value": "2013-05-29",
+        "quote": "平成25年5月29日",
+        "source_url": "https://www.pmda.go.jp/files/000161654.pdf",
+        "content_sha256": "555d7016cb2edd515c8ff555fe3b09325570c6c463d05944481810ead9af7be8",
+        "page": 1,
+        "basis": "notification_issuance_date"
+      }
+    ]
+  },
+  {
+    "title_original": "Guidance on evaluation of periodontal regeneration using cell sheet, PFSB/MDED Notification No. 1207-1, 2011. [English]",
+    "official_url": "https://www.pmda.go.jp/english/review-services/reviews/0003.html",
+    "pdf_url": "https://www.pmda.go.jp/files/000161584.pdf",
+    "regulator": "PMDA",
+    "fields": [
+      {
+        "field": "publication_date",
+        "value": "2011-12-07",
+        "quote": "平成23年12月7日",
+        "source_url": "https://www.pmda.go.jp/files/000161584.pdf",
+        "content_sha256": "198553b2c32ebb07086c9011dbbddb2ef1eac93e99426bc684e7f7aba9fb9644",
+        "page": 1,
+        "basis": "notification_issuance_date"
+      }
+    ]
+  },
+  {
+    "title_original": "Guidance on evaluation of articular cartilage regeneration, PFSB/MDED Notification No. 1215-1, 2010. [English]",
+    "official_url": "https://www.pmda.go.jp/english/review-services/reviews/0003.html",
+    "pdf_url": "https://www.pmda.go.jp/files/000161687.pdf",
+    "regulator": "PMDA",
+    "fields": [
+      {
+        "field": "publication_date",
+        "value": "2010-12-15",
+        "quote": "平成22年12月15日",
+        "source_url": "https://www.pmda.go.jp/files/000161687.pdf",
+        "content_sha256": "09878ca4f7e75a63a0f928bbbceea4e3acb7b997f8447fab0af4d34b87f65aca",
+        "page": 1,
+        "basis": "notification_issuance_date"
+      }
+    ]
+  },
+  {
+    "title_original": "Guidance on evaluation of severe heart failure using cell sheet, PFSB/MDED Notification No. 0118-1, 2010. [English]",
+    "official_url": "https://www.pmda.go.jp/english/review-services/reviews/0003.html",
+    "pdf_url": "https://www.pmda.go.jp/files/000161497.pdf",
+    "regulator": "PMDA",
+    "fields": [
+      {
+        "field": "publication_date",
+        "value": "2010-01-18",
+        "quote": "平成22年1月18日",
+        "source_url": "https://www.pmda.go.jp/files/000161497.pdf",
+        "content_sha256": "17912168b757442f80da1ecf2be8605c1b9437053789e086e7e0bd9c806ec792",
+        "page": 1,
+        "basis": "notification_issuance_date"
+      }
+    ]
+  },
+  {
+    "title_original": "Ministerial ordinances on GCTP for regenerative medical products, Q&A #1, PFSB/CLD Notification No. 0317-1, 2015. ​ [English]",
+    "official_url": "https://www.pmda.go.jp/english/review-services/reviews/0003.html",
+    "pdf_url": "https://www.pmda.go.jp/files/000221152.pdf",
+    "regulator": "PMDA",
+    "fields": [
+      {
+        "field": "publication_date",
+        "value": "2015-03-17",
+        "quote": "平成27年3月17日",
+        "source_url": "https://www.pmda.go.jp/files/000221152.pdf",
+        "content_sha256": "a6c8429dcbfd4736b09de271eeb4377cf2d601071333b651db6a98917917dc35",
+        "page": 1,
+        "basis": "notification_issuance_date"
+      }
+    ]
+  },
+  {
+    "title_original": "Ministerial ordinances on GCTP for regenerative medical products, Q&A #2, PFSB/CLD Notification No. 0728-4, 2015. ​ [English]",
+    "official_url": "https://www.pmda.go.jp/english/review-services/reviews/0003.html",
+    "pdf_url": "https://www.pmda.go.jp/files/000221153.pdf",
+    "regulator": "PMDA",
+    "fields": [
+      {
+        "field": "publication_date",
+        "value": "2015-07-28",
+        "quote": "平成27年7月28日",
+        "source_url": "https://www.pmda.go.jp/files/000221153.pdf",
+        "content_sha256": "5e18de6a68b49d9cbf695d55b61cbf510214d189e9935181887b1dc2aa1eb7c4",
+        "page": 1,
+        "basis": "notification_issuance_date"
+      }
+    ]
+  },
+  {
+    "title_original": "Ministerial ordinances on GCTP for regenerative medical products, Q&A #3, PSEHB/ CLD Notification No. 0629-1, 2017. ​ [English]",
+    "official_url": "https://www.pmda.go.jp/english/review-services/reviews/0003.html",
+    "pdf_url": "https://www.pmda.go.jp/files/000221154.pdf",
+    "regulator": "PMDA",
+    "fields": [
+      {
+        "field": "publication_date",
+        "value": "2017-06-29",
+        "quote": "平成29年6月29日",
+        "source_url": "https://www.pmda.go.jp/files/000221154.pdf",
+        "content_sha256": "e261562d4035ef6dd51f04154c5bae4a7830256dd9d46a153f2960ed414e1664",
+        "page": 1,
+        "basis": "notification_issuance_date"
+      }
+    ]
+  },
+  {
+    "title_original": "Proposal on basic principle to quality assurance of cell therapy (CT) products, PMDA Science Board, 2015.",
+    "official_url": "https://www.pmda.go.jp/english/review-services/reviews/0003.html",
+    "pdf_url": "https://www.pmda.go.jp/files/000206723.pdf",
+    "regulator": "PMDA",
+    "fields": [
+      {
+        "field": "publication_date",
+        "value": "2015-08-14",
+        "quote": "平成27年8月14日",
+        "source_url": "https://www.pmda.go.jp/files/000206723.pdf",
+        "content_sha256": "28cf9be8d740de58427b10ceec0233b769ea1fe2f302f550dbffb77625f523c3",
+        "page": 1,
+        "basis": "notification_issuance_date"
+      }
+    ]
+  },
+  {
+    "title_original": "Ministerial ordinance on GCP for regenerative medical products, Guide by Director, PFSB, PFSB Notification No. 0812-16, 2014. [English]",
+    "official_url": "https://www.pmda.go.jp/english/review-services/reviews/0003.html",
+    "pdf_url": "https://www.pmda.go.jp/files/000204391.pdf",
+    "regulator": "PMDA",
+    "fields": [
+      {
+        "field": "publication_date",
+        "value": "2014-08-12",
+        "quote": "平成26年8月12日",
+        "source_url": "https://www.pmda.go.jp/files/000204391.pdf",
+        "content_sha256": "4e51b1ad8177fa3583e3cad0eaf4af857b822cf2971d977b4883a3a7bb42fb08",
+        "page": 1,
+        "basis": "notification_issuance_date"
+      }
+    ]
+  },
+  {
+    "title_original": "Ministerial ordinance on GCP for regenerative medical products, Guide by Director, PFSB/MDED, PFSB/MDED Notification No. 0730-1, 2021. [English]",
+    "official_url": "https://www.pmda.go.jp/english/review-services/reviews/0003.html",
+    "pdf_url": "https://www.pmda.go.jp/files/000234754.pdf",
+    "regulator": "PMDA",
+    "fields": [
+      {
+        "field": "publication_date",
+        "value": "2021-07-30",
+        "quote": "令和3年7月30日",
+        "source_url": "https://www.pmda.go.jp/files/000234754.pdf",
+        "content_sha256": "e8610202adbf91e2ebc64caefe691ac1c63c9c7f80c9d086b6d8653b0666527f",
+        "page": 1,
+        "basis": "notification_issuance_date"
+      }
+    ]
+  },
+  {
+    "title_original": "Procedure for remote inspection as a part of compliance inspection on drugs and regenerative medical products, PMDA/CPE Notification No. 325, 2023.",
+    "official_url": "https://www.pmda.go.jp/english/review-services/reviews/0003.html",
+    "pdf_url": "https://www.pmda.go.jp/files/000263220.pdf",
+    "regulator": "PMDA",
+    "fields": [
+      {
+        "field": "publication_date",
+        "value": "2023-07-03",
+        "quote": "令和5年7月3日",
+        "source_url": "https://www.pmda.go.jp/files/000263220.pdf",
+        "content_sha256": "a857bc73abb9821456f97f91f84ba63ed9709185441239e7a58927c3b281b681",
+        "page": 1,
+        "basis": "notification_issuance_date"
+      }
+    ]
+  },
+  {
+    "title_original": "Basic principles on utilization of registry for applications, PSEHB/PED Notification No. 0323-1, PSEHB/MDED Notification No. 0323-1, 2021.",
+    "official_url": "https://www.pmda.go.jp/english/review-services/reviews/0003.html",
+    "pdf_url": "https://www.pmda.go.jp/files/000239821.pdf",
+    "regulator": "PMDA",
+    "fields": [
+      {
+        "field": "publication_date",
+        "value": "2021-03-23",
+        "quote": "令和3年3月23日",
+        "source_url": "https://www.pmda.go.jp/files/000239821.pdf",
+        "content_sha256": "519ed2203b29272836afbb7e2c3ce6678669fd4d1f30ea3b90e7d3d807cde3c8",
+        "page": 1,
+        "basis": "notification_issuance_date"
+      }
+    ]
+  },
+  {
+    "title_original": "Points to consider for ensuring the reliability in utilization of registry data for applications, PSEHB/PED Notification No. 0323-2, PSEHB/MDED Notification No. 0323-2, 2021.",
+    "official_url": "https://www.pmda.go.jp/english/review-services/reviews/0003.html",
+    "pdf_url": "https://www.pmda.go.jp/files/000239820.pdf",
+    "regulator": "PMDA",
+    "fields": [
+      {
+        "field": "publication_date",
+        "value": "2021-03-23",
+        "quote": "令和3年3月23日",
+        "source_url": "https://www.pmda.go.jp/files/000239820.pdf",
+        "content_sha256": "cd7f4e57a6fd66dbbd1fbe00f3b42bab5d16beb5c63c41f884b701ebbd56673f",
+        "page": 1,
+        "basis": "notification_issuance_date"
+      }
+    ]
+  },
+  {
+    "title_original": "Questions and answers (Q&A) on points to consider for ensuring the reliability in utilization of data from registry or medical information database in applications for marketing approval and re-examination for regenerative medical products, PSEHB/MDED Administrative Notice, 2023.",
+    "official_url": "https://www.pmda.go.jp/english/review-services/reviews/0003.html",
+    "pdf_url": "https://www.pmda.go.jp/files/000251969.pdf",
+    "regulator": "PMDA",
+    "fields": [
+      {
+        "field": "publication_date",
+        "value": "2023-03-31",
+        "quote": "令和5年3月31日",
+        "source_url": "https://www.pmda.go.jp/files/000251969.pdf",
+        "content_sha256": "c7cabf6189d84adb072d62816766c3df031a29ce244bef143ee468c945f83b75",
+        "page": 1,
+        "basis": "notification_issuance_date"
+      }
+    ]
+  },
+  {
+    "title_original": "Points to consider for ensuring the reliability of post-marketing database study for regenerative medical products, PSEHB/MDED Notification No. 0323-4, 2020.",
+    "official_url": "https://www.pmda.go.jp/english/review-services/reviews/0003.html",
+    "pdf_url": "https://www.pmda.go.jp/files/000236365.pdf",
+    "regulator": "PMDA",
+    "fields": [
+      {
+        "field": "publication_date",
+        "value": "2020-03-23",
+        "quote": "令和2年3月23日",
+        "source_url": "https://www.pmda.go.jp/files/000236365.pdf",
+        "content_sha256": "f0697b06a40e1b9e3f67fb82131fd69c59d4c5159f30503e0a5df3bb6410a84f",
+        "page": 1,
+        "basis": "notification_issuance_date"
+      }
+    ]
+  }
+]

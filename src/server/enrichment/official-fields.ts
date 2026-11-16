@@ -10,6 +10,7 @@ export interface FieldCandidate {
     | "document_number"
     | "publication_date"
     | "effective_date"
+    | "status"
     | "official_version";
   value: string;
   quote: string;
@@ -17,6 +18,64 @@ export interface FieldCandidate {
   content_sha256: string;
   page: number;
   basis: string;
+}
+
+export function nmpaAnnouncementCandidates(
+  title: string,
+  evidence: { url: string; content_sha256: string; text: string },
+): FieldCandidate[] {
+  if (
+    new URL(evidence.url).hostname !== "english.nmpa.gov.cn" ||
+    !/^(?:NMPA )?Announcement\b/i.test(title)
+  )
+    return [];
+  const text = evidence.text.replace(/\s+/g, " ");
+  const result: FieldCandidate[] = [];
+  const add = (
+    field: FieldCandidate["field"],
+    value: string,
+    quote: string,
+    basis: string,
+  ) =>
+    result.push({
+      field,
+      value,
+      quote,
+      basis,
+      source_url: evidence.url,
+      content_sha256: evidence.content_sha256,
+      page: 0,
+    });
+  const number =
+    title.match(/\(No\.\s*(\d+),\s*(\d{4})\)/i) ||
+    title.match(/\(\[(\d{4})\]\s*No\.\s*(\d+)\)/i);
+  if (number) {
+    const bracketYear = title.includes("([");
+    add(
+      "document_number",
+      `${bracketYear ? number[1] : number[2]}年第${bracketYear ? number[2] : number[1]}号`,
+      number[0],
+      "announcement_title",
+    );
+  }
+  // A signature date is an issuance date, not necessarily the public release date.
+  // Do not resolve "effective on publication" against a signature or web update.
+  const effective = text.match(
+    /shall come into force as of ((?:January|February|March|April|May|June|July|August|September|October|November|December) \d{1,2},? \d{4})/i,
+  );
+  if (effective) {
+    const value = date(effective[1], "NMPA", [])?.toISOString().slice(0, 10);
+    if (value)
+      add("effective_date", value, effective[0], "explicit_effective_clause");
+  }
+  if (/It is hereby announced\.|is hereby promulgated/i.test(text))
+    add(
+      "status",
+      "FINAL",
+      text.match(/It is hereby announced\.|is hereby promulgated/i)![0],
+      "issued_announcement_not_draft",
+    );
+  return result;
 }
 export function japaneseDate(raw: string): string | null {
   const m = raw

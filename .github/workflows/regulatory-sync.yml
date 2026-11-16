@@ -82,25 +82,54 @@ jobs:
           retention-days: 30
           if-no-files-found: ignore
       - uses: actions/setup-python@v5
-        if: success() && env.SYNC_DRY_RUN != 'true' && github.event_name == 'workflow_dispatch'
+        if: success() && env.SYNC_DRY_RUN != 'true'
         with:
           python-version: '3.11'
-      - name: Translate missing public titles locally
-        if: success() && env.SYNC_DRY_RUN != 'true' && github.event_name == 'workflow_dispatch'
-        env:
-          HF_HUB_DISABLE_TELEMETRY: '1'
-          TITLE_REVIEW_LIMIT: '24'
+      - name: Apply reviewed Chinese titles with rollback provenance
+        if: success() && env.SYNC_DRY_RUN != 'true'
         run: |
-          python -m pip install 'llama-cpp-python==0.3.16' --extra-index-url https://abetlen.github.io/llama-cpp-python/whl/cpu
-          python -m pip install 'huggingface-hub==0.36.0'
+          npx tsx scripts/verify-enrichment.ts before
           npx tsx scripts/translate-titles.ts export
           npx tsx scripts/collect-official-chinese-titles.ts
-          python scripts/translate-titles.py
-          echo 'Translation candidates require review; automatic import is disabled.'
-
-
+          npx tsx scripts/translate-titles.ts prepare-reviewed
+          npx tsx scripts/translate-titles.ts import
+          npx tsx scripts/translate-titles.ts export
+      - name: Translate new public titles locally
+        if: success() && env.SYNC_DRY_RUN != 'true'
+        env:
+          HF_HUB_DISABLE_TELEMETRY: '1'
+          TITLE_REVIEW_LIMIT: '64'
+        run: |
+          if python -c "import json,sys;sys.exit(0 if any(not r.get('title_zh') for r in json.load(open('.data/title-input.json'))) else 1)"; then
+            python -m pip install 'llama-cpp-python==0.3.16' --extra-index-url https://abetlen.github.io/llama-cpp-python/whl/cpu
+            python -m pip install 'huggingface-hub==0.36.0'
+            python scripts/translate-titles.py
+            npx tsx scripts/translate-titles.ts prepare-generated
+            npx tsx scripts/translate-titles.ts import
+            echo 'Candidates that fail quality checks remain pending; never replace official facts.'
+          fi
+      - name: Capture official field evidence
+        if: success() && env.SYNC_DRY_RUN != 'true'
+        env:
+          OFFICIAL_AUDIT_INPUT: .data/title-input.json
+        run: |
+          python -m pip install 'pypdf==6.3.0'
+          python scripts/audit-official-fields.py
+          npx tsx scripts/enrich-official-fields.ts
+          npx tsx scripts/verify-enrichment.ts after
+      - name: Save sanitized enrichment summary
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: field-enrichment-summary
+          path: |
+            .data/field-enrichment-summary.json
+            .data/official-fields-audit.json
+            .data/enrichment-integrity-after.json
+          retention-days: 30
+          if-no-files-found: ignore
       - name: Save translation review candidates
-        if: always() && github.event_name == 'workflow_dispatch'
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: title-review-candidates

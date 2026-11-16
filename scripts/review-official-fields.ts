@@ -1,6 +1,7 @@
 import { readFileSync, readdirSync, writeFileSync } from "node:fs";
 import {
   pmdaCoverCandidates,
+  nmpaAnnouncementCandidates,
   type PdfEvidence,
 } from "../src/server/enrichment/official-fields";
 type Row = {
@@ -8,6 +9,8 @@ type Row = {
   regulator: string;
   title_original: string;
   pdf_url?: string;
+  official_url?: string;
+  status?: string;
   document_number?: string;
   publication_date?: string;
   source_metadata?: Record<string, unknown>;
@@ -26,12 +29,15 @@ const evidence = new Map(
 );
 const output = rows.map((row) => {
   const e = evidence.get(row.pdf_url);
-  const candidates =
+  let candidates =
     row.regulator === "PMDA" &&
     e?.kind === "pdf" &&
     e.outcome === "captured_for_review"
       ? pmdaCoverCandidates(e as PdfEvidence)
       : [];
+  const html = evidence.get(row.official_url);
+  if (row.regulator === "NMPA" && html?.outcome === "captured_for_review")
+    candidates = nmpaAnnouncementCandidates(row.title_original, html);
   return {
     id: row.id,
     title_original: row.title_original,
@@ -39,7 +45,9 @@ const output = rows.map((row) => {
     candidates: candidates.filter((c) =>
       c.field === "official_version"
         ? !row.source_metadata?.revision
-        : !row[c.field as keyof Row],
+        : c.field === "status"
+          ? row.status === "Unknown" || row.status === "UNKNOWN"
+          : !row[c.field as keyof Row],
     ),
     conflicts: candidates.filter(
       (c) =>
