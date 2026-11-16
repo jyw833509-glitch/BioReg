@@ -47,7 +47,12 @@ export function DocumentFacts({
                 : "（BioReg 译名，非官方中文标题）")}
           </p>
           <p>
-            编号：{r.document_number || "未提供"} ·{" "}
+            {r.document_number
+              ? `编号：${r.document_number}`
+              : r.regulator === "FDA" && r.docket_number
+                ? `FDA Docket 编号：${r.docket_number}`
+                : "编号：未提供"}{" "}
+            ·{" "}
             {r.regulator === "USP" || r.regulator === "EDQM"
               ? "目录版本/协调状态（非生效状态）"
               : "官方版本"}
