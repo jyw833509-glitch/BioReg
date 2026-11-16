@@ -4,6 +4,7 @@ export interface HtmlClient {
 }
 export class OfficialClient implements HtmlClient {
   private lastRequest = 0;
+  private cooldown = new Map<string, number>();
   constructor(
     private canonicalUrl: (url: string, base?: string) => string,
     private delay = 1200,
@@ -12,9 +13,11 @@ export class OfficialClient implements HtmlClient {
   ) {}
   async get(input: string) {
     let url = this.canonicalUrl(input);
-    for (let attempt = 0; attempt <= this.retries; attempt++) {
+    attempts: for (let attempt = 0; attempt <= this.retries; attempt++) {
       try {
         for (let redirects = 0; redirects <= 5; redirects++) {
+          if ((this.cooldown.get(new URL(url).hostname) || 0) > Date.now())
+            throw new Error("official source HTTP 429 cooldown; remaining host requests deferred");
           await sleep(
             Math.max(0, this.delay - (Date.now() - this.lastRequest)),
           );
@@ -37,6 +40,16 @@ export class OfficialClient implements HtmlClient {
           }
           if (!response.ok || response.status === 202) {
             await response.body?.cancel();
+            if (response.status === 429) {
+              const raw = response.headers.get("retry-after");
+              const ms = raw && /^\d+$/.test(raw) ? Number(raw) * 1000 : raw ? Date.parse(raw) - Date.now() : 15000;
+              const wait = Number.isFinite(ms) ? Math.max(1000, ms) : 15000;
+              this.cooldown.set(new URL(url).hostname, Date.now() + wait);
+              if (attempt === 0 && this.retries > 0 && wait <= 30000) {
+                await sleep(wait);
+                continue attempts;
+              }
+            }
             throw new Error(`official source HTTP ${response.status}`);
           }
           const contentType = response.headers.get("content-type");

@@ -62,7 +62,7 @@ export function normalizeDocument(
     updated_date: date(d.updatedDate, agency, warnings),
     official_url: d.url,
     canonical_url: d.canonicalUrl || d.url,
-    pdf_url: d.attachments.find((u) => /\.pdf(?:\?|$)/i.test(u)) || null,
+    pdf_url: d.attachments.find((u) => /\.pdf(?:[/?#]|$)/i.test(u)) || null,
     official_summary: d.summary || null,
     content_text: d.content || d.summary || "",
     issuing_offices: d.offices || [],

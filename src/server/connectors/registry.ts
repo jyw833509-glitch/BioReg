@@ -35,6 +35,7 @@ for (const [config, parser, normalize, client] of [
     ...config,
     client: client(),
     parseList: parser.parseList,
+    ...(config.code === "CDE" ? { directoryLinks: cdeParser.directoryLinks, recognizedEmptyDirectory: cdeParser.recognizedEmptyDirectory } : {}),
     read: (html, url, candidate, source) =>
       normalize(
         candidate.document || parser.parseDetail(html, url, candidate, source),

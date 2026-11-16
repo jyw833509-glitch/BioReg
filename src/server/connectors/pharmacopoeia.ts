@@ -39,7 +39,7 @@ export function pharmacopoeiaAdapter(code: "USP" | "EDQM"): Adapter {
       return $(".childpages-macro a[href]")
         .toArray()
         .flatMap((el) => {
-          if (!/\?\s*$/.test(clean($(el).text()))) return [];
+          if (!/\?\s*$|questions on general chapters/i.test(clean($(el).text()))) return [];
           try {
             return [officialUrl($(el).attr("href")!, page, hosts)];
           } catch {
@@ -57,7 +57,7 @@ export function pharmacopoeiaAdapter(code: "USP" | "EDQM"): Adapter {
         const excerpt = clean(
           $(".wiki-content").text() || $("#main-content").text(),
         );
-        if (title.length < 20 || excerpt.length < 20 || !/\?\s*$/.test(title))
+        if (title.length < 20 || excerpt.length < 20 || !/\?\s*$|^Other questions on general chapters \d/i.test(title))
           return [];
         return [
           {

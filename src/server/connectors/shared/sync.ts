@@ -107,7 +107,7 @@ async function runSource(
             queue.push({ url, depth: depth + 1 });
         }
         const parsed = adapter.parseList(page.html, page.url);
-        if (!parsed.length && !children.length)
+        if (!parsed.length && !children.length && !adapter.recognizedEmptyDirectory?.(page.html, page.url))
           throw new Error(
             "Official source list returned no recognized guidance links",
           );
@@ -131,7 +131,12 @@ async function runSource(
     }
     // The same document may appear in both recent and historical directories.
     // Deduplicate before fetching so a failed document is not retried per directory.
-    listed = [...new Map(listed.map((c) => [c.url, c])).values()];
+    const unique = new Map<string, Candidate>();
+    for (const c of listed) {
+      const previous = unique.get(c.url);
+      unique.set(c.url, { ...c, fallbackDocument: c.fallbackDocument || previous?.fallbackDocument });
+    }
+    listed = [...unique.values()];
     if (!options.dryRun) listed = await retainCatalog(db, source.id, listed);
     let candidates = listed.slice(0, options.limit);
     if (options.mode === "incremental" && options.limit > 1) {
@@ -179,13 +184,21 @@ async function runSource(
     const seen = new Set<string>();
     for (const candidate of candidates) {
       try {
-        const detail = candidate.document
-          ? { html: "", url: candidate.url }
-          : await client.get(candidate.url);
+        let detail;
+        let selected = candidate;
+        try {
+          detail = candidate.document ? { html: "", url: candidate.url } : await client.get(candidate.url);
+        } catch (error) {
+          if (!candidate.fallbackDocument) throw error;
+          result.records_failed++;
+          result.errors.push(`${candidate.url}: ${safeError(error)}; indexing verified catalog metadata only`);
+          selected = { ...candidate, document: candidate.fallbackDocument };
+          detail = { html: "", url: candidate.url };
+        }
         const normalized = adapter.read(
           detail.html,
           detail.url,
-          candidate,
+          selected,
           candidate.sourcePage || adapter.pages[0],
         );
         result.warnings.push(

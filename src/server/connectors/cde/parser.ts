@@ -3,8 +3,33 @@ import { clean } from "../fda/parser";
 import { officialUrl } from "../shared/url";
 import type { Candidate, Document } from "../shared/types";
 import { config } from "./config";
+export function recognizedEmptyDirectory(html: string, url: string) {
+  const u = new URL(url), $ = load(html);
+  return u.hostname === "www.ydcdei.org.cn" && u.pathname === "/search" &&
+    $("title").text() === "检索-国家药品监督管理局药品审评检查长三角分中心" &&
+    $(".searchBox").length > 0 && $("input[name=keyword]").length > 0;
+}
+export function directoryLinks(html: string, url: string) {
+  const u = new URL(url);
+  if (u.hostname !== "www.ydcdei.org.cn" || u.pathname !== "/search" || u.searchParams.has("pageNo")) return [];
+  const total = Number(html.match(/total:\s*(\d+)/)?.[1] || 1);
+  if (total > 25) throw new Error("CDE public search pagination exceeds bounded coverage; review required");
+  return Array.from({ length: Math.max(0, total - 1) }, (_, i) => {
+    const next = new URL(u); next.searchParams.set("pageNo", String(i + 2)); return next.toString();
+  });
+}
 export function parseList(html: string, url: string): Candidate[] {
   if (new URL(url).hostname === "www.ydcdei.org.cn") {
+    if (new URL(url).pathname === "/search") {
+      const $ = load(html);
+      return $("a[title][href]").toArray().flatMap((el) => {
+        const title = clean($(el).attr("title") || "");
+        if (!/指导原则/.test(title) || !/生物制品|生物类似药|细胞|基因|疫苗|抗体|蛋白|ICH/.test(title)) return [];
+        const target = officialUrl($(el).attr("href")!, url, config.hosts);
+        if (!/^\/news\/show\/\d+$/.test(new URL(target).pathname)) return [];
+        return [{ url: target, title, context: "官方分中心转载", sourcePage: url }];
+      });
+    }
     const document = parseDetail(
       html,
       url,
@@ -54,8 +79,8 @@ export function parseDetail(
       title,
       url: officialUrl(url, url, config.hosts),
       sourcePage,
-      type: "技术指导原则",
-      status: "",
+      type: /征求意见/.test(heading) ? "征求意见稿" : "技术指导原则",
+      status: /征求意见/.test(heading) ? "征求意见" : /关于发布|发布《/.test(heading) ? "正式发布" : "",
       content,
       attachments: $(".detailBox .content a[href]")
         .toArray()

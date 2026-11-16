@@ -34,6 +34,11 @@ export async function retainCatalog(
     ...history
       .filter((row) => !current.has(row.url))
       .map((row) => row.candidate as unknown as Candidate)
-      .filter((c) => !c.document),
+      .filter((c) => !c.document)
+      .map((candidate) => {
+        const freshFetch = { ...candidate };
+        delete freshFetch.fallbackDocument;
+        return freshFetch;
+      }),
   ];
 }

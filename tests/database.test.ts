@@ -568,7 +568,7 @@ test("FDA sync logs, dry-run isolation and per-record failure isolation", async 
 
 test("All five additional adapters share dry-run, upsert, source-local identity and logs", async () => {
   for (const code of ["EMA", "NMPA", "CDE", "ICH", "PMDA"]) {
-    const base = adapters[code],
+    const base = { ...adapters[code], pages: adapters[code].pages.filter(p => !p.endsWith(".json") || code === "ICH") },
       name = code.toLowerCase();
     const fixture = readFileSync(
       `tests/fixtures/${name}/${code === "NMPA" ? "english-list" : "list"}.${code === "ICH" ? "json" : "html"}`,
@@ -683,11 +683,11 @@ test("One blocked source cannot prevent another source from persisting", async (
     detail = readFileSync("tests/fixtures/ema/detail.html", "utf8");
   const good = {
     ...adapters.EMA,
-    pages: [adapters.EMA.pages[0]],
+    pages: [adapters.EMA.pages.find(p => !p.endsWith(".json"))!],
     client: {
       get: async (url: string) => ({
         url,
-        html: url === adapters.EMA.pages[0] ? fixture : detail,
+        html: url === adapters.EMA.pages.find(p => !p.endsWith(".json"))! ? fixture : detail,
       }),
     },
   };
@@ -1689,4 +1689,16 @@ test("new-file title pipeline imports once, preserves facts/history and can roll
     "",
   );
   assert.equal(await client.regulationVersion.count(), beforeVersions);
+});
+
+test("EMA live catalog fallback remains partial and cannot erase detail facts or create repeat versions", async () => {
+ const url='https://www.ema.europa.eu/en/scientific-guidelines/catalog-fallback-fixture';
+ const doc={title:'Biological vaccine catalog fixture',url,sourcePage:adapters.EMA.pages[0],type:'',status:'',attachments:[],metadata:{metadata_verified:true,capture_scope:'official_catalog_index'}};
+ const adapter: Adapter={code:'EMA',pages:['https://www.ema.europa.eu/catalog-fixture'],client:{get:async(u)=>{if(u===url)throw new Error('official source HTTP 429');return{html:'verified catalog fixture',url:u}}},parseList:()=>[{url,title:doc.title,context:'Biologicals',fallbackDocument:doc}],read:(_h,_u,c)=>normalizeDocument(c.document!,'EMA',()=> 'OTHER',()=> 'UNKNOWN')};
+ const first=await syncSource(client,adapter,{mode:'initial',limit:1});
+ assert.equal(first.status,'PARTIAL_SUCCESS');assert.equal(first.records_new,1);assert.equal(first.records_failed,1);
+ const stored=await client.regulation.findFirstOrThrow({where:{canonical_url:url}});const count=await client.regulationVersion.count({where:{regulation_id:stored.id}});
+ await client.regulation.update({where:{id:stored.id},data:{document_number:'VERIFIED-1',official_summary:'Previously captured official detail',status:'FINAL'}});
+ const repeat=await syncSource(client,adapter,{mode:'initial',limit:1});assert.equal(repeat.records_new,0);assert.equal(repeat.records_updated,0);
+ const after=await client.regulation.findUniqueOrThrow({where:{id:stored.id}});assert.equal(after.document_number,'VERIFIED-1');assert.equal(after.status,'FINAL');assert.equal(await client.regulationVersion.count({where:{regulation_id:stored.id}}),count);
 });

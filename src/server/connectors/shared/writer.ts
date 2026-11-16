@@ -20,7 +20,7 @@ export function verifiedMetadataOnly(data: OfficialRecord) {
           url.pathname,
         )) ||
       (data.regulator === "EMA" &&
-        data.source_metadata.capture_scope === "official_guideline_metadata" &&
+        ["official_guideline_metadata", "official_catalog_index"].includes(String(data.source_metadata.capture_scope)) &&
         ["www.ema.europa.eu", "ema.europa.eu"].includes(url.hostname) &&
         /^\/en\/scientific-guidelines\/[^/]+\/?$/.test(url.pathname))
     );
@@ -80,6 +80,10 @@ export async function writeRecord(
         "Conflicting source document identities; manual review required",
       );
     const existing = matches[0];
+    // A live catalog proves existence, not changes to a previously captured detail.
+    // Never erase richer facts or manufacture a version from a restricted detail fetch.
+    if (existing && data.source_metadata?.capture_scope === "official_catalog_index")
+      return "existing";
     if (existing) data = retainVerifiedFields(existing, data) as OfficialRecord;
     // Translation is derived data; preserve it when an unchanged official title is re-synced.
     if (existing?.title_original === data.title_original && !data.title_zh)

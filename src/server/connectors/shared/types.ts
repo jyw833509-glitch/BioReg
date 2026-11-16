@@ -66,6 +66,7 @@ export interface Candidate {
   context: string;
   sourcePage?: string;
   document?: Document;
+  fallbackDocument?: Document;
 }
 export interface Adapter {
   embeddedDocuments?: boolean;
@@ -75,6 +76,7 @@ export interface Adapter {
   parseList(body: string, url: string): Candidate[];
   // One bounded level of official directory navigation; never document results.
   directoryLinks?(body: string, url: string): string[];
+  recognizedEmptyDirectory?(body: string, url: string): boolean;
   read(
     body: string,
     url: string,

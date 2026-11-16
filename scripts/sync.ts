@@ -22,9 +22,9 @@ async function main() {
     },
   });
   const requested = positionals[0]?.toUpperCase();
-  const codes = requested === "ALL" ? Object.keys(adapters) : [requested];
+  const codes = requested === "ALL" ? Object.keys(adapters) : [...new Set((requested || "").split(","))];
   if (positionals.length !== 1 || codes.some((c) => !c || !adapters[c]))
-    throw new Error("Use sync <all|fda|ema|nmpa|cde|ich|pmda|usp|edqm>");
+    throw new Error("Use sync <all|fda|ema|nmpa|cde|ich|pmda|usp|edqm> or a comma-separated subset");
   if (!["initial", "incremental"].includes(values.mode))
     throw new Error("Invalid mode");
   if (!["cli", "scheduled", "manual"].includes(values.trigger))
