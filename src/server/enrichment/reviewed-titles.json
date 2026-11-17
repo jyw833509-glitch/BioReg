@@ -2819,5 +2819,26 @@
     "model": "Qwen/Qwen3-8B-GGUF",
     "revision": "7c41481f57cb95916b40956ab2f0b139b296d974",
     "reviewed_sha256": "5306d53c43ef33aefd045d74710e8ea0eb81f8269d4897df70fed6fbe2e0283d"
+  },
+  {
+    "original": "Interim guidance on enhanced safety surveillance for seasonal influenza vaccines in the EU",
+    "translation": "欧盟季节性流感疫苗加强安全性监测临时指南",
+    "model": "Qwen/Qwen3-8B-GGUF",
+    "revision": "7c41481f57cb95916b40956ab2f0b139b296d974",
+    "reviewed_sha256": "980c25788ee2dc2c045ffc3839948606a754d37289f1b26ca983071312c27d70"
+  },
+  {
+    "original": "Concept paper on the revision of the COVID-19 vaccines guidance documents",
+    "translation": "关于修订 COVID-19 疫苗指导文件的概念文件",
+    "model": "Qwen/Qwen3-8B-GGUF",
+    "revision": "7c41481f57cb95916b40956ab2f0b139b296d974",
+    "reviewed_sha256": "8f8ee3a50a67844e6afacc96514a4e9e01e2c9f1f3b38d153811811753ffc420"
+  },
+  {
+    "original": "EMA considerations on COVID-19 vaccine approval",
+    "translation": "EMA 关于 COVID-19 疫苗批准的考虑要点",
+    "model": "Qwen/Qwen3-8B-GGUF",
+    "revision": "7c41481f57cb95916b40956ab2f0b139b296d974",
+    "reviewed_sha256": "e64cbec48c24d078e5a4e38f95e6afac69e2d88ed0af5e283c5a9a064e1e0b0a"
   }
 ]
