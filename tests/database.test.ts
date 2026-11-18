@@ -568,7 +568,7 @@ test("FDA sync logs, dry-run isolation and per-record failure isolation", async 
 
 test("All five additional adapters share dry-run, upsert, source-local identity and logs", async () => {
   for (const code of ["EMA", "NMPA", "CDE", "ICH", "PMDA"]) {
-    const base = { ...adapters[code], pages: adapters[code].pages.filter(p => !p.endsWith(".json") || code === "ICH") },
+    const base = { ...adapters[code], pages: adapters[code].pages.filter(p => code === "EMA" ? p.endsWith("/biologicals-finished-product") : !p.endsWith(".json") || code === "ICH") },
       name = code.toLowerCase();
     const fixture = readFileSync(
       `tests/fixtures/${name}/${code === "NMPA" ? "english-list" : "list"}.${code === "ICH" ? "json" : "html"}`,
@@ -683,11 +683,11 @@ test("One blocked source cannot prevent another source from persisting", async (
     detail = readFileSync("tests/fixtures/ema/detail.html", "utf8");
   const good = {
     ...adapters.EMA,
-    pages: [adapters.EMA.pages.find(p => !p.endsWith(".json"))!],
+    pages: [adapters.EMA.pages.find(p => p.endsWith("/biologicals-finished-product"))!],
     client: {
       get: async (url: string) => ({
         url,
-        html: url === adapters.EMA.pages.find(p => !p.endsWith(".json"))! ? fixture : detail,
+        html: url === adapters.EMA.pages.find(p => p.endsWith("/biologicals-finished-product"))! ? fixture : detail,
       }),
     },
   };

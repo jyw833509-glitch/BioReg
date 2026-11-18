@@ -2,8 +2,13 @@ import { load } from "cheerio";
 import { clean } from "../fda/parser";
 import { officialUrl } from "../shared/url";
 import type { Candidate, Document } from "../shared/types";
-import { config } from "./config";
+import { config, BIOLOGICAL_QA_URL } from "./config";
 export function parseList(html: string, url: string): Candidate[] {
+  if (url === BIOLOGICAL_QA_URL) {
+    const candidate = { url, title: "", context: "Biologicals" };
+    const document = parseDetail(html, url, candidate, url);
+    return [{ ...candidate, title: document.title, document }];
+  }
   if (new URL(url).pathname.endsWith("/scientific-guidelines-output-json-report_en.json")) {
     const payload = JSON.parse(html);
     if (!Array.isArray(payload.data) || payload.meta?.total_records !== payload.data.length)
@@ -56,7 +61,7 @@ export function parseDetail(
   const title = clean(file.find(".file-title").text());
   if (!title) {
     const heading = clean($("h1.content-banner-title").text());
-    const article = $("article.ema-scientific-guideline");
+    const article = $(url === BIOLOGICAL_QA_URL ? "article.ema-general" : "article.ema-scientific-guideline");
     const content = clean(article.find(".ecl-editor").text());
     // EMA also publishes scientific Q&A directly as HTML, without a file card.
     if (
@@ -73,7 +78,7 @@ export function parseDetail(
       status: "",
       attachments: [],
       content,
-      topics: ["Clinical pharmacology"],
+      topics: url === BIOLOGICAL_QA_URL ? ["Biologicals"] : ["Clinical pharmacology"],
       metadata: {
         capture_scope: "official_html_qa",
         full_text_captured: false,

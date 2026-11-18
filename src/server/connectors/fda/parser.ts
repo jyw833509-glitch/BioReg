@@ -1,6 +1,7 @@
 import { load } from "cheerio";
 export const RECENT_URL =
   "https://www.fda.gov/vaccines-blood-biologics/biologics-guidances/recently-issued-guidance-documents";
+export const BIOSIMILAR_ANALYTICAL_URL = "https://www.fda.gov/regulatory-information/search-fda-guidance-documents/development-therapeutic-protein-biosimilars-comparative-analytical-assessment-and-other-quality";
 export const clean = (s: string) =>
   s.normalize("NFC").replace(/\s+/g, " ").trim();
 export function canonicalUrl(raw: string, base = RECENT_URL) {
@@ -55,6 +56,11 @@ export function directoryLinks(html: string, url: string): string[] {
 }
 export function parseList(html: string, url: string): Candidate[] {
   const $ = load(html);
+  if (canonicalUrl(url) === BIOSIMILAR_ANALYTICAL_URL) {
+    const candidate = { url, title: "", context: "Biosimilars" };
+    const detail = parseDetail(html, url, candidate, url);
+    return [{ ...candidate, title: detail.title }];
+  }
   const result = new Map<string, Candidate>();
   $("[role=main] a[href], main a[href]").each((_, el) => {
     const href = $(el).attr("href") || "";
