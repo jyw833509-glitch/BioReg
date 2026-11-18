@@ -1,0 +1,712 @@
+[
+  {
+    "source": "USP",
+    "number": "51",
+    "url": "https://doi.usp.org/USPNF/USPNF_M98790_03_01.html"
+  },
+  {
+    "source": "USP",
+    "number": "61",
+    "url": "https://doi.usp.org/USPNF/USPNF_M98800_02_01.html"
+  },
+  {
+    "source": "USP",
+    "number": "62",
+    "url": "https://doi.usp.org/USPNF/USPNF_M98802_02_01.html"
+  },
+  {
+    "source": "USP",
+    "number": "63",
+    "url": "https://doi.usp.org/USPNF/USPNF_M3687_01_01.html"
+  },
+  {
+    "source": "USP",
+    "number": "71",
+    "url": "https://doi.usp.org/USPNF/USPNF_M98810_01_01.html"
+  },
+  {
+    "source": "USP",
+    "number": "85",
+    "url": "https://doi.usp.org/USPNF/USPNF_M98830_02_01.html"
+  },
+  {
+    "source": "USP",
+    "number": "86",
+    "url": "https://doi.usp.org/USPNF/USPNF_M16015_02_01.html"
+  },
+  {
+    "source": "USP",
+    "number": "87",
+    "url": "https://doi.usp.org/USPNF/USPNF_M98833_02_01.html"
+  },
+  {
+    "source": "USP",
+    "number": "88",
+    "url": "https://doi.usp.org/USPNF/USPNF_M98834_02_01.html"
+  },
+  {
+    "source": "USP",
+    "number": "129",
+    "url": "https://doi.usp.org/USPNF/USPNF_M6297_04_01.html"
+  },
+  {
+    "source": "USP",
+    "number": "212",
+    "url": "https://doi.usp.org/USPNF/USPNF_M5879_04_01.html"
+  },
+  {
+    "source": "USP",
+    "number": "232",
+    "url": "https://doi.usp.org/USPNF/USPNF_M5192_03_01.html"
+  },
+  {
+    "source": "USP",
+    "number": "233",
+    "url": "https://doi.usp.org/USPNF/USPNF_M5193_03_01.html"
+  },
+  {
+    "source": "USP",
+    "number": "381",
+    "url": "https://doi.usp.org/USPNF/USPNF_M99140_10_01.html"
+  },
+  {
+    "source": "USP",
+    "number": "382",
+    "url": "https://doi.usp.org/USPNF/USPNF_M11355_06_01.html"
+  },
+  {
+    "source": "USP",
+    "number": "467",
+    "url": "https://doi.usp.org/USPNF/USPNF_M99226_09_01.html"
+  },
+  {
+    "source": "USP",
+    "number": "507",
+    "url": "https://doi.usp.org/USPNF/USPNF_M7147_04_01.html"
+  },
+  {
+    "source": "USP",
+    "number": "509",
+    "url": "https://doi.usp.org/USPNF/USPNF_M7146_02_01.html"
+  },
+  {
+    "source": "USP",
+    "number": "621",
+    "url": "https://doi.usp.org/USPNF/USPNF_M99380_10_01.html"
+  },
+  {
+    "source": "USP",
+    "number": "643",
+    "url": "https://doi.usp.org/USPNF/USPNF_M99403_05_01.html"
+  },
+  {
+    "source": "USP",
+    "number": "645",
+    "url": "https://doi.usp.org/USPNF/USPNF_M99405_01_01.html"
+  },
+  {
+    "source": "USP",
+    "number": "660",
+    "url": "https://doi.usp.org/USPNF/USPNF_M1757_02_01.html"
+  },
+  {
+    "source": "USP",
+    "number": "665",
+    "url": "https://doi.usp.org/USPNF/USPNF_M11135_03_01.html"
+  },
+  {
+    "source": "USP",
+    "number": "785",
+    "url": "https://doi.usp.org/USPNF/USPNF_M99580_04_01.html"
+  },
+  {
+    "source": "USP",
+    "number": "787",
+    "url": "https://doi.usp.org/USPNF/USPNF_M6497_02_01.html"
+  },
+  {
+    "source": "USP",
+    "number": "788",
+    "url": "https://doi.usp.org/USPNF/USPNF_M99586_04_01.html"
+  },
+  {
+    "source": "USP",
+    "number": "790",
+    "url": "https://doi.usp.org/USPNF/USPNF_M7197_01_01.html"
+  },
+  {
+    "source": "USP",
+    "number": "791",
+    "url": "https://doi.usp.org/USPNF/USPNF_M99590_03_01.html"
+  },
+  {
+    "source": "USP",
+    "number": "921",
+    "url": "https://doi.usp.org/USPNF/USPNF_M99710_05_01.html"
+  },
+  {
+    "source": "USP",
+    "number": "1032",
+    "url": "https://doi.usp.org/USPNF/USPNF_M1354_02_01.html"
+  },
+  {
+    "source": "USP",
+    "number": "1033",
+    "url": "https://doi.usp.org/USPNF/USPNF_M912_02_01.html"
+  },
+  {
+    "source": "USP",
+    "number": "1034",
+    "url": "https://doi.usp.org/USPNF/USPNF_M5677_03_01.html"
+  },
+  {
+    "source": "USP",
+    "number": "1050",
+    "url": "https://doi.usp.org/USPNF/USPNF_M99774_03_01.html"
+  },
+  {
+    "source": "USP",
+    "number": "1051",
+    "url": "https://doi.usp.org/USPNF/USPNF_M99776_04_01.html"
+  },
+  {
+    "source": "USP",
+    "number": "1052",
+    "url": "https://doi.usp.org/USPNF/USPNF_M858_03_01.html"
+  },
+  {
+    "source": "USP",
+    "number": "1053",
+    "url": "https://doi.usp.org/USPNF/USPNF_M859_04_01.html"
+  },
+  {
+    "source": "USP",
+    "number": "1054",
+    "url": "https://doi.usp.org/USPNF/USPNF_M860_03_01.html"
+  },
+  {
+    "source": "USP",
+    "number": "1055",
+    "url": "https://doi.usp.org/USPNF/USPNF_M861_02_01.html"
+  },
+  {
+    "source": "USP",
+    "number": "1056",
+    "url": "https://doi.usp.org/USPNF/USPNF_M862_01_01.html"
+  },
+  {
+    "source": "USP",
+    "number": "1057",
+    "url": "https://doi.usp.org/USPNF/USPNF_M863_02_01.html"
+  },
+  {
+    "source": "USP",
+    "number": "1058",
+    "url": "https://doi.usp.org/USPNF/USPNF_M1124_01_01.html"
+  },
+  {
+    "source": "USP",
+    "number": "1084",
+    "url": "https://doi.usp.org/USPNF/USPNF_M916_01_01.html"
+  },
+  {
+    "source": "USP",
+    "number": "1111",
+    "url": "https://doi.usp.org/USPNF/USPNF_M99830_01_01.html"
+  },
+  {
+    "source": "USP",
+    "number": "1116",
+    "url": "https://doi.usp.org/USPNF/USPNF_M99835_01_01.html"
+  },
+  {
+    "source": "USP",
+    "number": "1119",
+    "url": "https://doi.usp.org/USPNF/USPNF_M18255_02_01.html"
+  },
+  {
+    "source": "USP",
+    "number": "1130",
+    "url": "https://doi.usp.org/USPNF/USPNF_M2744_01_01.html"
+  },
+  {
+    "source": "USP",
+    "number": "1132",
+    "url": "https://doi.usp.org/USPNF/USPNF_M8647_01_01.html"
+  },
+  {
+    "source": "USP",
+    "number": "1207",
+    "url": "https://doi.usp.org/USPNF/USPNF_M99926_01_01.html"
+  },
+  {
+    "source": "USP",
+    "number": "1211",
+    "url": "https://doi.usp.org/USPNF/USPNF_M99930_05_01.html"
+  },
+  {
+    "source": "USP",
+    "number": "1220",
+    "url": "https://doi.usp.org/USPNF/USPNF_M10975_02_01.html"
+  },
+  {
+    "source": "USP",
+    "number": "1223",
+    "url": "https://doi.usp.org/USPNF/USPNF_M99943_04_01.html"
+  },
+  {
+    "source": "USP",
+    "number": "1224",
+    "url": "https://doi.usp.org/USPNF/USPNF_M5511_04_01.html"
+  },
+  {
+    "source": "USP",
+    "number": "1225",
+    "url": "https://doi.usp.org/USPNF/USPNF_M99945_04_01.html"
+  },
+  {
+    "source": "USP",
+    "number": "1226",
+    "url": "https://doi.usp.org/USPNF/USPNF_M870_03_01.html"
+  },
+  {
+    "source": "USP",
+    "number": "1227",
+    "url": "https://doi.usp.org/USPNF/USPNF_M99947_03_01.html"
+  },
+  {
+    "source": "USP",
+    "number": "1228",
+    "url": "https://doi.usp.org/USPNF/USPNF_M8097_03_01.html"
+  },
+  {
+    "source": "USP",
+    "number": "1229",
+    "url": "https://doi.usp.org/USPNF/USPNF_M7408_03_01.html"
+  },
+  {
+    "source": "USP",
+    "number": "1231",
+    "url": "https://doi.usp.org/USPNF/USPNF_M99956_08_01.html"
+  },
+  {
+    "source": "USP",
+    "number": "1237",
+    "url": "https://doi.usp.org/USPNF/USPNF_M915_01_01.html"
+  },
+  {
+    "source": "USP",
+    "number": "1663",
+    "url": "https://doi.usp.org/USPNF/USPNF_M7126_03_01.html"
+  },
+  {
+    "source": "USP",
+    "number": "1664",
+    "url": "https://doi.usp.org/USPNF/USPNF_M7127_04_01.html"
+  },
+  {
+    "source": "USP",
+    "number": "1665",
+    "url": "https://doi.usp.org/USPNF/USPNF_M11136_02_01.html"
+  },
+  {
+    "source": "USP",
+    "number": "1787",
+    "url": "https://doi.usp.org/USPNF/USPNF_M7866_04_01.html"
+  },
+  {
+    "source": "USP",
+    "number": "1788",
+    "url": "https://doi.usp.org/USPNF/USPNF_M3023_03_01.html"
+  },
+  {
+    "source": "USP",
+    "number": "1790",
+    "url": "https://doi.usp.org/USPNF/USPNF_M7198_07_01.html"
+  },
+  {
+    "source": "USP",
+    "number": "1050.1",
+    "url": "https://doi.usp.org/USPNF/USPNF_M7187_01_01.html"
+  },
+  {
+    "source": "USP",
+    "number": "1788.3",
+    "url": "https://doi.usp.org/USPNF/USPNF_M12537_02_01.html"
+  },
+  {
+    "source": "USP",
+    "number": "1119.1",
+    "url": "https://doi.usp.org/USPNF/USPNF_M18395_02_01.html"
+  },
+  {
+    "source": "USP",
+    "number": "1132.1",
+    "url": "https://doi.usp.org/USPNF/USPNF_M17756_02_01.html"
+  },
+  {
+    "source": "USP",
+    "number": "661.1",
+    "url": "https://doi.usp.org/USPNF/USPNF_M8008_14_01.html"
+  },
+  {
+    "source": "USP",
+    "number": "661.2",
+    "url": "https://doi.usp.org/USPNF/USPNF_M8009_06_01.html"
+  },
+  {
+    "source": "USP",
+    "number": "1229.18",
+    "url": "https://doi.usp.org/USPNF/USPNF_M13516_02_01.html"
+  },
+  {
+    "source": "USP",
+    "number": "1229.4",
+    "url": "https://doi.usp.org/USPNF/USPNF_M7413_03_01.html"
+  },
+  {
+    "source": "EDQM",
+    "number": "2.2.1",
+    "url": "https://extranet.edqm.eu/4DLink1/4DCGI/Web_View/mono/20201"
+  },
+  {
+    "source": "EDQM",
+    "number": "2.2.2",
+    "url": "https://extranet.edqm.eu/4DLink1/4DCGI/Web_View/mono/20202"
+  },
+  {
+    "source": "EDQM",
+    "number": "2.2.25",
+    "url": "https://extranet.edqm.eu/4DLink1/4DCGI/Web_View/mono/20225"
+  },
+  {
+    "source": "EDQM",
+    "number": "2.2.29",
+    "url": "https://extranet.edqm.eu/4DLink1/4DCGI/Web_View/mono/20229"
+  },
+  {
+    "source": "EDQM",
+    "number": "2.2.3",
+    "url": "https://extranet.edqm.eu/4DLink1/4DCGI/Web_View/mono/20203"
+  },
+  {
+    "source": "EDQM",
+    "number": "2.2.30",
+    "url": "https://extranet.edqm.eu/4DLink1/4DCGI/Web_View/mono/20230"
+  },
+  {
+    "source": "EDQM",
+    "number": "2.2.31",
+    "url": "https://extranet.edqm.eu/4DLink1/4DCGI/Web_View/mono/20231"
+  },
+  {
+    "source": "EDQM",
+    "number": "2.2.35",
+    "url": "https://extranet.edqm.eu/4DLink1/4DCGI/Web_View/mono/20235"
+  },
+  {
+    "source": "EDQM",
+    "number": "2.2.41",
+    "url": "https://extranet.edqm.eu/4DLink1/4DCGI/Web_View/mono/20241"
+  },
+  {
+    "source": "EDQM",
+    "number": "2.2.43",
+    "url": "https://extranet.edqm.eu/4DLink1/4DCGI/Web_View/mono/20243"
+  },
+  {
+    "source": "EDQM",
+    "number": "2.2.44",
+    "url": "https://extranet.edqm.eu/4DLink1/4DCGI/Web_View/mono/20244"
+  },
+  {
+    "source": "EDQM",
+    "number": "2.2.46",
+    "url": "https://extranet.edqm.eu/4DLink1/4DCGI/Web_View/mono/20246"
+  },
+  {
+    "source": "EDQM",
+    "number": "2.2.47",
+    "url": "https://extranet.edqm.eu/4DLink1/4DCGI/Web_View/mono/20247"
+  },
+  {
+    "source": "EDQM",
+    "number": "2.2.54",
+    "url": "https://extranet.edqm.eu/4DLink1/4DCGI/Web_View/mono/20254"
+  },
+  {
+    "source": "EDQM",
+    "number": "2.2.55",
+    "url": "https://extranet.edqm.eu/4DLink1/4DCGI/Web_View/mono/20255"
+  },
+  {
+    "source": "EDQM",
+    "number": "2.2.56",
+    "url": "https://extranet.edqm.eu/4DLink1/4DCGI/Web_View/mono/20256"
+  },
+  {
+    "source": "EDQM",
+    "number": "2.2.59",
+    "url": "https://extranet.edqm.eu/4DLink1/4DCGI/Web_View/mono/20259"
+  },
+  {
+    "source": "EDQM",
+    "number": "2.4.20",
+    "url": "https://extranet.edqm.eu/4DLink1/4DCGI/Web_View/mono/20420"
+  },
+  {
+    "source": "EDQM",
+    "number": "2.4.24",
+    "url": "https://extranet.edqm.eu/4DLink1/4DCGI/Web_View/mono/20424"
+  },
+  {
+    "source": "EDQM",
+    "number": "2.5.12",
+    "url": "https://extranet.edqm.eu/4DLink1/4DCGI/Web_View/mono/20512"
+  },
+  {
+    "source": "EDQM",
+    "number": "2.5.32",
+    "url": "https://extranet.edqm.eu/4DLink1/4DCGI/Web_View/mono/20532"
+  },
+  {
+    "source": "EDQM",
+    "number": "2.5.33",
+    "url": "https://extranet.edqm.eu/4DLink1/4DCGI/Web_View/mono/20533"
+  },
+  {
+    "source": "EDQM",
+    "number": "2.5.43",
+    "url": "https://extranet.edqm.eu/4DLink1/4DCGI/Web_View/mono/20543"
+  },
+  {
+    "source": "EDQM",
+    "number": "2.5.44",
+    "url": "https://extranet.edqm.eu/4DLink1/4DCGI/Web_View/mono/20544"
+  },
+  {
+    "source": "EDQM",
+    "number": "2.6.1",
+    "url": "https://extranet.edqm.eu/4DLink1/4DCGI/Web_View/mono/20601"
+  },
+  {
+    "source": "EDQM",
+    "number": "2.6.12",
+    "url": "https://extranet.edqm.eu/4DLink1/4DCGI/Web_View/mono/20612"
+  },
+  {
+    "source": "EDQM",
+    "number": "2.6.13",
+    "url": "https://extranet.edqm.eu/4DLink1/4DCGI/Web_View/mono/20613"
+  },
+  {
+    "source": "EDQM",
+    "number": "2.6.14",
+    "url": "https://extranet.edqm.eu/4DLink1/4DCGI/Web_View/mono/20614"
+  },
+  {
+    "source": "EDQM",
+    "number": "2.6.21",
+    "url": "https://extranet.edqm.eu/4DLink1/4DCGI/Web_View/mono/20621"
+  },
+  {
+    "source": "EDQM",
+    "number": "2.6.30",
+    "url": "https://extranet.edqm.eu/4DLink1/4DCGI/Web_View/mono/20630"
+  },
+  {
+    "source": "EDQM",
+    "number": "2.6.32",
+    "url": "https://extranet.edqm.eu/4DLink1/4DCGI/Web_View/mono/20632"
+  },
+  {
+    "source": "EDQM",
+    "number": "2.6.34",
+    "url": "https://extranet.edqm.eu/4DLink1/4DCGI/Web_View/mono/20634"
+  },
+  {
+    "source": "EDQM",
+    "number": "2.6.35",
+    "url": "https://extranet.edqm.eu/4DLink1/4DCGI/Web_View/mono/20635"
+  },
+  {
+    "source": "EDQM",
+    "number": "2.6.41",
+    "url": "https://extranet.edqm.eu/4DLink1/4DCGI/Web_View/mono/20641"
+  },
+  {
+    "source": "EDQM",
+    "number": "2.6.7",
+    "url": "https://extranet.edqm.eu/4DLink1/4DCGI/Web_View/mono/20607"
+  },
+  {
+    "source": "EDQM",
+    "number": "2.7.1",
+    "url": "https://extranet.edqm.eu/4DLink1/4DCGI/Web_View/mono/20701"
+  },
+  {
+    "source": "EDQM",
+    "number": "2.7.26",
+    "url": "https://extranet.edqm.eu/4DLink1/4DCGI/Web_View/mono/20726"
+  },
+  {
+    "source": "EDQM",
+    "number": "2.9.17",
+    "url": "https://extranet.edqm.eu/4DLink1/4DCGI/Web_View/mono/20917"
+  },
+  {
+    "source": "EDQM",
+    "number": "2.9.19",
+    "url": "https://extranet.edqm.eu/4DLink1/4DCGI/Web_View/mono/20919"
+  },
+  {
+    "source": "EDQM",
+    "number": "2.9.20",
+    "url": "https://extranet.edqm.eu/4DLink1/4DCGI/Web_View/mono/20920"
+  },
+  {
+    "source": "EDQM",
+    "number": "3.2.1",
+    "url": "https://extranet.edqm.eu/4DLink1/4DCGI/Web_View/mono/30201"
+  },
+  {
+    "source": "EDQM",
+    "number": "3.2.2",
+    "url": "https://extranet.edqm.eu/4DLink1/4DCGI/Web_View/mono/30202"
+  },
+  {
+    "source": "EDQM",
+    "number": "3.2.9",
+    "url": "https://extranet.edqm.eu/4DLink1/4DCGI/Web_View/mono/30209"
+  },
+  {
+    "source": "EDQM",
+    "number": "5.1.1",
+    "url": "https://extranet.edqm.eu/4DLink1/4DCGI/Web_View/mono/50101"
+  },
+  {
+    "source": "EDQM",
+    "number": "5.1.10",
+    "url": "https://extranet.edqm.eu/4DLink1/4DCGI/Web_View/mono/50110"
+  },
+  {
+    "source": "EDQM",
+    "number": "5.1.13",
+    "url": "https://extranet.edqm.eu/4DLink1/4DCGI/Web_View/mono/50113"
+  },
+  {
+    "source": "EDQM",
+    "number": "5.1.2",
+    "url": "https://extranet.edqm.eu/4DLink1/4DCGI/Web_View/mono/50102"
+  },
+  {
+    "source": "EDQM",
+    "number": "5.1.3",
+    "url": "https://extranet.edqm.eu/4DLink1/4DCGI/Web_View/mono/50103"
+  },
+  {
+    "source": "EDQM",
+    "number": "5.1.4",
+    "url": "https://extranet.edqm.eu/4DLink1/4DCGI/Web_View/mono/50104"
+  },
+  {
+    "source": "EDQM",
+    "number": "5.1.6",
+    "url": "https://extranet.edqm.eu/4DLink1/4DCGI/Web_View/mono/50106"
+  },
+  {
+    "source": "EDQM",
+    "number": "5.1.7",
+    "url": "https://extranet.edqm.eu/4DLink1/4DCGI/Web_View/mono/50107"
+  },
+  {
+    "source": "EDQM",
+    "number": "5.12",
+    "url": "https://extranet.edqm.eu/4DLink1/4DCGI/Web_View/mono/51200"
+  },
+  {
+    "source": "EDQM",
+    "number": "5.17.2",
+    "url": "https://extranet.edqm.eu/4DLink1/4DCGI/Web_View/mono/51702"
+  },
+  {
+    "source": "EDQM",
+    "number": "5.20",
+    "url": "https://extranet.edqm.eu/4DLink1/4DCGI/Web_View/mono/52000"
+  },
+  {
+    "source": "EDQM",
+    "number": "5.26",
+    "url": "https://extranet.edqm.eu/4DLink1/4DCGI/Web_View/mono/52600"
+  },
+  {
+    "source": "EDQM",
+    "number": "5.27",
+    "url": "https://extranet.edqm.eu/4DLink1/4DCGI/Web_View/mono/52700"
+  },
+  {
+    "source": "EDQM",
+    "number": "5.3",
+    "url": "https://extranet.edqm.eu/4DLink1/4DCGI/Web_View/mono/50300"
+  },
+  {
+    "source": "EDQM",
+    "number": "5.4",
+    "url": "https://extranet.edqm.eu/4DLink1/4DCGI/Web_View/mono/50400"
+  },
+  {
+    "source": "EDQM",
+    "number": "0784",
+    "url": "https://extranet.edqm.eu/4DLink1/4DCGI/Web_View/mono/784"
+  },
+  {
+    "source": "EDQM",
+    "number": "2031",
+    "url": "https://extranet.edqm.eu/4DLink1/4DCGI/Web_View/mono/2031"
+  },
+  {
+    "source": "EDQM",
+    "number": "2619",
+    "url": "https://extranet.edqm.eu/4DLink1/4DCGI/Web_View/mono/2619"
+  },
+  {
+    "source": "EDQM",
+    "number": "0520",
+    "url": "https://extranet.edqm.eu/4DLink1/4DCGI/Web_View/mono/520"
+  },
+  {
+    "source": "EDQM",
+    "number": "2928",
+    "url": "https://extranet.edqm.eu/4DLink1/4DCGI/Web_View/mono/2928"
+  },
+  {
+    "source": "EDQM",
+    "number": "3103",
+    "url": "https://extranet.edqm.eu/4DLink1/4DCGI/Web_View/mono/3103"
+  },
+  {
+    "source": "EDQM",
+    "number": "3187",
+    "url": "https://extranet.edqm.eu/4DLink1/4DCGI/Web_View/mono/3187"
+  },
+  {
+    "source": "EDQM",
+    "number": "0169",
+    "url": "https://extranet.edqm.eu/4DLink1/4DCGI/Web_View/mono/169"
+  },
+  {
+    "source": "EDQM",
+    "number": "0008",
+    "url": "https://extranet.edqm.eu/4DLink1/4DCGI/Web_View/mono/8"
+  },
+  {
+    "source": "USP",
+    "number": "General Notices",
+    "url": "https://doi.usp.org/USPNF/USPNF_M99989_11_01.html"
+  },
+  {
+    "source": "EDQM",
+    "number": "1",
+    "url": "https://extranet.edqm.eu/4DLink1/4DCGI/Web_View/mono/10000"
+  }
+]

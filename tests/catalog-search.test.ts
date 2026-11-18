@@ -25,10 +25,10 @@ test("pharmacopoeia catalog retains only official public links and never claims 
   const a = pharmacopoeiaAdapter("EDQM");
   const rows = a.parseList(
     '<main><p><a href="/documents/123/456/guide.pdf">Guide for elaboration of monographs</a></p><a href="https://evil.test/documents/guide.pdf">Untrusted technical guide</a></main>',
-    a.pages[0],
+    "https://www.edqm.eu/en/ph-eur-technical-guides",
   );
   assert.equal(rows.length, 1);
-  const r = a.read("", rows[0].url, rows[0], a.pages[0]).data;
+  const r = a.read("", rows[0].url, rows[0], "https://www.edqm.eu/en/ph-eur-technical-guides").data;
   assert.equal(r.status, "UNKNOWN");
   assert.equal(r.publication_date, null);
   assert.equal(r.source_metadata?.full_text_captured, false);

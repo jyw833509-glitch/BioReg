@@ -1,3 +1,4 @@
+import { chapterPages, publicChapter } from "./pharmacopoeia-details";
 import { load } from "cheerio";
 import { OfficialClient } from "./shared/client";
 import { officialUrl } from "./shared/url";
@@ -8,15 +9,17 @@ import type { Adapter, Candidate } from "./shared/types";
 export function pharmacopoeiaAdapter(code: "USP" | "EDQM"): Adapter {
   const hosts =
     code === "USP"
-      ? ["www.usp.org", "usp.org"]
-      : ["www.edqm.eu", "edqm.eu", "faq.edqm.eu"];
+      ? ["www.usp.org", "usp.org", "doi.usp.org"]
+      : ["www.edqm.eu", "edqm.eu", "faq.edqm.eu", "extranet.edqm.eu"];
   const pages =
     code === "USP"
       ? [
+          ...chapterPages("USP"),
           "https://www.usp.org/harmonized-standards/pdg/general-chapters",
           "https://www.usp.org/harmonized-standards/pdg/general-methods",
         ]
       : [
+          ...chapterPages("EDQM"),
           "https://www.edqm.eu/en/ph-eur-technical-guides",
           "https://www.edqm.eu/en/harmonisation-status-for-general-texts-pdg-",
           "https://faq.edqm.eu/pages/viewpage.action?pageId=143130671",
@@ -48,6 +51,8 @@ export function pharmacopoeiaAdapter(code: "USP" | "EDQM"): Adapter {
         });
     },
     parseList(html, page) {
+      const chapter = publicChapter(html, page);
+      if (chapter) return chapter;
       const $ = load(html),
         records = new Map<string, Candidate>();
       $("nav,header,footer,aside,script,style").remove();
@@ -154,7 +159,7 @@ export function pharmacopoeiaAdapter(code: "USP" | "EDQM"): Adapter {
         candidate.document,
         code,
         (type) => (type === "Q&A" ? "QA" : "OTHER"),
-        () => "UNKNOWN",
+        (status) => status === "published" ? "FINAL" : status === "proposal" ? "DRAFT" : "UNKNOWN",
       );
       normalized.data.country_or_region =
         code === "USP" ? "United States" : "Europe";

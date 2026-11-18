@@ -20,7 +20,7 @@ HOSTS = {
     'www.pmda.go.jp', 'database.ich.org', 'www.ich.org',
     'www.usp.org', 'faq.edqm.eu', 'www.edqm.eu',
     'english.nmpa.gov.cn', 'www.nmpa.gov.cn', 'www.cde.org.cn',
-    'www.ydcdei.org.cn',
+    'www.ydcdei.org.cn', 'doi.usp.org', 'extranet.edqm.eu',
 }
 CACHE = Path('.data/official-field-evidence')
 CACHE.mkdir(parents=True, exist_ok=True)
