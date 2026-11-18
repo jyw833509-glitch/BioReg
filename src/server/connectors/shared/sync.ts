@@ -87,7 +87,9 @@ async function runSource(
     const batches: Candidate[][] = [];
     const queue = adapter.pages.map((url) => ({ url, depth: 0 }));
     const visited = new Set<string>();
-    const pageLimit = options.maxPages || 32;
+    // A reviewed list of direct official chapter pages may exceed 32 entries.
+    // Keep dynamic discovery bounded while visiting all configured seed pages.
+    const pageLimit = options.maxPages || Math.max(32, adapter.pages.length + 4);
     for (
       let index = 0;
       index < queue.length && visited.size < pageLimit;
