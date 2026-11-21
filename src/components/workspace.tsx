@@ -450,8 +450,8 @@ export function Workspace({
             <Menu />
           </button>
           <div className="breadcrumb">
-            Workspace <ChevronRight size={13} />
-            <strong>{record ? "Regulation Detail" : active[1]}</strong>
+            {record ? "工作区" : "Workspace"} <ChevronRight size={13} />
+            <strong>{record ? "法规详情" : active[1]}</strong>
           </div>
           <form
             className="global-search"

@@ -1899,3 +1899,4 @@ body {
 .compact-detail summary { cursor:pointer; color:#263348; font-weight:600; padding-block:6px; }
 .compact-detail pre { white-space:pre-wrap; overflow-wrap:anywhere; max-width:100%; }
 @media(max-width:640px){.compact-detail {padding:16px;} .compact-detail .heading-actions .button {flex:1 1 140px;} .detail-meta {gap:8px 12px;} }
+.compact-detail .version p { color: #495970; }

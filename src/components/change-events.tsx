@@ -1,4 +1,12 @@
 import Link from "next/link";
+const changeLabels: Record<string, string> = {
+  NEW_DOCUMENT: "首次收录", METADATA_CHANGED: "基本信息变化", TITLE_CHANGED: "标题变化",
+  STATUS_CHANGED: "状态变化", DRAFT_TO_FINAL: "征求意见稿转正式发布", FINAL_TO_REVISED: "正式文件修订",
+  PUBLICATION_DATE_CHANGED: "发布日期变化", EFFECTIVE_DATE_CHANGED: "生效日期变化", PDF_CHANGED: "PDF 变化",
+  ATTACHMENT_CHANGED: "附件变化", CONTENT_CHANGED: "正文变化", SECTION_ADDED: "新增章节",
+  SECTION_REMOVED: "移除章节", SECTION_MODIFIED: "章节修改", DOCUMENT_WITHDRAWN: "文件撤回",
+  DOCUMENT_SUPERSEDED: "文件被替代", UNKNOWN_CHANGE: "变化待核实",
+};
 export interface ChangeView {
   id: string;
   regulation_id: string;
@@ -30,11 +38,11 @@ export function ChangeEvents({ events, compact = false }: { events: ChangeView[]
               <strong>{e.regulation.title_original}</strong>
             </Link>}
             <p>
-              {e.regulation.regulator} · {e.detected_at} · {e.severity} ·
+              {e.regulation.regulator} · {e.detected_at} · {({ LOW: "低优先级", MEDIUM: "中优先级", HIGH: "高优先级" } as Record<string, string>)[e.severity] || e.severity} ·
               系统记录版本 v{e.current_version.version_name}
             </p>
-            <p>{e.change_types.join(" · ")}</p>
-            <p>{e.change_summary}</p>
+            <p>{e.change_types.map(t => changeLabels[t] || t).join(" · ")}</p>
+            <p>{e.change_summary === "New official document discovered by BioReg." ? "BioReg 首次收录此官方文件。" : e.change_summary}</p>
             <Link
               className="button"
               href={
