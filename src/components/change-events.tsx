@@ -15,9 +15,9 @@ export function ChangeEvents({ events, compact = false }: { events: ChangeView[]
   return (
     <section className="panel">
       {!compact && <h2>法规变化检测</h2>}
-      <p className="notice">
+      {!compact && <p className="notice">
         规则检测结果，不是监管机构官方声明。版本编号为 系统记录版本。
-      </p>
+      </p>}
       {!events.length && (
         <p>
           尚无检测事件。已有法规不会因启用检测功能而补造更新；首次真实变化将在同步时记录。
@@ -26,9 +26,9 @@ export function ChangeEvents({ events, compact = false }: { events: ChangeView[]
       {events.map((e) => (
         <article className="version" key={e.id}>
           <div>
-            <Link href={`/regulations/${e.regulation_id}`}>
+            {!compact && <Link href={`/regulations/${e.regulation_id}`}>
               <strong>{e.regulation.title_original}</strong>
-            </Link>
+            </Link>}
             <p>
               {e.regulation.regulator} · {e.detected_at} · {e.severity} ·
               系统记录版本 v{e.current_version.version_name}
