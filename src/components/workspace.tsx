@@ -476,7 +476,7 @@ export function Workspace({
           <span className="avatar small">BR</span>
         </header>
         <main>
-          <div className="page-heading">
+          {!record && <div className="page-heading">
             <div>
               <div className="eyebrow">BIOLOGICS REGULATORY INTELLIGENCE</div>
               <h1>
@@ -513,7 +513,7 @@ export function Workspace({
                 {DEMO_DATE} <small>UTC</small>
               </span>
             </div>
-          </div>
+          </div>}
           {page === "dashboard" && dashboard && (
             <>
               <section className="panel sync-overview">
@@ -875,26 +875,33 @@ export function Workspace({
                 <ChevronLeft size={15} />
                 返回法规数据库
               </Link>
-              <section className="panel detail-panel">
-                <div className="tags">
-                  <AgencyBadge agency={record.regulator} />
-                  <StatusBadge status={record.status} />
-                  <ImportanceBadge importance={record.importance_level} />
-                  <span className="badge neutral">
-                    {record.is_mock
-                      ? "Development / Mock Data"
-                      : "Real Official Data"}
-                  </span>
-                </div>
-                <h1>{record.title_zh || record.title_original}</h1>
-                <p className="detail-original">{record.title_original}</p>
+              <section className="panel detail-panel compact-detail">
+                <header>
+                  <h1>{record.title_zh || record.title_original}</h1>
+                  {record.title_zh && record.title_zh !== record.title_original && <>
+                    <p className="detail-original">{record.title_original}</p>
+                    <p className="title-provenance">{["official_catalog", "official_publication"].includes(String((record.source_metadata?.bioreg_title_translation as Record<string, unknown> | undefined)?.method || (record.source_metadata?.bioreg_title_label as Record<string, unknown> | undefined)?.method)) ? "官方机构公开中文标题" : "BioReg 中文参考译名 · 非官方译文"}</p>
+                  </>}
+                  <div className="detail-meta">
+                    <AgencyBadge agency={record.regulator} />
+                    {record.document_number && <span>编号：{record.document_number}</span>}
+                    <span>发布日期：{record.publication_date || record.publication_date_raw || "尚未核实"}</span>
+                    <span>状态：{{Draft:"征求意见稿",Revised:"已修订","Under Consultation":"征求意见中",Final:"正式发布",Effective:"已生效",Withdrawn:"已撤回",Superseded:"已被替代",Archived:"已归档",Unknown:"状态待核实"}[record.status] || "状态待核实"}</span>
+                  </div>
+                  {(record.effective_date || ["Withdrawn", "Superseded", "Effective"].includes(record.status)) && <p className="detail-status">{record.effective_date ? `所载生效日期：${record.effective_date}${record.effective_date > new Date().toISOString().slice(0,10) ? "（尚未到达）" : ""}` : record.status === "Withdrawn" ? "已撤回" : record.status === "Superseded" ? "已被替代" : "已生效"}</p>}
+                </header>
+                {(record.summary_zh || record.official_summary) && <section className="detail-summary">
+                  <h2>摘要</h2>
+                  {record.summary_zh && <><p className="muted">BioReg 中文摘要 · 非监管机构原文</p><p>{record.summary_zh}</p></>}
+                  {record.official_summary && (/[\u3400-\u9fff]/.test(record.official_summary) ? <><p className="muted">官方摘要</p><p>{record.official_summary}</p></> : <details><summary>展开英文官方摘要</summary><p>{record.official_summary}</p></details>)}
+                </section>}
                 <div className="heading-actions">
                   <button
                     className="button primary"
                     onClick={() => setAi([record])}
                   >
                     <Sparkles size={16} />
-                    AI Explain
+                    AI 解读
                   </button>
                   <button className="button" onClick={() => save(record.id)}>
                     <Bookmark size={16} />
@@ -911,71 +918,38 @@ export function Workspace({
                     </a>
                   ) : (
                     <button className="button" disabled>
-                      Official Source · 未提供
+                      官方原文暂不可用
                     </button>
                   )}
-                  {record.pdf_url && (
+                  {record.pdf_url && record.pdf_url !== record.official_url && (
                     <a
                       className="button"
                       href={record.pdf_url}
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      Official PDF ↗
+                      官方 PDF ↗
                     </a>
                   )}
+                  {!record.pdf_url && <span className="muted">未收录独立官方 PDF</span>}
                 </div>
-                <h2>Official Information</h2>
-                <div className="notice">
-                  {record.is_mock
-                    ? "以下元数据为模拟字段，未经监管机构发布或确认。"
-                    : "官方字段来自对应监管机构公开页面。主题标签使用确定性规则；未提供的官方字段保持空值。"}
-                </div>
-                <dl className="info-grid">
-                  {[
-                    ["Regulator", record.regulator],
-                    ["Document Number", record.document_number],
-                    ["Document Type", record.document_type],
-                    [
-                      "Status",
-                      record.status === "Unknown"
-                        ? "状态待核实"
-                        : record.status,
-                    ],
-                    [
-                      "Publication Date",
-                      record.publication_date ||
-                        (record.publication_date_raw
-                          ? `${record.publication_date_raw}（官方未提供完整日期）`
-                          : null),
-                    ],
-                    ["Effective Date", record.effective_date],
-                    ["Issuing Office", record.issuing_offices?.join("; ")],
-                    ["Docket Number", record.docket_number],
-                  ]
-                    .filter(([, v]) => Boolean(v))
-                    .map(([k, v]) => (
-                      <div key={k}>
-                        <dt>{k}</dt>
-                        <dd>{v || "未提供"}</dd>
-                      </div>
-                    ))}
-                </dl>
-                {!record.publication_date &&
-                !record.publication_date_raw &&
-                !record.effective_date ? (
-                  <p className="muted">发布日期及生效日期尚未核实</p>
-                ) : (
-                  <>
-                    {!record.publication_date &&
-                      !record.publication_date_raw && (
-                        <p className="muted">发布日期尚未核实</p>
-                      )}
-                    {!record.effective_date && (
-                      <p className="muted">生效日期尚未核实</p>
-                    )}
-                  </>
-                )}
+
+                {record.versions.length > 0 && <section id="version-history" className="detail-history">
+                  <h2>变更历史</h2>
+                  <p className="muted">系统记录版本与变化检测，不代表官方文件版次。</p>
+                  {record.versions.length >= 2 && <Link className="button" href={"/ai-tools#" + new URLSearchParams({kind:"comparison",id:record.id,template:"compare"})}>AI 对比 · 选择两个版本</Link>}
+                  {[...record.versions].sort((a,b)=>Number(b.version_name)-Number(a.version_name)).map((v,index)=><details className="detail-version" key={v.id} open={index===0}>
+                    <summary>系统记录版本 v{v.version_name}{index===0 ? " · 最近记录" : ""}</summary>
+                    <p>检测时间：{v.detected_at}</p>
+                    {changeEvents.some(e=>e.current_version.version_name===v.version_name) && <ChangeEvents compact events={changeEvents.filter(e=>e.current_version.version_name===v.version_name)} />}
+                    <details><summary>查看版本快照</summary><p>{v.content_snapshot}</p></details>
+                  </details>)}
+                </section>}
+                <details className="detail-more"><summary>更多信息</summary>
+                {(record.issuing_offices?.length || record.docket_number) ? <dl className="info-grid">
+                  {!!record.issuing_offices?.length && <div><dt>发布部门</dt><dd>{record.issuing_offices.join("；")}</dd></div>}
+                  {record.docket_number && <div><dt>案卷编号</dt><dd>{record.docket_number}</dd></div>}
+                </dl> : null}
                 <details>
                   <summary>收录与版本信息</summary>
                   <p className="muted">
@@ -997,11 +971,11 @@ export function Workspace({
                       ))}
                   </dl>
                 </details>
-                {!!record.attachment_urls?.length && (
-                  <h2>Official Attachments</h2>
+                {!!record.attachment_urls?.filter(url => url !== record.official_url && url !== record.pdf_url).length && (
+                  <h2>其他官方附件</h2>
                 )}
                 <div className="tags">
-                  {record.attachment_urls?.map((url) => (
+                  {[...new Set(record.attachment_urls || [])].filter(url => url !== record.official_url && url !== record.pdf_url).map((url) => (
                     <a
                       key={url}
                       className="button"
@@ -1027,14 +1001,14 @@ export function Workspace({
                       </pre>
                     </details>
                   )}
-                <h2>Regulatory Tags</h2>
+                <h2>发布机构y Tags</h2>
                 {[
-                  ["Categories", record.categories],
-                  ["Subcategories", record.subcategories],
-                  ["Product Types", record.product_types],
-                  ["Development Stages", record.development_stages],
-                  ["Affected Departments", record.affected_departments],
-                ].map(([k, values]) => (
+                  ["主题分类", record.categories],
+                  ["细分主题", record.subcategories],
+                  ["产品类型", record.product_types],
+                  ["研发阶段", record.development_stages],
+                  ["相关部门", record.affected_departments],
+                ].filter(([, values]) => (values as string[]).length > 0).map(([k, values]) => (
                   <div className="tag-detail" key={String(k)}>
                     <span>{k}</span>
                     <div className="tags">
@@ -1047,58 +1021,8 @@ export function Workspace({
                   </div>
                 ))}
                 <DocumentFacts record={record} detailed />
-                <h2>Official Summary</h2>
-                <p>
-                  {record.official_summary ||
-                    (record.is_mock
-                      ? "未提供官方摘要。此记录为模拟数据，不能作为监管事实引用。"
-                      : "官方页面未提供官方摘要。")}
-                </p>
-                <h2>
-                  Chinese Overview{" "}
-                  <span className="badge neutral">非监管机构原文</span>
-                </h2>
-                <p className="notice">
-                  {record.summary_zh
-                    ? "System-generated summary / 非监管机构原文"
-                    : "尚未生成中文解读，本阶段不调用 AI API。"}
-                </p>
-                <p>{record.summary_zh}</p>
-                <ChangeEvents events={changeEvents} />
-                <h2 id="version-history">版本历史 · 系统记录版本</h2>
-                <Link
-                  className="button"
-                  href={
-                    "/ai-tools#" +
-                    new URLSearchParams({
-                      kind: "comparison",
-                      id: record.id,
-                      template: "compare",
-                    })
-                  }
-                >
-                  Compare with AI · 选择 Version A / B
-                </Link>
-                {record.versions.map((v) => (
-                  <div className="version" key={v.id}>
-                    <span className="version-dot" />
-                    <div>
-                      <strong>系统记录版本 v{v.version_name}</strong>{" "}
-                      <StatusBadge status={v.status} />
-                      <p>
-                        {v.publication_date || "日期未完整提供"} ·{" "}
-                        {v.change_detected} · 检测时间 {v.detected_at} ·{" "}
-                        {record.is_mock ? "Mock" : "Official"}
-                      </p>
-                      <details>
-                        <summary>查看版本快照</summary>
-                        <p>{v.content_snapshot}</p>
-                      </details>
-                    </div>
-                  </div>
-                ))}
-                <h2>Related Regulations</h2>
-                <p className="muted">关联法规接口预留，尚未接入。</p>
+
+                </details>
               </section>
             </>
           )}

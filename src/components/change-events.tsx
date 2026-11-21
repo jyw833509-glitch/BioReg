@@ -11,12 +11,12 @@ export interface ChangeView {
   regulation: { title_original: string; regulator: string };
   current_version: { version_name: string };
 }
-export function ChangeEvents({ events }: { events: ChangeView[] }) {
+export function ChangeEvents({ events, compact = false }: { events: ChangeView[]; compact?: boolean }) {
   return (
     <section className="panel">
-      <h2>Changes · BioReg Change Detection</h2>
+      {!compact && <h2>法规变化检测</h2>}
       <p className="notice">
-        规则检测结果，不是监管机构官方声明。版本编号为 BioReg Internal Version。
+        规则检测结果，不是监管机构官方声明。版本编号为 系统记录版本。
       </p>
       {!events.length && (
         <p>
@@ -31,7 +31,7 @@ export function ChangeEvents({ events }: { events: ChangeView[] }) {
             </Link>
             <p>
               {e.regulation.regulator} · {e.detected_at} · {e.severity} ·
-              Internal v{e.current_version.version_name}
+              系统记录版本 v{e.current_version.version_name}
             </p>
             <p>{e.change_types.join(" · ")}</p>
             <p>{e.change_summary}</p>
@@ -46,10 +46,10 @@ export function ChangeEvents({ events }: { events: ChangeView[] }) {
                 })
               }
             >
-              Analyze Change with AI
+              AI 解读此次变化
             </Link>
             <details>
-              <summary>旧值 → 新值 / Sections</summary>
+              <summary>旧值 → 新值／章节差异</summary>
               {Array.isArray(e.changed_fields) &&
                 e.changed_fields.map(
                   (
