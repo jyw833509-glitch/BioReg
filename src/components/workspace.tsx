@@ -988,21 +988,7 @@ export function Workspace({
                     </a>
                   ))}
                 </div>
-                {record.source_metadata &&
-                  Object.keys(record.source_metadata).length > 0 && (
-                    <details>
-                      <summary>来源原始元数据（状态 / 阶段 / 修订）</summary>
-                      <pre
-                        style={{
-                          whiteSpace: "pre-wrap",
-                          overflowWrap: "anywhere",
-                        }}
-                      >
-                        {JSON.stringify(record.source_metadata, null, 2)}
-                      </pre>
-                    </details>
-                  )}
-                <h2>发布机构y Tags</h2>
+                <h2>分类标签</h2>
                 {[
                   ["主题分类", record.categories],
                   ["细分主题", record.subcategories],

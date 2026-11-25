@@ -36,6 +36,8 @@ export function DocumentFacts({
     : [];
   return (
     <div className="document-facts">
+      {detailed && meta.adoption_status === "Adopted" && <p>官方采纳状态：已采纳（不等同于已生效）。</p>}
+      {detailed && meta.full_text_captured === false && <p>资料范围：未获取完整正文。</p>}
       {!detailed && (
         <>
           <p>
@@ -104,7 +106,11 @@ export function DocumentFacts({
               ：
               {check.outcome === "captured_for_review"
                 ? "已取得用于核验的资料"
-                : `未完成核验（${check.reason || check.outcome}）`}
+                : /429/.test(check.reason || "")
+                  ? "来源限制请求频率，本轮核验暂缓"
+                  : /403/.test(check.reason || "")
+                    ? "来源拒绝访问，本轮未完成核验"
+                    : "本轮未取得可用资料，尚未完成核验"}
             </p>
           ))}
         </details>
