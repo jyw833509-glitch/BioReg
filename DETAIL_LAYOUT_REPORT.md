@@ -44,3 +44,7 @@
 - 普通详情页不再展示原始 JSON 入口，保留可读快照和后台完整历史。
 - 仅修改展示组件，无数据库写入或迁移。
 - 本地 lint/typecheck/197 tests/build/smoke 通过；CI 45629240098 success。
+
+## 来源元数据入口清理（2026-11-25）
+- 移除详情页来源原始元数据 JSON；保留后台记录、核验依据及中文访问受限说明。
+- 本地 197 项测试及 lint/typecheck/build/smoke 通过；CI 45633008170 success。
