@@ -1900,3 +1900,9 @@ body {
 .compact-detail pre { white-space:pre-wrap; overflow-wrap:anywhere; max-width:100%; }
 @media(max-width:640px){.compact-detail {padding:16px;} .compact-detail .heading-actions .button {flex:1 1 140px;} .detail-meta {gap:8px 12px;} }
 .compact-detail .version p { color: #495970; }
+.compact-detail, .detail-version, .version-snapshot { min-width:0; overflow-wrap:anywhere; }
+.version-snapshot dl { display:grid; gap:14px; }
+.version-snapshot dt { font-weight:600; color:#263348; }
+.version-snapshot dd { margin:4px 0 0; color:#495970; }
+.version-snapshot p { max-width:75ch; white-space:pre-wrap; line-height:1.8; }
+.version-snapshot pre { white-space:pre-wrap; word-break:break-word; overflow-wrap:anywhere; }

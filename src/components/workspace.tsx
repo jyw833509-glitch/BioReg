@@ -2,6 +2,7 @@
 import { ChangeEvents, type ChangeView } from "./change-events";
 import { SearchScope, type SearchCoverage } from "./search-scope";
 import { DocumentFacts } from "./document-facts";
+import { VersionSnapshot } from "./version-snapshot";
 import { sourceCoverageStatus, syncStatusLabel } from "@/lib/sync-status";
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
@@ -942,7 +943,7 @@ export function Workspace({
                     <summary>系统记录版本 v{v.version_name}{index===0 ? " · 最近记录" : ""}</summary>
                     <p>检测时间：{v.detected_at}</p>
                     {changeEvents.some(e=>e.current_version.version_name===v.version_name) && <ChangeEvents compact events={changeEvents.filter(e=>e.current_version.version_name===v.version_name)} />}
-                    <details><summary>查看版本快照</summary><p>{v.content_snapshot}</p></details>
+                    <VersionSnapshot snapshot={v.content_snapshot} />
                   </details>)}
                 </section>}
                 <details className="detail-more"><summary>更多信息</summary>
