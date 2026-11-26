@@ -2,13 +2,22 @@
 
 Acceptance UTC: 2026-09-14T16:32:38Z. Status: PASSED.
 
+## 报告页后续维护（2026-11-26）
+
+- 中文化报告类型、表单、日期说明、预览、下载按钮及错误提示；来源选项复用现有八来源清单，包含 USP、EP / EDQM。
+- 预览按现有九类报告展示字段、摘要、旧值/新值、统计及历史折叠区域，普通预览不再显示 JSON。原文、译文、系统结果分别标识，版本快照复用现有只读组件。
+- 日期筛选规则保持原样：法规/情报汇总使用发布日期；变更、版本和关注匹配使用发现日期；通知使用创建日期；来源仅筛选同步日志开始时间；汇总使用保存的归属日期，版本对比无日期筛选。
+- 未更改数据库、查询协议、PDF/CSV 文件结构或已保存事实；本次仅调整报告页展示与必要的输入提示。
+- 最终本地 lint、typecheck、201 项测试、生产构建、生产模式 HTTP smoke 通过；真实线上只读样本的桌面/手机预览无横向溢出，官方链接保留，原始 JSON 不呈现。
+- CI 与正式上线验收：发布后补记。
+
 ## 1. Phase 9 Scope
 
 Reports / production hardening / QA / V1.0.0 release, including the requested minimal performance repair. Existing Netlify + Supabase + GitHub Actions architecture remains unchanged. No new infrastructure or Phase 10 work.
 
 ## 2. Reports architecture
 
-Read-only GET `/api/reports`, validated bounded query → existing PostgreSQL records → JSON preview / PDFKit / UTF-8 CSV. No report writes or AI calls. Default 30 / maximum 100 records; per-regulation history/change lists limited to 20 with an explicit limited flag; oversized outputs return 413. The UI record picker is bounded by the supplied listing; the API supports explicit IDs.
+Read-only GET `/api/reports`, validated bounded query → existing PostgreSQL records → JSON data response with readable UI preview / PDFKit / UTF-8 CSV. No report writes or AI calls. Default 30 / maximum 100 records; per-regulation history/change lists limited to 20 with an explicit limited flag; oversized outputs return 413. The UI record picker is bounded by the supplied listing; the API supports explicit IDs.
 
 ## 3. Report types
 

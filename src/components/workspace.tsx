@@ -505,7 +505,9 @@ export function Workspace({
                   ? "官方信息、主题标签与历史版本"
                   : page === "dashboard"
                     ? "聚合全球生物药监管动态，让每一次决策都有据可依。"
-                    : `${active[1]} · 全球生物药研发、注册与生命周期情报`}
+                    : page === "reports"
+                      ? "按机构、时间和主题整理已收录法规，支持报告预览与导出。"
+                      : `${active[1]} · 全球生物药研发、注册与生命周期情报`}
               </p>
             </div>
             <div className="heading-actions">

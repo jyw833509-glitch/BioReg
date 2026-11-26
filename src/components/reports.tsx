@@ -1,18 +1,16 @@
 "use client";
 import { useState, useEffect } from "react";
 import type { Regulation } from "@/lib/types";
-import type { Report } from "@/server/reports/data";
-const types = [
-  ["regulations", "Regulation Report"],
-  ["changes", "Regulation Change Report"],
-  ["comparison", "Version Comparison Report"],
-  ["digest", "Daily Digest Report"],
-  ["watchlist", "Watchlist Report"],
-  ["summary", "Regulatory Intelligence Summary"],
-  ["sources", "Source Health Report"],
-  ["versions", "Versions Export"],
-  ["notifications", "Notifications Export"],
-];
+import type { Report, ReportQuery } from "@/server/reports/data";
+import { officialSearchSources } from "../lib/search";
+import {
+  reportDates,
+  reportError,
+  reportNames,
+  reportText,
+  reportTime,
+} from "../lib/report-display";
+import { ReportPreview } from "./report-preview";
 export function Reports({ records }: { records: Regulation[] }) {
   const [values, setValues] = useState<Record<string, string>>({
       type: "regulations",
@@ -77,6 +75,20 @@ export function Reports({ records }: { records: Regulation[] }) {
     );
   }
   async function generate() {
+    if (values.start && values.end && values.start > values.end) {
+      setError("结束日期不能早于开始日期。");
+      return;
+    }
+    if (
+      values.type === "comparison" &&
+      (!values.regulation ||
+        !values.from ||
+        !values.to ||
+        values.from === values.to)
+    ) {
+      setError("请选择同一法规的两个不同系统记录版本。");
+      return;
+    }
     setBusy(true);
     setError("");
     setReport(null);
@@ -86,202 +98,224 @@ export function Reports({ records }: { records: Regulation[] }) {
       ).toString();
       const res = await fetch("/api/reports?" + q);
       const d = await res.json();
-      if (!res.ok)
-        throw new Error(d.issues?.[0]?.message || d.message || "Report failed");
+      if (!res.ok) {
+        setError(reportError(d));
+        return;
+      }
       setReport(d.data);
       setQuery(q);
-    } catch (e) {
-      setError(String(e));
+    } catch {
+      setError("报告暂时无法生成，请检查网络后重试。");
     } finally {
       setBusy(false);
     }
   }
   const scope = !["digest", "sources"].includes(values.type);
+  const dateInfo = reportDates[values.type as ReportQuery["type"]];
   return (
-    <section className="panel">
-      <h2>Reports · 可追溯法规报告</h2>
+    <section className="panel reports-panel">
+      <h2>法规报告与导出</h2>
+      <p>选择报告类型和筛选范围，预览后可下载 PDF 或 CSV。</p>
       <p className="notice">
-        Official Fact ≠ BioReg Translation ≠ BioReg System Summary ≠ External AI
-        Interpretation。导出只读取已保存数据，不改写事实。日期筛选为 UTC；Digest
-        按已保存的逻辑日期筛选。
+        报告基于站内已保存资料，官方事实、中文译文和系统整理内容分别标注。导出不改写法规记录；缺失信息保留说明。
       </p>
-      <fieldset disabled={busy} style={{ border: 0, padding: 0 }}>
-        <div className="settings-grid">
-          <label>
-            Report type
-            <select
-              value={values.type}
-              onChange={(e) => set("type", e.target.value)}
-            >
-              {types.map(([id, name]) => (
-                <option key={id} value={id}>
-                  {name}
-                </option>
-              ))}
-            </select>
-          </label>
-          {["start", "end"].map((k) => (
-            <label key={k}>
-              {k === "start" ? "Start date" : "End date"}
-              <input
-                type="date"
-                disabled={values.type === "comparison"}
-                value={values[k] || ""}
-                onChange={(e) => set(k, e.target.value)}
-              />
-            </label>
-          ))}
-          {values.type !== "digest" && (
-            <label>
-              Agency
+      <form
+        onSubmit={(event) => {
+          event.preventDefault();
+          void generate();
+        }}
+      >
+        <fieldset disabled={busy} style={{ border: 0, padding: 0 }}>
+          <div className="settings-grid">
+            <label className="report-type">
+              报告类型
               <select
-                value={values.agency || ""}
-                onChange={(e) => set("agency", e.target.value)}
+                value={values.type}
+                onChange={(e) => set("type", e.target.value)}
               >
-                <option value="">All</option>
-                {["FDA", "EMA", "NMPA", "CDE", "ICH", "PMDA"].map((x) => (
-                  <option key={x}>{x}</option>
+                {Object.entries(reportNames).map(([id, name]) => (
+                  <option key={id} value={id}>
+                    {name}
+                  </option>
                 ))}
               </select>
             </label>
-          )}
-          {scope && (
-            <>
-              <label>
-                Regulation
-                <select
-                  value={values.regulation || ""}
-                  onChange={(e) => set("regulation", e.target.value)}
-                >
-                  <option value="">All / select for comparison</option>
-                  {records.map((r) => (
-                    <option key={r.id} value={r.id}>
-                      {r.title_original}
-                    </option>
-                  ))}
-                </select>
-              </label>
-              {["category", "product"].map((k) => (
+            {dateInfo.label &&
+              ["start", "end"].map((k) => (
                 <label key={k}>
-                  {k}
+                  {dateInfo.label} · {k === "start" ? "开始" : "结束"}
                   <input
+                    type="date"
+                    aria-describedby="report-date-hint"
                     value={values[k] || ""}
                     onChange={(e) => set(k, e.target.value)}
-                    placeholder="Exact classification / 留空不限"
                   />
                 </label>
               ))}
+            <p className="report-date-hint" id="report-date-hint">
+              {dateInfo.hint}
+            </p>
+            {values.type !== "digest" && (
               <label>
-                Severity
+                监管机构
                 <select
-                  value={values.severity || ""}
-                  disabled={["versions", "comparison"].includes(values.type)}
-                  onChange={(e) => set("severity", e.target.value)}
+                  value={values.agency || ""}
+                  onChange={(e) => set("agency", e.target.value)}
                 >
-                  <option value="">All</option>
-                  {["CRITICAL", "HIGH", "MEDIUM", "LOW"].map((x) => (
-                    <option key={x}>{x}</option>
-                  ))}
-                </select>
-              </label>
-            </>
-          )}
-          {["watchlist", "notifications"].includes(values.type) && (
-            <label>
-              Watchlist
-              <select
-                value={values.watchlist || ""}
-                onChange={(e) => set("watchlist", e.target.value)}
-              >
-                <option value="">All</option>
-                {watches.map((w) => (
-                  <option key={w.id} value={w.id}>
-                    {w.name}
-                  </option>
-                ))}
-              </select>
-            </label>
-          )}
-          {values.type === "changes" && (
-            <label>
-              Change event
-              <select
-                value={values.change || ""}
-                onChange={(e) => set("change", e.target.value)}
-              >
-                <option value="">All</option>
-                {changes.map((c) => (
-                  <option key={c.id} value={c.id}>
-                    {c.change_summary}
-                  </option>
-                ))}
-              </select>
-            </label>
-          )}
-          {values.type === "comparison" &&
-            ["from", "to"].map((k) => (
-              <label key={k}>
-                {k === "from" ? "Version A" : "Version B"}
-                <select
-                  value={values[k] || ""}
-                  onChange={(e) => set(k, e.target.value)}
-                >
-                  <option value="">Select</option>
-                  {versions.map((v) => (
-                    <option key={v.id} value={v.id}>
-                      Internal v{v.version_name}
+                  <option value="">全部机构</option>
+                  {officialSearchSources.map((source) => (
+                    <option key={source.code} value={source.code}>
+                      {source.name}
                     </option>
                   ))}
                 </select>
               </label>
-            ))}
-          <label>
-            Maximum records
-            <input
-              type="number"
-              min={1}
-              max={100}
-              value={values.limit}
-              onChange={(e) => set("limit", e.target.value)}
-            />
-          </label>
-        </div>
-        <button className="button primary" onClick={generate}>
-          {busy ? "正在生成…" : "Generate / Preview"}
-        </button>
-      </fieldset>
+            )}
+            {scope && (
+              <>
+                <label>
+                  法规文件
+                  <select
+                    value={values.regulation || ""}
+                    onChange={(e) => set("regulation", e.target.value)}
+                  >
+                    <option value="">
+                      {values.type === "comparison"
+                        ? "请选择需要对比的法规"
+                        : "全部法规"}
+                    </option>
+                    {records.map((r) => (
+                      <option key={r.id} value={r.id}>
+                        {r.title_zh || r.title_original}
+                      </option>
+                    ))}
+                  </select>
+                </label>
+                {["category", "product"].map((k) => (
+                  <label key={k}>
+                    {k === "category" ? "主题分类" : "产品类型"}
+                    <input
+                      value={values[k] || ""}
+                      onChange={(e) => set(k, e.target.value)}
+                      placeholder="填写已有分类的完整名称，留空不限"
+                    />
+                  </label>
+                ))}
+                <label>
+                  重要程度
+                  <select
+                    value={values.severity || ""}
+                    disabled={["versions", "comparison"].includes(values.type)}
+                    onChange={(e) => set("severity", e.target.value)}
+                  >
+                    <option value="">不限</option>
+                    {["CRITICAL", "HIGH", "MEDIUM", "LOW"].map((x) => (
+                      <option key={x} value={x}>
+                        {reportText(x)}
+                      </option>
+                    ))}
+                  </select>
+                </label>
+              </>
+            )}
+            {["watchlist", "notifications"].includes(values.type) && (
+              <label>
+                关注规则
+                <select
+                  value={values.watchlist || ""}
+                  onChange={(e) => set("watchlist", e.target.value)}
+                >
+                  <option value="">全部关注规则</option>
+                  {watches.map((w) => (
+                    <option key={w.id} value={w.id}>
+                      {w.name}
+                    </option>
+                  ))}
+                </select>
+              </label>
+            )}
+            {values.type === "changes" && (
+              <label>
+                变更事件
+                <select
+                  value={values.change || ""}
+                  onChange={(e) => set("change", e.target.value)}
+                >
+                  <option value="">全部变更事件</option>
+                  {changes.map((c) => (
+                    <option key={c.id} value={c.id}>
+                      {reportText(c.change_summary)}
+                    </option>
+                  ))}
+                </select>
+              </label>
+            )}
+            {values.type === "comparison" &&
+              ["from", "to"].map((k) => (
+                <label key={k}>
+                  {k === "from" ? "对比起始版本" : "对比目标版本"}
+                  <select
+                    value={values[k] || ""}
+                    onChange={(e) => set(k, e.target.value)}
+                  >
+                    <option value="">请选择版本</option>
+                    {versions.map((v) => (
+                      <option key={v.id} value={v.id}>
+                        系统记录版本 v{v.version_name}
+                      </option>
+                    ))}
+                  </select>
+                </label>
+              ))}
+            <label>
+              本次最多导出条数
+              <input
+                type="number"
+                min={1}
+                max={100}
+                required
+                value={values.limit}
+                onChange={(e) => set("limit", e.target.value)}
+              />
+            </label>
+          </div>
+          <button className="button primary" type="submit">
+            {busy ? "正在生成…" : "生成并预览"}
+          </button>
+        </fieldset>
+      </form>
       <p role="status">{error}</p>
       {report && (
         <>
           <h3>
-            {report.rows.length} records · {report.generated_at}
+            报告预览 · 本次{" "}
+            {report.rows.filter((r) => r.id !== "scope-summary").length} 条记录
           </h3>
+          <p>生成时间：{reportTime(report.generated_at)}</p>
           {report.limited && (
             <p className="notice">
-              结果达到上限，请缩小筛选范围；历史最多展示 20 条。
+              本次记录或所含历史达到显示上限，结果未全部展示，请缩小筛选范围。每条法规最多带出
+              20 个历史版本及 20 条变更记录。
             </p>
           )}
-          <a
-            className="button primary"
-            href={"/api/reports?" + query + "&format=pdf"}
-          >
-            Download PDF
-          </a>{" "}
-          <a className="button" href={"/api/reports?" + query + "&format=csv"}>
-            Download CSV · UTF-8
-          </a>
-          {!report.rows.length && <p>No matching records / 无符合条件的记录</p>}
-          {report.rows.map((r, i) => (
-            <details key={r.id + String(i)}>
-              <summary>
-                {r.agency} · {r.id} · {r.evidence}
-              </summary>
-              <p>{r.official_url}</p>
-              <pre style={{ whiteSpace: "pre-wrap", overflowWrap: "anywhere" }}>
-                {JSON.stringify(r.details, null, 2)}
-              </pre>
-            </details>
-          ))}
+          <div className="report-actions">
+            <a
+              className="button primary"
+              href={"/api/reports?" + query + "&format=pdf"}
+            >
+              下载 PDF
+            </a>{" "}
+            <a
+              className="button"
+              href={"/api/reports?" + query + "&format=csv"}
+            >
+              下载 CSV（Excel 可打开）
+            </a>
+          </div>
+          {!report.rows.some((r) => r.id !== "scope-summary") && (
+            <p>当前筛选范围内未找到记录，可放宽日期或机构条件后重试。</p>
+          )}
+          <ReportPreview report={report} />
         </>
       )}
     </section>
