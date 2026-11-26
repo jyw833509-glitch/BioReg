@@ -894,7 +894,7 @@ export function Workspace({
                 {(record.summary_zh || record.official_summary) && <section className="detail-summary">
                   <h2>摘要</h2>
                   {record.official_summary && <><p className="muted">官方摘要（原文）</p><p>{record.official_summary}</p></>}
-                  {record.summary_zh && (!(record.source_metadata?.bioreg_summary_translation) || (record.source_metadata.bioreg_summary_translation as Record<string, unknown>).original === record.official_summary) && <><p className="muted">{record.source_metadata?.bioreg_summary_translation ? "中文译文 · 本地模型机器翻译，非官方译文，请结合原文核对" : "BioReg 中文摘要 · 非监管机构原文"}</p><p>{record.summary_zh}</p></>}
+                  {record.summary_zh && (!(record.source_metadata?.bioreg_summary_translation) || (record.source_metadata.bioreg_summary_translation as Record<string, unknown>).original === record.official_summary) && <><p className="muted">{record.source_metadata?.bioreg_summary_translation ? "中文译文 · AI 辅助翻译，非官方译文，请结合原文核对" : "BioReg 中文摘要 · 非监管机构原文"}</p><p>{record.summary_zh}</p></>}
                 </section>}
                 <div className="heading-actions">
                   <button
