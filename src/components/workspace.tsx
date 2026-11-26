@@ -943,7 +943,7 @@ export function Workspace({
                     <summary>系统记录版本 v{v.version_name}{index===0 ? " · 最近记录" : ""}</summary>
                     <p>检测时间：{v.detected_at}</p>
                     {changeEvents.some(e=>e.current_version.version_name===v.version_name) && <ChangeEvents compact events={changeEvents.filter(e=>e.current_version.version_name===v.version_name)} />}
-                    {v.content_snapshot && <VersionSnapshot snapshot={v.content_snapshot} />}
+                    {v.content_snapshot && <VersionSnapshot snapshot={v.content_snapshot} currentSummary={record.official_summary} currentSummaryZh={record.summary_zh} />}
                   </details>)}
                 </section>}
                 <details className="detail-more"><summary>更多信息</summary>
