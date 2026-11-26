@@ -7,6 +7,13 @@ REVISION = '7c41481f57cb95916b40956ab2f0b139b296d974'
 model_path = hf_hub_download(MODEL, filename='Qwen3-8B-Q4_K_M.gguf', revision=REVISION)
 model = Llama(model_path=model_path, n_ctx=4096, n_threads=2, verbose=False)
 summary_mode = os.environ.get('TRANSLATION_KIND') == 'summary'
+if summary_mode:
+    # A deterministic terminology/negation smoke gate before any production candidates.
+    sample = 'Biosimilarity does not mean identical products. Immunogenicity and pharmacokinetics should be assessed in 2 studies.'
+    prompt = '<|im_start|>system\n将以下英文忠实翻译成简体中文，仅输出译文。保留否定、数字与限定语。biosimilarity=生物相似性；immunogenicity=免疫原性；pharmacokinetics=药代动力学。<|im_end|>\n<|im_start|>user\n' + sample + '<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n'
+    check = model(prompt, max_tokens=400, temperature=0, seed=0, stop=['<|im_end|>'])['choices'][0]
+    assert check.get('finish_reason') != 'length' and all(term in check['text'] for term in ['生物相似性', '免疫原性', '药代动力学', '2', '不']), 'Summary model sample gate failed'
+    print('Summary terminology/negation sample gate passed', flush=True)
 input_path = '.data/summary-input.json' if summary_mode else '.data/title-input.json'
 output_path = '.data/summary-output.json' if summary_mode else '.data/title-output.json'
 rows = json.load(open(input_path, encoding='utf-8'))
