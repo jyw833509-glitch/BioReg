@@ -10,6 +10,8 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 
 # BioReg maintenance rules
 
+- Future English official summaries must retain the official original and display a quality-checked Chinese translation directly below it, labeled as non-official machine translation. Reuse the existing local model in Regulatory Sync. Do not bulk backfill historical summaries without explicit authorization. Do not generate summaries when the source has none, silently truncate, or present stale translations after the original changes. Preserve translation provenance and rollback values separately from official facts.
+
 - Preserve GitHub Actions → Supabase PostgreSQL → Netlify + Next.js. Runtime DATABASE_URL uses Transaction Pooler; DIRECT_URL is for CLI/migrations/sync. Keep singleton and small connection pool; avoid parallel database fan-out.
 - Official Fact, BioReg Translation, BioReg System Summary and External AI Interpretation are separate. Never invent or overwrite regulatory facts using AI.
 - Ingest only supported official agency endpoints. Reject verification/login/empty/error pages; isolate failures and retain truthful source health.

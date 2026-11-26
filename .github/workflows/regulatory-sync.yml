@@ -108,6 +108,20 @@ jobs:
             npx tsx scripts/translate-titles.ts import
             echo 'Candidates that fail quality checks remain pending; never replace official facts.'
           fi
+      - name: Translate future English summaries locally
+        continue-on-error: true
+        if: success() && env.SYNC_DRY_RUN != 'true'
+        env:
+          TRANSLATION_KIND: summary
+          HF_HUB_DISABLE_TELEMETRY: '1'
+        run: |
+          npx tsx scripts/translate-summaries.ts export
+          if python -c "import json,sys;sys.exit(0 if json.load(open('.data/summary-input.json')) else 1)"; then
+            python -m pip install 'llama-cpp-python==0.3.16' --extra-index-url https://abetlen.github.io/llama-cpp-python/whl/cpu
+            python -m pip install 'huggingface-hub==0.36.0'
+            python scripts/translate-titles.py
+            npx tsx scripts/translate-summaries.ts import
+          fi
       - uses: actions/cache@v4
         if: success() && env.SYNC_DRY_RUN != 'true'
         with:

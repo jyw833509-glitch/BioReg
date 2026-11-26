@@ -98,6 +98,8 @@ export async function writeRecord(
         ) as Prisma.InputJsonObject,
       };
     const change = detectChange(existing || null, data);
+    const summaryProof = (existing?.source_metadata as Record<string, unknown> | null)?.bioreg_summary_translation;
+    if (summaryProof) data.source_metadata = { ...data.source_metadata, bioreg_summary_translation: summaryProof as Prisma.InputJsonValue };
     const outcome = !existing
       ? "new"
       : change.change_types.length
